@@ -16,7 +16,7 @@ apply plugin: 'idea'
 sourceCompatibility = 1.8 
 targetCompatibility = 1.8
 
-archivesBaseName = "Blog" // 包名
+archivesBaseName = "blog" // 包名
 version = "1.0.0" // 版本
 	
 // 解决编译时警告：编码GBK的不可映射字符
@@ -45,6 +45,10 @@ dependencies {
 	// compile fileTree(dir:'libs',include:'spring*.jar',exclude:'hibernate*.jar')
 	
     // spring
+    compile "org.springframework:spring-aop:${springVersion}"
+    compile "org.springframework:spring-beans:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-core:${springVersion}"
     compile "org.springframework:spring-web:${springVersion}"
     compile "org.springframework:spring-webmvc:${springVersion}"
     
