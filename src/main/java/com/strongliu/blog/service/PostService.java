@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.strongliu.blog.dao.PostDao;
-import com.strongliu.blog.vo.PostVo;
+import com.strongliu.blog.entity.Post;
 
 @Service
 public class PostService {
@@ -12,7 +12,7 @@ public class PostService {
 	@Autowired
 	PostDao postMapper;
 	
-	public PostVo findPostById(String id) {
+	public Post findPostById(String id) {
 		return postMapper.selectById(id);
 	}
 }

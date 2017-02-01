@@ -2,6 +2,8 @@ package com.strongliu.blog.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.strongliu.blog.entity.Post;
 
 public interface PostDao {
@@ -18,5 +20,5 @@ public interface PostDao {
 	
 	public int updateReadCount(@Param("id") String id, @Param("count") int count);
 	
-	public int updateCommentCount(@param("id") String id, @Param("count") int count);
+	public int updateCommentCount(@Param("id") String id, @Param("count") int count);
 }
