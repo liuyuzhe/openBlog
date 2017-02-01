@@ -1,0 +1,22 @@
+package com.strongliu.blog.dao;
+
+import java.util.List;
+
+import com.strongliu.blog.entity.Post;
+
+public interface PostDao {
+	
+	public Post selectById(String id);
+	
+	public Post selectPrevById(String id);
+	
+	public Post selectNextById(String id);
+	
+	public List<Post> selectAllByCategoryId(String categoryId);
+	
+	public List<Post> selectAllByTagId(String tagId);
+	
+	public int updateReadCount(@Param("id") String id, @Param("count") int count);
+	
+	public int updateCommentCount(@param("id") String id, @Param("count") int count);
+}

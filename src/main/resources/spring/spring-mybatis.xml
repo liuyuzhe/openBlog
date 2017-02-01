@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuratuin PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+    <!-- mapper映射文件路径 -->
+    <mappers>
+        <mapper resource="mapper/PostMapper.xml" />
+    </mappers>
+</configuration>
