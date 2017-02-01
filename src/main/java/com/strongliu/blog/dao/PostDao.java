@@ -16,9 +16,11 @@ public interface PostDao {
 	
 	public List<Post> selectAllByCategoryId(String categoryId);
 	
-	public List<Post> selectAllByTagId(String tagId);
+//	public List<Post> selectAllByTagId(String tagId);
 	
 	public int updateReadCount(@Param("id") String id, @Param("count") int count);
 	
 	public int updateCommentCount(@Param("id") String id, @Param("count") int count);
+	
+//	public void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
 }
