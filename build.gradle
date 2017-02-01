@@ -40,7 +40,7 @@ repositories {
     flatDir {
         dirs '~/javeWeb/localLib'
     }
-    
+    maven{ url "http://maven.aliyun.com/nexus/content/groups/public"}    
     mavenLocal() // 使用本地缓存
     mavenCentral() // 使用中央仓库
     jcenter()
@@ -52,19 +52,19 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 	
     // spring & spring mvc
-    compile 'org.springframework:spring-web:${springVersion}'
-    compile 'org.springframework:spring-webmvc:${springVersion}'
+    compile "org.springframework:spring-web:${springVersion}"
+    compile "org.springframework:spring-webmvc:${springVersion}"
     
     // mybatis
-    compile 'org.mybatis:mybatis:${mybatisVersion}'
-    compile 'org.mybatis:mybatis-spring:${mybatisSpringVersion}'
+    compile "org.mybatis:mybatis:${mybatisVersion}"
+    compile "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
     
     // mysql
-    compile 'mysql:mysql-connector-java:${mysqlVersion}'
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
     
     // json
-    compile 'com.alibaba:fastjson:${fastJsonVersion}'
+    compile "com.alibaba:fastjson:${fastJsonVersion}"
     
     // test
-    testCompile 'junit:junit:${junitVersion}'
+    testCompile "junit:junit:${junitVersion}"
 }
