@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
+<project-modules id="moduleCoreId" project-version="2.0">
 	<wb-module deploy-name="openBlog">
 		<property name="context-root" value="blog"/>
-		<wb-resource deploy-path="/" source-path="/WebContent"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-		<property name="java-output-path" value="/openBlog/bin"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
 	</wb-module>
 </project-modules>

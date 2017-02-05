@@ -7,8 +7,9 @@
  */
 
 apply plugin: 'war'
-apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
+apply plugin: 'jetty'
 
 // JDK版本
 sourceCompatibility = 1.8 
