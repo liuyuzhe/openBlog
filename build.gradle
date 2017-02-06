@@ -57,7 +57,7 @@ dependencies {
 	
     // Servlet web
 	providedCompile "javax.servlet:servlet-api:${servletVersion}"
-	providedCompile "javax.servlet:jsp.jsp-api:${jspVersion}"
+	providedCompile "javax.servlet.jsp:jsp-api:${jspVersion}"
 	providedCompile "javax.servlet:jstl:${jstlVersion}"
 
     // Spring web
@@ -84,3 +84,4 @@ dependencies {
     // test
     testCompile "junit:junit:${junitVersion}"
 }
+

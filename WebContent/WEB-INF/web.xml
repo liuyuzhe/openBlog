@@ -14,7 +14,7 @@
 	<context-param>
 	    <!-- 指定配置文件路径，默认为/WEB-INF/applicationContext.xml -->
 	    <param-name>contextConfigLocation</param-name>
-	    <param-value>classpath:spring/spring-service.xml</param-value>
+	    <param-value>classpath:spring/spring-mybatis.xml</param-value>
 	</context-param>
 	
 	<!-- Spring MVC 前端控制器 -->
