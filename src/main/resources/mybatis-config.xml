@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 别名,仅用作简化xml文件配置 -->
+    <typeAliases>
+        <typeAlias alias="Post" type="com.strongliu.blog.entity.Post" />
+        <typeAlias alias="Category" type="com.strongliu.blog.entity.Category" />
+    </typeAliases>
+
+    <!-- mapper映射文件路径 -->
+    <mappers>
+        <mapper resource="mapper/PostMapper.xml" />
+    </mappers>
+</configuration>
