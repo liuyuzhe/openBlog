@@ -85,3 +85,8 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
 }
 
+// jetty 配置
+httpPort = 8081
+stopPort = 8089
+stopKey = "stop"
+
