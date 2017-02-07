@@ -39,9 +39,9 @@
 	</bean>
 
 	<!-- 设置静态资源直接映射，DispatcherServlet不处理 -->
-	<mvc:resources location="/css/**" mapping="/static/css/" />
-	<mvc:resources location="/js/**" mapping="/static/js/" />
-	<mvc:resources location="/*.img" mapping="/image/" />
-	<mvc:resources location="/*.html" mapping="/" />
+	<!--<mvc:resources location="/css/**" mapping="/static/css/" />-->
+	<!--<mvc:resources location="/js/**" mapping="/static/js/" />-->
+	<!--<mvc:resources location="/*.img" mapping="/image/" />-->
+	<!--<mvc:resources location="/*.html" mapping="/" />-->
 	
 </beans>

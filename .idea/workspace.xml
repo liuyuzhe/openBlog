@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b93df21-fd6c-4c50-b879-5c55367109bd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/com/strongliu/blog/service/CategoryService.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___openBlog___blog_1_0_0_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___openBlog___blog_1_0_0_war.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___openBlog___blog_1_0_0_war__exploded_.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___openBlog___blog_1_0_0_war__exploded_.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_servlet_api_2_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_servlet_api_2_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/openBlog.iml" afterPath="$PROJECT_DIR$/openBlog.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" />
     </list>
     <ignored path="openBlog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,16 +96,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-              <folding>
-                <marker date="1485966866000" expanded="true" signature="281:325" placeholder="SELECT * FRO... t_post" />
-                <marker date="1485966866000" expanded="true" signature="427:580" placeholder="SELECT id,ti... t_post" />
-                <marker date="1485966866000" expanded="true" signature="494:538" placeholder="SELECT creat... t_post" />
-                <marker date="1485966866000" expanded="true" signature="682:830" placeholder="SELECT id,ti... t_post" />
-                <marker date="1485966866000" expanded="true" signature="749:793" placeholder="SELECT creat... t_post" />
-                <marker date="1485966866000" expanded="true" signature="940:1052" placeholder="SELECT id,ti... t_post" />
-                <marker date="1485966866000" expanded="true" signature="1113:1177" placeholder="UPDATE t_pos... " />
-                <marker date="1485966866000" expanded="true" signature="1237:1300" placeholder="UPDATE t_pos... " />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,11 +121,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07550336">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-24.5">
+              <caret line="64" column="4" selection-start-line="64" selection-start-column="8" selection-end-line="67" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.71428573">
+              <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+              <folding>
+                <element signature="e#1485#1498#0" expanded="true" />
+                <element signature="e#1536#1554#0" expanded="true" />
+                <element signature="e#1592#1610#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="20" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.352941">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -324,6 +369,21 @@
                 <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Uses your files as and where they are and deploys them to Jetty." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jettyRun" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the webapp into a war and deploys it to Jetty." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jettyRunWar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Stops Jetty." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jettyStop" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Displays the configuration model of root project 'openBlog'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
@@ -380,7 +440,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="2969831653000" />
+        <entry key="$PROJECT_DIR$" value="2970343011000" />
         <entry key="$USER_HOME$/app/mstplib/mstp_website" value="1484475879000" />
       </map>
     </option>
@@ -398,17 +458,24 @@
                           <list>
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.3.RELEASE/f66f40abfe733621768eae0515ea0dc90bb49753/spring-web-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.3.RELEASE/729d7756ba6b41b6ae40be9dff076ba31946f923/spring-webmvc-4.3.3.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.3.RELEASE/fba568b239ad7da9c264016e63a8c7e4b5604fda/spring-jdbc-4.3.3.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.3.RELEASE/15fe147d2725b9b85bfe79817dc10b4246d0364d/spring-tx-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.4.0/1b37a54d8ab403e56cb3ed717c25193474efa226/mybatis-3.4.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/1.3.0/d1dbdc46cac543447ffd5aeda59f1a9bb34f0912/mybatis-spring-1.3.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.38/dbbd7cd309ce167ec8367de4e41c63c2c8593cc5/mysql-connector-java-5.1.38.jar" />
+                            <option value="$MAVEN_REPOSITORY$/commons-dbcp/commons-dbcp/1.4/commons-dbcp-1.4.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.4/fbcf8415e32859b473b336e5ac6422ee69b1185b/fastjson-1.2.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/2.5/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.0/da217367fd25e88df52ba79e47658d4cf928b0d1/commons-collections4-4.0.jar" />
+                            <option value="$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp/jsp-api/2.2/5bf0c26ef77df58c7c28be2d9d52246f2b437a54/jsp-api-2.2.jar" />
+                            <option value="$MAVEN_REPOSITORY$/javax/servlet/jstl/1.2/jstl-1.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.3.RELEASE/3b6b6d116e96fa42fa9bdc9663946a97fc109120/spring-aop-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.3.RELEASE/8e446175b4c8f9bf42abfa11e8194cb729171675/spring-beans-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.3.RELEASE/cfcd94c9b28d71e81bdfc058fd386c1aa4a61aea/spring-context-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.3.RELEASE/ffad13be3dac6eef7d2418a9de87c2a1592d3033/spring-core-4.3.3.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.3.RELEASE/5e2f2e998370bc7d93c3b2c51f88eb3f95d3a470/spring-expression-4.3.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
+                            <option value="$MAVEN_REPOSITORY$/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar" />
+                            <option value="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$" />
@@ -505,13 +572,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/PostMapper.xml" />
         <option value="$PROJECT_DIR$/openBlog.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/PostService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" />
       </list>
     </option>
@@ -532,9 +601,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="716" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -561,12 +629,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="openBlog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -576,6 +651,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="openBlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openBlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openBlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -787,9 +880,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -801,6 +891,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1239,14 +1330,15 @@
       <workItem from="1486043368654" duration="4040000" />
       <workItem from="1486048310182" duration="28000" />
       <workItem from="1486281647484" duration="341000" />
+      <workItem from="1486478060801" duration="277000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7806000" />
+    <option name="totallyTimeSpent" value="8083000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="716" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1299,6 +1391,54 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/PostService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/PostMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1316,16 +1456,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding>
-            <marker date="1485966866000" expanded="true" signature="281:325" placeholder="SELECT * FRO... t_post" />
-            <marker date="1485966866000" expanded="true" signature="427:580" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="494:538" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="682:830" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="749:793" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="940:1052" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="1113:1177" placeholder="UPDATE t_pos... " />
-            <marker date="1485966866000" expanded="true" signature="1237:1300" placeholder="UPDATE t_pos... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1349,16 +1480,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding>
-            <marker date="1485966866000" expanded="true" signature="281:325" placeholder="SELECT * FRO... t_post" />
-            <marker date="1485966866000" expanded="true" signature="427:580" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="494:538" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="682:830" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="749:793" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="940:1052" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="1113:1177" placeholder="UPDATE t_pos... " />
-            <marker date="1485966866000" expanded="true" signature="1237:1300" placeholder="UPDATE t_pos... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1485,14 +1607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22123894">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14957266">
@@ -1520,16 +1634,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding>
-            <marker date="1485966866000" expanded="true" signature="281:325" placeholder="SELECT * FRO... t_post" />
-            <marker date="1485966866000" expanded="true" signature="427:580" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="494:538" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="682:830" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="749:793" placeholder="SELECT creat... t_post" />
-            <marker date="1485966866000" expanded="true" signature="940:1052" placeholder="SELECT id,ti... t_post" />
-            <marker date="1485966866000" expanded="true" signature="1113:1177" placeholder="UPDATE t_pos... " />
-            <marker date="1485966866000" expanded="true" signature="1237:1300" placeholder="UPDATE t_pos... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1549,11 +1654,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.5">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="8" selection-end-line="67" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07550336">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.352941">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71428573">
+          <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+          <folding>
+            <element signature="e#1485#1498#0" expanded="true" />
+            <element signature="e#1536#1554#0" expanded="true" />
+            <element signature="e#1592#1610#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
