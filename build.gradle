@@ -16,6 +16,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 archivesBaseName = 'blog' // 包名
+project.webAppDirName = "src/main/webapp" // webApp目录
 version = '1.0.0' // 版本
 	
 // 解决编译时警告：编码GBK的不可映射字符
@@ -87,8 +88,15 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
 }
 
-// jetty 配置
-httpPort = 8081
-stopPort = 8089
+// Jetty配置项,使能jettyStop任务
+httpPort = 8080
+stopPort = 8090
 stopKey = "stop"
+
+// 实现Jetty静态资源热加载,修改base URL(默认为项目名)
+[jettyRun, jettyRunWar]*.with {
+//    contextPath ""
+    reload "automatic"
+    scanIntervalSeconds 1
+}
 
