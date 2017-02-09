@@ -95,7 +95,7 @@ stopKey = "stop"
 
 // 实现Jetty静态资源热加载,修改base URL(默认为项目名)
 [jettyRun, jettyRunWar]*.with {
-//    contextPath ""
+    contextPath ""
     reload "automatic"
     scanIntervalSeconds 1
 }
