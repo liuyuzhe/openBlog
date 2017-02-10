@@ -9,5 +9,4 @@ public interface CategoryDao {
 	public Category selectById(String id);
 
 	public List<Category> selectAll();
-	
 }
