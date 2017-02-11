@@ -40,6 +40,12 @@ public class PostService {
         return postDao.selectAllByPage(startIndex, PAGE_SIZE);
     }
 
+    public List<Post> findAllPostByCategoryPage(String categoryName, int pageId)
+    {
+        int startIndex = (pageId - 1) * PAGE_SIZE;
+        return postDao.selectAllByCategoryPage(categoryName, startIndex, PAGE_SIZE);
+    }
+
     public int totalPage()
     {
         int totalPage = postDao.count() / PAGE_SIZE;

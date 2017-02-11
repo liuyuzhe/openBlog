@@ -16,7 +16,9 @@ public interface PostDao {
 
 	public List<Post> selectAllByPage(int startIndex, int pageSize);
 
-	public List<Post> selectAllByCategoryId(String categoryId);
+//	public List<Post> selectAllByCategoryId(String categoryId);
+
+	public List<Post> selectAllByCategoryPage(String categoryId, int startIndex, int pageSize);
 	
 //	public List<Post> selectAllByTagId(String tagId);
 	

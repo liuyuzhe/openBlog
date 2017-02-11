@@ -24,8 +24,10 @@ public class PageController {
 		if (postList == null) {
 			return "404";
 		}
+
 		int totalPage = postService.totalPage();
-		model.addAttribute("postList", postList);
+
+		model.addAttribute(postList);
 		model.addAttribute(totalPage);
 
 		return "page";

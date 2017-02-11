@@ -17,14 +17,13 @@ public class PostController {
 	@Autowired
 	PostService postService;
 
-
 	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
-	@ResponseBody
+//	@ResponseBody
 	public String post(@PathVariable String postId, Model model) {
 		Post post = postService.findPostById(postId);
-//		if (post == null) {
-//			return "404";
-//		}
+		if (post == null) {
+			return "404";
+		}
 
 		model.addAttribute(post);
 
