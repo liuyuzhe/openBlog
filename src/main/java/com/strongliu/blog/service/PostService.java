@@ -5,6 +5,8 @@ import com.strongliu.blog.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by liuyuzhe on 2017/2/2.
  */
@@ -14,6 +16,8 @@ public class PostService {
 
     @Autowired
     private PostDao postDao;
+
+    private static int PAGE_SIZE = 10;
 
     public Post findPostById(String id)
     {
@@ -28,6 +32,22 @@ public class PostService {
     public Post findNextPostById(String id)
     {
         return postDao.selectNextById(id);
+    }
+
+    public List<Post> findAllPostByPageId(int pageId)
+    {
+        int startIndex = (pageId - 1) * PAGE_SIZE;
+        return postDao.selectAllByPage(startIndex, PAGE_SIZE);
+    }
+
+    public int totalPage()
+    {
+        int totalPage = postDao.count() / PAGE_SIZE;
+        if (totalPage % PAGE_SIZE != 0) {
+            totalPage += 1;
+        }
+
+        return totalPage;
     }
 
 }

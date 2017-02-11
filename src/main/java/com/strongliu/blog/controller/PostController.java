@@ -21,13 +21,13 @@ public class PostController {
 	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
 	@ResponseBody
 	public String post(@PathVariable String postId, Model model) {
-//		Post post = postService.findPostById(postId);
+		Post post = postService.findPostById(postId);
 //		if (post == null) {
 //			return "404";
 //		}
-//
-//		model.addAttribute("post", post);
-//
+
+		model.addAttribute(post);
+
 		return "post";
 	}
 

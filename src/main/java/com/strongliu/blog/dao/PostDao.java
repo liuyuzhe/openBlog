@@ -14,6 +14,8 @@ public interface PostDao {
 	
 	public Post selectNextById(String id);
 
+	public List<Post> selectAllByPage(int startIndex, int pageSize);
+
 	public List<Post> selectAllByCategoryId(String categoryId);
 	
 //	public List<Post> selectAllByTagId(String tagId);
@@ -23,4 +25,6 @@ public interface PostDao {
 	public int updateCommentCount(@Param("id") String id, @Param("count") int count);
 	
 //	public void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
+
+	public int count();
 }
