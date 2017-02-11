@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b93df21-fd6c-4c50-b879-5c55367109bd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/IndexController.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/IndexController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/PostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/PostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/PostService.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/PostService.java" />
     </list>
     <ignored path="openBlog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,11 +92,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PostController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PostController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.21367522">
+              <caret line="19" column="64" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -127,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1923077">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -610,12 +605,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/vo/CategoryVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/entity/Page.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/PostService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/PostDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java" />
       </list>
     </option>
   </component>
@@ -1438,12 +1433,12 @@
       <workItem from="1486715467013" duration="1180000" />
       <workItem from="1486736148825" duration="3156000" />
       <workItem from="1486783319096" duration="5241000" />
-      <workItem from="1486797652196" duration="3354000" />
+      <workItem from="1486797652196" duration="3586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27699000" />
+    <option name="totallyTimeSpent" value="27931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1887,39 +1882,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.555555">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/IndexController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.777778">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1941,8 +1908,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1923077">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.777778">
+          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
+            <element signature="e#843#844#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.555555">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/PostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21367522">
+          <caret line="19" column="64" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
           <folding />
         </state>
       </provider>

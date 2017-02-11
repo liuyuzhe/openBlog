@@ -18,7 +18,6 @@ public class PostController {
 	PostService postService;
 
 	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
-//	@ResponseBody
 	public String post(@PathVariable String postId, Model model) {
 		Post post = postService.findPostById(postId);
 		if (post == null) {
