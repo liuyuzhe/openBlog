@@ -21,7 +21,7 @@ public class PostController {
 	public String post(@PathVariable String postId, Model model) {
 		Post post = postService.findPostById(postId);
 		if (post == null) {
-			return "404";
+			return  "404";
 		}
 
 		model.addAttribute(post);

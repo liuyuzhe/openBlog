@@ -48,8 +48,9 @@ public class PostService {
 
     public int totalPage()
     {
-        int totalPage = postDao.count() / PAGE_SIZE;
-        if (totalPage % PAGE_SIZE != 0) {
+        int totalPost = postDao.count();
+        int totalPage = totalPost / PAGE_SIZE;
+        if (totalPost % PAGE_SIZE != 0) {
             totalPage += 1;
         }
 
