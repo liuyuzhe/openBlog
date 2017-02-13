@@ -21,9 +21,11 @@ public class IndexController {
     @Autowired
     PostService postService;
 
+    private static final int PAGE_SIZE = 10;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        List<Post> postList = postService.findAllPostByPageId(page);
+        List<Post> postList = postService.findAllPublishPost(page, PAGE_SIZE);
         if (postList == null) {
             return "404";
         }

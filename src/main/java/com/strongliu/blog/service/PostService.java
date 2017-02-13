@@ -17,8 +17,6 @@ public class PostService {
     @Autowired
     private PostDao postDao;
 
-    private static int PAGE_SIZE = 10;
-
     public Post findPostById(String id)
     {
         return postDao.selectById(id);
@@ -34,23 +32,23 @@ public class PostService {
         return postDao.selectNextById(id);
     }
 
-    public List<Post> findAllPostByPageId(int pageId)
+    public List<Post> findAllPublishPost(int pageId, int pageSize)
     {
-        int startIndex = (pageId - 1) * PAGE_SIZE;
-        return postDao.selectAllByPage(startIndex, PAGE_SIZE);
+        int startIndex = (pageId - 1) * pageSize;
+        return postDao.selectAllPublish(startIndex, pageSize);
     }
 
-    public List<Post> findAllPostByCategoryPage(String categoryName, int pageId)
+    public List<Post> findAllPublishPostByCategoryId(String categoryId, int pageId, int pageSize)
     {
-        int startIndex = (pageId - 1) * PAGE_SIZE;
-        return postDao.selectAllByCategoryPage(categoryName, startIndex, PAGE_SIZE);
+        int startIndex = (pageId - 1) * pageSize;
+        return postDao.selectAllPublishByCategoryId(categoryId, startIndex, pageSize);
     }
 
-    public int totalPage()
+    public int totalPage(int pageSize)
     {
-        int totalPost = postDao.count();
-        int totalPage = totalPost / PAGE_SIZE;
-        if (totalPost % PAGE_SIZE != 0) {
+        int totalPost = postDao.selectCount();
+        int totalPage = totalPost / pageSize;
+        if (totalPost % pageSize != 0) {
             totalPage += 1;
         }
 

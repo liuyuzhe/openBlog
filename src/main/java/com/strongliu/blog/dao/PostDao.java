@@ -8,25 +8,25 @@ import com.strongliu.blog.entity.Post;
 
 public interface PostDao {
 	
-	public Post selectById(String id);
+	Post selectById(String id);
 	
-	public Post selectPrevById(String id);
+	Post selectPrevById(String id);
 	
-	public Post selectNextById(String id);
+	Post selectNextById(String id);
 
-	public List<Post> selectAllByPage(int startIndex, int pageSize);
+	List<Post> selectAllPublish(@Param("offset") int offset, @Param("limit") int limit);
 
-//	public List<Post> selectAllByCategoryId(String categoryId);
+//	List<Post> selectAllByCategoryId(String categoryId);
 
-	public List<Post> selectAllByCategoryPage(String categoryId, int startIndex, int pageSize);
-	
-//	public List<Post> selectAllByTagId(String tagId);
-	
-	public int updateReadCount(@Param("id") String id, @Param("count") int count);
-	
-	public int updateCommentCount(@Param("id") String id, @Param("count") int count);
-	
-//	public void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
+	List<Post> selectAllPublishByCategoryId(@Param("categoryId") String categoryId, @Param("offset") int offset, @Param("limit") int limit);
 
-	public int count();
+//	List<Post> selectAllByTagId(String tagId);
+
+	int selectCount();
+
+	int updateReadCount(@Param("id") String id, @Param("count") int count);
+
+	int updateCommentCount(@Param("id") String id, @Param("count") int count);
+
+//	void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
 }

@@ -20,9 +20,6 @@
 
     <!-- mybatis mapper接口扫描路径 -->
     <mybatis:scan base-package="com.strongliu.blog.dao" />
-    
-	<!-- 注解扫描路径 -->
-	<context:component-scan base-package="com.strongliu.blog.service" />
 
 	<!-- 数据库配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />

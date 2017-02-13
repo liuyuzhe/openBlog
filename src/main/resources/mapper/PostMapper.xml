@@ -4,36 +4,51 @@
 	
 <mapper namespace="com.strongliu.blog.dao.PostDao">
     <select id="selectById" parameterType="String" resultType="Post">
-        SELECT * FROM t_post 
+        SELECT id, post_title, post_content, post_create_time FROM post_table
         WHERE id=#{id}
     </select>
     
     <select id="selectPrevById" parameterType="String" resultType="Post">
-        SELECT id,title FROM t_post
-        WHERE createTime &lt;
-        (SELECT createTime FROM t_post WHERE id=#{id})
-        ORDER BY createTime DESC LIMIT 1
+        SELECT id, post_title FROM post_table
+        WHERE post_create_time &lt;
+        (SELECT post_create_time FROM post_table WHERE id=#{id})
+        ORDER BY post_create_time DESC
+        LIMIT 1
     </select>
     
     <select id="selectNextById" parameterType="String" resultType="Post">
-        SELECT id,title FROM t_post
-        WHERE createTime &gt;
-        (SELECT createTime FROM t_post WHERE id=#{id})
-        ORDER BY createTime LIMIT 1
-    </select> 
-    
-    <select id="selectAllByCategoryId" parameterType="String" resultType="Post">
-        SELECT id,title,createTime FROM t_post
-        WHERE categoryId = #{categoryId}
-        ORDER BY createTime DESC
+        SELECT id, post_title FROM post_table
+        WHERE post_create_time &gt;
+        (SELECT post_create_time FROM post_table WHERE id=#{id})
+        ORDER BY post_create_time
+        LIMIT 1
     </select>
-  
+
+    <select id="selectAllPublish" resultType="Post">
+        SELECT id, post_title, post_excerpt, post_create_time FROM post_table
+        WHERE post_type='post' AND post_status='publish'
+        ORDER BY post_create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+    
+    <!--<select id="selectAllPublishByCategoryId" parameterType="String" resultType="Post">-->
+        <!--SELECT id, post_title, post_create_time FROM post_table-->
+        <!--WHERE categoryId = #{categoryId}-->
+        <!--ORDER BY post_create_time DESC-->
+    <!--</select>-->
+
+    <select id="selectCount" resultType="int">
+        SELECT COUNT (*) FROM post_table
+    </select>
+
     <update id="updateReadCount" >
-        UPDATE t_post SET rcount=rcount+#{count} 
+        UPDATE post_table SET read_count=read_count+#{count}
         WHERE id=#{id}
     </update>
+
     <update id="updateCommentCount">
-        UPDATE t_post SET ccount=ccount+#{count}
+        UPDATE post_table SET comment_count=comment_count+#{count}
         WHERE id=#{id}
     </update>
+
 </mapper>

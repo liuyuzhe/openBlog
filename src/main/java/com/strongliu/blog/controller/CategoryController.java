@@ -26,12 +26,12 @@ public class CategoryController {
 	
 	@RequestMapping(value="/{categoryName}/page/{pageId}", method=RequestMethod.GET)
 	public String categoryPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
-		List<Post> postList = postService.findAllPostByCategoryPage(categoryName, pageId);
-		if (postList == null) {
-			return "404";
-		}
-
-		model.addAttribute(postList);
+//		List<Post> postList = postService.findAllPostByCategoryPage(categoryName, pageId);
+//		if (postList == null) {
+//			return "404";
+//		}
+//
+//		model.addAttribute(postList);
 
         return "category";
 	}
