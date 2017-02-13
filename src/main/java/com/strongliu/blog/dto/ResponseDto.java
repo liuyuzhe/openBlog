@@ -1,8 +1,12 @@
 package com.strongliu.blog.dto;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by liuyuzhe on 2017/2/13.
  */
+
+@Component
 public class ResponseDto {
     private int code;
     private String message;

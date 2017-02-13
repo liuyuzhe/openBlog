@@ -18,9 +18,10 @@ public class PostController {
 
 	@Autowired
 	PostService postService;
+	@Autowired
 	ResponseDto responseDto;
 
-	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{postId}", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public Object getPostById(@PathVariable String postId) {
 		try {
@@ -28,6 +29,7 @@ public class PostController {
 			if (post == null) {
 				responseDto.setCode(ErrorMessage.FAILED.getCode());
 				responseDto.setMessage(ErrorMessage.FAILED.getMessage());
+				return responseDto;
 			}
 
 			responseDto.setCode(ErrorMessage.SUCCESS.getCode());
