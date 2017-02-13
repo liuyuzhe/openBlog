@@ -21,7 +21,7 @@ public class PostController {
 	@Autowired
 	ResponseDto responseDto;
 
-	@RequestMapping(value="/{postId}", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/{postId}", method=RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Object getPostById(@PathVariable String postId) {
 		try {
