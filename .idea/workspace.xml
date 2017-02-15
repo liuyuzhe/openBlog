@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b93df21-fd6c-4c50-b879-5c55367109bd" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/CategoryDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/CategoryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/PostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/PostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/entity/Post.java" afterPath="$PROJECT_DIR$/src/main/java/com/strongliu/blog/entity/Post.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/PostMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PostMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/openBlog.sql" afterPath="$PROJECT_DIR$/openBlog.sql" />
     </list>
     <ignored path="openBlog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -115,11 +107,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14957266">
+            <state vertical-scroll-proportion="0.0">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="openBlog.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/openBlog.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.08888889">
+              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -674,7 +676,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>Android</id>
+            <id>SqlNoDataSourceInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -1699,12 +1701,12 @@
       <workItem from="1486872387648" duration="2807000" />
       <workItem from="1486910638415" duration="1814000" />
       <workItem from="1486988146694" duration="12551000" />
-      <workItem from="1487162564200" duration="9336000" />
+      <workItem from="1487162564200" duration="9539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54784000" />
+    <option name="totallyTimeSpent" value="54987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1961,13 +1963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/openBlog.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7111111">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.097402595">
@@ -2219,8 +2214,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14957266">
+        <state vertical-scroll-proportion="0.0">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/openBlog.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08888889">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
           <folding />
         </state>
       </provider>
