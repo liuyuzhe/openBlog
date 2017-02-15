@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.strongliu.blog.dao.PostDao">
+
     <select id="selectById" parameterType="String" resultType="Post">
         SELECT id, post_title, post_content, post_create_time FROM post_table
         WHERE id=#{id}
@@ -42,12 +43,14 @@
     </select>
 
     <update id="updateReadCount" >
-        UPDATE post_table SET read_count=read_count+#{count}
+        UPDATE post_table
+        SET read_count=read_count+#{count}
         WHERE id=#{id}
     </update>
 
     <update id="updateCommentCount">
-        UPDATE post_table SET comment_count=comment_count+#{count}
+        UPDATE post_table
+        SET comment_count=comment_count+#{count}
         WHERE id=#{id}
     </update>
 

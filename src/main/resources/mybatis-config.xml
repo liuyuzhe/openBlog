@@ -6,6 +6,7 @@
     <!-- 别名,仅用作简化xml文件配置 -->
     <typeAliases>
         <typeAlias alias="Post" type="com.strongliu.blog.entity.Post" />
+        <typeAlias alias="User" type="com.strongliu.blog.entity.User" />
         <typeAlias alias="Category" type="com.strongliu.blog.entity.Category" />
     </typeAliases>
 

@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import com.strongliu.blog.entity.Post;
 
 public interface PostDao {
-	
+
+	int insert(Post post);
+
 	Post selectById(String id);
 	
 	Post selectPrevById(String id);
@@ -25,9 +27,13 @@ public interface PostDao {
 
 	int selectCount();
 
+	int update(Post post);
+
 	int updateReadCount(@Param("id") String id, @Param("count") int count);
 
 	int updateCommentCount(@Param("id") String id, @Param("count") int count);
 
 //	void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
+
+	int deleteById(String id);
 }

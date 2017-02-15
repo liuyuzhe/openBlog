@@ -1,19 +1,21 @@
 package com.strongliu.blog.entity;
 
+import java.util.Date;
+
 public class Post {
 	private String id;
-	private String post_title;
-	private String post_excerpt;
-	private String post_content;
-	private String post_create_time;
-	private String post_modified_time;
-	private String post_status;
-	private String post_comment_status;
-	private String post_type;
-	private String post_mime_type;
-	private Long post_comment_count;
-	private String post_author_Id;
-	private String post_category_Id;
+	private String title;
+	private String excerpt;
+	private String content;
+	private Date create_time;
+	private Date modified_time;
+	private String status;
+	private String comment_status;
+	private String type;
+	private String mime_type;
+	private Long comment_count;
+	private String author_Id;
+	private String category_Id;
 
 	public String getId() {
 		return id;
@@ -23,99 +25,99 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getPost_title() {
-		return post_title;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setPost_title(String post_title) {
-		this.post_title = post_title;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getPost_excerpt() {
-		return post_excerpt;
+	public String getExcerpt() {
+		return excerpt;
 	}
 
-	public void setPost_excerpt(String post_excerpt) {
-		this.post_excerpt = post_excerpt;
+	public void setExcerpt(String excerpt) {
+		this.excerpt = excerpt;
 	}
 
-	public String getPost_content() {
-		return post_content;
+	public String getContent() {
+		return content;
 	}
 
-	public void setPost_content(String post_content) {
-		this.post_content = post_content;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getPost_create_time() {
-		return post_create_time;
+	public Date getCreate_time() {
+		return create_time;
 	}
 
-	public void setPost_create_time(String post_create_time) {
-		this.post_create_time = post_create_time;
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
 
-	public String getPost_modified_time() {
-		return post_modified_time;
+	public Date getModified_time() {
+		return modified_time;
 	}
 
-	public void setPost_modified_time(String post_modified_time) {
-		this.post_modified_time = post_modified_time;
+	public void setModified_time(Date modified_time) {
+		this.modified_time = modified_time;
 	}
 
-	public String getPost_status() {
-		return post_status;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPost_status(String post_status) {
-		this.post_status = post_status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getPost_comment_status() {
-		return post_comment_status;
+	public String getComment_status() {
+		return comment_status;
 	}
 
-	public void setPost_comment_status(String post_comment_status) {
-		this.post_comment_status = post_comment_status;
+	public void setComment_status(String comment_status) {
+		this.comment_status = comment_status;
 	}
 
-	public String getPost_type() {
-		return post_type;
+	public String getType() {
+		return type;
 	}
 
-	public void setPost_type(String post_type) {
-		this.post_type = post_type;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getPost_mime_type() {
-		return post_mime_type;
+	public String getMime_type() {
+		return mime_type;
 	}
 
-	public void setPost_mime_type(String post_mime_type) {
-		this.post_mime_type = post_mime_type;
+	public void setMime_type(String mime_type) {
+		this.mime_type = mime_type;
 	}
 
-	public Long getPost_comment_count() {
-		return post_comment_count;
+	public Long getComment_count() {
+		return comment_count;
 	}
 
-	public void setPost_comment_count(Long post_comment_count) {
-		this.post_comment_count = post_comment_count;
+	public void setComment_count(Long comment_count) {
+		this.comment_count = comment_count;
 	}
 
-	public String getPost_author_Id() {
-		return post_author_Id;
+	public String getAuthor_Id() {
+		return author_Id;
 	}
 
-	public void setPost_author_Id(String post_author_Id) {
-		this.post_author_Id = post_author_Id;
+	public void setAuthor_Id(String author_Id) {
+		this.author_Id = author_Id;
 	}
 
-	public String getPost_category_Id() {
-		return post_category_Id;
+	public String getCategory_Id() {
+		return category_Id;
 	}
 
-	public void setPost_category_Id(String post_category_Id) {
-		this.post_category_Id = post_category_Id;
+	public void setCategory_Id(String category_Id) {
+		this.category_Id = category_Id;
 	}
 }
