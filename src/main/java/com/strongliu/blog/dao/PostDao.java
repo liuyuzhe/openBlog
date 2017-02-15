@@ -18,7 +18,8 @@ public interface PostDao {
 
 //	List<Post> selectAllByCategoryId(String categoryId);
 
-	List<Post> selectAllPublishByCategoryId(@Param("categoryId") String categoryId, @Param("offset") int offset, @Param("limit") int limit);
+	List<Post> selectAllPublishByCategoryId(@Param("categoryId") String categoryId,
+											@Param("offset") int offset, @Param("limit") int limit);
 
 //	List<Post> selectAllByTagId(String tagId);
 
