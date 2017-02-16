@@ -24,6 +24,7 @@ public class IndexController {
 
     @Autowired
     PostService postService;
+
     @Autowired
     ResponseListDto responseListDto;
 

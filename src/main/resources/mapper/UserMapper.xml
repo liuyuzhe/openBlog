@@ -12,8 +12,13 @@
     </insert>
 
     <select id="selectById" parameterType="String" resultType="User">
-        SELECT * FROM user_table
+        SELECT id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_status FROM user_table
         WHERE id=#{id}
+    </select>
+
+    <select id="selectByUsername" parameterType="String" resultType="User">
+        SELECT id, user_name, user_password FROM user_table
+        WHERE user_name=#{name}
     </select>
 
     <update id="update" parameterType="User">

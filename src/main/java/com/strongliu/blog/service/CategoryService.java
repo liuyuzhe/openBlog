@@ -15,7 +15,7 @@ import java.util.List;
 public class CategoryService {
 
     @Autowired
-    CategoryDao categoryDao;
+    private CategoryDao categoryDao;
 
     public Category findCategoryById(String id)
     {

@@ -18,6 +18,7 @@ public class PostController {
 
 	@Autowired
 	PostService postService;
+	
 	@Autowired
 	ResponseDto responseDto;
 

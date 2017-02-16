@@ -20,6 +20,7 @@ public class PageController {
 
     @Autowired
     PostService postService;
+
 	@Autowired
 	ResponseListDto responseListDto;
 

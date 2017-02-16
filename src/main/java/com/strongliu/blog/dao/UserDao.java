@@ -11,6 +11,8 @@ public interface UserDao {
 
     User selectById(String id);
 
+    User selectByName(String name);
+
     int update(User user);
 
     int deleteById(String id);
