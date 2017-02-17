@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 02/15/2017 23:41:45 PM
+ Date: 02/17/2017 22:36:18 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -22,7 +22,35 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `category_table`;
 CREATE TABLE `category_table` (
   `id` varchar(20) NOT NULL,
-  `category_name` varchar(20) NOT NULL COMMENT '''分类名称''',
+  `category_name` varchar(20) NOT NULL COMMENT '分类名称',
+  `category_visable` enum('true','false') NOT NULL DEFAULT 'true' COMMENT '是否可见',
+  `category_create_time` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `link_table`
+-- ----------------------------
+DROP TABLE IF EXISTS `link_table`;
+CREATE TABLE `link_table` (
+  `id` varchar(20) NOT NULL,
+  `link_url` varchar(255) NOT NULL COMMENT 'URL',
+  `link_name` varchar(255) NOT NULL COMMENT '名称',
+  `link_creater_id` varchar(20) NOT NULL COMMENT '创建者ID',
+  `link_description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `link_visible` enum('true','false') NOT NULL DEFAULT 'true' COMMENT '是否可见',
+  `link_creater_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `options_table`
+-- ----------------------------
+DROP TABLE IF EXISTS `options_table`;
+CREATE TABLE `options_table` (
+  `id` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL COMMENT '名称',
+  `value` longtext NOT NULL COMMENT '值',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,12 +65,12 @@ CREATE TABLE `post_table` (
   `post_content` longtext NOT NULL COMMENT '内容',
   `post_create_time` datetime NOT NULL COMMENT '创建时间',
   `post_modified_time` datetime NOT NULL COMMENT '修改时间',
-  `post_status` varchar(20) NOT NULL DEFAULT 'publish' COMMENT '文章状态',
-  `post_comment_status` varchar(20) NOT NULL DEFAULT 'open' COMMENT '评论状态',
-  `post_type` varchar(20) NOT NULL DEFAULT 'post' COMMENT '文章类型',
-  `post_mime_type` varchar(100) NOT NULL COMMENT '文件类型',
+  `post_status` enum('publish','draft','private','inherit') NOT NULL DEFAULT 'publish' COMMENT '文章状态',
+  `post_comment_status` enum('open','close') NOT NULL DEFAULT 'open' COMMENT '评论状态',
+  `post_type` enum('post','attachment') NOT NULL DEFAULT 'post' COMMENT '文章类型',
+  `post_mime_type` varchar(100) NOT NULL COMMENT '附件类型',
   `post_comment_count` bigint(20) NOT NULL DEFAULT '0' COMMENT '评论数',
-  `post_author_Id` varchar(20) NOT NULL COMMENT '作者ID',
+  `post_creater_Id` varchar(20) NOT NULL COMMENT '创建者ID',
   `post_category_Id` int(11) unsigned NOT NULL COMMENT '分类ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
