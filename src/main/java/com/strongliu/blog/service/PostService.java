@@ -3,6 +3,7 @@ package com.strongliu.blog.service;
 import com.strongliu.blog.dao.PostDao;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.vo.PostVo;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,14 +46,14 @@ public class PostService {
         return postDao.selectAllPublishByCategoryId(categoryId, startIndex, pageSize);
     }
 
-    public int totalPage(int pageSize)
+    public int pageTotal(int pageSize)
     {
-        int totalPost = postDao.selectCount();
-        int totalPage = totalPost / pageSize;
-        if (totalPost % pageSize != 0) {
-            totalPage += 1;
+        int postToal = postDao.selectCount();
+        int pageTotal = postToal / pageSize;
+        if (postToal % pageSize != 0) {
+            pageTotal += 1;
         }
 
-        return totalPage;
+        return pageTotal;
     }
 }

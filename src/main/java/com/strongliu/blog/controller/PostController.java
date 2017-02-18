@@ -21,7 +21,7 @@ public class PostController {
 	private PostManager postManager;
 
 	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
-	public String getPostById(@PathVariable String postId, Model model) {
+	public String currentPost(@PathVariable String postId, Model model) {
 		PostVo postVo = postManager.getPostVoByPostId(postId);
 		if (postVo == null) {
 			return  "404";

@@ -23,12 +23,12 @@ public class CategoryController {
 	CategoryManager categoryManager;
 
 	@RequestMapping(value="/{categoryName}", method=RequestMethod.GET)
-	public String category(@PathVariable String categoryName, Model model) {
-		return categoryPage(categoryName, 1, model);
+	public String currentCategory(@PathVariable String categoryName, Model model) {
+		return categoryWithPage(categoryName, 1, model);
 	}
 	
 	@RequestMapping(value="/{categoryName}/page/{pageId}", method=RequestMethod.GET)
-	public String categoryPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
+	public String categoryWithPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
 		CategoryVo categoryVo = categoryManager.getCategoryVoByCategoryName(categoryName, pageId);
 		if (categoryVo == null) {
 			return "404";
