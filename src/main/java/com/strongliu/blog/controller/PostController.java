@@ -22,7 +22,7 @@ public class PostController {
 
 	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
 	public String getPostById(@PathVariable String postId, Model model) {
-		PostVo postVo = postManager.getPostVoById(postId);
+		PostVo postVo = postManager.getPostVoByPostId(postId);
 		if (postVo == null) {
 			return  "400";
 		}

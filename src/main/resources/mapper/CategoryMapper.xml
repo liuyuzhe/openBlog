@@ -4,8 +4,12 @@
        
 <mapper>
 
-    <select id="selectByName" parameterType="String" resultType="Category">
-        SELECT id FROM category_table
+    <select id="selectById" resultType="Category">
+        SELECT id, category_name, category_visable FROM category_table
+    </select>
+
+    <select id="selectByName" resultType="Category">
+        SELECT id, category_name, category_visable FROM category_table
     </select>
 
     <select id="selectAll" resultType="Category">

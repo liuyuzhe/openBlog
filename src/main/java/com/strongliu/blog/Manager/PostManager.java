@@ -27,7 +27,7 @@ public class PostManager {
     @Autowired
     private PostVo postVo;
 
-    public PostVo getPostVoById(String postId) {
+    public PostVo getPostVoByPostId(String postId) {
         Post post = postService.findPublishPostById(postId);
         if (post == null) {
             return null;
