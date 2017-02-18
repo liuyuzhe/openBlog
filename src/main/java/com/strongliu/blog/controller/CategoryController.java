@@ -30,6 +30,9 @@ public class CategoryController {
 	@RequestMapping(value="/{categoryName}/page/{pageId}", method=RequestMethod.GET)
 	public String categoryPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
 		CategoryVo categoryVo = categoryManager.getCategoryVoByCategoryName(categoryName, pageId);
+		if (categoryVo == null) {
+			return "404";
+		}
 
 		model.addAttribute(categoryVo);
 

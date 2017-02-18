@@ -24,7 +24,7 @@ public class PostController {
 	public String getPostById(@PathVariable String postId, Model model) {
 		PostVo postVo = postManager.getPostVoByPostId(postId);
 		if (postVo == null) {
-			return  "400";
+			return  "404";
 		}
 
 		model.addAttribute(postVo);
