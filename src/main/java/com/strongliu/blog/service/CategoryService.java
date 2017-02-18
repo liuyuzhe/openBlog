@@ -17,9 +17,13 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
-    public Category findCategoryById(String id)
-    {
+    public Category findCategoryById(int id) {
         return categoryDao.selectById(id);
+    }
+
+    public Category findCategoryByName(String name)
+    {
+        return categoryDao.selectByName(name);
     }
 
     public List<Category> findAllCategory()

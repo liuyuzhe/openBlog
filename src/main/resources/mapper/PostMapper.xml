@@ -4,23 +4,23 @@
 	
 <mapper namespace="com.strongliu.blog.dao.PostDao">
 
-    <select id="selectById" parameterType="String" resultType="Post">
-        SELECT id, post_title, post_content, post_create_time FROM post_table
-        WHERE id=#{id}
+    <select id="selectPublishById" resultType="Post">
+        SELECT id, post_title, post_content, post_create_time, post_creater_Id, post_category_Id FROM post_table
+        WHERE id=#{id} AND post_type='post' AND post_status='publish'
     </select>
     
-    <select id="selectPrevById" parameterType="String" resultType="Post">
+    <select id="selectPublishPrevById" resultType="Post">
         SELECT id, post_title FROM post_table
         WHERE post_create_time &lt;
-        (SELECT post_create_time FROM post_table WHERE id=#{id})
+        (SELECT post_create_time FROM post_table WHERE id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time DESC
         LIMIT 1
     </select>
     
-    <select id="selectNextById" parameterType="String" resultType="Post">
+    <select id="selectPublishNextById" resultType="Post">
         SELECT id, post_title FROM post_table
         WHERE post_create_time &gt;
-        (SELECT post_create_time FROM post_table WHERE id=#{id})
+        (SELECT post_create_time FROM post_table WHERE id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time
         LIMIT 1
     </select>
@@ -32,17 +32,18 @@
         LIMIT #{offset}, #{limit}
     </select>
     
-    <!--<select id="selectAllPublishByCategoryId" parameterType="String" resultType="Post">-->
-        <!--SELECT id, post_title, post_create_time FROM post_table-->
-        <!--WHERE categoryId = #{categoryId}-->
-        <!--ORDER BY post_create_time DESC-->
-    <!--</select>-->
+    <select id="selectAllPublishByCategoryId" resultType="Post">
+        SELECT id, post_title, post_excerpt, post_create_time FROM post_table
+        WHERE categoryId = #{categoryId} AND post_type='post' AND post_status='publish'
+        ORDER BY post_create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
 
-    <select id="selectCount" resultType="int">
+    <select id="selectCount" >
         SELECT COUNT (*) FROM post_table
     </select>
 
-    <update id="updateReadCount" >
+    <update id="updateReadCount">
         UPDATE post_table
         SET read_count=read_count+#{count}
         WHERE id=#{id}

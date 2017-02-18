@@ -4,13 +4,12 @@
        
 <mapper>
 
-    <select id="selectById" parameterType="String" resultType="Category">
-        SELECT * FROM table_category
-        WHERE id=#{id}
+    <select id="selectByName" parameterType="String" resultType="Category">
+        SELECT id FROM category_table
     </select>
 
     <select id="selectAll" resultType="Category">
-        SELECT * FROM table_category
+        SELECT id, category_name, category_visable FROM category_table
     </select>
 
 </mapper>

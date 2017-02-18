@@ -9,11 +9,11 @@ public interface UserDao {
 
     int insert(User user);
 
-    User selectById(String id);
+    User selectById(int id);
 
     User selectByName(String name);
 
     int update(User user);
 
-    int deleteById(String id);
+    int deleteById(int id);
 }

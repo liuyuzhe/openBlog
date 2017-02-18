@@ -1,8 +1,10 @@
 package com.strongliu.blog.controller;
 
+import com.strongliu.blog.Manager.PostManager;
 import com.strongliu.blog.constant.ErrorMessage;
 import com.strongliu.blog.service.PostService;
 import com.strongliu.blog.dto.ResponseDto;
+import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,42 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.strongliu.blog.entity.Post;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PostController {
 
 	@Autowired
-	PostService postService;
-	
-	@Autowired
-	ResponseDto responseDto;
+	private PostManager postManager;
 
-	@RequestMapping(value="/{postId}", method=RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public Object getPostById(@PathVariable String postId) {
-		try {
-			Post post = postService.findPostById(postId);
-			if (post == null) {
-				responseDto.setCode(ErrorMessage.FAILED.getCode());
-				responseDto.setMessage(ErrorMessage.FAILED.getMessage());
-				return responseDto;
-			}
-
-			responseDto.setCode(ErrorMessage.SUCCESS.getCode());
-			responseDto.setMessage(ErrorMessage.SUCCESS.getMessage());
-			responseDto.setData(post);
-
-			return responseDto;
+	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
+	public String getPostById(@PathVariable String postId, Model model) {
+		PostVo postVo = postManager.getPostVoById(postId);
+		if (postVo == null) {
+			return  "400";
 		}
-		catch (Exception e) {
-			e.printStackTrace();
 
-			responseDto.setCode(ErrorMessage.EXCEPTION.getCode());
-			responseDto.setMessage(ErrorMessage.EXCEPTION.getMessage());
-
-			return responseDto;
-		}
+		model.addAttribute(postVo);
+		return "post";
 	}
 
 }
