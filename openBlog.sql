@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 02/17/2017 22:36:18 PM
+ Date: 02/19/2017 12:16:28 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `category_table`;
 CREATE TABLE `category_table` (
-  `id` varchar(20) NOT NULL,
+  `id` int(11) NOT NULL,
   `category_name` varchar(20) NOT NULL COMMENT '分类名称',
   `category_visable` enum('true','false') NOT NULL DEFAULT 'true' COMMENT '是否可见',
   `category_create_time` datetime NOT NULL COMMENT '创建时间',
@@ -72,6 +72,18 @@ CREATE TABLE `post_table` (
   `post_comment_count` bigint(20) NOT NULL DEFAULT '0' COMMENT '评论数',
   `post_creater_Id` varchar(20) NOT NULL COMMENT '创建者ID',
   `post_category_Id` int(11) unsigned NOT NULL COMMENT '分类ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `tag_table`
+-- ----------------------------
+DROP TABLE IF EXISTS `tag_table`;
+CREATE TABLE `tag_table` (
+  `id` int(11) NOT NULL,
+  `tag_name` varchar(20) NOT NULL COMMENT '名称',
+  `tag_create_time` datetime NOT NULL COMMENT '创建时间',
+  `post_id` varchar(20) NOT NULL COMMENT '文章ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

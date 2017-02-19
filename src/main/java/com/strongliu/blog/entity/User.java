@@ -6,18 +6,20 @@ import java.util.Date;
  * Created by liuyuzhe on 2017/2/15.
  */
 public class User {
-    private int id;
+    private String id;
     private String name;
     private String password;
     private String nickname;
     private String email;
     private String avatar_url;
+    private Date register_time;
+    private String status;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,5 +61,21 @@ public class User {
 
     public void setAvatar_url(String avatar_url) {
         this.avatar_url = avatar_url;
+    }
+
+    public Date getRegister_time() {
+        return register_time;
+    }
+
+    public void setRegister_time(Date register_time) {
+        this.register_time = register_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

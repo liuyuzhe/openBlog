@@ -8,6 +8,7 @@
         <typeAlias alias="Post" type="com.strongliu.blog.entity.Post" />
         <typeAlias alias="User" type="com.strongliu.blog.entity.User" />
         <typeAlias alias="Category" type="com.strongliu.blog.entity.Category" />
+        <typeAlias alias="Tag" type="com.strongliu.blog.entity.Tag" />
     </typeAliases>
 
     <!-- mapper映射文件路径 -->

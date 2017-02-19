@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.strongliu.blog.dao.TagDao">
+
+    <select id="selectById" resultType="Tag">
+        SELECT id, tag_name FROM tag_table
+        WHERE id=#{id}
+    </select>
+
+    <select id="selectAllTagByPostId" resultType="Tag">
+        SELECT id, tag_name FROM tag_table
+        WHERE post_id=#{postId}
+    </select>
+
+</mapper>

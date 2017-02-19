@@ -1,10 +1,12 @@
 package com.strongliu.blog.entity;
 
+import java.util.Date;
+
 public class Category {
 	private int id;
 	private String name;
 	private String visable;
-	private String createTime;
+	private Date createTime;
 
 	public int getId() {
 		return id;
@@ -30,11 +32,11 @@ public class Category {
 		this.visable = visable;
 	}
 
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 }

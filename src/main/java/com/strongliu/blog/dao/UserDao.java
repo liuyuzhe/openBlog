@@ -7,11 +7,11 @@ import com.strongliu.blog.entity.User;
  */
 public interface UserDao {
 
-    int insert(User user);
-
     User selectById(int id);
 
     User selectByName(String name);
+
+    int insert(User user);
 
     int update(User user);
 
