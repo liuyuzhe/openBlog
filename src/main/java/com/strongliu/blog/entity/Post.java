@@ -14,8 +14,7 @@ public class Post {
 	private String type;
 	private String mime_type;
 	private Long comment_count;
-	private int author_id;
-	private int category_id;
+	private int creater_id;
 
 	public String getId() {
 		return id;
@@ -101,23 +100,15 @@ public class Post {
 		return comment_count;
 	}
 
+	public int getCreater_id() {
+		return creater_id;
+	}
+
+	public void setCreater_id(int creater_id) {
+		this.creater_id = creater_id;
+	}
+
 	public void setComment_count(Long comment_count) {
 		this.comment_count = comment_count;
-	}
-
-	public int getAuthor_id() {
-		return author_id;
-	}
-
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-
-	public int getCategory_id() {
-		return category_id;
-	}
-
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
 	}
 }

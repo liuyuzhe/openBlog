@@ -11,22 +11,10 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 02/19/2017 16:19:12 PM
+ Date: 02/19/2017 22:59:52 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
---  Table structure for `category_table`
--- ----------------------------
-DROP TABLE IF EXISTS `category_table`;
-CREATE TABLE `category_table` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(20) NOT NULL COMMENT '分类名称',
-  `category_visable` enum('true','false') NOT NULL DEFAULT 'true' COMMENT '是否可见',
-  `category_create_time` datetime NOT NULL COMMENT '创建时间',
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `link_table`
@@ -36,10 +24,10 @@ CREATE TABLE `link_table` (
   `link_id` varchar(20) NOT NULL,
   `link_url` varchar(255) NOT NULL COMMENT 'URL',
   `link_name` varchar(255) NOT NULL COMMENT '名称',
-  `link_creater_id` varchar(20) NOT NULL COMMENT '创建者ID',
   `link_description` varchar(255) DEFAULT NULL COMMENT '描述',
   `link_visible` enum('true','false') NOT NULL DEFAULT 'true' COMMENT '是否可见',
   `link_creater_time` datetime NOT NULL COMMENT '更新时间',
+  `creater_id` varchar(20) NOT NULL COMMENT '创建者ID',
   PRIMARY KEY (`link_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -48,10 +36,8 @@ CREATE TABLE `link_table` (
 -- ----------------------------
 DROP TABLE IF EXISTS `option_table`;
 CREATE TABLE `option_table` (
-  `option_id` varchar(20) NOT NULL,
   `option_name` varchar(50) NOT NULL COMMENT '名称',
-  `option_value` longtext NOT NULL COMMENT '值',
-  PRIMARY KEY (`option_id`)
+  `option_value` longtext NOT NULL COMMENT '值'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -69,22 +55,35 @@ CREATE TABLE `post_table` (
   `post_comment_status` enum('open','close') NOT NULL DEFAULT 'open' COMMENT '评论状态',
   `post_type` enum('post','attachment') NOT NULL DEFAULT 'post' COMMENT '文章类型',
   `post_mime_type` varchar(100) NOT NULL COMMENT '附件类型',
-  `post_comment_count` bigint(20) NOT NULL DEFAULT '0' COMMENT '评论数',
-  `author_id` varchar(20) NOT NULL COMMENT '创建者ID',
-  `category_id` int(11) unsigned NOT NULL COMMENT '分类ID',
-  PRIMARY KEY (`post_id`)
+  `post_comment_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
+  `creater_id` varchar(20) NOT NULL COMMENT '创建者ID',
+  PRIMARY KEY (`post_id`),
+  CONSTRAINT `post_id` FOREIGN KEY (`post_id`) REFERENCES `relationship_table` (`target_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `tag_table`
+--  Table structure for `relationship_table`
 -- ----------------------------
-DROP TABLE IF EXISTS `tag_table`;
-CREATE TABLE `tag_table` (
-  `tag_id` int(11) NOT NULL,
-  `tag_name` varchar(20) NOT NULL COMMENT '名称',
-  `tag_create_time` datetime NOT NULL COMMENT '创建时间',
-  `post_id` varchar(20) NOT NULL COMMENT '文章ID',
-  PRIMARY KEY (`tag_id`)
+DROP TABLE IF EXISTS `relationship_table`;
+CREATE TABLE `relationship_table` (
+  `target_id` varchar(20) NOT NULL,
+  `term_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`target_id`,`term_id`),
+  KEY `term_id` (`term_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `term_table`
+-- ----------------------------
+DROP TABLE IF EXISTS `term_table`;
+CREATE TABLE `term_table` (
+  `term_id` int(11) unsigned NOT NULL,
+  `term_name` varchar(20) NOT NULL COMMENT '名称',
+  `term_slug` varchar(20) NOT NULL COMMENT '缩略名',
+  `term_type` enum('category','tag') NOT NULL COMMENT '类型',
+  `term_count` int(10) unsigned NOT NULL COMMENT '所属内容数',
+  PRIMARY KEY (`term_id`),
+  CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `relationship_table` (`term_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -99,7 +98,7 @@ CREATE TABLE `user_table` (
   `user_email` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `user_avatar_url` varchar(100) DEFAULT NULL COMMENT '头像URL',
   `user_register_time` datetime NOT NULL COMMENT '注册时间',
-  `user_status` int(11) NOT NULL COMMENT '用户状态',
+  `user_activate_time` datetime NOT NULL COMMENT '活跃时间',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
