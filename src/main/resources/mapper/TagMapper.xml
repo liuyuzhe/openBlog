@@ -4,12 +4,19 @@
 
 <mapper namespace="com.strongliu.blog.dao.TagDao">
 
-    <select id="selectById" resultType="Tag">
+    <resultMap id="tagResultMap" type="Tag">
+        <id property="id" column="tag_id"/>
+        <id property="name" column="tag_name"/>
+        <id property="create_time" column="tag_create_time"/>
+        <id property="post_id" column="post_id"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="tagResultMap">
         SELECT id, tag_name FROM tag_table
         WHERE id=#{id}
     </select>
 
-    <select id="selectAllTagByPostId" resultType="Tag">
+    <select id="selectAllTagByPostId" resultMap="tagResultMap">
         SELECT id, tag_name FROM tag_table
         WHERE post_id=#{postId}
     </select>

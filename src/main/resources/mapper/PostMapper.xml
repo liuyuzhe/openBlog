@@ -4,12 +4,28 @@
 	
 <mapper namespace="com.strongliu.blog.dao.PostDao">
 
-    <select id="selectPublishById" resultType="Post">
-        SELECT id, post_title, post_content, post_create_time, post_creater_Id, post_category_Id FROM post_table
+    <resultMap id="postResultMap" type="Post">
+        <id property="id" column="post_id"/>
+        <result property="title" column="post_title"/>
+        <result property="excerpt" column="post_excerpt"/>
+        <result property="content" column="post_content"/>
+        <result property="create_time" column="post_create_time"/>
+        <result property="update_time" column="post_update_time"/>
+        <result property="status" column="post_status"/>
+        <result property="comment_status" column="post_comment_status"/>
+        <result property="type" column="post_type"/>
+        <result property="mime_type" column="post_mime_type"/>
+        <result property="comment_count" column="post_comment_count"/>
+        <result property="author_id" column="author_id"/>
+        <result property="category_id" column="category_id"/>
+    </resultMap>
+
+    <select id="selectPublishById" resultMap="postResultMap">
+        SELECT id, post_title, post_content, post_create_time, author_id, category_id FROM post_table
         WHERE id=#{id} AND post_type='post' AND post_status='publish'
     </select>
     
-    <select id="selectPublishPrevById" resultType="Post">
+    <select id="selectPublishPrevById" resultMap="postResultMap">
         SELECT id, post_title FROM post_table
         WHERE post_create_time &lt;
         (SELECT post_create_time FROM post_table WHERE id=#{id} AND post_type='post' AND post_status='publish')
@@ -17,7 +33,7 @@
         LIMIT 1
     </select>
     
-    <select id="selectPublishNextById" resultType="Post">
+    <select id="selectPublishNextById" resultMap="postResultMap">
         SELECT id, post_title FROM post_table
         WHERE post_create_time &gt;
         (SELECT post_create_time FROM post_table WHERE id=#{id} AND post_type='post' AND post_status='publish')
@@ -25,14 +41,14 @@
         LIMIT 1
     </select>
 
-    <select id="selectAllPublish" resultType="Post">
+    <select id="selectAllPublish" resultMap="postResultMap">
         SELECT id, post_title, post_excerpt, post_create_time FROM post_table
         WHERE post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
     </select>
     
-    <select id="selectAllPublishByCategoryId" resultType="Post">
+    <select id="selectAllPublishByCategoryId" resultMap="postResultMap">
         SELECT id, post_title, post_excerpt, post_create_time FROM post_table
         WHERE categoryId = #{categoryId} AND post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC

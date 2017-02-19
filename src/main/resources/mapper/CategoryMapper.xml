@@ -2,17 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
        
-<mapper>
+<mapper namespace="com.strongliu.blog.dao.CategoryDao">
 
-    <select id="selectById" resultType="Category">
+    <resultMap id="categoryResultMap" type="Category">
+        <id property="id" column="category_id"/>
+        <result property="name" column="category_name"/>
+        <result property="visable" column="category_visable"/>
+        <result property="createTime" column="category_createTime"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="categoryResultMap">
         SELECT id, category_name, category_visable FROM category_table
     </select>
 
-    <select id="selectByName" resultType="Category">
+    <select id="selectByName" resultMap="categoryResultMap">
         SELECT id, category_name, category_visable FROM category_table
     </select>
 
-    <select id="selectAll" resultType="Category">
+    <select id="selectAll" resultMap="categoryResultMap">
         SELECT id, category_name, category_visable FROM category_table
     </select>
 

@@ -33,8 +33,8 @@ public class PostManager {
             return null;
         }
 
-        Category category = categoryService.findCategoryById(post.getCategory_Id());
-        User user = userService.findUserById(post.getAuthor_Id());
+        Category category = categoryService.findCategoryById(post.getCategory_id());
+        User user = userService.findUserById(post.getAuthor_id());
         Post postPrev = postService.findPublishPrevPostById(postId);
         Post postNext = postService.findPublishNextPostById(postId);
 

@@ -4,6 +4,17 @@
 
 <mapper namespace="com.strongliu.blog.dao.UserDao">
 
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="user_id"/>
+        <result property="name" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <result property="nickname" column="user_nickname"/>
+        <result property="email" column="user_email"/>
+        <result property="avatar_url" column="user_avatar_url"/>
+        <result property="register_time" column="user_register_time"/>
+        <result property="status" column="user_status"/>
+    </resultMap>
+    
     <insert id="insert" parameterType="User">
         INSERT INTO user_table
         (id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_status)
@@ -11,12 +22,12 @@
          (#{id}, #{name}, #{password}, #{nickname}, #{email}, #{avatar_url}, #{register_time}, #{status})
     </insert>
 
-    <select id="selectById" parameterType="String" resultType="User">
+    <select id="selectById" resultMap="userResultMap">
         SELECT id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_status FROM user_table
         WHERE id=#{id}
     </select>
 
-    <select id="selectByUsername" parameterType="String" resultType="User">
+    <select id="selectByUsername" resultMap="userResultMap">
         SELECT id, user_name, user_password FROM user_table
         WHERE user_name=#{name}
     </select>
@@ -27,7 +38,7 @@
         WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="String">
+    <delete id="delete">
         DELETE FROM user_table
         WHERE id=#{id}
     </delete>

@@ -8,14 +8,14 @@ public class Post {
 	private String excerpt;
 	private String content;
 	private Date create_time;
-	private Date modified_time;
+	private Date update_time;
 	private String status;
 	private String comment_status;
 	private String type;
 	private String mime_type;
 	private Long comment_count;
-	private int author_Id;
-	private int category_Id;
+	private int author_id;
+	private int category_id;
 
 	public String getId() {
 		return id;
@@ -57,12 +57,12 @@ public class Post {
 		this.create_time = create_time;
 	}
 
-	public Date getModified_time() {
-		return modified_time;
+	public Date getUpdate_time() {
+		return update_time;
 	}
 
-	public void setModified_time(Date modified_time) {
-		this.modified_time = modified_time;
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
 	}
 
 	public String getStatus() {
@@ -105,19 +105,19 @@ public class Post {
 		this.comment_count = comment_count;
 	}
 
-	public int getAuthor_Id() {
-		return author_Id;
+	public int getAuthor_id() {
+		return author_id;
 	}
 
-	public void setAuthor_Id(int author_Id) {
-		this.author_Id = author_Id;
+	public void setAuthor_id(int author_id) {
+		this.author_id = author_id;
 	}
 
-	public int getCategory_Id() {
-		return category_Id;
+	public int getCategory_id() {
+		return category_id;
 	}
 
-	public void setCategory_Id(int category_Id) {
-		this.category_Id = category_Id;
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
 }
