@@ -5,8 +5,8 @@ import java.util.Date;
 public class Category {
 	private int id;
 	private String name;
-	private String visable;
-	private Date createTime;
+	private String slug;
+	private int count;
 
 	public int getId() {
 		return id;
@@ -24,19 +24,19 @@ public class Category {
 		this.name = name;
 	}
 
-	public String getVisable() {
-		return visable;
+	public String getSlug() {
+		return slug;
 	}
 
-	public void setVisable(String visable) {
-		this.visable = visable;
+	public void setSlug(String slug) {
+		this.slug = slug;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public int getCount() {
+		return count;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

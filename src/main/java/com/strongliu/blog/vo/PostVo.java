@@ -2,14 +2,18 @@ package com.strongliu.blog.vo;
 
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
+import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.entity.User;
+
+import java.util.List;
 
 /**
  * Created by liuyuzhe on 2017/2/18.
  */
 public class PostVo {
     private Post post;
-    private Category category;
+    private List<Category> categoryList;
+    private List<Tag> tagList;
     private User user;
     private Post postPrev;
     private Post postNext;
@@ -22,12 +26,20 @@ public class PostVo {
         this.post = post;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
     }
 
     public User getUser() {

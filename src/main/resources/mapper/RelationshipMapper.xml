@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.strongliu.blog.dao.RelationshipDao">
+
+    <select id="selectByTargetId" resultType="Relationship">
+        SELECT target_id, term_id FROM relationship_table
+        WHERE target_id=#{id}
+    </select>
+
+    <select id="selectByTermId" resultType="Relationship">
+        SELECT target_id, term_id FROM relationship_table
+        WHERE term_id=#{id}
+    </select>
+
+</mapper>

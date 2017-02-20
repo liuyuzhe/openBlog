@@ -26,6 +26,10 @@ public class CategoryService {
         return categoryDao.selectByName(name);
     }
 
+    public List<Category> findAllCategoryByIdList(List<Integer> idList) {
+        return categoryDao.selectAllByIdList(idList);
+    }
+
     public List<Category> findAllCategory()
     {
         return categoryDao.selectAll();

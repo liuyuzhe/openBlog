@@ -10,5 +10,7 @@ public interface CategoryDao {
 
 	Category selectByName(String name);
 
+	List<Category> selectAllByIdList(List<Integer> idList);
+
 	List<Category> selectAll();
 }

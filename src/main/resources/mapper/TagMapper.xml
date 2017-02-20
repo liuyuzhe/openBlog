@@ -5,20 +5,25 @@
 <mapper namespace="com.strongliu.blog.dao.TagDao">
 
     <resultMap id="tagResultMap" type="Tag">
-        <id property="id" column="tag_id"/>
-        <id property="name" column="tag_name"/>
-        <id property="create_time" column="tag_create_time"/>
-        <id property="post_id" column="post_id"/>
+        <id property="id" column="term_id"/>
+        <id property="name" column="term_name"/>
+        <id property="slug" column="term_slug"/>
+        <id property="count" column="term_count"/>
     </resultMap>
 
     <select id="selectById" resultMap="tagResultMap">
-        SELECT id, tag_name FROM tag_table
-        WHERE id=#{id}
+        SELECT term_id, term_name, term_slug FROM term_table
+        WHERE term_id=#{id} AND term_type='tag'
     </select>
 
-    <select id="selectAllTagByPostId" resultMap="tagResultMap">
-        SELECT id, tag_name FROM tag_table
-        WHERE post_id=#{postId}
+    <select id="selectAllByName" resultMap="tagResultMap">
+        SELECT term_id, term_name, term_slug FROM term_table
+        WHERE term_name=#{name} AND term_type='tag'
+    </select>
+
+    <select id="selectAll" resultMap="tagResultMap">
+        SELECT term_id, term_name, term_slug, term_count FROM term_table
+        WHERE term_type='tag'
     </select>
 
 </mapper>

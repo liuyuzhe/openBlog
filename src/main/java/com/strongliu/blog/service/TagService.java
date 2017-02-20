@@ -25,7 +25,11 @@ public class TagService {
         return tagDao.selectByName(name);
     }
 
-    public List<Tag> findAllTagByPostId(String postId) {
-        return tagDao.selectAllTagByPostId(postId);
+    public List<Tag> findAllTagByIdList(List<Integer> idList) {
+        return tagDao.selectAllByIdList(idList);
+    }
+
+    public List<Tag> findAllTag() {
+        return tagDao.selectAll();
     }
 }

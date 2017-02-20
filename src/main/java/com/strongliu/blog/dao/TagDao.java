@@ -14,5 +14,7 @@ public interface TagDao {
 
     Tag selectByName(String name);
 
-    List<Tag> selectAllTagByPostId(String postId);
+    List<Tag> selectAllByIdList(List<Integer> idList);
+
+    List<Tag> selectAll();
 }

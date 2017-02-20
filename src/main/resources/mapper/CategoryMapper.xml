@@ -5,22 +5,25 @@
 <mapper namespace="com.strongliu.blog.dao.CategoryDao">
 
     <resultMap id="categoryResultMap" type="Category">
-        <id property="id" column="category_id"/>
-        <result property="name" column="category_name"/>
-        <result property="visable" column="category_visable"/>
-        <result property="createTime" column="category_createTime"/>
+        <id property="id" column="term_id"/>
+        <id property="name" column="term_name"/>
+        <id property="slug" column="term_slug"/>
+        <id property="count" column="term_count"/>
     </resultMap>
 
     <select id="selectById" resultMap="categoryResultMap">
-        SELECT id, category_name, category_visable FROM category_table
+        SELECT term_id, term_name, term_slug FROM category_table
+        WHERE term_id=#{id} AND term_type='category'
     </select>
 
-    <select id="selectByName" resultMap="categoryResultMap">
-        SELECT id, category_name, category_visable FROM category_table
+    <select id="selectAllByName" resultMap="categoryResultMap">
+        SELECT term_id, term_name, term_slug FROM term_table
+        WHERE term_name=#{name} AND term_type='category'
     </select>
 
     <select id="selectAll" resultMap="categoryResultMap">
-        SELECT id, category_name, category_visable FROM category_table
+        SELECT term_id, term_name, term_slug, term_count FROM term_table
+        WHERE term_type='category'
     </select>
 
 </mapper>

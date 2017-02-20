@@ -1,14 +1,13 @@
 package com.strongliu.blog.Manager;
 
-import com.strongliu.blog.entity.Category;
-import com.strongliu.blog.entity.Post;
-import com.strongliu.blog.entity.User;
-import com.strongliu.blog.service.CategoryService;
-import com.strongliu.blog.service.PostService;
-import com.strongliu.blog.service.UserService;
+import com.strongliu.blog.entity.*;
+import com.strongliu.blog.service.*;
 import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by liuyuzhe on 2017/2/18.
@@ -20,27 +19,37 @@ public class PostManager {
     @Autowired
     private PostService postService;
     @Autowired
+    private RelationshipService relationshipService;
+    @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private TagService tagService;
     @Autowired
     private UserService userService;
 
     @Autowired
     private PostVo postVo;
 
+    @Transactional
     public PostVo getPostVoByPostId(String postId) {
         Post post = postService.findPublishPostById(postId);
         if (post == null) {
             return null;
         }
 
-        Category category = categoryService.findCategoryById(post.getCategory_id());
-        User user = userService.findUserById(post.getAuthor_id());
+        List<Relationship> relationshipList = relationshipService.findAllReleationshipByTargetId(post.getId());
+
+        List<Category> categoryList = categoryService.findAllCategoryByIdList();
+        List<Tag> tagList = tagService.findAllTagByIdList();
+
+        User user = userService.findUserById(post.getCreator_id());
+
         Post postPrev = postService.findPublishPrevPostById(postId);
         Post postNext = postService.findPublishNextPostById(postId);
 
-
         postVo.setPost(post);
-        postVo.setCategory(category);
+        postVo.setCategoryList(categoryList);
+        postVo.setTagList(tagList);
         postVo.setUser(user);
         postVo.setPostPrev(postPrev);
         postVo.setPostNext(postNext);

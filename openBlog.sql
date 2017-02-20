@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 02/20/2017 21:30:32 PM
+ Date: 02/20/2017 22:43:12 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -88,7 +88,8 @@ CREATE TABLE `term_table` (
   `term_slug` varchar(20) NOT NULL COMMENT '缩略名',
   `term_type` enum('category','tag') NOT NULL COMMENT '类型',
   `term_count` int(10) unsigned NOT NULL COMMENT '所属内容数',
-  PRIMARY KEY (`term_id`)
+  PRIMARY KEY (`term_id`),
+  UNIQUE KEY `term_slug` (`term_slug`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

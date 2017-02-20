@@ -13,7 +13,7 @@ public class User {
     private String email;
     private String avatar_url;
     private Date register_time;
-    private String status;
+    private Date activate_time;
 
     public String getId() {
         return id;
@@ -71,11 +71,11 @@ public class User {
         this.register_time = register_time;
     }
 
-    public String getStatus() {
-        return status;
+    public Date getActivate_time() {
+        return activate_time;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setActivate_time(Date activate_time) {
+        this.activate_time = activate_time;
     }
 }

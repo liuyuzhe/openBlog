@@ -8,8 +8,8 @@ import java.util.Date;
 public class Tag {
     private int id;
     private String name;
-    private Date create_time;
-    private String post_id;
+    private String slug;
+    private int count;
 
     public int getId() {
         return id;
@@ -27,19 +27,19 @@ public class Tag {
         this.name = name;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
-    public String getPost_id() {
-        return post_id;
+    public int getCount() {
+        return count;
     }
 
-    public void setPost_id(String post_id) {
-        this.post_id = post_id;
+    public void setCount(int count) {
+        this.count = count;
     }
 }

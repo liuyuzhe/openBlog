@@ -12,7 +12,7 @@
         <result property="email" column="user_email"/>
         <result property="avatar_url" column="user_avatar_url"/>
         <result property="register_time" column="user_register_time"/>
-        <result property="status" column="user_status"/>
+        <result property="activate_time" column="user_activate_time"/>
     </resultMap>
     
     <insert id="insert" parameterType="User">

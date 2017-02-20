@@ -16,12 +16,6 @@ public interface PostDao {
 
 	List<Post> selectAllPublish(@Param("offset") int offset, @Param("limit") int limit);
 
-	List<Post> selectAllPublishByCategoryId(@Param("categoryId") int categoryId,
-											@Param("offset") int offset, @Param("limit") int limit);
-
-	List<Post> selectAllByTagId(@Param("tagId") int tagId,
-								@Param("offset") int offset, @Param("limit") int limit);
-
 	int selectCount();
 
 //	int insert(Post post);
