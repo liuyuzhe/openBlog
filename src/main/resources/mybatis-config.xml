@@ -6,13 +6,19 @@
     <!-- 别名,仅用作简化xml文件配置 -->
     <typeAliases>
         <typeAlias alias="Post" type="com.strongliu.blog.entity.Post" />
-        <typeAlias alias="User" type="com.strongliu.blog.entity.User" />
+        <typeAlias alias="Relationship" type="com.strongliu.blog.entity.Relationship" />
         <typeAlias alias="Category" type="com.strongliu.blog.entity.Category" />
         <typeAlias alias="Tag" type="com.strongliu.blog.entity.Tag" />
+        <typeAlias alias="User" type="com.strongliu.blog.entity.User" />
+        <typeAlias alias="LoginInfo" type="com.strongliu.blog.entity.LoginInfo" />
     </typeAliases>
 
     <!-- mapper映射文件路径 -->
     <mappers>
         <mapper resource="mapper/PostMapper.xml" />
+        <mapper resource="mapper/RelationshipMapper.xml" />
+        <mapper resource="mapper/CategoryMapper.xml" />
+        <mapper resource="mapper/TagMapper.xml" />
+        <mapper resource="mapper/UserMapper.xml" />
     </mappers>
 </configuration>

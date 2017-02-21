@@ -1,8 +1,7 @@
-package com.strongliu.blog.Manager;
+package com.strongliu.blog.manager;
 
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Post;
-import com.strongliu.blog.entity.Relationship;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.service.PostService;
 import com.strongliu.blog.service.RelationshipService;

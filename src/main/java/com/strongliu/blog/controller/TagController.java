@@ -1,6 +1,6 @@
 package com.strongliu.blog.controller;
 
-import com.strongliu.blog.Manager.TagManager;
+import com.strongliu.blog.manager.TagManager;
 import com.strongliu.blog.vo.TagVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

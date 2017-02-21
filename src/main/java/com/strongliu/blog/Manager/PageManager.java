@@ -1,4 +1,4 @@
-package com.strongliu.blog.Manager;
+package com.strongliu.blog.manager;
 
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Post;

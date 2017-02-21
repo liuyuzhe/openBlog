@@ -1,6 +1,6 @@
 package com.strongliu.blog.controller;
 
-import com.strongliu.blog.Manager.CategoryManager;
+import com.strongliu.blog.manager.CategoryManager;
 import com.strongliu.blog.vo.CategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

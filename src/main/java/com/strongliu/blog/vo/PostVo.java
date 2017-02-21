@@ -4,12 +4,15 @@ import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by liuyuzhe on 2017/2/18.
  */
+
+@Component
 public class PostVo {
     private Post post;
     private List<Category> categoryList;
