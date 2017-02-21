@@ -40,6 +40,16 @@
 
     <select id="selectAllPublish" resultMap="postResultMap">
         SELECT post_id, post_title, post_excerpt, post_create_time FROM post_table
+        WHERE post_type='post' AND post_status='publish' AND post_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY post_create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectAllPublishByIdList" resultMap="postResultMap">
+        SELECT post_id, post_title, post_excerpt, post_create_time FROM post_table
         WHERE post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}

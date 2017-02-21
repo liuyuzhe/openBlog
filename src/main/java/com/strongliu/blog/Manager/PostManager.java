@@ -37,13 +37,11 @@ public class PostManager {
             return null;
         }
 
-        List<Relationship> relationshipList = relationshipService.findAllReleationshipByTargetId(post.getId());
-
-        List<Category> categoryList = categoryService.findAllCategoryByIdList();
-        List<Tag> tagList = tagService.findAllTagByIdList();
+        List<Integer> termList = relationshipService.findAllTermByTargetId(post.getId());
+        List<Category> categoryList = categoryService.findAllCategoryByIdList(termList);
+        List<Tag> tagList = tagService.findAllTagByIdList(termList);
 
         User user = userService.findUserById(post.getCreator_id());
-
         Post postPrev = postService.findPublishPrevPostById(postId);
         Post postNext = postService.findPublishNextPostById(postId);
 

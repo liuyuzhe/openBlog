@@ -6,6 +6,7 @@ import com.strongliu.blog.service.PostService;
 import com.strongliu.blog.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class PageManager {
     @Autowired
     private PageVo pageVo;
 
+    @Transactional
     public PageVo getPageVoByPageId(int pageId) {
         List<Post> postList = postService.findAllPublishPost(pageId, Constant.PAGE_SIZE);
         if (postList == null) {

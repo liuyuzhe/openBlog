@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface RelationshipDao {
 
-    List<Relationship> selectAllByTargetId(String id);
+    List<Integer> selectAllByTargetId(String id);
 
-    List<Relationship> selectAllByTermId(int id);
+    List<String> selectAllByTermId(int id);
 }

@@ -40,6 +40,12 @@ public class PostService {
         return postDao.selectAllPublish(startIndex, pageSize);
     }
 
+    public List<Post> findAllPublishPostByIdList(List<String> idList, int pageId, int pageSize)
+    {
+        int startIndex = (pageId - 1) * pageSize;
+        return postDao.selectAllPublishByIdList(idList, startIndex, pageSize);
+    }
+
     public int pageTotal(int pageSize)
     {
         int postToal = postDao.selectCount();

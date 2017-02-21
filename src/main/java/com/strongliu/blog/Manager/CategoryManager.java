@@ -38,9 +38,8 @@ public class CategoryManager {
             return null;
         }
 
-        List<Relationship> relationshipList = relationshipService.findAllReleationshipByTermId(category.getId());
-
-        List<Post> postList = postService.findAllPublishPostByCategoryId(category.getId(), pageId, Constant.PAGE_SIZE);
+        List<String> targetList = relationshipService.findAllTargetByTermId(category.getId());
+        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
 
         categoryVo.setCategory(category);
         categoryVo.setPostList(postList);

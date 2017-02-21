@@ -17,12 +17,12 @@ public class RelationshipService {
     @Autowired
     RelationshipDao relationshipDao;
 
-    public List<Relationship> findAllReleationshipByTargetId(String targetId)
+    public List<Integer> findAllTermByTargetId(String targetId)
     {
         return relationshipDao.selectAllByTargetId(targetId);
     }
 
-    public List<Relationship> findAllReleationshipByTermId(int termId)
+    public List<String> findAllTargetByTermId(int termId)
     {
         return relationshipDao.selectAllByTermId(termId);
     }

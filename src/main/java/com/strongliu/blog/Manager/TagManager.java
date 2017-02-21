@@ -1,5 +1,7 @@
 package com.strongliu.blog.Manager;
 
+import com.strongliu.blog.constant.Constant;
+import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Relationship;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.service.PostService;
@@ -36,10 +38,11 @@ public class TagManager {
             return null;
         }
 
-        List<Relationship> relationshipList = relationshipService.findAllReleationshipByTermId(tag.getId());
+        List<String> targetList = relationshipService.findAllTargetByTermId(tag.getId());
+        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
 
         tagVo.setTag(tag);
-        tagVo.setPostList();
+        tagVo.setPostList(postList);
 
         return tagVo;
     }

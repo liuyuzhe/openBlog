@@ -4,13 +4,13 @@
 
 <mapper namespace="com.strongliu.blog.dao.RelationshipDao">
 
-    <select id="selectByTargetId" resultType="Relationship">
-        SELECT target_id, term_id FROM relationship_table
+    <select id="selectByTargetId" resultType="int">
+        SELECT term_id FROM relationship_table
         WHERE target_id=#{id}
     </select>
 
-    <select id="selectByTermId" resultType="Relationship">
-        SELECT target_id, term_id FROM relationship_table
+    <select id="selectByTermId" resultType="string">
+        SELECT target_id FROM relationship_table
         WHERE term_id=#{id}
     </select>
 
