@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface TagDao {
 
-    Tag selectById(int id);
+    Tag selectById(Integer id);
 
     Tag selectByName(String name);
 

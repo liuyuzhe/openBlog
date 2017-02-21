@@ -17,7 +17,7 @@ public class TagService {
     @Autowired
     private TagDao tagDao;
 
-    public Tag findTagById(int id) {
+    public Tag findTagById(Integer id) {
         return tagDao.selectById(id);
     }
 

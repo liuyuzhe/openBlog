@@ -5,7 +5,7 @@ package com.strongliu.blog.entity;
  */
 public class Relationship {
     private String target_id;
-    private int term_id;
+    private Integer term_id;
 
     public String getTarget_id() {
         return target_id;
@@ -15,11 +15,11 @@ public class Relationship {
         this.target_id = target_id;
     }
 
-    public int getTerm_id() {
+    public Integer getTerm_id() {
         return term_id;
     }
 
-    public void setTerm_id(int term_id) {
+    public void setTerm_id(Integer term_id) {
         this.term_id = term_id;
     }
 }

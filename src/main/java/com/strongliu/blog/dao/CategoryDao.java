@@ -6,7 +6,7 @@ import com.strongliu.blog.entity.Category;
 
 public interface CategoryDao {
 
-	Category selectById(int id);
+	Category selectById(Integer id);
 
 	Category selectByName(String name);
 

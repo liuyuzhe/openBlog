@@ -7,7 +7,7 @@ import com.strongliu.blog.entity.User;
  */
 public interface UserDao {
 
-    User selectById(int id);
+    User selectById(String id);
 
     User selectByName(String name);
 
@@ -15,5 +15,5 @@ public interface UserDao {
 
     int update(User user);
 
-    int deleteById(int id);
+    int deleteById(String id);
 }

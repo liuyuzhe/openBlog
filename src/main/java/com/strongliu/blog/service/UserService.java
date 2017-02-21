@@ -19,7 +19,7 @@ public class UserService {
         return userDao.insert(user);
     }
 
-    public User findUserById(int id) {
+    public User findUserById(String id) {
         return userDao.selectById(id);
     }
 
@@ -31,7 +31,7 @@ public class UserService {
         return userDao.update(user);
     }
 
-    public int removeUser(int id) {
+    public int removeUser(String id) {
         return userDao.deleteById(id);
     }
 }

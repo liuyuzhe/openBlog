@@ -17,7 +17,7 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
-    public Category findCategoryById(int id) {
+    public Category findCategoryById(Integer id) {
         return categoryDao.selectById(id);
     }
 

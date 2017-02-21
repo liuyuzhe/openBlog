@@ -11,5 +11,5 @@ public interface RelationshipDao {
 
     List<Integer> selectAllByTargetId(String id);
 
-    List<String> selectAllByTermId(int id);
+    List<String> selectAllByTermId(Integer id);
 }

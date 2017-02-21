@@ -3,16 +3,16 @@ package com.strongliu.blog.entity;
 import java.util.Date;
 
 public class Category {
-	private int id;
+	private Integer id;
 	private String name;
 	private String slug;
-	private int count;
+	private Integer count;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -32,11 +32,11 @@ public class Category {
 		this.slug = slug;
 	}
 
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
 }

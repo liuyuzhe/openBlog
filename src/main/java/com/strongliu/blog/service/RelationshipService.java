@@ -22,7 +22,7 @@ public class RelationshipService {
         return relationshipDao.selectAllByTargetId(targetId);
     }
 
-    public List<String> findAllTargetByTermId(int termId)
+    public List<String> findAllTargetByTermId(Integer termId)
     {
         return relationshipDao.selectAllByTermId(termId);
     }
