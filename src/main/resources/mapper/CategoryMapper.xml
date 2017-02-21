@@ -4,7 +4,7 @@
        
 <mapper namespace="com.strongliu.blog.dao.CategoryDao">
 
-    <resultMap id="categoryResultMap" type="Category">
+    <resultMap id="categoryResultMap" type="category">
         <id property="id" column="term_id"/>
         <id property="name" column="term_name"/>
         <id property="slug" column="term_slug"/>

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.strongliu.blog.dao.UserDao">
 
-    <resultMap id="userResultMap" type="User">
+    <resultMap id="userResultMap" type="user">
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
         <result property="password" column="user_password"/>
@@ -15,7 +15,7 @@
         <result property="activate_time" column="user_activate_time"/>
     </resultMap>
     
-    <insert id="insert" parameterType="User">
+    <insert id="insert" parameterType="user">
         INSERT INTO user_table
         (id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_status)
          VALUES
@@ -32,7 +32,7 @@
         WHERE user_name=#{name}
     </select>
 
-    <update id="update" parameterType="User">
+    <update id="update" parameterType="user">
         UPDATE user_table
         SET user_name=#{name}, user_password=#{password}, user_nickname=#{nickname}, user_email=#{email}, user_avatar_url=#{avatar_url}, user_register_time=#{register_time}, user_status=#{status}
         WHERE id=#{id}

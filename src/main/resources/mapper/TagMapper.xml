@@ -4,7 +4,7 @@
 
 <mapper namespace="com.strongliu.blog.dao.TagDao">
 
-    <resultMap id="tagResultMap" type="Tag">
+    <resultMap id="tagResultMap" type="tag">
         <id property="id" column="term_id"/>
         <id property="name" column="term_name"/>
         <id property="slug" column="term_slug"/>
