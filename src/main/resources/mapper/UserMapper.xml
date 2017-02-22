@@ -15,7 +15,7 @@
         <result property="activate_time" column="user_activate_time"/>
     </resultMap>
 
-    <select id="selectByLoginInfo" parameterType="LoginInfo">
+    <select id="selectByLoginInfo" parameterType="loginInfo">
         SELECT user_id, user_nickname, user_avatar_url, user_activate_time FROM user_table
         WHERE user_name=#{name} AND user_password=#{password}
     </select>

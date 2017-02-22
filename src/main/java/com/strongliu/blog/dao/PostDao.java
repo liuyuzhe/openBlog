@@ -20,15 +20,15 @@ public interface PostDao {
 
 	int selectCount();
 
-//	int insert(Post post);
+	int insert(Post post);
 
-//	int update(Post post);
+	int update(Post post);
 
-	int updateReadCount(@Param("id") String id, @Param("count") int count);
+	int deleteById(String id);
 
-	int updateCommentCount(@Param("id") String id, @Param("count") int count);
+//	int updateReadCount(@Param("id") String id, @Param("count") int count);
+
+//	int updateCommentCount(@Param("id") String id, @Param("count") int count);
 
 //	void updateCategory(@Param("oldCategoryIds") List<String> oldCategoryIds, @Param("newCategoryId") List<String> newCategoryIds);
-
-//	int deleteById(String id);
 }

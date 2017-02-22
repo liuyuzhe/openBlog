@@ -4,14 +4,36 @@
 
 <mapper namespace="com.strongliu.blog.dao.RelationshipDao">
 
-    <select id="selectByTargetId" resultType="int">
+    <select id="selectAllByTargetId" resultType="int">
         SELECT term_id FROM relationship_table
         WHERE target_id=#{id}
     </select>
 
-    <select id="selectByTermId" resultType="string">
+    <select id="selectAllByTermId" resultType="string">
         SELECT target_id FROM relationship_table
         WHERE term_id=#{id}
     </select>
+
+    <insert id="insertList">
+        INSERT INTO relationship_table
+        (target_id, term_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.target_id}, #{item.term_id}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteList">
+        DELETE FROM relationship_table
+        WHERE
+        <foreach collection="list" item="item" index="index" separator="or">
+            (
+            target_id=#{item.target_id}, AND term_id=#{item.term_id}
+            )
+        </foreach>
+    </delete>
+
 
 </mapper>

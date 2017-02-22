@@ -1,7 +1,6 @@
 package com.strongliu.blog.service;
 
 import com.strongliu.blog.dao.RelationshipDao;
-import com.strongliu.blog.entity.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
