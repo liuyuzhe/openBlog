@@ -40,8 +40,15 @@ public class CategoryManager {
         List<String> targetList = relationshipService.findAllTargetByTermId(category.getId());
         List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
 
+        int pageTotal = targetList.size() / Constant.PAGE_SIZE;
+        if (targetList.size() % Constant.PAGE_SIZE != 0) {
+            pageTotal += 1;
+        }
+
         categoryVo.setCategory(category);
         categoryVo.setPostList(postList);
+        categoryVo.setPageIndex(pageId);
+        categoryVo.setPageTotal(pageTotal);
 
         return categoryVo;
     }

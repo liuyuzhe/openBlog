@@ -14,33 +14,43 @@
         <result property="register_time" column="user_register_time"/>
         <result property="activate_time" column="user_activate_time"/>
     </resultMap>
-    
-    <insert id="insert" parameterType="user">
-        INSERT INTO user_table
-        (id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_status)
-         VALUES
-         (#{id}, #{name}, #{password}, #{nickname}, #{email}, #{avatar_url}, #{register_time}, #{status})
-    </insert>
+
+    <select id="selectByLoginInfo" parameterType="LoginInfo">
+        SELECT user_id, user_nickname, user_avatar_url, user_activate_time FROM user_table
+        WHERE user_name=#{name} AND user_password=#{password}
+    </select>
 
     <select id="selectById" resultMap="userResultMap">
-        SELECT id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_status FROM user_table
+        SELECT user_id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_status FROM user_table
         WHERE id=#{id}
     </select>
 
-    <select id="selectByUsername" resultMap="userResultMap">
-        SELECT id, user_name, user_password FROM user_table
-        WHERE user_name=#{name}
+    <select id="selectAll" resultMap="userResultMap">
+        SELECT user_id, user_nickname, user_avatar_url, register_time, user_activate_time FROM user_table
+        ORDER BY user_nickname ASC
+        LIMIT #{offset}, #{limit}
     </select>
+
+    <select id="selectCount">
+        SELECT COUNT (*) FROM user_table
+    </select>
+
+    <insert id="insert" parameterType="user">
+        INSERT INTO user_table
+        (user_id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_status)
+        VALUES
+        (#{id}, #{name}, #{password}, #{nickname}, #{email}, #{avatar_url}, #{register_time}, #{status})
+    </insert>
 
     <update id="update" parameterType="user">
         UPDATE user_table
-        SET user_name=#{name}, user_password=#{password}, user_nickname=#{nickname}, user_email=#{email}, user_avatar_url=#{avatar_url}, user_register_time=#{register_time}, user_status=#{status}
-        WHERE id=#{id}
+        SET user_password=#{password}, user_nickname=#{nickname}, user_email=#{email}, user_avatar_url=#{avatar_url}, user_status=#{status}
+        WHERE user_id=#{id}
     </update>
 
     <delete id="delete">
         DELETE FROM user_table
-        WHERE id=#{id}
+        WHERE user_id=#{id}
     </delete>
 
 </mapper>

@@ -14,6 +14,8 @@ import java.util.List;
 public class TagVo {
     private Tag tag;
     private List<Post> postList;
+    private int pageIndex;
+    private int pageTotal;
 
     public Tag getTag() {
         return tag;
@@ -29,5 +31,21 @@ public class TagVo {
 
     public void setPostList(List<Post> postList) {
         this.postList = postList;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public int getPageTotal() {
+        return pageTotal;
+    }
+
+    public void setPageTotal(int pageTotal) {
+        this.pageTotal = pageTotal;
     }
 }

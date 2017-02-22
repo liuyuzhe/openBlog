@@ -14,6 +14,8 @@ import java.util.List;
 public class CategoryVo {
     private Category category;
     private List<Post> postList;
+    private int pageIndex;
+    private int pageTotal;
 
     public Category getCategory() {
         return category;
@@ -29,5 +31,21 @@ public class CategoryVo {
 
     public void setPostList(List<Post> postList) {
         this.postList = postList;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public int getPageTotal() {
+        return pageTotal;
+    }
+
+    public void setPageTotal(int pageTotal) {
+        this.pageTotal = pageTotal;
     }
 }

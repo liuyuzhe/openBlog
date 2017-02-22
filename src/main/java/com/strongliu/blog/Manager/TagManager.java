@@ -40,8 +40,15 @@ public class TagManager {
         List<String> targetList = relationshipService.findAllTargetByTermId(tag.getId());
         List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
 
+        int pageTotal = targetList.size() / Constant.PAGE_SIZE;
+        if (targetList.size() % Constant.PAGE_SIZE != 0) {
+            pageTotal += 1;
+        }
+
         tagVo.setTag(tag);
         tagVo.setPostList(postList);
+        tagVo.setPageIndex(pageId);
+        tagVo.setPageTotal(pageTotal);
 
         return tagVo;
     }
