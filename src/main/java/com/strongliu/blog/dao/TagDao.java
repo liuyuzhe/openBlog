@@ -17,4 +17,10 @@ public interface TagDao {
     List<Tag> selectAllByIdList(List<Integer> idList);
 
     List<Tag> selectAll();
+
+    int insert(Tag tag);
+
+    int update(Tag tag);
+
+    int deleteById(Integer id);
 }

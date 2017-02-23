@@ -1,9 +1,11 @@
 package com.strongliu.blog.service;
 
 import com.strongliu.blog.dao.RelationshipDao;
+import com.strongliu.blog.entity.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +26,14 @@ public class RelationshipService {
     public List<String> findAllTargetByTermId(Integer termId)
     {
         return relationshipDao.selectAllByTermId(termId);
+    }
+
+    public int addRelationshipList(List<Relationship> relationshipList) {
+        return relationshipDao.insertList(relationshipList);
+    }
+
+    public int removeRelationshipList(List<Relationship> relationshipList) {
+        return relationshipDao.deleteList(relationshipList);
     }
 
 }

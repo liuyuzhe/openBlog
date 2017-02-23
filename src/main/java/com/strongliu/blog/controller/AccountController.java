@@ -38,7 +38,6 @@ public class AccountController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     public String login(@RequestBody LoginInfo loginInfo) {
         if (StringUtils.isEmpty(loginInfo.getUsername()) || StringUtils.isEmpty(loginInfo.getPassword())) {
-
         }
 
         return "login";

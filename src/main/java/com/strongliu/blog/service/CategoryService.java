@@ -34,4 +34,16 @@ public class CategoryService {
     {
         return categoryDao.selectAll();
     }
+
+    public int addCategory(Category category) {
+        return categoryDao.insert(category);
+    }
+
+    public int updateCategory(Category category) {
+        return categoryDao.update(category);
+    }
+
+    public int removeCategoryById(Integer id) {
+        return categoryDao.deleteById(id);
+    }
 }

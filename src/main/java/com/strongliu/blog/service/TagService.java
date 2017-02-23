@@ -32,4 +32,16 @@ public class TagService {
     public List<Tag> findAllTag() {
         return tagDao.selectAll();
     }
+
+    public int addTag(Tag tag) {
+        return tagDao.insert(tag);
+    }
+
+    public int updateTag(Tag tag) {
+        return tagDao.update(tag);
+    }
+
+    public int removeCategoryById(Integer id) {
+        return tagDao.deleteById(id);
+    }
 }

@@ -56,4 +56,19 @@ public class PostService {
 
         return pageTotal;
     }
+
+    int addPost(Post post)
+    {
+        return postDao.insert(post);
+    }
+
+    int updatePost(Post post)
+    {
+        return postDao.update(post);
+    }
+
+    int removePostById(String id)
+    {
+        return postDao.deleteById(id);
+    }
 }

@@ -13,4 +13,10 @@ public interface CategoryDao {
 	List<Category> selectAllByIdList(List<Integer> idList);
 
 	List<Category> selectAll();
+
+	int insert(Category category);
+
+	int update(Category category);
+
+	int deleteById(Integer id);
 }
