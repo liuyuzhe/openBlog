@@ -1,5 +1,6 @@
 package com.strongliu.blog.controller;
 
+import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.manager.CategoryManager;
 import com.strongliu.blog.vo.CategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class CategoryController {
 	CategoryManager categoryManager;
 
 	@RequestMapping(value="/{categoryName}", method=RequestMethod.GET)
-	public String currentCategory(@PathVariable String categoryName, Model model) {
-		return categoryWithPage(categoryName, 1, model);
+	public String index(@PathVariable String categoryName, Model model) {
+		return indexWithPage(categoryName, 1, model);
 	}
 	
 	@RequestMapping(value="/{categoryName}/page/{pageId}", method=RequestMethod.GET)
-	public String categoryWithPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
+	public String indexWithPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
 		CategoryVo categoryVo = categoryManager.getCategoryVoByCategoryName(categoryName, pageId);
 		if (categoryVo == null) {
 			return "404";
@@ -32,5 +33,15 @@ public class CategoryController {
 
         return "category";
 	}
-	
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public String add(Category category) {
+		return "";
+	}
+
+	@RequestMapping(value="/{categoryName}", method = RequestMethod.DELETE)
+	public String remove(@PathVariable String categoryName) {
+		return "";
+	}
+
 }

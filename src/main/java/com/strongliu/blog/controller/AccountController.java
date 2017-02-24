@@ -1,7 +1,6 @@
 package com.strongliu.blog.controller;
 
 import com.strongliu.blog.entity.LoginInfo;
-import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
+@RequestMapping("/account")
 public class AccountController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class AccountController {
         return "loginForm";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestBody LoginInfo loginInfo) {
         if (StringUtils.isEmpty(loginInfo.getUsername()) || StringUtils.isEmpty(loginInfo.getPassword())) {
         }
@@ -43,7 +43,7 @@ public class AccountController {
         return "login";
     }
 
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout() {
         return "redirect:/login";
     }

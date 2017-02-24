@@ -1,5 +1,6 @@
 package com.strongliu.blog.controller;
 
+import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.manager.TagManager;
 import com.strongliu.blog.vo.TagVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,15 @@ public class TagController {
         model.addAttribute(tagVo);
 
         return "tag";
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public String add(Tag tag) {
+        return "";
+    }
+
+    @RequestMapping(value = "/{tagName}", method = RequestMethod.DELETE)
+    public String remove(@PathVariable String tagName) {
+        return "";
     }
 }
