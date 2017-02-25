@@ -2,8 +2,6 @@ package com.strongliu.blog.service;
 
 import com.strongliu.blog.dao.PostDao;
 import com.strongliu.blog.entity.Post;
-import com.strongliu.blog.vo.PostVo;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,17 +55,17 @@ public class PostService {
         return pageTotal;
     }
 
-    int addPost(Post post)
+    public int addPost(Post post)
     {
         return postDao.insert(post);
     }
 
-    int updatePost(Post post)
+    public int updatePost(Post post)
     {
         return postDao.update(post);
     }
 
-    int removePostById(String id)
+    public int removePostById(String id)
     {
         return postDao.deleteById(id);
     }

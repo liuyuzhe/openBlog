@@ -39,7 +39,8 @@
 	<mvc:interceptors>
 		<!-- 多个拦截器顺序执行 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
+			<mvc:mapping path="/admin/**"/>
+			<mvc:mapping path="/post/create"/>
 			<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

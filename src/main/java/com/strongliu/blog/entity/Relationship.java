@@ -7,6 +7,14 @@ public class Relationship {
     private String target_id;
     private Integer term_id;
 
+    public Relationship() {
+    }
+
+    public Relationship(String targetId, Integer termId) {
+        this.target_id = targetId;
+        this.term_id = termId;
+    }
+
     public String getTarget_id() {
         return target_id;
     }

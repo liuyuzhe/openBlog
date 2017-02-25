@@ -1,26 +1,26 @@
 package com.strongliu.blog.vo;
 
-import com.strongliu.blog.entity.Post;
+import com.strongliu.blog.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * Created by liuyuzhe on 2017/2/19.
+ * Created by liuyuzhe on 2017/2/25.
  */
 
 @Component
-public class PageVo {
-    private List<Post> postList;
+public class UserVo {
+    private List<User> userList;
     private int pageIndex;
     private int pageTotal;
 
-    public List<Post> getPostList() {
-        return postList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public int getPageIndex() {

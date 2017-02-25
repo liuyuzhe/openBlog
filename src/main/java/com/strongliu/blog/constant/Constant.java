@@ -5,4 +5,5 @@ package com.strongliu.blog.constant;
  */
 public class Constant {
     public static final int PAGE_SIZE = 10;
+    public static final Integer DAY_TIME = 60 * 60 * 24;
 }

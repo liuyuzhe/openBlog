@@ -22,12 +22,12 @@ public class TagController {
     private TagManager tagManager;
 
     @RequestMapping(value = "/{tagName}", method = RequestMethod.GET)
-    public String currentTag (@PathVariable String tagName , Model model) {
-        return tagWithPage(tagName, 1, model);
+    public String index (@PathVariable String tagName , Model model) {
+        return indexWithPage(tagName, 1, model);
     }
 
     @RequestMapping(value = "/{tagName}/page/{pageId}", method = RequestMethod.GET)
-    public String tagWithPage(@PathVariable String tagName, @PathVariable int pageId, Model model) {
+    public String indexWithPage(@PathVariable String tagName, @PathVariable int pageId, Model model) {
         TagVo tagVo = tagManager.getTagVoByTagName(tagName, pageId);
         if (tagVo == null) {
             return "404";
