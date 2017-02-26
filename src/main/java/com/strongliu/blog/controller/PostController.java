@@ -20,7 +20,7 @@ public class PostController {
 	@Autowired
 	private PostManager postManager;
 
-	@RequestMapping(value="/{postId}", method=RequestMethod.GET)
+	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	public String indexPost(@PathVariable String postId, Model model) {
 		PostVo postVo = postManager.getPostVoByPostId(postId);
 		if (postVo == null) {
@@ -32,7 +32,7 @@ public class PostController {
 		return "post/post";
 	}
 
-	@RequestMapping(value="/page/{pageId}", method=RequestMethod.GET)
+	@RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
 	public String postList(@PathVariable int pageId, Model model) {
 		PostPageVo postPageVo = postManager.getPostPageVoByPageId(pageId);
 		if (postPageVo == null) {
@@ -63,7 +63,7 @@ public class PostController {
 	@RequestMapping(value = "/create", method = RequestMethod.PUT)
 	public String createPost(Post post, String categorys, String tags) {
 		if (post == null) {
-			return "redirect" + "/create";
+			return "redirect:" + "/create";
 		}
 
 		PostFormVo postFormVo = new PostFormVo();
@@ -77,14 +77,14 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePost(Post post, String categorys, String tags) {
+	public String updatePost(Post post, String categories, String tags) {
 		if (post == null) {
 			return "redirect" + "/create";
 		}
 
 		PostFormVo postFormVo = new PostFormVo();
 		postFormVo.setPost(post);
-		postFormVo.setCategoryIdList(StringUtil.StringToIntegerList(categorys));
+		postFormVo.setCategoryIdList(StringUtil.StringToIntegerList(categories));
 		postFormVo.setTagIdList(StringUtil.StringToIntegerList(tags));
 
 		postManager.updatePostFormVo(postFormVo);

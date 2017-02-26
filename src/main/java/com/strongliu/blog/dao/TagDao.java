@@ -2,6 +2,7 @@ package com.strongliu.blog.dao;
 
 
 import com.strongliu.blog.entity.Tag;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface TagDao {
     int insert(Tag tag);
 
     int update(Tag tag);
+
+    int updatePostCount(@Param("id") Integer id, @Param("number") int number);
 
     int deleteById(Integer id);
 }

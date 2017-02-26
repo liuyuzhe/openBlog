@@ -52,4 +52,20 @@ public class TagManager {
 
         return tagVo;
     }
+
+    @Transactional
+    public int addTag(Tag tag) {
+        return tagService.addTag(tag);
+    }
+
+    @Transactional
+    public int updateCategory(Tag tag) {
+        return tagService.updateTag(tag);
+    }
+
+    @Transactional
+    public int removeCategory(Integer tagId) {
+        return tagService.removeTagById(tagId);
+    }
+
 }

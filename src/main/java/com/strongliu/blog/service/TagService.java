@@ -41,7 +41,11 @@ public class TagService {
         return tagDao.update(tag);
     }
 
-    public int removeCategoryById(Integer id) {
+    public int updatePostCount(Integer id, Integer number) {
+        return tagDao.updatePostCount(id, number);
+    }
+
+    public int removeTagById(Integer id) {
         return tagDao.deleteById(id);
     }
 }

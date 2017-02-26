@@ -22,12 +22,12 @@ public class TagController {
     private TagManager tagManager;
 
     @RequestMapping(value = "/{tagName}", method = RequestMethod.GET)
-    public String index (@PathVariable String tagName , Model model) {
-        return indexWithPage(tagName, 1, model);
+    public String indexTag (@PathVariable String tagName , Model model) {
+        return indexTagWithPage(tagName, 1, model);
     }
 
     @RequestMapping(value = "/{tagName}/page/{pageId}", method = RequestMethod.GET)
-    public String indexWithPage(@PathVariable String tagName, @PathVariable int pageId, Model model) {
+    public String indexTagWithPage(@PathVariable String tagName, @PathVariable int pageId, Model model) {
         TagVo tagVo = tagManager.getTagVoByTagName(tagName, pageId);
         if (tagVo == null) {
             return "404";
@@ -38,13 +38,32 @@ public class TagController {
         return "tag";
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public String add(Tag tag) {
-        return "";
+    @RequestMapping(value = "/create", method = RequestMethod.PUT)
+    public String createTag(Tag tag) {
+        if (tag == null) {
+            return "redirect:" + "/";
+        }
+
+        tagManager.addTag(tag);
+
+        return "redirect:" + "/";
     }
 
-    @RequestMapping(value = "/{tagName}", method = RequestMethod.DELETE)
-    public String remove(@PathVariable String tagName) {
-        return "";
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateTag(Tag tag) {
+        if (tag == null) {
+            return "redirect:" + "/";
+        }
+
+        tagManager.updateCategory(tag);
+
+        return "redirect:" + "/";
+    }
+
+    @RequestMapping(value = "/remove/{tagId}", method = RequestMethod.DELETE)
+    public String removeTag(@PathVariable Integer tagId) {
+        tagManager.removeCategory(tagId);
+
+        return "redirect:" + "/";
     }
 }

@@ -97,8 +97,8 @@ public class PostManager {
         Post post = postFormVo.getPost();
         postService.updatePost(post);
 
-        List<Integer> oldIdList = relationshipService.findAllTermByTargetId(post.getId());
-        relationshipService.removeRelationshipList(post.getId(), oldIdList);
+        List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());
+        relationshipService.removeRelationshipList(post.getId(), termIdList);
 
         List<Integer> categoryIdList = postFormVo.getCategoryIdList();
         List<Integer> tagIdList = postFormVo.getTagIdList();

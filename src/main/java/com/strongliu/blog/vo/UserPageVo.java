@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Component
-public class UserVo {
+public class UserPageVo {
     private List<User> userList;
     private int pageIndex;
     private int pageTotal;

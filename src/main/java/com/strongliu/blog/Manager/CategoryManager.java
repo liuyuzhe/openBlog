@@ -52,4 +52,20 @@ public class CategoryManager {
 
         return categoryVo;
     }
+
+    @Transactional
+    public int addCategory(Category category) {
+        return categoryService.addCategory(category);
+    }
+
+    @Transactional
+    public int updateCategory(Category category) {
+        return categoryService.updateCategory(category);
+    }
+
+    @Transactional
+    public int removeCategory(Integer categoryId) {
+        return categoryService.removeCategoryById(categoryId);
+    }
+
 }

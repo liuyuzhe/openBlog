@@ -4,9 +4,11 @@ import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
-import com.strongliu.blog.vo.UserVo;
+import com.strongliu.blog.vo.UserFormVo;
+import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,9 +23,10 @@ public class UserManager {
     private UserService userService;
 
     @Autowired
-    private UserVo userVo;
+    private UserPageVo userPageVo;
 
-    public UserVo getUserVoByPageId(int pageId) {
+    @Transactional
+    public UserPageVo getUserVoByPageId(int pageId) {
         List<User> userList = userService.findAllUser(pageId, Constant.PAGE_SIZE);
         if (userList == null) {
             return null;
@@ -31,15 +34,38 @@ public class UserManager {
 
         int pageTotal = userService.pageTotal(Constant.PAGE_SIZE);
 
-        userVo.setUserList(userList);
-        userVo.setPageIndex(pageId);
-        userVo.setPageTotal(pageTotal);
+        userPageVo.setUserList(userList);
+        userPageVo.setPageIndex(pageId);
+        userPageVo.setPageTotal(pageTotal);
 
-        return userVo;
+        return userPageVo;
     }
 
+    @Transactional
     public User getUserByLoginInfo(LoginInfo loginInfo) {
         return userService.findUserByLoginInfo(loginInfo);
     }
+
+    @Transactional
+    public int addUserFormVo(UserFormVo userFormVo) {
+        User user = new User();
+        user.setName(userFormVo.getName());
+        user.setPassword(userFormVo.getPassword());
+        user.setNickname(userFormVo.getNickname());
+        user.setEmail(userFormVo.getEmail());
+
+        return userService.addUser(user);
+    }
+
+    @Transactional
+    public int updateUser(User user) {
+        return userService.updateUser(user);
+    }
+
+    @Transactional
+    public int removeUser(String userId) {
+        return userService.removeUserById(userId);
+    }
+
 
 }

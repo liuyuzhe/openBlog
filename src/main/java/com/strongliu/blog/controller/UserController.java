@@ -4,7 +4,8 @@ import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
-import com.strongliu.blog.vo.UserVo;
+import com.strongliu.blog.vo.UserFormVo;
+import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,15 +29,32 @@ public class UserController {
     @Autowired
     private UserManager userManager;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String indexUser(Model model) {
+        return indexUserWithPage(1, model);
+    }
+
+    @RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
+    public String indexUserWithPage(@PathVariable int pageId, Model model) {
+        UserPageVo userPageVo = userManager.getUserVoByPageId(pageId);
+        if (userPageVo == null) {
+            return "404";
+        }
+
+        model.addAttribute(userPageVo);
+
+        return "user/list";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage() {
         return "user/registerPage";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register() {
-//        return "user/registerPage";
-        return "redirect" + "/user/login";
+    @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
+    public String editUserPage(@PathVariable String userId, Model model) {
+
+        return "user/registerPage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -50,6 +68,20 @@ public class UserController {
         }
 
         return "user/loginPage";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(UserFormVo userFormVo) {
+        if (userFormVo == null) {
+            return "redirect:" + "/user/register";
+        }
+
+        if (userFormVo.getRepeatPassword() != userFormVo.getRepeatPassword()) {
+        }
+
+        userManager.addUserFormVo(userFormVo);
+
+        return "redirect:" + "/user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -89,36 +121,21 @@ public class UserController {
         return "redirect:" + "/";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String indexUser(Model model) {
-        return indexUserWithPage(1, model);
-    }
-
-    @RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
-    public String indexUserWithPage(@PathVariable int pageId, Model model) {
-        UserVo userVo = userManager.getUserVoByPageId(pageId);
-        if (userVo == null) {
-            return "404";
-        }
-
-        model.addAttribute(userVo);
-
-        return "user/list";
-    }
-
-    @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
-    public String editUserPage(@PathVariable String userId, Model model) {
-
-        return "user/registerPage";
-    }
-
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateUser(User user) {
+        if (user == null) {
+            return "redirect:" + "/user/";
+        }
+
+        userManager.updateUser(user);
+
         return "redirect:" + "user/list";
     }
 
     @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
     public String removeUser(@PathVariable String userId) {
+        userManager.removeUser(userId);
+
         return "redirect:" + "user/list";
     }
 }

@@ -17,13 +17,13 @@ public class CategoryController {
 	@Autowired
 	CategoryManager categoryManager;
 
-	@RequestMapping(value="/{categoryName}", method=RequestMethod.GET)
-	public String index(@PathVariable String categoryName, Model model) {
-		return indexWithPage(categoryName, 1, model);
+	@RequestMapping(value = "/{categoryName}", method = RequestMethod.GET)
+	public String indexCategory(@PathVariable String categoryName, Model model) {
+		return indexCategoryWithPage(categoryName, 1, model);
 	}
 	
-	@RequestMapping(value="/{categoryName}/page/{pageId}", method=RequestMethod.GET)
-	public String indexWithPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
+	@RequestMapping(value = "/{categoryName}/page/{pageId}", method = RequestMethod.GET)
+	public String indexCategoryWithPage(@PathVariable String categoryName, @PathVariable int pageId, Model model) {
 		CategoryVo categoryVo = categoryManager.getCategoryVoByCategoryName(categoryName, pageId);
 		if (categoryVo == null) {
 			return "404";
@@ -34,14 +34,33 @@ public class CategoryController {
         return "category";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public String add(Category category) {
-		return "";
+	@RequestMapping(value = "/create" , method = RequestMethod.PUT)
+	public String createCategory(Category category) {
+		if (category == null) {
+			return "redirect:" + "/";
+		}
+
+		categoryManager.addCategory(category);
+
+		return "redirect:" + "/";
 	}
 
-	@RequestMapping(value="/{categoryName}", method = RequestMethod.DELETE)
-	public String remove(@PathVariable String categoryName) {
-		return "";
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateCategory(Category category) {
+		if (category == null) {
+			return "redirect:" + "/";
+		}
+
+		categoryManager.updateCategory(category);
+
+		return "redirect:" + "/";
+	}
+
+	@RequestMapping(value = "/remove/{categoryId}", method = RequestMethod.DELETE)
+	public String removeCategory(@PathVariable Integer categoryId) {
+		categoryManager.removeCategory(categoryId);
+
+		return "redirect:" + "/";
 	}
 
 }
