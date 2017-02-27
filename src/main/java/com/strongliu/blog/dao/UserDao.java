@@ -1,7 +1,7 @@
 package com.strongliu.blog.dao;
 
-import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
+import com.strongliu.blog.vo.LoginFormVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface UserDao {
 
-    User selectByLoginInfo(LoginInfo info);
+    User selectByLoginInfo(LoginFormVo loginFormVo);
 
     User selectById(String id);
 

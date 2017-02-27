@@ -1,15 +1,18 @@
 package com.strongliu.blog.controller;
 
 import com.strongliu.blog.constant.Constant;
-import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
-import com.strongliu.blog.vo.UserFormVo;
+import com.strongliu.blog.validator.LoginFormValidator;
+import com.strongliu.blog.validator.RegisterFormValidator;
+import com.strongliu.blog.vo.LoginFormVo;
+import com.strongliu.blog.vo.RegisterFormVo;
 import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,6 +31,10 @@ public class UserController {
 
     @Autowired
     private UserManager userManager;
+    @Autowired
+    private RegisterFormValidator registerFormValidator;
+    @Autowired
+    private LoginFormValidator loginFormValidator;
 
     @RequestMapping(method = RequestMethod.GET)
     public String indexUser(Model model) {
@@ -47,18 +54,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerPage() {
-        return "user/registerPage";
-    }
-
-    @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
-    public String editUserPage(@PathVariable String userId, Model model) {
-
+    public String inputRegister() {
         return "user/registerPage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
+    public String inputLogin(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie: cookies) {
             if (cookie.getName().equals("username")) {
@@ -70,37 +71,41 @@ public class UserController {
         return "user/loginPage";
     }
 
+    @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
+    public String editUser(@PathVariable String userId, Model model) {
+
+        return "user/registerPage";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(UserFormVo userFormVo) {
-        if (userFormVo == null) {
+    public String saveRegister(RegisterFormVo registerFormVo, Errors errors) {
+        registerFormValidator.validate(registerFormVo, errors);
+        if (errors.hasErrors()) {
             return "redirect:" + "/user/register";
         }
 
-        if (userFormVo.getRepeatPassword() != userFormVo.getRepeatPassword()) {
-        }
-
-        userManager.addUserFormVo(userFormVo);
+        userManager.addUserFormVo(registerFormVo);
 
         return "redirect:" + "/user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(LoginInfo loginInfo, @RequestParam(value = "next", required = false) String next,
-                        HttpServletRequest request, HttpServletResponse response,
-                        HttpSession session, final RedirectAttributes redirectAttributes) {
-        if (StringUtils.isEmpty(loginInfo.getUsername()) || StringUtils.isEmpty(loginInfo.getPassword())) {
-            redirectAttributes.addFlashAttribute("message", "用户名或密码为空");
+    public String saveLogin(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
+                            HttpServletRequest request, HttpServletResponse response,
+                            HttpSession session, final RedirectAttributes redirectAttributes, Errors errors) {
+        loginFormValidator.validate(loginFormVo, errors);
+        if (errors.hasErrors()) {
             return "redirect:" + "/user/login";
         }
 
-        User user = userManager.getUserByLoginInfo(loginInfo);
+        User user = userManager.getUserByLoginInfo(loginFormVo);
         if (user == null) {
             redirectAttributes.addFlashAttribute("message", "用户名或密码错误");
             return "redirect:" + "/user/login";
         }
 
-        if (loginInfo.isRemember()) {
-            Cookie usernameCookie = new Cookie("username", loginInfo.getUsername());
+        if (loginFormVo.isRemember()) {
+            Cookie usernameCookie = new Cookie("username", loginFormVo.getUsername());
             usernameCookie.setMaxAge(Constant.DAY_TIME * 7);
             response.addCookie(usernameCookie);
         }
@@ -133,7 +138,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
-    public String removeUser(@PathVariable String userId) {
+    public String deleteUser(@PathVariable String userId) {
         userManager.removeUser(userId);
 
         return "redirect:" + "user/list";

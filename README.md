@@ -13,4 +13,4 @@
 9. /blogs?state=publish 文章根据是否登陆显示不同
 10. Pageable替换原有页面信息
 11. Ajax替换登陆页面
-12. Post变哈时，同步更新term表里的count
+12. Post变化时，同步更新term表里的count

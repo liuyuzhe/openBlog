@@ -35,7 +35,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/create" , method = RequestMethod.PUT)
-	public String createCategory(Category category) {
+	public String saveCategory(Category category) {
 		if (category == null) {
 			return "redirect:" + "/";
 		}
@@ -57,7 +57,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/remove/{categoryId}", method = RequestMethod.DELETE)
-	public String removeCategory(@PathVariable Integer categoryId) {
+	public String deleteCategory(@PathVariable Integer categoryId) {
 		categoryManager.removeCategory(categoryId);
 
 		return "redirect:" + "/";

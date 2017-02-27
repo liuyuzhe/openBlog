@@ -1,21 +1,25 @@
 package com.strongliu.blog.vo;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by liuyuzhe on 2017/2/26.
  */
-public class UserFormVo {
-    private String name;
+
+@Component
+public class RegisterFormVo {
+    private String username;
     private String password;
     private String repeatPassword;
     private String nickname;
     private String email;
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

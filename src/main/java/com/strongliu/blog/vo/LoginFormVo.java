@@ -1,9 +1,13 @@
-package com.strongliu.blog.entity;
+package com.strongliu.blog.vo;
+
+import org.springframework.stereotype.Component;
 
 /**
- * Created by liuyuzhe on 2017/2/16.
+ * Created by liuyuzhe on 2017/2/27.
  */
-public class LoginInfo {
+
+@Component
+public class LoginFormVo {
     private String username;
     private String password;
     private boolean remember;

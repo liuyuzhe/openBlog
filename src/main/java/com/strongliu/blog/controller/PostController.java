@@ -2,13 +2,14 @@ package com.strongliu.blog.controller;
 
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.manager.PostManager;
-import com.strongliu.blog.utility.StringUtil;
+import com.strongliu.blog.validator.PostFormValidator;
 import com.strongliu.blog.vo.PostFormVo;
 import com.strongliu.blog.vo.PostPageVo;
 import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,8 @@ public class PostController {
 
 	@Autowired
 	private PostManager postManager;
+	@Autowired
+	private PostFormValidator postFormValidator;
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	public String indexPost(@PathVariable String postId, Model model) {
@@ -33,7 +36,7 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
-	public String postList(@PathVariable int pageId, Model model) {
+	public String indexPostWithPage(@PathVariable int pageId, Model model) {
 		PostPageVo postPageVo = postManager.getPostPageVoByPageId(pageId);
 		if (postPageVo == null) {
 			return "404";
@@ -45,14 +48,14 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String createPostPage(Model model) {
+	public String inputPost(Model model) {
 		model.addAttribute(new Post());
 
 		return "post/createPage";
 	}
 
 	@RequestMapping(value = "/edit/{postId}", method = RequestMethod.GET)
-	public String editPostPage(@PathVariable String postId, Model model) {
+	public String editPost(@PathVariable String postId, Model model) {
 		PostVo postVo = postManager.getPostVoByPostId(postId);
 
 		model.addAttribute(postVo);
@@ -61,39 +64,31 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.PUT)
-	public String createPost(Post post, String categorys, String tags) {
-		if (post == null) {
-			return "redirect:" + "/create";
+	public String savePost(PostFormVo postFormVo, Errors errors) {
+		postFormValidator.validate(postFormVo, errors);
+		if (errors.hasErrors()) {
+			return "redirect:" + "/post/createPage";
 		}
 
-		PostFormVo postFormVo = new PostFormVo();
-		postFormVo.setPost(post);
-		postFormVo.setCategoryIdList(StringUtil.StringToIntegerList(categorys));
-		postFormVo.setTagIdList(StringUtil.StringToIntegerList(tags));
+		String postId = postManager.addPostFormVo(postFormVo);
 
-		postManager.addPostFormVo(postFormVo);
-
-		return "redirect:" + "/post/" + post.getId();
+		return "redirect:" + "/post/" + postId;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePost(Post post, String categories, String tags) {
-		if (post == null) {
-			return "redirect" + "/create";
+	public String updatePost(PostFormVo postFormVo, Errors errors) {
+		postFormValidator.validate(postFormVo, errors);
+		if (errors.hasErrors()) {
+			return "redirect:" + "/post/createPage";
 		}
 
-		PostFormVo postFormVo = new PostFormVo();
-		postFormVo.setPost(post);
-		postFormVo.setCategoryIdList(StringUtil.StringToIntegerList(categories));
-		postFormVo.setTagIdList(StringUtil.StringToIntegerList(tags));
+		String postId = postManager.updatePostFormVo(postFormVo);
 
-		postManager.updatePostFormVo(postFormVo);
-
-		return "redirect:" + "/post/" + post.getId();
+		return "redirect:" + "/post/" + postId;
 	}
 
 	@RequestMapping(value = "/remove/{postId}", method = RequestMethod.DELETE)
-	public String removePost(@PathVariable String postId) {
+	public String deletePost(@PathVariable String postId) {
 		postManager.removePostForm(postId);
 
 		return "redirect:" + "/";

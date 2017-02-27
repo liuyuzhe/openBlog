@@ -6,6 +6,7 @@ import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.*;
+import com.strongliu.blog.utility.StringUtil;
 import com.strongliu.blog.vo.PostFormVo;
 import com.strongliu.blog.vo.PostPageVo;
 import com.strongliu.blog.vo.PostVo;
@@ -80,32 +81,40 @@ public class PostManager {
     }
 
     @Transactional
-    public int addPostFormVo(PostFormVo postFormVo) {
-        Post post = postFormVo.getPost();
+    public String addPostFormVo(PostFormVo postFormVo) {
+        Post post = new Post();
+        post.setTitle(postFormVo.getTitle());
+        post.setContent(postFormVo.getContent());
+        post.setStatus(postFormVo.getStatus());
+        post.setComment_status(postFormVo.getComment_status());
         postService.addPost(post);
 
-        List<Integer> categoryIdList = postFormVo.getCategoryIdList();
-        List<Integer> tagIdList = postFormVo.getTagIdList();
+        List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
+        List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
         categoryIdList.addAll(tagIdList);
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
-        return 0;
+        return post.getId();
     }
 
     @Transactional
-    public int updatePostFormVo(PostFormVo postFormVo) {
-        Post post = postFormVo.getPost();
+    public String updatePostFormVo(PostFormVo postFormVo) {
+        Post post = new Post();
+        post.setTitle(postFormVo.getTitle());
+        post.setContent(postFormVo.getContent());
+        post.setStatus(postFormVo.getStatus());
+        post.setComment_status(postFormVo.getComment_status());
         postService.updatePost(post);
 
         List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());
         relationshipService.removeRelationshipList(post.getId(), termIdList);
 
-        List<Integer> categoryIdList = postFormVo.getCategoryIdList();
-        List<Integer> tagIdList = postFormVo.getTagIdList();
+        List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
+        List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
         categoryIdList.addAll(tagIdList);
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
-        return 0;
+        return post.getId();
     }
 
     @Transactional

@@ -39,7 +39,7 @@ public class TagController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.PUT)
-    public String createTag(Tag tag) {
+    public String saveTag(Tag tag) {
         if (tag == null) {
             return "redirect:" + "/";
         }
@@ -61,7 +61,7 @@ public class TagController {
     }
 
     @RequestMapping(value = "/remove/{tagId}", method = RequestMethod.DELETE)
-    public String removeTag(@PathVariable Integer tagId) {
+    public String deleteTag(@PathVariable Integer tagId) {
         tagManager.removeCategory(tagId);
 
         return "redirect:" + "/";

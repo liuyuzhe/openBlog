@@ -1,10 +1,10 @@
 package com.strongliu.blog.manager;
 
 import com.strongliu.blog.constant.Constant;
-import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
-import com.strongliu.blog.vo.UserFormVo;
+import com.strongliu.blog.vo.LoginFormVo;
+import com.strongliu.blog.vo.RegisterFormVo;
 import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,17 +42,17 @@ public class UserManager {
     }
 
     @Transactional
-    public User getUserByLoginInfo(LoginInfo loginInfo) {
-        return userService.findUserByLoginInfo(loginInfo);
+    public User getUserByLoginInfo(LoginFormVo loginFormVo) {
+        return userService.findUserByLoginInfo(loginFormVo);
     }
 
     @Transactional
-    public int addUserFormVo(UserFormVo userFormVo) {
+    public int addUserFormVo(RegisterFormVo registerFormVo) {
         User user = new User();
-        user.setName(userFormVo.getName());
-        user.setPassword(userFormVo.getPassword());
-        user.setNickname(userFormVo.getNickname());
-        user.setEmail(userFormVo.getEmail());
+        user.setName(registerFormVo.getUsername());
+        user.setPassword(registerFormVo.getPassword());
+        user.setNickname(registerFormVo.getNickname());
+        user.setEmail(registerFormVo.getEmail());
 
         return userService.addUser(user);
     }

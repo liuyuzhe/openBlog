@@ -1,8 +1,8 @@
 package com.strongliu.blog.service;
 
 import com.strongliu.blog.dao.UserDao;
-import com.strongliu.blog.entity.LoginInfo;
 import com.strongliu.blog.entity.User;
+import com.strongliu.blog.vo.LoginFormVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,8 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User findUserByLoginInfo(LoginInfo loginInfo) {
-        return userDao.selectByLoginInfo(loginInfo);
+    public User findUserByLoginInfo(LoginFormVo loginFormVo) {
+        return userDao.selectByLoginInfo(loginFormVo);
     }
 
     public User findUserById(String id) {

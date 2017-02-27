@@ -1,9 +1,6 @@
 package com.strongliu.blog.vo;
 
-import com.strongliu.blog.entity.Post;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * Created by liuyuzhe on 2017/2/25.
@@ -11,31 +8,58 @@ import java.util.List;
 
 @Component
 public class PostFormVo {
-    private Post post;
-    private List<Integer> categoryIdList;
-    private List<Integer> tagIdList;
+    private String title;
+    private String content;
+    private String status;
+    private String comment_status;
+    private String categories;
+    private String tags;
 
-    public Post getPost() {
-        return post;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<Integer> getCategoryIdList() {
-        return categoryIdList;
+    public String getContent() {
+        return content;
     }
 
-    public void setCategoryIdList(List<Integer> categoryIdList) {
-        this.categoryIdList = categoryIdList;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public List<Integer> getTagIdList() {
-        return tagIdList;
+    public String getStatus() {
+        return status;
     }
 
-    public void setTagIdList(List<Integer> tagIdList) {
-        this.tagIdList = tagIdList;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComment_status() {
+        return comment_status;
+    }
+
+    public void setComment_status(String comment_status) {
+        this.comment_status = comment_status;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
