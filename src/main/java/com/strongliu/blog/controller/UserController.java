@@ -98,7 +98,7 @@ public class UserController {
             return "redirect:" + "/user/login";
         }
 
-        User user = userManager.getUserByLoginInfo(loginFormVo);
+        User user = userManager.getUserByLoginFormVo(loginFormVo);
         if (user == null) {
             redirectAttributes.addFlashAttribute("message", "用户名或密码错误");
             return "redirect:" + "/user/login";

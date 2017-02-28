@@ -1,7 +1,6 @@
 package com.strongliu.blog.dao;
 
 import com.strongliu.blog.entity.User;
-import com.strongliu.blog.vo.LoginFormVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,9 +10,9 @@ import java.util.List;
  */
 public interface UserDao {
 
-    User selectByLoginInfo(LoginFormVo loginFormVo);
-
     User selectById(String id);
+
+    User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     List<User> selectAll(@Param("offset") int offset, @Param("limit") int limit);
 

@@ -42,8 +42,8 @@ public class UserManager {
     }
 
     @Transactional
-    public User getUserByLoginInfo(LoginFormVo loginFormVo) {
-        return userService.findUserByLoginInfo(loginFormVo);
+    public User getUserByLoginFormVo(LoginFormVo loginFormVo) {
+        return userService.findUserByUsernameAndPassword(loginFormVo.getUsername(), loginFormVo.getPassword());
     }
 
     @Transactional

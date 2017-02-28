@@ -15,7 +15,6 @@
         <typeAlias alias="category" type="com.strongliu.blog.entity.Category" />
         <typeAlias alias="tag" type="com.strongliu.blog.entity.Tag" />
         <typeAlias alias="user" type="com.strongliu.blog.entity.User" />
-        <typeAlias alias="loginInfo" type="com.strongliu.blog.entity.LoginInfo" />
     </typeAliases>
 
     <!-- 映射器 -->
