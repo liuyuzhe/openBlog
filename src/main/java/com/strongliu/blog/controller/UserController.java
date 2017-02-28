@@ -104,9 +104,15 @@ public class UserController {
             return "redirect:" + "/user/login";
         }
 
+        session.setAttribute(Constant.USER_SESSION_KEY, user);
+
         if (loginFormVo.isRemember()) {
-            Cookie usernameCookie = new Cookie("username", loginFormVo.getUsername());
+//            TODO: 用户信息生成cookie加密
+            String userCookie = loginFormVo.getUsername();
+            Cookie usernameCookie = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
             usernameCookie.setMaxAge(Constant.DAY_TIME * 7);
+            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
+            usernameCookie.setSecure(isSSL);
             response.addCookie(usernameCookie);
         }
 
@@ -114,19 +120,21 @@ public class UserController {
             return "redirect:" + next;
         }
 
-        session.setAttribute("user", user);
         redirectAttributes.addFlashAttribute("message", "登陆成功");
         return "redirect:" + "/";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logout(HttpSession session) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletResponse response, HttpSession session) {
         session.invalidate();
+        Cookie usernameCookie = new Cookie("username", "");
+        usernameCookie.setMaxAge(0);
+        response.addCookie(usernameCookie);
 
         return "redirect:" + "/";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public String updateUser(User user) {
         if (user == null) {
             return "redirect:" + "/user/";

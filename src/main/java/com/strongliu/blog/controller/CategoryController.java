@@ -34,7 +34,7 @@ public class CategoryController {
         return "category";
 	}
 
-	@RequestMapping(value = "/create" , method = RequestMethod.PUT)
+	@RequestMapping(value = "/create" , method = RequestMethod.POST)
 	public String saveCategory(Category category) {
 		if (category == null) {
 			return "redirect:" + "/";
@@ -45,7 +45,7 @@ public class CategoryController {
 		return "redirect:" + "/";
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public String updateCategory(Category category) {
 		if (category == null) {
 			return "redirect:" + "/";

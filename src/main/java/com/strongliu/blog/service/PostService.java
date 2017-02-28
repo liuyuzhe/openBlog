@@ -34,12 +34,14 @@ public class PostService {
 
     public List<Post> findAllPublishPost(int pageId, int pageSize)
     {
+        pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return postDao.selectAllPublish(startIndex, pageSize);
     }
 
     public List<Post> findAllPublishPostByIdList(List<String> idList, int pageId, int pageSize)
     {
+        pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return postDao.selectAllPublishByIdList(idList, startIndex, pageSize);
     }

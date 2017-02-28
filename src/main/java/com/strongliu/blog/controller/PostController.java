@@ -63,7 +63,7 @@ public class PostController {
 		return "post/createPage";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.PUT)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String savePost(PostFormVo postFormVo, Errors errors) {
 		postFormValidator.validate(postFormVo, errors);
 		if (errors.hasErrors()) {
@@ -75,7 +75,7 @@ public class PostController {
 		return "redirect:" + "/post/" + postId;
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public String updatePost(PostFormVo postFormVo, Errors errors) {
 		postFormValidator.validate(postFormVo, errors);
 		if (errors.hasErrors()) {

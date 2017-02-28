@@ -1,5 +1,6 @@
 package com.strongliu.blog.interceptor;
 
+import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +29,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         }
 
         if (!flag) {
-            User user = (User) request.getSession().getAttribute("user");
+            User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
             if (user == null) {
                 request.setAttribute("message", "请登陆");
                 request.setAttribute("next", request.getRequestURI());

@@ -27,6 +27,7 @@ public class UserService {
     }
 
     public List<User> findAllUser(int pageId, int pageSize) {
+        pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return userDao.selectAll(startIndex, pageSize);
     }

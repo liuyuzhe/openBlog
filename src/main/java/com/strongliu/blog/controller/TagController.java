@@ -38,7 +38,7 @@ public class TagController {
         return "tag";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.PUT)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String saveTag(Tag tag) {
         if (tag == null) {
             return "redirect:" + "/";
@@ -49,7 +49,7 @@ public class TagController {
         return "redirect:" + "/";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public String updateTag(Tag tag) {
         if (tag == null) {
             return "redirect:" + "/";
