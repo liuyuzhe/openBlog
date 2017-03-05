@@ -14,3 +14,6 @@
 11. Ajax替换登陆页面
 12. Post变化时，同步更新term表里的count
 13. tag和category功能合并？
+
+1. 修改url方式为相对url而非本地html，因为本地html不能直接访问
+2. ajax实现
