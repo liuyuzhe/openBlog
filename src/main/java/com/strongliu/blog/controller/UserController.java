@@ -1,6 +1,8 @@
 package com.strongliu.blog.controller;
 
 import com.strongliu.blog.constant.Constant;
+import com.strongliu.blog.constant.ErrorMessage;
+import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
 import com.strongliu.blog.validator.LoginFormValidator;
@@ -35,6 +37,8 @@ public class UserController {
     private RegisterFormValidator registerFormValidator;
     @Autowired
     private LoginFormValidator loginFormValidator;
+    @Autowired
+    private ResponseDto responseDto;
 
     @RequestMapping(method = RequestMethod.GET)
     public String indexUser(Model model) {
@@ -55,7 +59,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String inputRegister() {
-        return "register";
+        return "user/register";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -68,25 +72,30 @@ public class UserController {
 //            }
 //        }
 
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
     public String editUser(@PathVariable String userId, Model model) {
 
-        return "register";
+        return "user/register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String saveRegister(RegisterFormVo registerFormVo, Errors errors) {
-        registerFormValidator.validate(registerFormVo, errors);
-        if (errors.hasErrors()) {
-            return "redirect:" + "/user/register";
-        }
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public Object saveRegister(RegisterFormVo registerFormVo, Errors errors) {
+//        registerFormValidator.validate(registerFormVo, errors);
+//        if (errors.hasErrors()) {
+//            return "redirect:" + "/user/register";
+//        }
+//
+//        userManager.addUserFormVo(registerFormVo);
 
-        userManager.addUserFormVo(registerFormVo);
+        responseDto.setCode(ErrorMessage.FAILED.getCode());
+        responseDto.setMessage(ErrorMessage.FAILED.getMessage());
+        return responseDto;
 
-        return "redirect:" + "/user/login";
+//        return "redirect:" + "/user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
