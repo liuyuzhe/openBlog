@@ -55,26 +55,26 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String inputRegister() {
-        return "user/registerPage";
+        return "register";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String inputLogin(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie: cookies) {
-            if (cookie.getName().equals("username")) {
-                String username = cookie.getValue();
-                return "redirect:".concat("/");
-            }
-        }
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie: cookies) {
+//            if (cookie.getName().equals("username")) {
+//                String username = cookie.getValue();
+//                return "redirect:".concat("/");
+//            }
+//        }
 
-        return "user/loginPage";
+        return "login";
     }
 
     @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
     public String editUser(@PathVariable String userId, Model model) {
 
-        return "user/registerPage";
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class UserController {
                             HttpSession session, final RedirectAttributes redirectAttributes, Errors errors) {
         loginFormValidator.validate(loginFormVo, errors);
         if (errors.hasErrors()) {
-            return "redirect:" + "/user/login";
+            return "redirect:" + "/login";
         }
 
         User user = userManager.getUserByLoginFormVo(loginFormVo);

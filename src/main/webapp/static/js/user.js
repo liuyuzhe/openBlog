@@ -4,7 +4,7 @@
 
 function registerForm() {
     $.post(
-        "admin/login", $("registerForm").serialize(), function(response) {
+        "admin/register", $("registerForm").serialize(), function(response) {
             if (response && response.success) {
                 window.location.href = "/admin/index"
             }

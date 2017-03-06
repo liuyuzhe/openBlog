@@ -38,6 +38,8 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
+	<mvc:default-servlet-handler/>
+
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器顺序执行 -->
@@ -47,7 +49,7 @@
 			<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	<!-- 视图解析器 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
