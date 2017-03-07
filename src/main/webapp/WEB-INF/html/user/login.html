@@ -28,7 +28,7 @@
 </div>
 <div class="container">
     <div class="col-lg-4 col-lg-offset-4 col-md-5 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <form id="loginForm" onsubmit="loginForm()">
+        <form id="loginForm">
             <h3 class="text-center">欢迎登陆</h3>
             <hr>
             <fieldset>
@@ -37,7 +37,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                        <input type="text" class="form-control" placeholder="用户名">
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,19 +45,19 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-lock"></span>
                     </span>
-                        <input type="text" class="form-control" placeholder="密码">
+                        <input type="text" name="password" class="form-control" placeholder="密码">
                     </div>
                 </div>
                 <div class="form-group form-inline">
                     <div class="checkbox">
-                        <label> <input type="checkbox"> 记住我 </label>
+                        <label> <input name="remember" type="checkbox"> 记住我 </label>
                     </div>
                     <div class="pull-right">
-                        <a>忘记密码？</a>
+                        <a href="#">忘记密码？</a>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">登录</button>
+                    <button class="btn btn-primary btn-block" id="login" type="button">登录</button>
                 </div>
             </fieldset>
             <hr>

@@ -20,7 +20,6 @@
 	<context:component-scan base-package="com.strongliu.blog.validator" />
 
 	<context:component-scan base-package="com.strongliu.blog.vo" />
-	<context:component-scan base-package="com.strongliu.blog.dto" />
 
 	<!-- 设置配置方案 -->
 	<mvc:annotation-driven>
@@ -41,14 +40,14 @@
 	<mvc:default-servlet-handler/>
 
 	<!-- 拦截器 -->
-	<mvc:interceptors>
-		<!-- 多个拦截器顺序执行 -->
-		<mvc:interceptor>
-			<mvc:mapping path="/admin/**"/>
-			<mvc:mapping path="/post/create"/>
-			<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
+	<!--<mvc:interceptors>-->
+		<!--&lt;!&ndash; 多个拦截器顺序执行 &ndash;&gt;-->
+		<!--<mvc:interceptor>-->
+			<!--<mvc:mapping path="/user/**"/>-->
+			<!--<mvc:mapping path="/post/create"/>-->
+			<!--<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />-->
+		<!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
 
 	<!-- 视图解析器 -->
 	<bean id="viewResolver"

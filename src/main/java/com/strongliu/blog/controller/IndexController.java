@@ -1,6 +1,5 @@
 package com.strongliu.blog.controller;
 
-import com.strongliu.blog.dto.ResponseListDto;
 import com.strongliu.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +16,6 @@ public class IndexController {
 
     @Autowired
     private PostService postService;
-
-    @Autowired
-    private ResponseListDto responseListDto;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {

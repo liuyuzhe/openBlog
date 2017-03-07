@@ -1,7 +1,6 @@
 package com.strongliu.blog.controller;
 
 import com.strongliu.blog.constant.Constant;
-import com.strongliu.blog.constant.ErrorMessage;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
@@ -16,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +35,8 @@ public class UserController {
     private RegisterFormValidator registerFormValidator;
     @Autowired
     private LoginFormValidator loginFormValidator;
-    @Autowired
-    private ResponseDto responseDto;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexUser(Model model) {
         return indexUserWithPage(1, model);
     }
@@ -58,12 +54,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String inputRegister() {
+    public String register() {
         return "user/register";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String inputLogin(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
+    public String login(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
 //        Cookie[] cookies = request.getCookies();
 //        for (Cookie cookie: cookies) {
 //            if (cookie.getName().equals("username")) {
@@ -83,7 +79,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
-    public Object saveRegister(RegisterFormVo registerFormVo, Errors errors) {
+    public Object doRegister(RegisterFormVo registerFormVo, Errors errors) {
 //        registerFormValidator.validate(registerFormVo, errors);
 //        if (errors.hasErrors()) {
 //            return "redirect:" + "/user/register";
@@ -91,26 +87,22 @@ public class UserController {
 //
 //        userManager.addUserFormVo(registerFormVo);
 
-        responseDto.setCode(ErrorMessage.FAILED.getCode());
-        responseDto.setMessage(ErrorMessage.FAILED.getMessage());
-        return responseDto;
-
-//        return "redirect:" + "/user/login";
+        return new ResponseDto(0, "注册成功");
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String saveLogin(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseDto doLogin(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
                             HttpServletRequest request, HttpServletResponse response,
-                            HttpSession session, final RedirectAttributes redirectAttributes, Errors errors) {
+                            HttpSession session, Errors errors) {
         loginFormValidator.validate(loginFormVo, errors);
         if (errors.hasErrors()) {
-            return "redirect:" + "/login";
+            return new ResponseDto(-1, "格式不匹配");
         }
 
         User user = userManager.getUserByLoginFormVo(loginFormVo);
         if (user == null) {
-            redirectAttributes.addFlashAttribute("message", "用户名或密码错误");
-            return "redirect:" + "/user/login";
+            return new ResponseDto(-1, "用户名或密码错误");
         }
 
         session.setAttribute(Constant.USER_SESSION_KEY, user);
@@ -126,15 +118,15 @@ public class UserController {
         }
 
         if (!StringUtils.isEmpty(next)) {
-            return "redirect:" + next;
+//            return "redirect:" + next;
+            return new ResponseDto(0, "重定向到next");
         }
 
-        redirectAttributes.addFlashAttribute("message", "登陆成功");
-        return "redirect:" + "/";
+        return new ResponseDto(0, "登陆成功");
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletResponse response, HttpSession session) {
+    public String doLogout(HttpServletResponse response, HttpSession session) {
         session.invalidate();
         Cookie usernameCookie = new Cookie("username", "");
         usernameCookie.setMaxAge(0);
