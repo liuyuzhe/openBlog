@@ -31,6 +31,10 @@ public class UserService {
         return userDao.selectAll(startIndex, pageSize);
     }
 
+    public boolean findUserIsExit(String username) {
+        return userDao.selectCountByUsername(username) > 0 ? true : false;
+    }
+
     public int pageTotal(int pageSize)
     {
         int postToal = userDao.selectCount();

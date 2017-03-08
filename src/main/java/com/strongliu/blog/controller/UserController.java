@@ -87,6 +87,11 @@ public class UserController {
 //
 //        userManager.addUserFormVo(registerFormVo);
 
+        boolean isExit = userManager.getUserIsExit(registerFormVo.getUsername());
+        if (isExit) {
+            return new ResponseDto(-1, "该用户已存在");
+        }
+
         return new ResponseDto(0, "注册成功");
     }
 
@@ -98,6 +103,11 @@ public class UserController {
         loginFormValidator.validate(loginFormVo, errors);
         if (errors.hasErrors()) {
             return new ResponseDto(-1, "格式不匹配");
+        }
+
+        boolean isExit = userManager.getUserIsExit(loginFormVo.getUsername());
+        if (!isExit) {
+            return new ResponseDto(-1, "用户不存在");
         }
 
         User user = userManager.getUserByLoginFormVo(loginFormVo);

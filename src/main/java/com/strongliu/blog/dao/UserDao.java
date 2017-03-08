@@ -16,6 +16,8 @@ public interface UserDao {
 
     List<User> selectAll(@Param("offset") int offset, @Param("limit") int limit);
 
+    int selectCountByUsername(String username);
+
     int selectCount();
 
     int insert(User user);

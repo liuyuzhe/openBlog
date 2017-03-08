@@ -14,7 +14,7 @@
         <result property="register_time" column="user_register_time"/>
         <result property="activate_time" column="user_activate_time"/>
     </resultMap>
-
+    
     <select id="selectByUsernameAndPassword">
         SELECT user_id, user_nickname, user_avatar_url, user_activate_time FROM user_table
         WHERE user_name=#{username} AND user_password=#{password}
@@ -29,6 +29,10 @@
         SELECT user_id, user_nickname, user_avatar_url, register_time, user_activate_time FROM user_table
         ORDER BY user_nickname ASC
         LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectCountByUsername">
+        SELECT COUNT (*) FROM user_table WHERE user_name=#{username}
     </select>
 
     <select id="selectCount">

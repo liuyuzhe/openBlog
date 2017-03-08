@@ -47,6 +47,11 @@ public class UserManager {
     }
 
     @Transactional
+    public boolean getUserIsExit(String username) {
+        return userService.findUserIsExit(username);
+    }
+
+    @Transactional
     public int addUserFormVo(RegisterFormVo registerFormVo) {
         User user = new User();
         user.setName(registerFormVo.getUsername());
