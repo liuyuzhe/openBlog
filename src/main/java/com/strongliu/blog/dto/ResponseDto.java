@@ -1,30 +1,24 @@
 package com.strongliu.blog.dto;
 
+import com.strongliu.blog.constant.ErrorCode;
+
 /**
  * Created by liuyuzhe on 2017/2/13.
  */
 
 public class ResponseDto {
-    private int code = -1;
+    private int code;
     private String message;
     private Object data;
 
-    public ResponseDto() {
-
+    public ResponseDto(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
     }
 
-    public ResponseDto(int code) {
-        this.code = code;
-    }
-
-    public ResponseDto(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public ResponseDto(int code, String message, Object data) {
-        this.code = code;
-        this.message = message;
+    public ResponseDto(ErrorCode errorCode, Object data) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
         this.data = data;
     }
 
@@ -32,16 +26,8 @@ public class ResponseDto {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public Object getData() {

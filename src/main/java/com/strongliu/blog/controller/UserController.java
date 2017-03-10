@@ -1,6 +1,7 @@
 package com.strongliu.blog.controller;
 
 import com.strongliu.blog.constant.Constant;
+import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
@@ -89,10 +90,10 @@ public class UserController {
 
         boolean isExit = userManager.getUserIsExit(registerFormVo.getUsername());
         if (isExit) {
-            return new ResponseDto(-1, "该用户已存在");
+            return new ResponseDto(ErrorCode.ERROR_EXISTED_USER);
         }
 
-        return new ResponseDto(0, "注册成功");
+        return new ResponseDto(ErrorCode.SUCCESS);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -102,17 +103,17 @@ public class UserController {
                             HttpSession session, Errors errors) {
         loginFormValidator.validate(loginFormVo, errors);
         if (errors.hasErrors()) {
-            return new ResponseDto(-1, "格式不匹配");
+            return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
         }
 
         boolean isExit = userManager.getUserIsExit(loginFormVo.getUsername());
         if (!isExit) {
-            return new ResponseDto(-1, "用户不存在");
+            return new ResponseDto(ErrorCode.ERROR_NO_EXISTED_USER);
         }
 
         User user = userManager.getUserByLoginFormVo(loginFormVo);
         if (user == null) {
-            return new ResponseDto(-1, "用户名或密码错误");
+            return new ResponseDto(ErrorCode.ERROR_PASSWORD_NOT_MATCH);
         }
 
         session.setAttribute(Constant.USER_SESSION_KEY, user);
@@ -129,10 +130,11 @@ public class UserController {
 
         if (!StringUtils.isEmpty(next)) {
 //            return "redirect:" + next;
-            return new ResponseDto(0, "重定向到next");
+            // 重定向到next
+            return new ResponseDto(ErrorCode.SUCCESS);
         }
 
-        return new ResponseDto(0, "登陆成功");
+        return new ResponseDto(ErrorCode.SUCCESS);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
