@@ -37,10 +37,9 @@
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
-                        <input type="text" name="username" class="form-control" placeholder="用户名"
-                               pattern="^[A-Za-z0-9_-]{6,18}$" required>
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
                     </div>
-                    <div class="alert alert-danger">
+                    <div id="alertUsername" class="alert alert-danger" style="display: none">
                         <strong>用户名必须为6-18个字母、数字或下划线</strong>
                     </div>
                 </div>
@@ -79,6 +78,7 @@
 
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/js/regular.js"></script>
 <script src="../../../static/js/user.js"></script>
 
 </body>
