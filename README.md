@@ -3,7 +3,8 @@
 ## todo
 
 1. 各模块增加log
-2. 实时监测输入数据合法性并提示，按钮状态初始为不可用
+2. 按钮状态初始为不可用
+3. js页面相互引用问题？
 4. 基于注解的javabean共享问题处理
 5. mybatis 仅更新指定字段 用if ？如修改User的个别字段
 6. mybatis 多条件 批量删除 relationship_table

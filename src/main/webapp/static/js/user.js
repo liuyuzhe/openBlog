@@ -2,39 +2,72 @@
  * Created by liuyuzhe on 2017/3/4.
  */
 
-//document.write("<script src='../../../static/js/regular.js' charset='utf-8' ></script>");
+var checkUsername = function (username) {
+    if (!isUsername(username)) {
+        $("#alertUsername").show();
+        return false;
+    } else {
+        $("#alertUsername").hide();
+        return true;
+    }
+}
+
+var checkEmail = function (email) {
+    if (!isEmail(email)) {
+        $("#alertEmail").show();
+        return false;
+    } else {
+        $("#alertEmail").hide();
+        return true;
+    }
+}
+
+var checkPassword = function (password) {
+    if (!isPassword(password)) {
+        $("#alertPassword").show();
+        return false;
+    } else {
+        $("#alertPassword").hide();
+        return true;
+    }
+}
+
+var checkRepeatPassword = function (password, repeat) {
+    if (repeat !== password) {
+        $("#alertRepeatPassword").show();
+        return false;
+    } else {
+        $("#alertRepeatPassword").hide();
+        return true;
+    }
+}
+
+$("#registerForm input[name='username']").blur(function() {
+    checkUsername($(this).val());
+});
+
+$("#registerForm input[name='email']").blur(function() {
+    checkEmail($(this).val());
+});
+
+$("#registerForm input[name='password']").blur(function() {
+    checkPassword($(this).val())
+});
+
+$("#repeatPassword").blur(function() {
+    var password = $("#registerForm input[name='password']").val();
+    var repeat = $(this).val();
+    checkRepeatPassword(password, repeat);
+});
 
 $("#register").click(function() {
     var username = $("#registerForm input[name='username']").val();
-    if (!isUsername(username)) {
-        $("#alertUsername").show();
-        return;
-    } else {
-        $("#alertUsername").hide();
-    }
-
     var email = $("#registerForm input[name='email']").val();
-    if (!isEmail(email)) {
-        $("#alertEmail").show();
-        return;
-    } else {
-        $("#alertEmail").hide();
-    }
-
     var password = $("#registerForm input[name='password']").val();
-    if (!isPassword(password)) {
-        $("#alertPassword").show();
+    var repeatPassword = $("#repeatPassword").val();
+    if (!checkUsername(username) || !checkEmail(email) || !checkPassword(password) ||
+        !checkRepeatPassword(password, repeatPassword)) {
         return;
-    } else {
-        $("#alertPassword").hide();
-    }
-
-    var repeat = $("#repeatPassword").val();
-    if (repeat != password) {
-        $("#alertRepeatPassword").show();
-        return;
-    } else {
-        $("#alertRepeatPassword").hide();
     }
 
     $.post("/user/register", $("#registerForm").serialize(), function(response, status) {
