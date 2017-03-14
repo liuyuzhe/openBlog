@@ -1,0 +1,15 @@
+.error-page .status {
+    margin-top: 120px;
+    color: #999;
+    font-size: 128px
+}
+
+.error-page .title {
+    color: #555;
+    font-size: 20px
+}
+
+.error-page .description {
+    color: #777;
+    font-size: 14px
+}
