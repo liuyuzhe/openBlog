@@ -51,7 +51,7 @@ $("#registerForm input[name='email']").blur(function() {
 });
 
 $("#registerForm input[name='password']").blur(function() {
-    checkPassword($(this).val())
+    checkPassword($(this).val());
 });
 
 $("#repeatPassword").blur(function() {
@@ -79,7 +79,21 @@ $("#register").click(function() {
     });
 });
 
+$("#loginForm input[name='username']").blur(function() {
+    checkUsername($(this).val());
+});
+
+$("#loginForm input[name='password']").blur(function() {
+    checkPassword($(this).val());
+})
+
 $("#login").click(function() {
+    var username = $("#loginForm input[name='username']").val();
+    var password = $("#loginForm input[name='pasword']").val();
+    if (!checkUsername(username) || !checkPassword(password)) {
+        return;
+    }
+
     $.post("/user/login", $("#loginForm").serialize(), function(response, status) {
        if (response.code == 0) {
            window.location.href = "/user/";
