@@ -1,14 +1,12 @@
 @charset "UTF-8";
 
-.post-meta {
-    font-size: 12px;
+.main-header {
+    /*padding: 23px 0;*/
+    /*background: #f4645f;*/
 }
 
-.post-meta a {
-    margin-right: 15px;
-}
-
-.post-meta .read-mode {
-    margin-right: 0;
+.navbar-logo-last {
+    background: transparent;
+    color: #f4645f !important;
 }
 
