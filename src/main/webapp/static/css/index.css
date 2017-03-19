@@ -5,8 +5,87 @@
     /*background: #f4645f;*/
 }
 
-.navbar-logo-last {
+body {
+    background:#f5f5f5;
+}
+
+.main-header > nav {
+    background: #ffffff;
+}
+
+.nav-logo-last {
     background: transparent;
     color: #f4645f !important;
 }
 
+.nav-tab-last a {
+    color: #555555 !important;
+}
+
+.nav-tab-last a:hover {
+    color: #f4645f !important;
+}
+
+.nav-tab-last > .active > a {
+    color: #f4645f !important;
+}
+
+.post {
+    padding: 20px;
+    background: #ffffff;
+    /*margin-bottom: 35px;*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+}
+
+.post .post-image {
+    overflow: hidden;
+    float: left;
+}
+
+.post .post-image img {
+    width: 240px;
+    height: 150px;
+    padding: 1px;
+    border: 1px solid #f3f3f3;
+}
+
+.post .post-image img {
+    transform: scale(1);
+    transition: transform 1s ease;
+}
+
+.post .post-image:hover img {
+    transform: scale(1.2);
+}
+
+.post .post-inner {
+    height: 150px;
+    overflow: hidden;
+    padding-left: 20px;
+}
+
+.post .post-inner header {
+    text-align: center;
+    padding: 3px 0 6px 0;
+}
+
+.post .post-inner header a {
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #333333;
+}
+
+.post .post-inner header a:hover,
+.post .post-inner header a:focus {
+    text-decoration: none;
+    color: #f4645f;
+}
+
+.post .post-inner p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #333333;
+}
