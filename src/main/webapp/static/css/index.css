@@ -13,79 +13,111 @@ body {
     background: #ffffff;
 }
 
-.nav-logo-last {
-    background: transparent;
+.nav-logo {
     color: #f4645f !important;
 }
 
-.nav-tab-last a {
+.nav-logo a {
     color: #555555 !important;
 }
 
-.nav-tab-last a:hover {
+.nav-logo a:hover {
     color: #f4645f !important;
 }
 
-.nav-tab-last > .active > a {
+.nav-logo > .active > a {
     color: #f4645f !important;
 }
 
 .post {
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     background: #ffffff;
-    /*margin-bottom: 35px;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
+    margin-bottom: 20px;
 }
 
-.post .post-image {
+.post-summary {
+    margin-bottom: 20px;
+}
+
+.post-summary .post-image {
     overflow: hidden;
     float: left;
 }
 
-.post .post-image img {
+.post-summary .post-image img {
     width: 240px;
     height: 150px;
     padding: 1px;
     border: 1px solid #f3f3f3;
 }
 
-.post .post-image img {
+.post-summary .post-image img {
     transform: scale(1);
     transition: transform 1s ease;
 }
 
-.post .post-image:hover img {
+.post-summary .post-image:hover img {
     transform: scale(1.2);
 }
 
-.post .post-inner {
-    height: 150px;
+.post-summary .post-inner {
+    max-height: 150px;
     overflow: hidden;
-    padding-left: 20px;
+    padding: 3px 0 3px 20px;
 }
 
-.post .post-inner header {
+.post-summary .post-inner .post-title {
     text-align: center;
+    white-space:nowrap;
     padding: 3px 0 6px 0;
 }
 
-.post .post-inner header a {
+.post-summary .post-inner .post-title a {
     font-size: 21px;
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.8;
     color: #333333;
 }
 
-.post .post-inner header a:hover,
-.post .post-inner header a:focus {
+.post-summary .post-inner .post-title a:hover,
+.post-summary .post-inner .post-title a:focus {
     text-decoration: none;
     color: #f4645f;
 }
 
-.post .post-inner p {
+.post-summary .post-inner p {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.6;
     color: #333333;
+}
+
+.post .post-footer {
+    color: #959595;
+    padding: 8px 0px;
+    border-top: 1px solid #f3f3f3;
+    line-height: 25px;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.btn-custom {
+    padding: 2px 6px;
+    color: #f4645f;
+    border: 1px solid #f4645f;
+    transition: 0.1s ease-in;
+    -webkit-transition: 0.1s ease-in;
+    -moz-transition: 0.1s ease-in;
+    -o-transition: 0.1s ease-in;
+    -ms-transition: 0.1s ease-in;
+}
+
+.btn-custom:hover, .collection-tag:focus {
+    color: #f4645f;
+    background-color: rgba(236, 97, 73, 0.05);
+    transition: 0.1s ease-in;
+    -webkit-transition: 0.1s ease-in;
+    -moz-transition: 0.1s ease-in;
+    -o-transition: 0.1s ease-in;
+    -ms-transition: 0.1s ease-in;
 }
