@@ -10,28 +10,25 @@ body {
 }
 
 .main-header > nav {
-    background: #ffffff;
+    background: #fff;
 }
 
 .nav-logo {
     color: #f4645f !important;
 }
 
-.nav-logo a {
+.post-category a {
     color: #555555 !important;
 }
 
-.nav-logo a:hover {
-    color: #f4645f !important;
-}
-
-.nav-logo > .active > a {
+.post-category a:hover,
+.post-category > .active > a {
     color: #f4645f !important;
 }
 
 .post {
     padding: 20px 20px 0px 20px;
-    background: #ffffff;
+    background: #fff;
     margin-bottom: 20px;
 }
 
@@ -76,7 +73,7 @@ body {
     font-size: 21px;
     font-weight: 400;
     line-height: 1.8;
-    color: #333333;
+    color: #333;
 }
 
 .post-summary .post-inner .post-title a:hover,
@@ -89,16 +86,26 @@ body {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.6;
-    color: #333333;
+    color: #333;
 }
 
-.post .post-footer {
-    color: #959595;
+.post-footer {
     padding: 8px 0px;
     border-top: 1px solid #f3f3f3;
     line-height: 25px;
     overflow: hidden;
     font-size: 12px;
+}
+
+.post-footer .post-meta span > * {
+    padding-right: 15px;
+    color: #777;
+    text-decoration: none;
+}
+
+.post-footer .post-meta a:hover,
+.post-footer .post-meta a:focus {
+    color: #333;
 }
 
 .btn-custom {
