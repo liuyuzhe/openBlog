@@ -30,6 +30,7 @@ body {
     padding: 20px 20px 0px 20px;
     background: #fff;
     margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .post-summary {
@@ -105,7 +106,8 @@ body {
 
 .post-footer .post-meta a:hover,
 .post-footer .post-meta a:focus {
-    color: #333;
+    color: #f4645f;
+    text-decoration: none;
 }
 
 .btn-custom {
@@ -116,7 +118,6 @@ body {
     -webkit-transition: 0.1s ease-in;
     -moz-transition: 0.1s ease-in;
     -o-transition: 0.1s ease-in;
-    -ms-transition: 0.1s ease-in;
 }
 
 .btn-custom:hover, .collection-tag:focus {
@@ -126,5 +127,4 @@ body {
     -webkit-transition: 0.1s ease-in;
     -moz-transition: 0.1s ease-in;
     -o-transition: 0.1s ease-in;
-    -ms-transition: 0.1s ease-in;
 }
