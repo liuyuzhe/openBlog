@@ -7,6 +7,39 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.widget-about {
+    text-align:center;
+    padding: 0px !important;
+}
+
+.widget-about .about-background {
+    height: 120px;
+    background-image: url("https://www.vtrois.com/wp-content/uploads/2017/02/bgi.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.widget-about .user-avatar {
+    margin: -50px 0 0 0;
+}
+
+.widget-about .user-avatar img {
+    max-width: 100%;
+    max-height: 90px;
+    border: rgba(255, 255, 255, 0.5) 4px solid;
+    border-radius: 50%;
+}
+
+.widget-about .user-motto {
+    padding: 10px 20px;
+    font-size: medium;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #333;
+    text-shadow: rgba(0, 0, 0, 0.1) 0.1px 0.1px 1px;
+}
+
 .widget-tags .widget-title {
     margin: 0 0 15px;
     padding-bottom: 7px;
