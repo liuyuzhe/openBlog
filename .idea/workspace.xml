@@ -109,8 +109,8 @@
           <file leaf-file-name="context.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/context.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.50660795">
-                  <caret line="70" column="40" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="40" />
+                <state vertical-scroll-proportion="0.75770926">
+                  <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -123,7 +123,7 @@
           <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/index.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.083333">
+                <state vertical-scroll-proportion="44.125">
                   <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
                   <folding />
                 </state>
@@ -133,8 +133,8 @@
           <file leaf-file-name="sidebar.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/sidebar.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.42731276">
-                  <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.14096916">
+                  <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -592,9 +592,9 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/index.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/header.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/widget.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/context.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/index.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/sidebar.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/context.html" />
       </list>
     </option>
   </component>
@@ -1794,12 +1794,12 @@
       <workItem from="1490101746187" duration="6769000" />
       <workItem from="1490181768118" duration="7241000" />
       <workItem from="1490270250208" duration="1236000" />
-      <workItem from="1490876303817" duration="7377000" />
+      <workItem from="1490876303817" duration="10188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="363928000" />
+    <option name="totallyTimeSpent" value="366739000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2209,14 +2209,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/bootstrap-3.3.7/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34508076">
-          <caret line="1142" column="1" selection-start-line="1142" selection-start-column="1" selection-end-line="1142" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/strongliu/blog/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4468085">
@@ -2243,7 +2235,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.083333">
+        <state vertical-scroll-proportion="44.125">
           <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding />
         </state>
@@ -2251,16 +2243,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/sidebar.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42731276">
-          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.14096916">
+          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/bootstrap-3.3.7/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="6630" column="3" selection-start-line="6630" selection-start-column="3" selection-end-line="6630" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/index/context.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50660795">
-          <caret line="70" column="40" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.75770926">
+          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
           <folding />
         </state>
       </provider>
