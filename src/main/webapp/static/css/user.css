@@ -1,12 +1,78 @@
 @charset "UTF-8";
 
-.login-box{
-    min-width: 400px;
+.login-box,
+.register-box {
+    width: 400px;
+    height: auto;
     margin: 60px auto 0;
     padding: 50px 50px 30px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 8px rgba(0,0,0,.1);
-    /*vertical-align: middle;*/
-    /*display: inline-block*/
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.login-box h1,
+.register-box h1 {
+    font-size: 20px;
+    color: #666;
+}
+
+.login-form > div,
+.register-form > div {
+    position: relative;
+    line-height: 30px;
+}
+
+.login-form > div input[type="text"],
+.login-form > div input[type="password"],
+.register-form > div input[type="text"],
+.register-form > div input[type="password"] {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding-left: 15px;
+    box-shadow: none;
+    border-color: #e6e6e6;
+}
+
+.login-form > div label,
+.register-form > div label {
+    text-align:left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #666;
+}
+
+.login-form > div a,
+.register-form > div a {
+    color: #155faa;
+}
+
+.login-btn {
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border: none;
+    background-color: #66b7ff;
+    color: #fff;
+}
+
+.login-btn:hover, .login-btn:focus {
+    background-color: #4daaff;
+}
+
+.register-btn {
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border: none;
+    background-color: #42c02e;
+    color: #fff;
+}
+
+.register-btn:hover, .register-btn:focus {
+    background-color: #38b836;
 }
