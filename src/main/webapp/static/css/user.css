@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+* {
+    font-family: 'Helvetica Neue',STHeiti,'Microsoft YaHei',Helvetica,Arial,sans-serif
+}
+
 .login-box,
 .register-box {
     width: 400px;
@@ -44,11 +48,21 @@
     font-weight: 400;
     line-height: 30px;
     color: #666;
+    cursor: default;
 }
 
 .login-form > div a,
 .register-form > div a {
+    cursor: pointer;
     color: #155faa;
+}
+
+.login-form > div a:hover,
+.register-form > div a:hover,
+.login-form > div a:focus,
+.register-form > div a:focus {
+    text-decoration: none;
+    color: #499ef3;
 }
 
 .login-btn {
@@ -60,7 +74,8 @@
     color: #fff;
 }
 
-.login-btn:hover, .login-btn:focus {
+.login-btn:hover,
+.login-btn:focus {
     background-color: #4daaff;
 }
 
@@ -73,6 +88,7 @@
     color: #fff;
 }
 
-.register-btn:hover, .register-btn:focus {
+.register-btn:hover,
+.register-btn:focus {
     background-color: #38b836;
 }
