@@ -92,3 +92,13 @@
 .register-btn:focus {
     background-color: #38b836;
 }
+
+.form-alert {
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background: #ffeaea;
+    color: #cc0000;
+    border: 1px solid transparent;
+    font-size: 12px;
+}

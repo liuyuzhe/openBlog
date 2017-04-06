@@ -32,41 +32,26 @@ var checkPassword = function (password) {
     }
 }
 
-var checkRepeatPassword = function (password, repeat) {
-    if (repeat !== password) {
-        $("#alertRepeatPassword").show();
-        return false;
-    } else {
-        $("#alertRepeatPassword").hide();
-        return true;
+$("#registerForm").find('[type=text], [type=password]').blur(function() {
+    switch ($(this).attr('name')) {
+        case "username" :
+            checkUsername($(this).val());
+            break;
+        case "email" :
+            checkEmail($(this).val());
+            break;
+        case "password" :
+            checkPassword($(this).val());
+            break;
     }
-}
-
-$("#registerForm input[name='username']").blur(function() {
-    checkUsername($(this).val());
-});
-
-$("#registerForm input[name='email']").blur(function() {
-    checkEmail($(this).val());
-});
-
-$("#registerForm input[name='password']").blur(function() {
-    checkPassword($(this).val());
-});
-
-$("#repeatPassword").blur(function() {
-    var password = $("#registerForm input[name='password']").val();
-    var repeat = $(this).val();
-    checkRepeatPassword(password, repeat);
-});
+})
 
 $("#register").click(function() {
     var username = $("#registerForm input[name='username']").val();
     var email = $("#registerForm input[name='email']").val();
     var password = $("#registerForm input[name='password']").val();
     var repeatPassword = $("#repeatPassword").val();
-    if (!checkUsername(username) || !checkEmail(email) || !checkPassword(password) ||
-        !checkRepeatPassword(password, repeatPassword)) {
+    if (!checkUsername(username) || !checkEmail(email) || !checkPassword(password)) {
         return;
     }
 
@@ -79,13 +64,16 @@ $("#register").click(function() {
     });
 });
 
-$("#loginForm input[name='username']").blur(function() {
-    checkUsername($(this).val());
+$("#loginForm").find('[type=text], [type=password]').blur(function() {
+    switch ($(this).attr('name')) {
+        case "username" :
+            checkUsername($(this).val());
+            break;
+        case "password" :
+            checkPassword($(this).val());
+            break;
+    }
 });
-
-$("#loginForm input[name='password']").blur(function() {
-    checkPassword($(this).val());
-})
 
 $("#login").click(function() {
     var username = $("#loginForm input[name='username']").val();
