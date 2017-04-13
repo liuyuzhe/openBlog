@@ -27,6 +27,7 @@
 .register-form > div {
     position: relative;
     line-height: 30px;
+    font-size: 14px;
 }
 
 .login-form > div input[type="text"],
@@ -44,9 +45,7 @@
 .login-form > div label,
 .register-form > div label {
     text-align:left;
-    font-size: 14px;
     font-weight: 400;
-    line-height: 30px;
     color: #666;
     cursor: default;
 }
@@ -68,10 +67,14 @@
 .login-btn {
     height: 40px;
     line-height: 40px;
+    font-size: 14px;
     padding: 0;
     border: none;
     background-color: #66b7ff;
     color: #fff;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
 }
 
 .login-btn:hover,
@@ -82,10 +85,14 @@
 .register-btn {
     height: 40px;
     line-height: 40px;
+    font-size: 14px;
     padding: 0;
     border: none;
     background-color: #42c02e;
     color: #fff;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
 }
 
 .register-btn:hover,

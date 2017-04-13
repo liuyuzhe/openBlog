@@ -55,11 +55,20 @@ $("#register").click(function() {
         return;
     }
 
-    $.post("/user/register", $("#registerForm").serialize(), function(response, status) {
-        if (response.code == 0) {
-            window.location.href = '/user/login';
-        } else {
-            alert(response.message);
+    $.post({
+        url: "/user/register",
+        dataType: "json",
+        data: $("#registerForm").serialize(),
+        success: function(response) {
+            if (response.code == 0) {
+                // 成功并弹窗
+                window.location.href = '/user/login';
+            } else {
+                console.log(response.message);
+            }
+        },
+        error: function(response) {
+            console.log(response);
         }
     });
 });
@@ -82,12 +91,20 @@ $("#login").click(function() {
         return;
     }
 
-    $.post("/user/login", $("#loginForm").serialize(), function(response, status) {
-       if (response.code == 0) {
-           window.location.href = "/user/";
-       } else {
-           alert(response.message);
-       }
+    $.post({
+        url: "/user/login",
+        dataType: "json",
+        data : $("#loginForm").serialize(),
+        success: function(response) {
+            if (response.code == 0) {
+                window.location.href = "/user/";
+            } else {
+                console.log(response.message);
+            }
+        },
+        error: function(response) {
+            console.log(response.message);
+        }
     });
 });
 
