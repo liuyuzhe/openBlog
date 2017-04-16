@@ -26,6 +26,9 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
@@ -63,5 +66,7 @@
     <orderEntry type="library" name="Gradle: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-collections4:4.0" level="project" />
     <orderEntry type="library" name="Gradle: commons-pool:commons-pool:1.5.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context-support:4.3.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.freemarker:freemarker:2.3.20" level="project" />
   </component>
 </module>

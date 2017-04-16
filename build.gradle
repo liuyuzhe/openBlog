@@ -25,6 +25,7 @@ version = '1.0.0' // 版本
 // 全局参数配置
 ext {
 	servletVersion = '2.5'
+    freemarkerVersion = '2.3.20'
 	jspVersion = '2.2'
 	jstlVersion = '1.2'
 
@@ -61,6 +62,11 @@ dependencies {
 	providedCompile "javax.servlet:servlet-api:${servletVersion}"
 	providedCompile "javax.servlet.jsp:jsp-api:${jspVersion}"
 	providedCompile "javax.servlet:jstl:${jstlVersion}"
+
+    // velocity
+    compile "org.freemarker:freemarker:${freemarkerVersion}"
+    compile "org.springframework:spring-context-support:${springVersion}"
+
 
     // Spring web
     compile "org.springframework:spring-web:${springVersion}"
