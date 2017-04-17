@@ -120,11 +120,13 @@ body {
     -o-transition: 0.1s ease-in;
 }
 
-.btn-custom:hover, .collection-tag:focus {
+.btn-custom:hover,
+.btn-custom:focus {
     color: #f4645f;
     background-color: rgba(236, 97, 73, 0.05);
     transition: 0.1s ease-in;
     -webkit-transition: 0.1s ease-in;
     -moz-transition: 0.1s ease-in;
     -o-transition: 0.1s ease-in;
+    text-decoration: none;
 }
