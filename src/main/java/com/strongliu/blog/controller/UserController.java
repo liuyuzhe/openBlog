@@ -56,7 +56,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
-        return "user/register";
+        return "/WEB-INF/pages/admin/register.html";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -69,13 +69,13 @@ public class UserController {
 //            }
 //        }
 
-        return "user/login";
+        return "/WEB-INF/pages/admin/login.html";
     }
 
     @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
     public String editUser(@PathVariable String userId, Model model) {
 
-        return "user/register";
+        return "/WEB-INF/pages/admin/register.html";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
