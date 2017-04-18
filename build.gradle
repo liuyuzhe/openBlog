@@ -25,7 +25,7 @@ version = '1.0.0' // 版本
 // 全局参数配置
 ext {
 	servletVersion = '2.5'
-    freemarkerVersion = '2.3.20'
+    freemarkerVersion = '2.3.26-incubating'
 	jspVersion = '2.2'
 	jstlVersion = '1.2'
 
