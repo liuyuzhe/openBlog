@@ -17,10 +17,10 @@ public class IndexController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
     public String index(Model model) {
-        return "index";
+        
+        return "user/index";
     }
-
 
 }
