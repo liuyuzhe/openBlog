@@ -70,6 +70,17 @@
                         </article>
                     </#list>
                 </#if>
+                <#if postPageVo??>
+                    <nav class="pagination">
+                        <a href="#">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <span>第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
+                        <a href="#">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </nav>
+                </#if>
             </main>
             <aside class="col-md-4 hidden-xs hidden-sm sidebar">
                 <div class="widget-about">

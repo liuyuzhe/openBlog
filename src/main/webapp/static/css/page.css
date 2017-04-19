@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.pagination {
+    margin: 0 0 35px;
+    text-align: center;
+    display: block;
+}
+
+.pagination a {
+    display: inline-block;
+    color: #ffffff;
+    background: #f4645f;
+    border-radius: 2px;
+}
+
+.pagination a:hover,
+.pagination a:focus {
+    text-decoration: none;
+}
+
+.pagination a i {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.pagination span {
+    display: inline-block;
+    color: #ffffff;
+    background: #f4645f;
+    margin: 0 3px;
+    padding: 0 12px;
+    line-height: 36px;
+    border-radius: 2px;
+    font-weight: 300;
+    font-size: 13px;
+}
