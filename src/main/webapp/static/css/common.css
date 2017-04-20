@@ -37,3 +37,25 @@ body {
     -o-transition: 0.1s ease-in;
     text-decoration: none;
 }
+
+#back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    color: #ffffff;
+    background: rgba(244, 100, 95, 0.7);
+    text-align: center;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+#back-to-top:hover,
+#back-to-top:focus {
+    background: #f4645f;
+}
+
+#back-to-top i {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}

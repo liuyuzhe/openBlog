@@ -72,13 +72,17 @@
                 </#if>
                 <#if postPageVo??>
                     <nav class="pagination">
-                        <a href="#">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <span>第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
-                        <a href="#">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
+                        <#if postPageVo.pageIndex > 1>
+                            <a class="newer-posts" href="/?page=${postPageVo.pageIndex - 1}">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        </#if>
+                        <span class="page-number">第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
+                        <#if postPageVo.pageIndex < postPageVo.pageTotal>
+                            <a class="older-posts" href="/?page=${postPageVo.pageIndex + 1}">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </#if>
                     </nav>
                 </#if>
             </main>
@@ -112,8 +116,13 @@
     </div>
 </section>
 
+<a href="#" id="back-to-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/js/page.js"></script>
 
 </body>
 </html>
