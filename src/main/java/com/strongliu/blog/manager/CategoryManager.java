@@ -54,6 +54,11 @@ public class CategoryManager {
     }
 
     @Transactional
+    public List<Category> getAllCategory() {
+        return categoryService.findAllCategory();
+    }
+
+    @Transactional
     public int addCategory(Category category) {
         return categoryService.addCategory(category);
     }

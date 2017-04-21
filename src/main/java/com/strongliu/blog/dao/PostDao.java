@@ -25,7 +25,9 @@ public interface PostDao {
 
 	int deleteById(String id);
 
-//	int updateReadCount(@Param("id") String id, @Param("count") int count);
+	int updateCommentCount(@Param("id") String id, @Param("count") int count);
 
-//	int updateCommentCount(@Param("id") String id, @Param("count") int count);
+	int updateReadCount(@Param("id") String id, @Param("count") int count);
+
+	int updateSpotCount(@Param("id") String id, @Param("count") int count);
 }

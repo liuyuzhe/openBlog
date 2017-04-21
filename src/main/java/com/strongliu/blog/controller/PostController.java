@@ -1,7 +1,12 @@
 package com.strongliu.blog.controller;
 
+import com.strongliu.blog.constant.Constant;
+import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
+import com.strongliu.blog.entity.Tag;
+import com.strongliu.blog.manager.CategoryManager;
 import com.strongliu.blog.manager.PostManager;
+import com.strongliu.blog.manager.TagManager;
 import com.strongliu.blog.validator.PostFormValidator;
 import com.strongliu.blog.vo.PostFormVo;
 import com.strongliu.blog.vo.PostPageVo;
@@ -13,6 +18,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -20,6 +28,10 @@ public class PostController {
 
 	@Autowired
 	private PostManager postManager;
+	@Autowired
+	private CategoryManager categoryManager;
+	@Autowired
+	private TagManager tagManager;
 	@Autowired
 	private PostFormValidator postFormValidator;
 
@@ -35,14 +47,15 @@ public class PostController {
 		return "post/post";
 	}
 
-	@RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
-	public String indexPostWithPage(@PathVariable int pageId, Model model) {
-		PostPageVo postPageVo = postManager.getPostPageVoByPageId(pageId);
-		if (postPageVo == null) {
-			return "404";
-		}
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String indexPostWithPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId, Model model) {
+		PostPageVo postPageVo = postManager.getPostPageVoByPageId(Constant.PAGE_INDEX_DEFAULT);
+		List<Category> categoryList = categoryManager.getAllCategory();
+		List<Tag> tagList = tagManager.getAllTag();
 
 		model.addAttribute(postPageVo);
+		model.addAttribute(categoryList);
+		model.addAttribute(tagList);
 
 		return "page";
 	}

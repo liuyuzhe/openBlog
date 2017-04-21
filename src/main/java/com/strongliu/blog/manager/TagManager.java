@@ -54,6 +54,11 @@ public class TagManager {
     }
 
     @Transactional
+    public List<Tag> getAllTag() {
+        return tagService.findAllTag();
+    }
+
+    @Transactional
     public int addTag(Tag tag) {
         return tagService.addTag(tag);
     }

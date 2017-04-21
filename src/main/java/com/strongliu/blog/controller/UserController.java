@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
-    public String indexUserWithPage(@PathVariable int pageId, Model model) {
+    public String indexUserWithPage(@PathVariable Integer pageId, Model model) {
         UserPageVo userPageVo = userManager.getUserVoByPageId(pageId);
         if (userPageVo == null) {
             return "404";

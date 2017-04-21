@@ -27,7 +27,7 @@ public class TagController {
     }
 
     @RequestMapping(value = "/{tagName}/page/{pageId}", method = RequestMethod.GET)
-    public String indexTagWithPage(@PathVariable String tagName, @PathVariable int pageId, Model model) {
+    public String indexTagWithPage(@PathVariable String tagName, @PathVariable Integer pageId, Model model) {
         TagVo tagVo = tagManager.getTagVoByTagName(tagName, pageId);
         if (tagVo == null) {
             return "404";

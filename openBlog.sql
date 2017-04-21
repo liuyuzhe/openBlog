@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 02/20/2017 22:43:12 PM
+ Date: 04/21/2017 21:33:31 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -58,6 +58,8 @@ CREATE TABLE `post_table` (
   `post_type` enum('post','attachment') NOT NULL DEFAULT 'post' COMMENT '文章类型',
   `post_mime_type` varchar(100) NOT NULL COMMENT '附件类型',
   `post_comment_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
+  `post_read_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '阅读数',
+  `post_spot_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '点赞数',
   `creator_id` varchar(20) NOT NULL COMMENT '创建者ID',
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `creator_id` (`creator_id`) USING BTREE

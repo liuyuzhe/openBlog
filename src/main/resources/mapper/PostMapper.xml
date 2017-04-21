@@ -14,11 +14,13 @@
         <result property="status" column="post_status"/>
         <result property="comment_status" column="post_comment_status"/>
         <result property="comment_count" column="post_comment_count"/>
+        <result property="read_count" column="post_read_count"/>
+        <result property="spot_count" column="post_spot_count"/>
         <result property="creator_id" column="creator_id"/>
     </resultMap>
 
     <select id="selectPublishById" resultMap="postResultMap">
-        SELECT post_id, post_title, post_content, post_create_time, creator_id FROM post_table
+        SELECT post_id, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count, creator_id FROM post_table
         WHERE post_id=#{id} AND post_type='post' AND post_status='publish'
     </select>
     
@@ -39,7 +41,7 @@
     </select>
 
     <select id="selectAllPublish" resultMap="postResultMap">
-        SELECT post_id, post_title, post_excerpt, post_create_time FROM post_table
+        SELECT post_id, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish' AND post_id IN
         <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -49,7 +51,7 @@
     </select>
 
     <select id="selectAllPublishByIdList" resultMap="postResultMap">
-        SELECT post_id, post_title, post_excerpt, post_create_time FROM post_table
+        SELECT post_id, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
@@ -62,10 +64,10 @@
     <insert id="insert" parameterType="post">
         INSERT INTO post_table
         (post_id, post_title, post_excerpt, post_content, post_create_time, post_update_time,
-         post_status, post_comment_status, post_type, post_mime_type, post_comment_count, creator_id)
+         post_status, post_comment_status, post_type, post_mime_type, post_comment_count, post_read_count, post_spot_count, creator_id)
         VALUES
         (#{id}, #{title}, #{excerpt}, #{content}, #{create_time}, #{update_time},
-        #{status}, #{comment_status}, #{type}, #{mime_type}, #{comment_count}, #{creator_id})
+        #{status}, #{comment_status}, #{type}, #{mime_type}, #{comment_count}, #{read_count}, #{spot_count}, #{creator_id})
     </insert>
 
     <update id="update" parameterType="post">
@@ -80,16 +82,22 @@
         WHERE post_id=#{id}
     </delete>
 
-    <!--<update id="updateReadCount">-->
-        <!--UPDATE post_table-->
-        <!--SET read_count+=#{count}-->
-        <!--WHERE post_id=#{id}-->
-    <!--</update>-->
+    <update id="updateCommentCount">
+        UPDATE post_table
+        SET comment_count+=#{count}
+        WHERE post_id=#{id}
+    </update>
 
-    <!--<update id="updateCommentCount">-->
-        <!--UPDATE post_table-->
-        <!--SET comment_count+=#{count}-->
-        <!--WHERE post_id=#{id}-->
-    <!--</update>-->
+    <update id="updateReadCount">
+        UPDATE post_table
+        SET read_count+=#{count}
+        WHERE post_id=#{id}
+    </update>
+
+    <update id="updateSpotCount">
+        UPDATE post_table
+        SET spot_count+=#{count}
+        WHERE post_id=#{id}
+    </update>
 
 </mapper>
