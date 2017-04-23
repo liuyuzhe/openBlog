@@ -5,7 +5,7 @@
 (function(selector){
     $(selector).hide();
     $(window).scroll(function() {
-        if ($(window).scrollTop() > 110) {
+        if ($(this).scrollTop() > 110) {
             $(selector).fadeIn(500);
         }
         else {
@@ -13,8 +13,8 @@
         }
     });
     $(selector).click(function() {
-        $("body,html").animate(
-            {scrollTop:0},
+        $("body, html").animate(
+            {scrollTop : 0},
             500
         );
     });
