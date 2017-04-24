@@ -108,4 +108,73 @@
     padding: 3px 0 6px 0;
 }
 
+.post-tags span > * {
+    color: #777;
+    text-decoration: none;
+}
 
+.post-tags span > a {
+    padding: 0 4px;
+}
+
+.post-tags a:hover,
+.post-meta a:focus {
+    color: #f4645f;
+    text-decoration: none;
+}
+
+.post-support {
+    margin: 10px;
+}
+
+.post-support a {
+    display: inline-block;
+    margin: 2px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #f4645f;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: none;
+    color: #f4645f;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+.post-support .post-donate {
+    border-color: #4daaff;
+    color: #4daaff;
+}
+
+.post-support .post-donate:hover,
+.post-support .post-donate:focus {
+    color: #fff;
+    background-color: #4daaff;
+}
+
+.post-support .post-love {
+    border-color: #f4645f;
+    color: #f4645f;
+}
+
+.post-support .post-love:hover,
+.post-support .post-love:focus {
+    color: #fff;
+    background-color: #f4645f;
+}
+
+.post-support .post-share {
+    border-color: #42c02e;
+    color: #42c02e;
+}
+
+.post-support .post-share:hover,
+.post-support .post-share:focus {
+    color: #fff;
+    background-color: #42c02e;
+}
