@@ -108,21 +108,6 @@
     padding: 3px 0 6px 0;
 }
 
-.post-tags span > * {
-    color: #777;
-    text-decoration: none;
-}
-
-.post-tags span > a {
-    padding: 0 4px;
-}
-
-.post-tags a:hover,
-.post-meta a:focus {
-    color: #f4645f;
-    text-decoration: none;
-}
-
 .post-support {
     margin: 10px;
 }
@@ -177,4 +162,52 @@
 .post-support .post-share:focus {
     color: #fff;
     background-color: #42c02e;
+}
+
+.post-tags span > * {
+    color: #777;
+    text-decoration: none;
+}
+
+.post-tags span > a {
+    padding: 0 4px;
+}
+
+.post-tags a:hover,
+.post-meta a:focus {
+    color: #f4645f;
+    text-decoration: none;
+}
+
+.post-prev {
+    padding: 4px;
+    float: left;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 50%;
+    background-color: #fff;
+}
+
+.post-next {
+    padding: 4px;
+    float: right;
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 50%;
+    background-color: #fff;
+}
+
+.post-prev a,
+.post-next a {
+    color: #5a5a5a;
+}
+
+.post-prev a:hover,
+.post-prev a:focus,
+.post-next a:hover,
+.post-next a:focus {
+    color: #f4645f;
+    text-decoration: none;
 }

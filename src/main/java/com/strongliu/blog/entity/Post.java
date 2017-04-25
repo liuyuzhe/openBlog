@@ -14,6 +14,8 @@ public class Post {
 	private String type;
 	private String mime_type;
 	private Long comment_count;
+	private Long read_count;
+	private Long spot_count;
 	private String creator_id;
 
 	public String getId() {
@@ -102,6 +104,22 @@ public class Post {
 
 	public void setComment_count(Long comment_count) {
 		this.comment_count = comment_count;
+	}
+
+	public Long getRead_count() {
+		return read_count;
+	}
+
+	public void setRead_count(Long read_count) {
+		this.read_count = read_count;
+	}
+
+	public Long getSpot_count() {
+		return spot_count;
+	}
+
+	public void setSpot_count(Long spot_count) {
+		this.spot_count = spot_count;
 	}
 
 	public String getCreator_id() {
