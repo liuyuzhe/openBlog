@@ -1,7 +1,8 @@
-package com.strongliu.blog.controller;
+package com.strongliu.blog.controller.admin;
 
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.constant.ErrorCode;
+import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
@@ -27,8 +28,8 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/admin/user")
+public class UserController extends BaseController {
 
     @Autowired
     private UserManager userManager;
@@ -38,49 +39,25 @@ public class UserController {
     private LoginFormValidator loginFormValidator;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String indexUser(Model model) {
-        return indexUserWithPage(1, model);
-    }
+    public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit, Model model) {
 
-    @RequestMapping(value = "/page/{pageId}", method = RequestMethod.GET)
-    public String indexUserWithPage(@PathVariable Integer pageId, Model model) {
         UserPageVo userPageVo = userManager.getUserVoByPageId(pageId);
         if (userPageVo == null) {
-            return "404";
+            return this.render_404();
         }
 
-        model.addAttribute(userPageVo);
-
-        return "user/list";
+        return this.renderAdmin("user_list");
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
-        return "admin/register";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
-//        Cookie[] cookies = request.getCookies();
-//        for (Cookie cookie: cookies) {
-//            if (cookie.getName().equals("username")) {
-//                String username = cookie.getValue();
-//                return "redirect:".concat("/");
-//            }
-//        }
-
-        return "admin/login";
-    }
-
-    @RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
-    public String editUser(@PathVariable String userId, Model model) {
-
-        return "admin/register";
+        return this.renderAdmin("register");
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
-    public Object doRegister(RegisterFormVo registerFormVo, Errors errors) {
+    public ResponseDto register(RegisterFormVo registerFormVo, Errors errors) {
 //        registerFormValidator.validate(registerFormVo, errors);
 //        if (errors.hasErrors()) {
 //            return "redirect:" + "/user/register";
@@ -96,9 +73,22 @@ public class UserController {
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie: cookies) {
+//            if (cookie.getName().equals("username")) {
+//                String username = cookie.getValue();
+//                return "redirect:".concat("/");
+//            }
+//        }
+
+        return this.renderAdmin("login");
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResponseDto doLogin(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
+    public ResponseDto login(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
                             HttpServletRequest request, HttpServletResponse response,
                             HttpSession session, Errors errors) {
         loginFormValidator.validate(loginFormVo, errors);
@@ -138,7 +128,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String doLogout(HttpServletResponse response, HttpSession session) {
+    public String logout(HttpServletResponse response, HttpSession session) {
         session.invalidate();
         Cookie usernameCookie = new Cookie("username", "");
         usernameCookie.setMaxAge(0);
@@ -147,21 +137,30 @@ public class UserController {
         return "redirect:" + "/";
     }
 
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    @ResponseBody
+    public String editUser(@PathVariable String userId, Model model) {
+
+        return this.renderAdmin("user_edit");
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public String updateUser(User user) {
+    @ResponseBody
+    public ResponseDto updateUser(User user) {
         if (user == null) {
             return "redirect:" + "/user/";
         }
 
         userManager.updateUser(user);
 
-        return "redirect:" + "user/list";
+        return this.renderAdmin("user_edit");
     }
 
     @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
-    public String deleteUser(@PathVariable String userId) {
+    @ResponseBody
+    public ResponseDto deleteUser(@PathVariable String userId) {
         userManager.removeUser(userId);
 
-        return "redirect:" + "user/list";
+        return this.renderAdmin("user_edit");
     }
 }
