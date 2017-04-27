@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="../../../static/plugin/font-awesome-4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="../../../static/css/common.css">
-    <link rel="stylesheet" href="../../../static/css/post.css">
-    <link rel="stylesheet" href="../../../static/css/sidebar.css">
+    <link rel="stylesheet" href="../../../static/common/css/common.css">
+    <link rel="stylesheet" href="../../../static/user/css/post.css">
+    <link rel="stylesheet" href="../../../static/user/css/sidebar.css">
 </head>
 <body>
 
@@ -122,7 +122,7 @@
 
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-<script src="../../../static/js/page.js"></script>
+<script src="../../../static/user/js/page.js"></script>
 
 </body>
 </html>

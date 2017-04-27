@@ -97,7 +97,7 @@ $("#login").click(function() {
         data : $("#loginForm").serialize(),
         success: function(response) {
             if (response.code == 0) {
-                window.location.href = "/user/";
+                window.location.href = "/";
             } else {
                 console.log(response.message);
             }
