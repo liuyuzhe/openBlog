@@ -21,7 +21,7 @@ public enum ErrorCode {
 	ERROR_PASSWORD_NOT_MATCH(1105, "Password not match"),
 	ERROR_REPEAT_PASSWORD_NOT_MATCH(1106, "Repeat Password not match"),
 
-	// 服务器错误通用错误
+	// 服务器通用错误
 	ERROR_SERVER_TIMEOUT(2001, "Server deal timeout"),
 	ERROR_DB_FAILED(2002, "Database deal failed"),
 	ERROR_CONNECTION_BROKEN(2003, "Connection broken"),

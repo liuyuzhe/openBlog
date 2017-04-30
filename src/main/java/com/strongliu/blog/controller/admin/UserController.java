@@ -1,6 +1,5 @@
 package com.strongliu.blog.controller.admin;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
@@ -14,11 +13,9 @@ import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,10 +36,10 @@ public class UserController extends BaseController {
     private LoginFormValidator loginFormValidator;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit, Model model) {
+    public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
+                        @RequestParam(value = "limit", required = false, defaultValue = "15") Integer limit, Model model) {
 
-        UserPageVo userPageVo = userManager.getUserVoByPageId(pageId);
+        UserPageVo userPageVo = userManager.getUserPageVo(pageId, limit);
         if (userPageVo == null) {
             return this.render_404();
         }
@@ -58,19 +55,23 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
     public ResponseDto register(RegisterFormVo registerFormVo, Errors errors) {
-//        registerFormValidator.validate(registerFormVo, errors);
-//        if (errors.hasErrors()) {
-//            return "redirect:" + "/user/register";
-//        }
-//
-//        userManager.addUserFormVo(registerFormVo);
+        registerFormValidator.validate(registerFormVo, errors);
+        if (errors.hasErrors()) {
+            return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
+        }
 
         boolean isExit = userManager.getUserIsExit(registerFormVo.getUsername());
         if (isExit) {
             return new ResponseDto(ErrorCode.ERROR_EXISTED_USER);
         }
 
-        return new ResponseDto(ErrorCode.SUCCESS);
+        try {
+            userManager.addUserFormVo(registerFormVo);
+            return new ResponseDto(ErrorCode.SUCCESS);
+        }
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -106,40 +107,43 @@ public class UserController extends BaseController {
             return new ResponseDto(ErrorCode.ERROR_PASSWORD_NOT_MATCH);
         }
 
-        session.setAttribute(Constant.USER_SESSION_KEY, user);
-
-        if (loginFormVo.isRemember()) {
-//            TODO: 用户信息生成cookie加密
-            String userCookie = loginFormVo.getUsername();
-            Cookie usernameCookie = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
-            usernameCookie.setMaxAge(Constant.DAY_TIME * 7);
-            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
-            usernameCookie.setSecure(isSSL);
-            response.addCookie(usernameCookie);
-        }
-
-        if (!StringUtils.isEmpty(next)) {
-//            return "redirect:" + next;
-            // 重定向到next
-            return new ResponseDto(ErrorCode.SUCCESS);
-        }
+//        session.setAttribute(Constant.USER_SESSION_KEY, user);
+//
+//        if (loginFormVo.isRemember()) {
+////            TODO: 用户信息生成cookie加密
+//            String userCookie = loginFormVo.getUsername();
+//            Cookie usernameCookie = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
+//            usernameCookie.setMaxAge(Constant.DAY_TIME * 7);
+//            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
+//            usernameCookie.setSecure(isSSL);
+//            response.addCookie(usernameCookie);
+//        }
+//
+//        if (!StringUtils.isEmpty(next)) {
+////            return "redirect:" + next;
+//            // 重定向到next
+//            return new ResponseDto(ErrorCode.SUCCESS);
+//        }
 
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletResponse response, HttpSession session) {
-        session.invalidate();
-        Cookie usernameCookie = new Cookie("username", "");
-        usernameCookie.setMaxAge(0);
-        response.addCookie(usernameCookie);
+//        session.invalidate();
+//        Cookie usernameCookie = new Cookie("username", "");
+//        usernameCookie.setMaxAge(0);
+//        response.addCookie(usernameCookie);
 
-        return "redirect:" + "/";
+        return this.redirect("/");
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     @ResponseBody
     public String editUser(@PathVariable String userId, Model model) {
+        User user = userManager.getUserVo(userId);
+
+        model.addAttribute(user);
 
         return this.renderAdmin("user_edit");
     }
@@ -147,20 +151,26 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseDto updateUser(User user) {
-        if (user == null) {
-            return "redirect:" + "/user/";
+        // 验证用户信息合法性
+
+        try {
+            userManager.updateUser(user);
+            return new ResponseDto(ErrorCode.SUCCESS);
         }
-
-        userManager.updateUser(user);
-
-        return this.renderAdmin("user_edit");
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 
     @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseDto deleteUser(@PathVariable String userId) {
-        userManager.removeUser(userId);
-
-        return this.renderAdmin("user_edit");
+        try {
+            userManager.removeUser(userId);
+            return new ResponseDto(ErrorCode.SUCCESS);
+        }
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 }

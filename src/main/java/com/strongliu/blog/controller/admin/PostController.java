@@ -3,11 +3,10 @@ package com.strongliu.blog.controller.admin;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
-import com.strongliu.blog.manager.CategoryManager;
 import com.strongliu.blog.manager.PostManager;
-import com.strongliu.blog.manager.TagManager;
 import com.strongliu.blog.validator.PostFormValidator;
 import com.strongliu.blog.vo.PostFormVo;
+import com.strongliu.blog.vo.PostPageVo;
 import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,16 +21,15 @@ public class PostController extends BaseController {
 	@Autowired
 	private PostManager postManager;
 	@Autowired
-	private CategoryManager categoryManager;
-	@Autowired
-	private TagManager tagManager;
-	@Autowired
 	private PostFormValidator postFormValidator;
 
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-						@RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit, Model model) {
+	public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
+						@RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+						Model model) {
+		PostPageVo postPageVo = postManager.getPostPageVo(pageId, limit);
+
+		model.addAttribute(postPageVo);
 
 		return this.renderAdmin("post_list");
 	}
@@ -44,7 +42,7 @@ public class PostController extends BaseController {
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	public String editPost(@PathVariable String postId, Model model) {
-		PostVo postVo = postManager.getPostVoByPostId(postId);
+		PostVo postVo = postManager.getPostVo(postId);
 
 		model.addAttribute(postVo);
 
@@ -59,10 +57,13 @@ public class PostController extends BaseController {
 			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
-		String postId = postManager.addPostFormVo(postFormVo);
-
-		return new ResponseDto(ErrorCode.SUCCESS);
-//		return "redirect:" + "/post/" + postId;
+		try {
+			String postId = postManager.addPostFormVo(postFormVo);
+			return new ResponseDto(ErrorCode.SUCCESS, postId);
+		}
+		catch (Exception e) {
+			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+		}
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
@@ -70,20 +71,28 @@ public class PostController extends BaseController {
 	public ResponseDto updatePost(PostFormVo postFormVo, Errors errors) {
 		postFormValidator.validate(postFormVo, errors);
 		if (errors.hasErrors()) {
-			return "redirect:" + "/post/createPage";
+			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
-		String postId = postManager.updatePostFormVo(postFormVo);
-
-		return "redirect:" + "/post/" + postId;
+		try {
+			String postId = postManager.updatePostFormVo(postFormVo);
+			return new ResponseDto(ErrorCode.SUCCESS, postId);
+		}
+		catch (Exception e) {
+			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+		}
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseDto deletePost(@RequestParam String postId) {
-		postManager.removePostForm(postId);
-
-		return "redirect:" + "/";
+		try {
+			postManager.removePostForm(postId);
+			return new ResponseDto(ErrorCode.SUCCESS);
+		}
+		catch (Exception e) {
+			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+		}
 	}
 
 }

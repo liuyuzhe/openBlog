@@ -16,14 +16,22 @@
         WHERE term_id=#{id} AND term_type='tag'
     </select>
 
-    <select id="selectAllByName" resultMap="tagResultMap">
+    <select id="selectBySlug" resultMap="tagResultMap">
         SELECT term_id, term_name, term_slug FROM term_table
-        WHERE term_name=#{name} AND term_type='tag'
+        WHERE term_slug=#{slug} AND term_type='tag'
     </select>
 
     <select id="selectAll" resultMap="tagResultMap">
         SELECT term_id, term_name, term_slug, term_count FROM term_table
         WHERE term_type='tag'
+    </select>
+
+    <select id="selectAllByIdList" resultMap="tagResultMap">
+         SELECT term_id, term_name, term_slug FROM term_table
+         WHERE term_type='tag' AND term_id IN
+         <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+             #{item}
+         </foreach>
     </select>
 
     <insert id="insert" parameterType="tag">

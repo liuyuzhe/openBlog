@@ -7,11 +7,15 @@ import java.util.List;
 
 public interface PostDao {
 
+	Post selectById(String id);
+
 	Post selectPublishById(String id);
 
 	Post selectPublishPrevById(String id);
 
 	Post selectPublishNextById(String id);
+
+	List<Post> selectAll(@Param("offset") int offset, @Param("limit") int limit);
 
 	List<Post> selectAllPublish(@Param("offset") int offset, @Param("limit") int limit);
 

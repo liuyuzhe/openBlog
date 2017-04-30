@@ -13,11 +13,11 @@ public interface TagDao {
 
     Tag selectById(Integer id);
 
-    Tag selectByName(String name);
-
-    List<Tag> selectAllByIdList(List<Integer> idList);
+    Tag selectBySlug(String slug);
 
     List<Tag> selectAll();
+
+    List<Tag> selectAllByIdList(List<Integer> idList);
 
     int insert(Tag tag);
 

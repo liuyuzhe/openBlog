@@ -1,12 +1,9 @@
 package com.strongliu.blog.vo;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by liuyuzhe on 2017/2/27.
  */
 
-@Component
 public class LoginFormVo {
     private String username;
     private String password;

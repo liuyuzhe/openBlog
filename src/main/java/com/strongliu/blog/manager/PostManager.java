@@ -1,6 +1,5 @@
 package com.strongliu.blog.manager;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
@@ -34,13 +33,73 @@ public class PostManager {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PostVo postVo;
-    @Autowired
-    private PostPageVo postPageVo;
-
+    /**
+     * 获取文章列表
+     */
     @Transactional
-    public PostVo getPostVoByPostId(String postId) {
+    public PostPageVo getPostPageVo(int pageId, int limit) {
+        List<Post> postList = postService.findAllPost(pageId, limit);
+        if (postList == null) {
+            return null;
+        }
+
+        int pageTotal = postService.pageTotal(limit);
+
+        PostPageVo postPageVo = new PostPageVo();
+        postPageVo.setPostList(postList);
+        postPageVo.setPageIndex(pageId);
+        postPageVo.setPageTotal(pageTotal);
+
+        return postPageVo;
+    }
+
+    /**
+     * 获取已发布文章列表
+     */
+    @Transactional
+    public PostPageVo getPublishPostPageVo(int pageId, int limit) {
+        List<Post> postList = postService.findAllPublishPost(pageId, limit);
+        if (postList == null) {
+            return null;
+        }
+
+        int pageTotal = postService.pageTotal(limit);
+
+        PostPageVo postPageVo = new PostPageVo();
+        postPageVo.setPostList(postList);
+        postPageVo.setPageIndex(pageId);
+        postPageVo.setPageTotal(pageTotal);
+
+        return postPageVo;
+    }
+
+    /**
+     * 获取文章
+     */
+    @Transactional
+    public PostVo getPostVo(String postId) {
+        Post post = postService.findPostById(postId);
+        if (post == null) {
+            return null;
+        }
+
+        List<Integer> termList = relationshipService.findAllTermByTargetId(post.getId());
+        List<Category> categoryList = categoryService.findAllCategoryByIdList(termList);
+        List<Tag> tagList = tagService.findAllTagByIdList(termList);
+
+        PostVo postVo = new PostVo();
+        postVo.setPost(post);
+        postVo.setCategoryList(categoryList);
+        postVo.setTagList(tagList);
+
+        return postVo;
+    }
+
+    /**
+     * 获取已发布文章
+     */
+    @Transactional
+    public PostVo getPublishPostVo(String postId) {
         Post post = postService.findPublishPostById(postId);
         if (post == null) {
             return null;
@@ -54,6 +113,7 @@ public class PostManager {
         Post postPrev = postService.findPublishPrevPostById(postId);
         Post postNext = postService.findPublishNextPostById(postId);
 
+        PostVo postVo = new PostVo();
         postVo.setPost(post);
         postVo.setCategoryList(categoryList);
         postVo.setTagList(tagList);
@@ -64,22 +124,9 @@ public class PostManager {
         return postVo;
     }
 
-    @Transactional
-    public PostPageVo getPostPageVoByPageId(int pageId) {
-        List<Post> postList = postService.findAllPublishPost(pageId, Constant.PAGE_SIZE);
-        if (postList == null) {
-            return null;
-        }
-
-        int pageTotal = postService.pageTotal(Constant.PAGE_SIZE);
-
-        postPageVo.setPostList(postList);
-        postPageVo.setPageIndex(pageId);
-        postPageVo.setPageTotal(pageTotal);
-
-        return postPageVo;
-    }
-
+    /**
+     * 添加文章
+     */
     @Transactional
     public String addPostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
@@ -97,6 +144,9 @@ public class PostManager {
         return post.getId();
     }
 
+    /**
+     * 更新文章
+     */
     @Transactional
     public String updatePostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
@@ -117,7 +167,9 @@ public class PostManager {
         return post.getId();
     }
 
-    @Transactional
+    /**
+     * 删除文章
+     */
     public int removePostForm(String postId) {
         return postService.removePostById(postId);
     }

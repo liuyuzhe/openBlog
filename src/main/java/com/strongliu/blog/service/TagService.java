@@ -21,8 +21,11 @@ public class TagService {
         return tagDao.selectById(id);
     }
 
-    public Tag findTagByName(String name) {
-        return tagDao.selectByName(name);
+    /**
+     * 查找标签
+     */
+    public Tag findTagBySlug(String keyword) {
+        return tagDao.selectBySlug(keyword);
     }
 
     public List<Tag> findAllTagByIdList(List<Integer> idList) {

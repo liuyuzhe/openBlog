@@ -2,7 +2,6 @@ package com.strongliu.blog.vo;
 
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
  * Created by liuyuzhe on 2017/2/19.
  */
 
-@Component
 public class TagVo {
     private Tag tag;
     private List<Post> postList;

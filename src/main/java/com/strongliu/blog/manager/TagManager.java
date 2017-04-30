@@ -1,6 +1,5 @@
 package com.strongliu.blog.manager;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.service.PostService;
@@ -30,18 +29,21 @@ public class TagManager {
     @Autowired
     private TagVo tagVo;
 
+    /**
+     * 获取该标签下的文章列表
+     */
     @Transactional
-    public TagVo getTagVoByTagName(String tagName, int pageId) {
-        Tag tag = tagService.findTagByName(tagName);
+    public TagVo getTagVo(String keyword, int pageId, int limit) {
+        Tag tag = tagService.findTagBySlug(keyword);
         if (tag == null) {
             return null;
         }
 
         List<String> targetList = relationshipService.findAllTargetByTermId(tag.getId());
-        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
+        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, limit);
 
-        int pageTotal = targetList.size() / Constant.PAGE_SIZE;
-        if (targetList.size() % Constant.PAGE_SIZE != 0) {
+        int pageTotal = targetList.size() / limit;
+        if (targetList.size() % limit != 0) {
             pageTotal += 1;
         }
 
@@ -53,6 +55,9 @@ public class TagManager {
         return tagVo;
     }
 
+    /**
+     * 获取所有标签
+     */
     @Transactional
     public List<Tag> getAllTag() {
         return tagService.findAllTag();

@@ -13,35 +13,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
-    private static final String[] IGNORE_URL = {""};
+    private static final String[] IGNORE_URI = {"/user/register", "/user/login", "user/logout"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        boolean flag = false;
+        String requestURI = request.getRequestURI();
 
-        String servletPath = request.getServletPath();
-        for (String path : IGNORE_URL) {
-            if (servletPath.contains(path)) {
-                flag = true;
-                break;
+        for (String uri : IGNORE_URI) {
+            if (requestURI.contains(uri)) {
+                return true;
             }
         }
 
-        if (!flag) {
+        if (requestURI.startsWith("/admin")) {
             User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
             if (user == null) {
                 request.setAttribute("message", "请登陆");
                 request.setAttribute("next", request.getRequestURI());
                 request.getRequestDispatcher("/account/loginForm").forward(request, response);
-            }
-            else {
-                flag = true;
+                return false;
             }
         }
 
-        return flag;
-
+        return true;
     }
 
     @Override

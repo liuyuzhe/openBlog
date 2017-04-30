@@ -26,19 +26,29 @@ public class UserManager {
     private UserPageVo userPageVo;
 
     @Transactional
-    public UserPageVo getUserVoByPageId(int pageId) {
-        List<User> userList = userService.findAllUser(pageId, Constant.PAGE_SIZE);
+    public UserPageVo getUserPageVo(int pageId, int limit) {
+        List<User> userList = userService.findAllUser(pageId, limit);
         if (userList == null) {
             return null;
         }
 
-        int pageTotal = userService.pageTotal(Constant.PAGE_SIZE);
+        int pageTotal = userService.pageTotal(limit);
 
         userPageVo.setUserList(userList);
         userPageVo.setPageIndex(pageId);
         userPageVo.setPageTotal(pageTotal);
 
         return userPageVo;
+    }
+
+    @Transactional
+    public User getUserVo(String userId) {
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            return null;
+        }
+
+        return user;
     }
 
     @Transactional

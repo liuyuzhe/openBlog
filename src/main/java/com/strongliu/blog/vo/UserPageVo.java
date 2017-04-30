@@ -1,7 +1,6 @@
 package com.strongliu.blog.vo;
 
 import com.strongliu.blog.entity.User;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,7 +8,6 @@ import java.util.List;
  * Created by liuyuzhe on 2017/2/25.
  */
 
-@Component
 public class UserPageVo {
     private List<User> userList;
     private int pageIndex;

@@ -21,9 +21,12 @@ public class CategoryService {
         return categoryDao.selectById(id);
     }
 
-    public Category findCategoryByName(String name)
+    /**
+     * 查找分类
+     */
+    public Category findCategoryBySlug(String slug)
     {
-        return categoryDao.selectByName(name);
+        return categoryDao.selectBySlug(slug);
     }
 
     public List<Category> findAllCategoryByIdList(List<Integer> idList) {

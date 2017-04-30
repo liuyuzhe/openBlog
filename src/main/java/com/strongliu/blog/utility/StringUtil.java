@@ -16,12 +16,8 @@ public class StringUtil {
 
     public static List<Integer> StringListToIntegerList(List<String> strList) {
         List<Integer> iList = new ArrayList<>(strList.size());
-        try {
-            for (String str : strList) {
-                iList.add(Integer.parseInt(str));
-            }
-        }
-        catch (Exception e) {
+        for (String str : strList) {
+            iList.add(Integer.parseInt(str));
         }
 
         return iList;

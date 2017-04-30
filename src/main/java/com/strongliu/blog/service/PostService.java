@@ -2,6 +2,7 @@ package com.strongliu.blog.service;
 
 import com.strongliu.blog.dao.PostDao;
 import com.strongliu.blog.entity.Post;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +18,51 @@ public class PostService {
     @Autowired
     private PostDao postDao;
 
+    /**
+     * 查找文章
+     */
+    public Post findPostById(String id)
+    {
+        return postDao.selectById(id);
+    }
+
+    /**
+     * 查找已发布文章
+     */
     public Post findPublishPostById(String id)
     {
         return postDao.selectPublishById(id);
     }
 
+    /**
+     * 查找上一篇已发布文章
+     */
     public Post findPublishPrevPostById(String id)
     {
         return postDao.selectPublishPrevById(id);
     }
 
+    /**
+     * 查找下一篇已发布文章
+     */
     public Post findPublishNextPostById(String id)
     {
         return postDao.selectPublishNextById(id);
     }
 
+    /**
+     * 查找文章列表
+     */
+    public List<Post> findAllPost(int pageId, int pageSize)
+    {
+        pageId = pageId < 0 ? 1 : pageId;
+        int startIndex = (pageId - 1) * pageSize;
+        return postDao.selectAll(startIndex, pageSize);
+    }
+
+    /**
+     * 查找已发布文章列表
+     */
     public List<Post> findAllPublishPost(int pageId, int pageSize)
     {
         pageId = pageId < 0 ? 1 : pageId;
@@ -39,6 +70,9 @@ public class PostService {
         return postDao.selectAllPublish(startIndex, pageSize);
     }
 
+    /**
+     * 根据Id列表,查找已发布文章列表
+     */
     public List<Post> findAllPublishPostByIdList(List<String> idList, int pageId, int pageSize)
     {
         pageId = pageId < 0 ? 1 : pageId;
@@ -48,9 +82,9 @@ public class PostService {
 
     public int pageTotal(int pageSize)
     {
-        int postToal = postDao.selectCount();
-        int pageTotal = postToal / pageSize;
-        if (postToal % pageSize != 0) {
+        int postTotal = postDao.selectCount();
+        int pageTotal = postTotal / pageSize;
+        if (postTotal % pageSize != 0) {
             pageTotal += 1;
         }
 

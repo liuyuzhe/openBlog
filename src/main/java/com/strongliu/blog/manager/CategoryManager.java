@@ -1,6 +1,5 @@
 package com.strongliu.blog.manager;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.service.CategoryService;
@@ -30,18 +29,21 @@ public class CategoryManager {
     @Autowired
     private CategoryVo categoryVo;
 
+    /**
+     * 获取该分类下的文章列表
+     */
     @Transactional
-    public CategoryVo getCategoryVoByCategoryName(String categoryName, int pageId) {
-        Category category = categoryService.findCategoryByName(categoryName);
+    public CategoryVo getCategoryVo(String keyword, int pageId, int limit) {
+        Category category = categoryService.findCategoryBySlug(keyword);
         if (category == null) {
             return null;
         }
 
         List<String> targetList = relationshipService.findAllTargetByTermId(category.getId());
-        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, Constant.PAGE_SIZE);
+        List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, limit);
 
-        int pageTotal = targetList.size() / Constant.PAGE_SIZE;
-        if (targetList.size() % Constant.PAGE_SIZE != 0) {
+        int pageTotal = targetList.size() / limit;
+        if (targetList.size() % limit != 0) {
             pageTotal += 1;
         }
 
@@ -53,22 +55,21 @@ public class CategoryManager {
         return categoryVo;
     }
 
-    @Transactional
+    /**
+     * 获取所有分类
+     */
     public List<Category> getAllCategory() {
         return categoryService.findAllCategory();
     }
 
-    @Transactional
     public int addCategory(Category category) {
         return categoryService.addCategory(category);
     }
 
-    @Transactional
     public int updateCategory(Category category) {
         return categoryService.updateCategory(category);
     }
 
-    @Transactional
     public int removeCategory(Integer categoryId) {
         return categoryService.removeCategoryById(categoryId);
     }

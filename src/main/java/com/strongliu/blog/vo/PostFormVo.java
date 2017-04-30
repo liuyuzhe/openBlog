@@ -1,12 +1,9 @@
 package com.strongliu.blog.vo;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by liuyuzhe on 2017/2/25.
  */
 
-@Component
 public class PostFormVo {
     private String title;
     private String content;

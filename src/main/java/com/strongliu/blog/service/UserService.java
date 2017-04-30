@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public boolean findUserIsExit(String username) {
-        return userDao.selectCountByUsername(username) > 0 ? true : false;
+        return userDao.selectCountByUsername(username) > 0;
     }
 
     public int pageTotal(int pageSize)

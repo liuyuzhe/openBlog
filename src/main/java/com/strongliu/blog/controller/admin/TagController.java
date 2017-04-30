@@ -1,15 +1,19 @@
 package com.strongliu.blog.controller.admin;
 
+import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.manager.TagManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * Created by liuyuzhe on 2017/2/19.
@@ -23,7 +27,11 @@ public class TagController extends BaseController {
     private TagManager tagManager;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
+        List<Tag> tagList = tagManager.getAllTag();
+
+        model.addAttribute(tagList);
+
         return this.renderAdmin("tag");
     }
 
@@ -31,31 +39,43 @@ public class TagController extends BaseController {
     @ResponseBody
     public ResponseDto saveTag(Tag tag) {
         if (tag == null) {
-            return "redirect:" + "/";
+            return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
         }
 
-        tagManager.addTag(tag);
-
-        return "redirect:" + "/";
+        try {
+            tagManager.addTag(tag);
+            return new ResponseDto(ErrorCode.SUCCESS);
+        }
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseDto updateTag(Tag tag) {
         if (tag == null) {
-            return "redirect:" + "/";
+            return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
         }
 
-        tagManager.updateCategory(tag);
-
-        return "redirect:" + "/";
+        try {
+            tagManager.updateCategory(tag);
+            return new ResponseDto(ErrorCode.SUCCESS);
+        }
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseDto deleteTag(@PathVariable Integer tagId) {
-        tagManager.removeCategory(tagId);
-
-        return "redirect:" + "/";
+        try {
+            tagManager.removeCategory(tagId);
+            return new ResponseDto(ErrorCode.SUCCESS);
+        }
+        catch (Exception e) {
+            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+        }
     }
 }

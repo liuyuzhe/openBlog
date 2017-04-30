@@ -1,6 +1,5 @@
 package com.strongliu.blog.controller.user;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Tag;
@@ -39,8 +38,10 @@ public class IndexController extends BaseController {
      * 首页
      */
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
-    public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId, Model model) {
-        PostPageVo postPageVo = postManager.getPostPageVoByPageId(pageId);
+    public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
+                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+                        Model model) {
+        PostPageVo postPageVo = postManager.getPublishPostPageVo(pageId, limit);
         List<Category> categoryList = categoryManager.getAllCategory();
         List<Tag> tagList = tagManager.getAllTag();
 
@@ -56,7 +57,7 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(value = "posts/{postId}", method = RequestMethod.GET)
     public String posts(@PathVariable String postId, Model model) {
-        PostVo postVo = postManager.getPostVoByPostId(postId);
+        PostVo postVo = postManager.getPublishPostVo(postId);
         if (postVo == null) {
             return this.render_404();
         }
@@ -70,9 +71,11 @@ public class IndexController extends BaseController {
      * 分类页
      */
     @RequestMapping(value = "categories/{keyword}", method = RequestMethod.GET)
-    public String categories(@PathVariable String keyword, @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
-                             @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit, Model model) {
-        CategoryVo categoryVo = categoryManager.getCategoryVoByCategoryName(keyword, pageId, limit);
+    public String categories(@PathVariable String keyword,
+                             @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
+                             @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+                             Model model) {
+        CategoryVo categoryVo = categoryManager.getCategoryVo(keyword, pageId, limit);
         if (categoryVo == null) {
             return this.render_404();
         }
@@ -86,9 +89,11 @@ public class IndexController extends BaseController {
      * 标签页
      */
     @RequestMapping(value = "tags/{keyword}", method = RequestMethod.GET)
-    public String tags(@PathVariable String keyword, @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
-                       @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit, Model model) {
-        TagVo tagVo = tagManager.getTagVoByTagName(keyword, pageId, limit);
+    public String tags(@PathVariable String keyword,
+                       @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
+                       @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+                       Model model) {
+        TagVo tagVo = tagManager.getTagVo(keyword, pageId, limit);
         if (tagVo == null) {
             return this.render_404();
         }

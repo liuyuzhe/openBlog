@@ -15,4 +15,8 @@ public abstract class BaseController {
     public String render_404() {
         return "common/404";
     }
+
+    public String redirect(String viewName) {
+        return "redirect:" + viewName;
+    }
 }

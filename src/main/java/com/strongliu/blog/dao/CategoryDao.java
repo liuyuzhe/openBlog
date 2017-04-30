@@ -9,11 +9,11 @@ public interface CategoryDao {
 
 	Category selectById(Integer id);
 
-	Category selectByName(String name);
-
-	List<Category> selectAllByIdList(List<Integer> idList);
+	Category selectBySlug(String slug);
 
 	List<Category> selectAll();
+
+	List<Category> selectAllByIdList(List<Integer> idList);
 
 	int insert(Category category);
 
