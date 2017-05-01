@@ -18,8 +18,6 @@
 	<context:component-scan base-package="com.strongliu.blog.manager" />
 	<context:component-scan base-package="com.strongliu.blog.validator" />
 
-	<context:component-scan base-package="com.strongliu.blog.vo" />
-
 	<!-- 设置配置方案 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
@@ -39,14 +37,13 @@
 	<mvc:default-servlet-handler/>
 
 	<!-- 拦截器 -->
-	<!--<mvc:interceptors>-->
-		<!--&lt;!&ndash; 多个拦截器顺序执行 &ndash;&gt;-->
-		<!--<mvc:interceptor>-->
-			<!--<mvc:mapping path="/user/**"/>-->
-			<!--<mvc:mapping path="/post/create"/>-->
-			<!--<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />-->
-		<!--</mvc:interceptor>-->
-	<!--</mvc:interceptors>-->
+	<mvc:interceptors>
+		<!-- 多个拦截器顺序执行 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/"/>
+			<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- 配置freeMarker的模板路径 -->
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

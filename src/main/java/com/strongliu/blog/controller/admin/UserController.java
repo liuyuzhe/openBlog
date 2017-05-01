@@ -1,5 +1,6 @@
 package com.strongliu.blog.controller.admin;
 
+import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,6 +86,11 @@ public class UserController extends BaseController {
 //            }
 //        }
 
+        User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
+        if (user != null) {
+            return this.redirect("/");
+        }
+
         return this.renderAdmin("login");
     }
 
@@ -107,22 +114,19 @@ public class UserController extends BaseController {
             return new ResponseDto(ErrorCode.ERROR_PASSWORD_NOT_MATCH);
         }
 
-//        session.setAttribute(Constant.USER_SESSION_KEY, user);
-//
-//        if (loginFormVo.isRemember()) {
-////            TODO: 用户信息生成cookie加密
-//            String userCookie = loginFormVo.getUsername();
-//            Cookie usernameCookie = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
-//            usernameCookie.setMaxAge(Constant.DAY_TIME * 7);
-//            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
-//            usernameCookie.setSecure(isSSL);
-//            response.addCookie(usernameCookie);
-//        }
-//
+        session.setAttribute(Constant.USER_SESSION_KEY, user);
+
+        if (loginFormVo.isRemember()) {
+            String userCookie = user.getId(); // 加密
+            Cookie cookieInfo = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
+            cookieInfo.setMaxAge(Constant.DAY_TIME * 7);
+            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
+            cookieInfo.setSecure(isSSL);
+            response.addCookie(cookieInfo);
+        }
+
 //        if (!StringUtils.isEmpty(next)) {
-////            return "redirect:" + next;
-//            // 重定向到next
-//            return new ResponseDto(ErrorCode.SUCCESS);
+//            return this.redirect(next);
 //        }
 
         return new ResponseDto(ErrorCode.SUCCESS);
@@ -130,10 +134,10 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletResponse response, HttpSession session) {
-//        session.invalidate();
-//        Cookie usernameCookie = new Cookie("username", "");
-//        usernameCookie.setMaxAge(0);
-//        response.addCookie(usernameCookie);
+        session.invalidate();
+        Cookie usernameCookie = new Cookie(Constant.USER_COOKIE_KEY, "");
+        usernameCookie.setMaxAge(0);
+        response.addCookie(usernameCookie);
 
         return this.redirect("/");
     }

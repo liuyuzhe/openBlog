@@ -2,9 +2,13 @@ package com.strongliu.blog.interceptor;
 
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.User;
+import com.strongliu.blog.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
     private static final String[] IGNORE_URI = {"/user/register", "/user/login", "user/logout"};
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -26,14 +33,26 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             }
         }
 
-        if (requestURI.startsWith("/admin")) {
-            User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
-            if (user == null) {
-                request.setAttribute("message", "请登陆");
-                request.setAttribute("next", request.getRequestURI());
-                request.getRequestDispatcher("/account/loginForm").forward(request, response);
-                return false;
+        User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
+        if (user == null) {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(Constant.USER_COOKIE_KEY)) {
+                    String cookieInfo = cookie.getValue();
+                    if (!StringUtils.isEmpty(cookieInfo)) {
+                        String userId = cookieInfo;
+                        user = userService.findUserById(userId);
+                        request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
+                    }
+                }
             }
+        }
+
+        if (requestURI.startsWith("/admin") && user == null) {
+            request.setAttribute("message", "请登陆");
+            request.setAttribute("next", request.getRequestURI());
+            request.getRequestDispatcher("/pages/admin/login").forward(request, response);
+            return false;
         }
 
         return true;
