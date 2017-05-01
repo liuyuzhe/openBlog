@@ -22,7 +22,7 @@
     <mybatis:scan base-package="com.strongliu.blog.dao" />
 
 	<!-- 数据库配置文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder location="classpath:/jdbc.properties" />
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">

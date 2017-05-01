@@ -6,6 +6,7 @@ import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.manager.UserManager;
+import com.strongliu.blog.utility.SecurityUtil;
 import com.strongliu.blog.validator.LoginFormValidator;
 import com.strongliu.blog.validator.RegisterFormValidator;
 import com.strongliu.blog.vo.LoginFormVo;
@@ -70,22 +71,13 @@ public class UserController extends BaseController {
         try {
             userManager.addUserFormVo(registerFormVo);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
-//        Cookie[] cookies = request.getCookies();
-//        for (Cookie cookie: cookies) {
-//            if (cookie.getName().equals("username")) {
-//                String username = cookie.getValue();
-//                return "redirect:".concat("/");
-//            }
-//        }
-
         User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
         if (user != null) {
             return this.redirect("/");
@@ -117,14 +109,21 @@ public class UserController extends BaseController {
         session.setAttribute(Constant.USER_SESSION_KEY, user);
 
         if (loginFormVo.isRemember()) {
-            String userCookie = user.getId(); // 加密
-            Cookie cookieInfo = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
-            cookieInfo.setMaxAge(Constant.DAY_TIME * 7);
-            boolean isSSL = request.getScheme().equalsIgnoreCase("https");
-            cookieInfo.setSecure(isSSL);
-            response.addCookie(cookieInfo);
+            try {
+                String userId = user.getId();
+                String userCookie = SecurityUtil.encryptAES(userId, Constant.PASSWORD_SALT);
+                Cookie cookieInfo = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
+                cookieInfo.setMaxAge(Constant.DAY_TIME * 7);
+                boolean isSSL = request.getScheme().equalsIgnoreCase("https");
+                cookieInfo.setSecure(isSSL);
+                response.addCookie(cookieInfo);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseDto(ErrorCode.ERROR_ENCRYPT_FAILED);
+            }
         }
 
+//        处理登陆后自动跳转
 //        if (!StringUtils.isEmpty(next)) {
 //            return this.redirect(next);
 //        }
@@ -160,8 +159,7 @@ public class UserController extends BaseController {
         try {
             userManager.updateUser(user);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }
@@ -172,8 +170,7 @@ public class UserController extends BaseController {
         try {
             userManager.removeUser(userId);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

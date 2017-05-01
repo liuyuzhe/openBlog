@@ -45,8 +45,7 @@ public class TagController extends BaseController {
         try {
             tagManager.addTag(tag);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }
@@ -61,8 +60,7 @@ public class TagController extends BaseController {
         try {
             tagManager.updateCategory(tag);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }
@@ -73,8 +71,7 @@ public class TagController extends BaseController {
         try {
             tagManager.removeCategory(tagId);
             return new ResponseDto(ErrorCode.SUCCESS);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

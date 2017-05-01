@@ -3,6 +3,7 @@ package com.strongliu.blog.interceptor;
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
+import com.strongliu.blog.utility.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -40,9 +41,13 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
                 if (cookie.getName().equals(Constant.USER_COOKIE_KEY)) {
                     String cookieInfo = cookie.getValue();
                     if (!StringUtils.isEmpty(cookieInfo)) {
-                        String userId = cookieInfo;
-                        user = userService.findUserById(userId);
-                        request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
+                        try {
+                            String userId = SecurityUtil.decryptAES(cookieInfo, Constant.PASSWORD_SALT);
+                            user = userService.findUserById(userId);
+                            request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>strongliu's blog</title>
+    <#if (postPageVo.pageIndex)?? && postPageVo.pageIndex > 1>
+        <title>"StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
+    <#else>
+        <title>"StrongLiu's blog - 首页 </title>
+    </#if>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="../../../static/plugin/font-awesome-4.7.0/css/font-awesome.css">

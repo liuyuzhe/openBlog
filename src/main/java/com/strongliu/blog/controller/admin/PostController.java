@@ -60,8 +60,7 @@ public class PostController extends BaseController {
 		try {
 			String postId = postManager.addPostFormVo(postFormVo);
 			return new ResponseDto(ErrorCode.SUCCESS, postId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
@@ -77,8 +76,7 @@ public class PostController extends BaseController {
 		try {
 			String postId = postManager.updatePostFormVo(postFormVo);
 			return new ResponseDto(ErrorCode.SUCCESS, postId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
@@ -89,8 +87,7 @@ public class PostController extends BaseController {
 		try {
 			postManager.removePostForm(postId);
 			return new ResponseDto(ErrorCode.SUCCESS);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
