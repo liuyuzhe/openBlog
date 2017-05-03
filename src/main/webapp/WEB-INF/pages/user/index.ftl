@@ -43,13 +43,13 @@
                         <article class="post">
                             <div class="post-summary clearfix">
                                 <div class="post-image hidden-xs">
-                                    <a href="#">
-                                        <img src="https://www.vtrois.com/wp-content/uploads/2017/02/kratos-update.png" />
+                                    <a href=${post.slug}>
+                                        <img src=${post.thumb_url} />
                                     </a>
                                 </div>
                                 <div class="post-inner">
                                     <header class="post-title">
-                                        <a href="#">${post.title}</a>
+                                        <a href=${post.slug}>${post.title}</a>
                                     </header>
                                     <div>
                                         <p>${post.excerpt}</p>
@@ -68,7 +68,7 @@
                             </span>
                                 </div>
                         <span class="post-link pull-right">
-                            <a href="#" class="btn btn-custom">阅读全文</a>
+                            <a href="${post.slug}" class="btn btn-custom">阅读全文</a>
                         </span>
                             </footer>
                         </article>

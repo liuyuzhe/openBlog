@@ -58,12 +58,12 @@
                 </article>
                     <#if (postVo.postPrev)??>
                         <div class="post-prev">
-                            <a href="/post/${postVo.postPrev.id}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
+                            <a href="/post/${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
                         </div>
                     </#if>
                     <#if (postVo.postNext)??>
                         <div class="post-next">
-                            <a href="/post/${postVo.postNext.id}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
+                            <a href="/post/${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
                         </div>
                     </#if>
                 </main>
