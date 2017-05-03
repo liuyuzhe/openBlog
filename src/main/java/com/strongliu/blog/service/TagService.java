@@ -17,15 +17,15 @@ public class TagService {
     @Autowired
     private TagDao tagDao;
 
-    public Tag findTagById(Integer id) {
+    public Tag findTagById(int id) {
         return tagDao.selectById(id);
     }
 
     /**
      * 查找标签
      */
-    public Tag findTagBySlug(String keyword) {
-        return tagDao.selectBySlug(keyword);
+    public Tag findTagBySlug(String slug) {
+        return tagDao.selectBySlug(slug);
     }
 
     public List<Tag> findAllTagByIdList(List<Integer> idList) {
@@ -44,11 +44,11 @@ public class TagService {
         return tagDao.update(tag);
     }
 
-    public int updatePostCount(Integer id, Integer number) {
+    public int updatePostCount(int id, int number) {
         return tagDao.updatePostCount(id, number);
     }
 
-    public int removeTagById(Integer id) {
+    public int removeTagById(int id) {
         return tagDao.deleteById(id);
     }
 }

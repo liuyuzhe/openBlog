@@ -1,6 +1,5 @@
 package com.strongliu.blog.manager;
 
-import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
 import com.strongliu.blog.vo.LoginFormVo;
@@ -8,7 +7,6 @@ import com.strongliu.blog.vo.RegisterFormVo;
 import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,10 +20,6 @@ public class UserManager {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserPageVo userPageVo;
-
-    @Transactional
     public UserPageVo getUserPageVo(int pageId, int limit) {
         List<User> userList = userService.findAllUser(pageId, limit);
         if (userList == null) {
@@ -34,6 +28,7 @@ public class UserManager {
 
         int pageTotal = userService.pageTotal(limit);
 
+        UserPageVo userPageVo = new UserPageVo();
         userPageVo.setUserList(userList);
         userPageVo.setPageIndex(pageId);
         userPageVo.setPageTotal(pageTotal);
@@ -41,8 +36,7 @@ public class UserManager {
         return userPageVo;
     }
 
-    @Transactional
-    public User getUserVo(String userId) {
+    public User getUserVo(int userId) {
         User user = userService.findUserById(userId);
         if (user == null) {
             return null;
@@ -51,17 +45,14 @@ public class UserManager {
         return user;
     }
 
-    @Transactional
     public User getUserByLoginFormVo(LoginFormVo loginFormVo) {
         return userService.findUserByUsernameAndPassword(loginFormVo.getUsername(), loginFormVo.getPassword());
     }
 
-    @Transactional
     public boolean getUserIsExit(String username) {
         return userService.findUserIsExit(username);
     }
 
-    @Transactional
     public int addUserFormVo(RegisterFormVo registerFormVo) {
         User user = new User();
         user.setName(registerFormVo.getUsername());
@@ -72,13 +63,11 @@ public class UserManager {
         return userService.addUser(user);
     }
 
-    @Transactional
     public int updateUser(User user) {
         return userService.updateUser(user);
     }
 
-    @Transactional
-    public int removeUser(String userId) {
+    public int removeUser(int userId) {
         return userService.removeUserById(userId);
     }
 

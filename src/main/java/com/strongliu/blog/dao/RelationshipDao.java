@@ -1,7 +1,6 @@
 package com.strongliu.blog.dao;
 
 import com.strongliu.blog.entity.Relationship;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,9 +9,9 @@ import java.util.List;
  */
 public interface RelationshipDao {
 
-    List<Integer> selectAllByTargetId(String id);
+    List<Integer> selectAllByTargetId(int id);
 
-    List<String> selectAllByTermId(Integer id);
+    List<Integer> selectAllByTermId(int id);
 
     int insertList(List<Relationship> relationshipList);
 

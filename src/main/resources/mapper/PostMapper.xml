@@ -6,6 +6,8 @@
 
     <resultMap id="postResultMap" type="post">
         <id property="id" column="post_id"/>
+        <result property="slug" column="post_slug"/>
+        <result property="thumb_url" column="post_thumb_url"/>
         <result property="title" column="post_title"/>
         <result property="excerpt" column="post_excerpt"/>
         <result property="content" column="post_content"/>
@@ -20,17 +22,17 @@
     </resultMap>
 
     <select id="selectById" resultMap="postResultMap">
-        SELECT post_id, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count, creator_id FROM post_table
+        SELECT post_id, post_slug, post_thumb_url, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count, creator_id FROM post_table
         WHERE post_id=#{id} AND post_type='post'
     </select>
     
-    <select id="selectPublishById" resultMap="postResultMap">
-        SELECT post_id, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count, creator_id FROM post_table
-        WHERE post_id=#{id} AND post_type='post' AND post_status='publish'
+    <select id="selectPublishBySlug" resultMap="postResultMap">
+        SELECT post_id, post_slug, post_thumb_url, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count, creator_id FROM post_table
+        WHERE post_slug=#{slug} AND post_type='post' AND post_status='publish'
     </select>
     
     <select id="selectPublishPrevById" resultMap="postResultMap">
-        SELECT post_id, post_title FROM post_table
+        SELECT post_id, post_slug, post_title FROM post_table
         WHERE post_create_time &lt;
         (SELECT post_create_time FROM post_table WHERE post_id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time DESC
@@ -38,7 +40,7 @@
     </select>
     
     <select id="selectPublishNextById" resultMap="postResultMap">
-        SELECT post_id, post_title FROM post_table
+        SELECT post_id, post_slug, post_title FROM post_table
         WHERE post_create_time &gt;
         (SELECT post_create_time FROM post_table WHERE post_id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time
@@ -46,21 +48,21 @@
     </select>
     
     <select id="selectAll" resultMap="postResultMap">
-        SELECT post_id, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="selectAllPublish" resultMap="postResultMap">
-        SELECT post_id, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_thumb_url, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="selectAllPublishByIdList" resultMap="postResultMap">
-        SELECT post_id, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish' AND post_id IN
         <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -75,16 +77,16 @@
 
     <insert id="insert" parameterType="post">
         INSERT INTO post_table
-        (post_id, post_title, post_excerpt, post_content, post_create_time, post_update_time,
+        (post_slug, post_thumb_url, post_title, post_excerpt, post_content, post_create_time, post_update_time,
          post_status, post_comment_status, post_type, post_mime_type, post_comment_count, post_read_count, post_spot_count, creator_id)
         VALUES
-        (#{id}, #{title}, #{excerpt}, #{content}, #{create_time}, #{update_time},
+        (#{slug}, #{thumb_url}, #{title}, #{excerpt}, #{content}, #{create_time}, #{update_time},
         #{status}, #{comment_status}, #{type}, #{mime_type}, #{comment_count}, #{read_count}, #{spot_count}, #{creator_id})
     </insert>
 
     <update id="update" parameterType="post">
         UPDATE post_table
-        SET post_title=#{title}, post_excerpt=#{excerpt}, post_content=#{content}, post_update_time=#{update_time},
+        SET post_slug=#{slug}, post_thumb_url=#{thumb_url}, post_title=#{title}, post_excerpt=#{excerpt}, post_content=#{content}, post_update_time=#{update_time},
          post_status=#{status}, post_comment_status=#{comment_status})
         WHERE post_id=#{id}
     </update>

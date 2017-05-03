@@ -17,7 +17,7 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
-    public Category findCategoryById(Integer id) {
+    public Category findCategoryById(int id) {
         return categoryDao.selectById(id);
     }
 
@@ -46,11 +46,11 @@ public class CategoryService {
         return categoryDao.update(category);
     }
 
-    public int updatePostCount(Integer id, Integer number) {
+    public int updatePostCount(int id, int number) {
         return categoryDao.updatePostCount(id, number);
     }
 
-    public int removeCategoryById(Integer id) {
+    public int removeCategoryById(int id) {
         return categoryDao.deleteById(id);
     }
 }

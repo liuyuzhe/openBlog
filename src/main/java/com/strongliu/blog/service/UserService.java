@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User findUserById(String id) {
+    public User findUserById(int id) {
         return userDao.selectById(id);
     }
 
@@ -54,7 +54,7 @@ public class UserService {
         return userDao.update(user);
     }
 
-    public int removeUserById(String id) {
+    public int removeUserById(int id) {
         return userDao.deleteById(id);
     }
 }

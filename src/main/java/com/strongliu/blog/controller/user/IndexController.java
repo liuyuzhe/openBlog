@@ -55,9 +55,9 @@ public class IndexController extends BaseController {
     /**
      * 文章页
      */
-    @RequestMapping(value = "posts/{postId}", method = RequestMethod.GET)
-    public String posts(@PathVariable String postId, Model model) {
-        PostVo postVo = postManager.getPublishPostVo(postId);
+    @RequestMapping(value = "posts/{slug}", method = RequestMethod.GET)
+    public String posts(@PathVariable String slug, Model model) {
+        PostVo postVo = postManager.getPublishPostVo(slug);
         if (postVo == null) {
             return this.render_404();
         }
@@ -70,12 +70,12 @@ public class IndexController extends BaseController {
     /**
      * 分类页
      */
-    @RequestMapping(value = "categories/{keyword}", method = RequestMethod.GET)
-    public String categories(@PathVariable String keyword,
+    @RequestMapping(value = "categories/{slug}", method = RequestMethod.GET)
+    public String categories(@PathVariable String slug,
                              @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                              @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                              Model model) {
-        CategoryVo categoryVo = categoryManager.getCategoryVo(keyword, pageId, limit);
+        CategoryVo categoryVo = categoryManager.getCategoryVo(slug, pageId, limit);
         if (categoryVo == null) {
             return this.render_404();
         }
@@ -88,12 +88,12 @@ public class IndexController extends BaseController {
     /**
      * 标签页
      */
-    @RequestMapping(value = "tags/{keyword}", method = RequestMethod.GET)
-    public String tags(@PathVariable String keyword,
+    @RequestMapping(value = "tags/{slug}", method = RequestMethod.GET)
+    public String tags(@PathVariable String slug,
                        @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                        Model model) {
-        TagVo tagVo = tagManager.getTagVo(keyword, pageId, limit);
+        TagVo tagVo = tagManager.getTagVo(slug, pageId, limit);
         if (tagVo == null) {
             return this.render_404();
         }

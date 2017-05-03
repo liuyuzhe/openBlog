@@ -3,7 +3,9 @@ package com.strongliu.blog.entity;
 import java.util.Date;
 
 public class Post {
-	private String id;
+	private Integer id;
+	private String slug;
+	private String thumb_url;
 	private String title;
 	private String excerpt;
 	private String content;
@@ -16,14 +18,30 @@ public class Post {
 	private Long comment_count;
 	private Long read_count;
 	private Long spot_count;
-	private String creator_id;
+	private Integer creator_id;
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
+	public String getThumb_url() {
+		return thumb_url;
+	}
+
+	public void setThumb_url(String thumb_url) {
+		this.thumb_url = thumb_url;
 	}
 
 	public String getTitle() {
@@ -122,11 +140,11 @@ public class Post {
 		this.spot_count = spot_count;
 	}
 
-	public String getCreator_id() {
+	public Integer getCreator_id() {
 		return creator_id;
 	}
 
-	public void setCreator_id(String creator_id) {
+	public void setCreator_id(Integer creator_id) {
 		this.creator_id = creator_id;
 	}
 }

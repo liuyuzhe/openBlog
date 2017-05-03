@@ -21,7 +21,7 @@ public class PostService {
     /**
      * 查找文章
      */
-    public Post findPostById(String id)
+    public Post findPostById(int id)
     {
         return postDao.selectById(id);
     }
@@ -29,15 +29,15 @@ public class PostService {
     /**
      * 查找已发布文章
      */
-    public Post findPublishPostById(String id)
+    public Post findPublishPostBySlug(String slug)
     {
-        return postDao.selectPublishById(id);
+        return postDao.selectPublishBySlug(slug);
     }
 
     /**
      * 查找上一篇已发布文章
      */
-    public Post findPublishPrevPostById(String id)
+    public Post findPublishPrevPostById(int id)
     {
         return postDao.selectPublishPrevById(id);
     }
@@ -45,7 +45,7 @@ public class PostService {
     /**
      * 查找下一篇已发布文章
      */
-    public Post findPublishNextPostById(String id)
+    public Post findPublishNextPostById(int id)
     {
         return postDao.selectPublishNextById(id);
     }
@@ -73,7 +73,7 @@ public class PostService {
     /**
      * 根据Id列表,查找已发布文章列表
      */
-    public List<Post> findAllPublishPostByIdList(List<String> idList, int pageId, int pageSize)
+    public List<Post> findAllPublishPostByIdList(List<Integer> idList, int pageId, int pageSize)
     {
         pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
@@ -101,7 +101,7 @@ public class PostService {
         return postDao.update(post);
     }
 
-    public int removePostById(String id)
+    public int removePostById(int id)
     {
         return postDao.deleteById(id);
     }

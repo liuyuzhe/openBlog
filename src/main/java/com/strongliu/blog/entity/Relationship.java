@@ -4,22 +4,19 @@ package com.strongliu.blog.entity;
  * Created by liuyuzhe on 2017/2/20.
  */
 public class Relationship {
-    private String target_id;
+    private Integer target_id;
     private Integer term_id;
 
-    public Relationship() {
-    }
-
-    public Relationship(String targetId, Integer termId) {
+    public Relationship(Integer targetId, Integer termId) {
         this.target_id = targetId;
         this.term_id = termId;
     }
 
-    public String getTarget_id() {
+    public Integer getTarget_id() {
         return target_id;
     }
 
-    public void setTarget_id(String target_id) {
+    public void setTarget_id(Integer target_id) {
         this.target_id = target_id;
     }
 

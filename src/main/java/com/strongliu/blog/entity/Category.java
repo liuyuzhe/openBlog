@@ -1,11 +1,9 @@
 package com.strongliu.blog.entity;
 
-import java.util.Date;
-
 public class Category {
 	private Integer id;
-	private String name;
 	private String slug;
+	private String name;
 	private Integer count;
 
 	public Integer getId() {
@@ -16,20 +14,20 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getSlug() {
 		return slug;
 	}
 
 	public void setSlug(String slug) {
 		this.slug = slug;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Integer getCount() {

@@ -6,17 +6,17 @@ import com.strongliu.blog.constant.ErrorCode;
  * Created by liuyuzhe on 2017/2/13.
  */
 
-public class ResponseDto {
+public class ResponseDto<T> {
     private int code;
     private String message;
-    private Object data;
+    private T data;
 
     public ResponseDto(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
     }
 
-    public ResponseDto(ErrorCode errorCode, Object data) {
+    public ResponseDto(ErrorCode errorCode, T data) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
         this.data = data;
@@ -34,7 +34,7 @@ public class ResponseDto {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CategoryDao {
 
-	Category selectById(Integer id);
+	Category selectById(int id);
 
 	Category selectBySlug(String slug);
 
@@ -19,7 +19,7 @@ public interface CategoryDao {
 
 	int update(Category category);
 
-	int updatePostCount(@Param("id") Integer id, @Param("number") int number);
+	int updatePostCount(@Param("id") int id, @Param("number") int number);
 
-	int deleteById(Integer id);
+	int deleteById(int id);
 }

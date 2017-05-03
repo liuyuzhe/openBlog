@@ -26,20 +26,17 @@ public class TagManager {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private TagVo tagVo;
-
     /**
      * 获取该标签下的文章列表
      */
     @Transactional
-    public TagVo getTagVo(String keyword, int pageId, int limit) {
-        Tag tag = tagService.findTagBySlug(keyword);
+    public TagVo getTagVo(String slug, int pageId, int limit) {
+        Tag tag = tagService.findTagBySlug(slug);
         if (tag == null) {
             return null;
         }
 
-        List<String> targetList = relationshipService.findAllTargetByTermId(tag.getId());
+        List<Integer> targetList = relationshipService.findAllTargetByTermId(tag.getId());
         List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, limit);
 
         int pageTotal = targetList.size() / limit;
@@ -47,6 +44,7 @@ public class TagManager {
             pageTotal += 1;
         }
 
+        TagVo tagVo = new TagVo();
         tagVo.setTag(tag);
         tagVo.setPostList(postList);
         tagVo.setPageIndex(pageId);
@@ -58,23 +56,19 @@ public class TagManager {
     /**
      * 获取所有标签
      */
-    @Transactional
     public List<Tag> getAllTag() {
         return tagService.findAllTag();
     }
 
-    @Transactional
     public int addTag(Tag tag) {
         return tagService.addTag(tag);
     }
 
-    @Transactional
     public int updateCategory(Tag tag) {
         return tagService.updateTag(tag);
     }
 
-    @Transactional
-    public int removeCategory(Integer tagId) {
+    public int removeCategory(int tagId) {
         return tagService.removeTagById(tagId);
     }
 

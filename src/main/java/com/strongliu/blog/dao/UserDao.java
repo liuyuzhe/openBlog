@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserDao {
 
-    User selectById(String id);
+    User selectById(int id);
 
     User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
@@ -24,5 +24,5 @@ public interface UserDao {
 
     int update(User user);
 
-    int deleteById(String id);
+    int deleteById(int id);
 }

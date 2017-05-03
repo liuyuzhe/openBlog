@@ -110,8 +110,9 @@ public class UserController extends BaseController {
 
         if (loginFormVo.isRemember()) {
             try {
-                String userId = user.getId();
-                String userCookie = SecurityUtil.encryptAES(userId, Constant.PASSWORD_SALT);
+                Integer userId = user.getId();
+                String userInfo = userId.toString();
+                String userCookie = SecurityUtil.encryptAES(userInfo, Constant.PASSWORD_SALT);
                 Cookie cookieInfo = new Cookie(Constant.USER_COOKIE_KEY, userCookie);
                 cookieInfo.setMaxAge(Constant.DAY_TIME * 7);
                 boolean isSSL = request.getScheme().equalsIgnoreCase("https");
@@ -143,7 +144,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     @ResponseBody
-    public String editUser(@PathVariable String userId, Model model) {
+    public String editUser(@PathVariable Integer userId, Model model) {
         User user = userManager.getUserVo(userId);
 
         model.addAttribute(user);
@@ -166,7 +167,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseDto deleteUser(@PathVariable String userId) {
+    public ResponseDto deleteUser(@PathVariable Integer userId) {
         try {
             userManager.removeUser(userId);
             return new ResponseDto(ErrorCode.SUCCESS);

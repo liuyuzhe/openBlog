@@ -9,7 +9,7 @@
         WHERE target_id=#{id}
     </select>
 
-    <select id="selectAllByTermId" resultType="string">
+    <select id="selectAllByTermId" resultType="int">
         SELECT target_id FROM relationship_table
         WHERE term_id=#{id}
     </select>

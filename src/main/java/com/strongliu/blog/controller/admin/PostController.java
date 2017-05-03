@@ -41,7 +41,7 @@ public class PostController extends BaseController {
 	}
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
-	public String editPost(@PathVariable String postId, Model model) {
+	public String editPost(@PathVariable Integer postId, Model model) {
 		PostVo postVo = postManager.getPostVo(postId);
 
 		model.addAttribute(postVo);
@@ -58,7 +58,7 @@ public class PostController extends BaseController {
 		}
 
 		try {
-			String postId = postManager.addPostFormVo(postFormVo);
+			int postId = postManager.addPostFormVo(postFormVo);
 			return new ResponseDto(ErrorCode.SUCCESS, postId);
 		} catch (Exception e) {
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
@@ -74,7 +74,7 @@ public class PostController extends BaseController {
 		}
 
 		try {
-			String postId = postManager.updatePostFormVo(postFormVo);
+			int postId = postManager.updatePostFormVo(postFormVo);
 			return new ResponseDto(ErrorCode.SUCCESS, postId);
 		} catch (Exception e) {
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
@@ -83,7 +83,7 @@ public class PostController extends BaseController {
 
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseDto deletePost(@RequestParam String postId) {
+	public ResponseDto deletePost(@RequestParam Integer postId) {
 		try {
 			postManager.removePostForm(postId);
 			return new ResponseDto(ErrorCode.SUCCESS);

@@ -21,7 +21,7 @@ public class RelationshipService {
     /**
      * 根据文章Id,查询分类Id列表
      */
-    public List<Integer> findAllTermByTargetId(String targetId)
+    public List<Integer> findAllTermByTargetId(int targetId)
     {
         return relationshipDao.selectAllByTargetId(targetId);
     }
@@ -29,7 +29,7 @@ public class RelationshipService {
     /**
      * 根据分类Id,查询文章Id列表
      */
-    public List<String> findAllTargetByTermId(Integer termId)
+    public List<Integer> findAllTargetByTermId(int termId)
     {
         return relationshipDao.selectAllByTermId(termId);
     }
@@ -37,7 +37,7 @@ public class RelationshipService {
     /**
      * 添加文章Id与分类Id列表的对应关系
      */
-    public int addRelationshipList(String targetId, List<Integer> termIdList) {
+    public int addRelationshipList(int targetId, List<Integer> termIdList) {
         List<Relationship> relationshipList = new ArrayList<>();
         for (Integer termId : termIdList) {
             Relationship relationship = new Relationship(targetId, termId);
@@ -50,7 +50,7 @@ public class RelationshipService {
     /**
      * 移除文章Id与分类Id列表的对应关系
      */
-    public int removeRelationshipList(String targetId, List<Integer> termIdList) {
+    public int removeRelationshipList(int targetId, List<Integer> termIdList) {
         List<Relationship> relationshipList = new ArrayList<>();
         for (Integer termId : termIdList) {
             Relationship relationship = new Relationship(targetId, termId);

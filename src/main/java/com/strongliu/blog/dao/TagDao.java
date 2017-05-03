@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface TagDao {
 
-    Tag selectById(Integer id);
+    Tag selectById(int id);
 
     Tag selectBySlug(String slug);
 
@@ -23,7 +23,7 @@ public interface TagDao {
 
     int update(Tag tag);
 
-    int updatePostCount(@Param("id") Integer id, @Param("number") int number);
+    int updatePostCount(@Param("id") int id, @Param("number") int number);
 
-    int deleteById(Integer id);
+    int deleteById(int id);
 }

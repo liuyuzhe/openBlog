@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by liuyuzhe on 2017/2/15.
  */
 public class User {
-    private String id;
+    private Integer id;
     private String name;
     private String password;
     private String nickname;
@@ -15,11 +15,11 @@ public class User {
     private Date register_time;
     private Date activate_time;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

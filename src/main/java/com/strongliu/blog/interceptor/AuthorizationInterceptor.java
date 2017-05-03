@@ -42,7 +42,8 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
                     String cookieInfo = cookie.getValue();
                     if (!StringUtils.isEmpty(cookieInfo)) {
                         try {
-                            String userId = SecurityUtil.decryptAES(cookieInfo, Constant.PASSWORD_SALT);
+                            String userInfo = SecurityUtil.decryptAES(cookieInfo, Constant.PASSWORD_SALT);
+                            Integer userId = Integer.valueOf(userInfo);
                             user = userService.findUserById(userId);
                             request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
                         } catch (Exception e) {

@@ -77,7 +77,7 @@ public class PostManager {
      * 获取文章
      */
     @Transactional
-    public PostVo getPostVo(String postId) {
+    public PostVo getPostVo(int postId) {
         Post post = postService.findPostById(postId);
         if (post == null) {
             return null;
@@ -99,8 +99,8 @@ public class PostManager {
      * 获取已发布文章
      */
     @Transactional
-    public PostVo getPublishPostVo(String postId) {
-        Post post = postService.findPublishPostById(postId);
+    public PostVo getPublishPostVo(String slug) {
+        Post post = postService.findPublishPostBySlug(slug);
         if (post == null) {
             return null;
         }
@@ -110,8 +110,8 @@ public class PostManager {
         List<Tag> tagList = tagService.findAllTagByIdList(termList);
 
         User user = userService.findUserById(post.getCreator_id());
-        Post postPrev = postService.findPublishPrevPostById(postId);
-        Post postNext = postService.findPublishNextPostById(postId);
+        Post postPrev = postService.findPublishPrevPostById(post.getId());
+        Post postNext = postService.findPublishNextPostById(post.getId());
 
         PostVo postVo = new PostVo();
         postVo.setPost(post);
@@ -128,7 +128,7 @@ public class PostManager {
      * 添加文章
      */
     @Transactional
-    public String addPostFormVo(PostFormVo postFormVo) {
+    public int addPostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
         post.setTitle(postFormVo.getTitle());
         post.setContent(postFormVo.getContent());
@@ -148,7 +148,7 @@ public class PostManager {
      * 更新文章
      */
     @Transactional
-    public String updatePostFormVo(PostFormVo postFormVo) {
+    public int updatePostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
         post.setTitle(postFormVo.getTitle());
         post.setContent(postFormVo.getContent());
@@ -170,7 +170,7 @@ public class PostManager {
     /**
      * 删除文章
      */
-    public int removePostForm(String postId) {
+    public int removePostForm(int postId) {
         return postService.removePostById(postId);
     }
 

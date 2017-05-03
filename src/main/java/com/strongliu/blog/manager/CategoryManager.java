@@ -26,20 +26,17 @@ public class CategoryManager {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private CategoryVo categoryVo;
-
     /**
      * 获取该分类下的文章列表
      */
     @Transactional
-    public CategoryVo getCategoryVo(String keyword, int pageId, int limit) {
-        Category category = categoryService.findCategoryBySlug(keyword);
+    public CategoryVo getCategoryVo(String slug, int pageId, int limit) {
+        Category category = categoryService.findCategoryBySlug(slug);
         if (category == null) {
             return null;
         }
 
-        List<String> targetList = relationshipService.findAllTargetByTermId(category.getId());
+        List<Integer> targetList = relationshipService.findAllTargetByTermId(category.getId());
         List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, limit);
 
         int pageTotal = targetList.size() / limit;
@@ -47,6 +44,7 @@ public class CategoryManager {
             pageTotal += 1;
         }
 
+        CategoryVo categoryVo = new CategoryVo();
         categoryVo.setCategory(category);
         categoryVo.setPostList(postList);
         categoryVo.setPageIndex(pageId);
@@ -70,7 +68,7 @@ public class CategoryManager {
         return categoryService.updateCategory(category);
     }
 
-    public int removeCategory(Integer categoryId) {
+    public int removeCategory(int categoryId) {
         return categoryService.removeCategoryById(categoryId);
     }
 
