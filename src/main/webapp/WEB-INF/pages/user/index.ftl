@@ -26,11 +26,11 @@
                     <div class="col-md-8">
                         <ul class="nav nav-tabs nav-justified post-category">
                             <li class="active">
-                                <a href="#">首页</a>
+                                <a href="/">首页</a>
                             </li>
                             <#items as category>
                                 <li>
-                                    <a href="#">#{category}</a>
+                                    <a href="#{category.slug}">#{category.name}</a>
                                 </li>
                             </#items>
                         </ul>
@@ -43,13 +43,13 @@
                         <article class="post">
                             <div class="post-summary clearfix">
                                 <div class="post-image hidden-xs">
-                                    <a href=${post.slug}>
+                                    <a href="${post.slug}">
                                         <img src=${post.thumb_url} />
                                     </a>
                                 </div>
                                 <div class="post-inner">
                                     <header class="post-title">
-                                        <a href=${post.slug}>${post.title}</a>
+                                        <a href="${post.slug}">${post.title}</a>
                                     </header>
                                     <div>
                                         <p>${post.excerpt}</p>
@@ -60,10 +60,10 @@
                                 <div class="post-meta">
                             <span class="hidden-xs pull-left">
                                 <time class="fa fa-calendar"> ${post.create_time} </time>
-                                <a href="#"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
+                                <a href="${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
                             </span>
                             <span class="pull-left">
-                                <a href="#"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
+                                <a href="${post.slug}"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
                                 <i class="fa fa-heart-o"> ${(post.spot_count)!0} </i>
                             </span>
                                 </div>
@@ -109,7 +109,7 @@
                             <h4 class="widget-title">标签云</h4>
                             <div class="tag-cloud">
                                 <#items as tag>
-                                    <a href="#">${tag}</a>
+                                    <a href="${tag.slug}">${tag.name}</a>
                                 </#items>
                             </div>
                         </div>

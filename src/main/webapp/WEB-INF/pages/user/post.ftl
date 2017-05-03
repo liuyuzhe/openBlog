@@ -48,7 +48,7 @@
                                     <span class="pull-left">
                                         <i class="fa fa-tags"></i>
                                         <#items as tag>
-                                            <a href="#">${tag}</a>
+                                            <a href="${tag.slug}">${tag.name}</a>
                                         </#items>
                                     </span>
                                 </div>
@@ -58,12 +58,12 @@
                 </article>
                     <#if (postVo.postPrev)??>
                         <div class="post-prev">
-                            <a href="/post/${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
+                            <a href="${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
                         </div>
                     </#if>
                     <#if (postVo.postNext)??>
                         <div class="post-next">
-                            <a href="/post/${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
+                            <a href="${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
                         </div>
                     </#if>
                 </main>
