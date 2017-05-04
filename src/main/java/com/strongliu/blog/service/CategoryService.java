@@ -24,8 +24,7 @@ public class CategoryService {
     /**
      * 查找分类
      */
-    public Category findCategoryBySlug(String slug)
-    {
+    public Category findCategoryBySlug(String slug) {
         return categoryDao.selectBySlug(slug);
     }
 
@@ -33,8 +32,7 @@ public class CategoryService {
         return categoryDao.selectAllByIdList(idList);
     }
 
-    public List<Category> findAllCategory()
-    {
+    public List<Category> findAllCategory() {
         return categoryDao.selectAll();
     }
 

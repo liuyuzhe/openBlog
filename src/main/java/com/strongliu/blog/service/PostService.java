@@ -21,40 +21,35 @@ public class PostService {
     /**
      * 查找文章
      */
-    public Post findPostById(int id)
-    {
+    public Post findPostById(int id) {
         return postDao.selectById(id);
     }
 
     /**
      * 查找已发布文章
      */
-    public Post findPublishPostBySlug(String slug)
-    {
+    public Post findPublishPostBySlug(String slug) {
         return postDao.selectPublishBySlug(slug);
     }
 
     /**
      * 查找上一篇已发布文章
      */
-    public Post findPublishPrevPostById(int id)
-    {
+    public Post findPublishPrevPostById(int id) {
         return postDao.selectPublishPrevById(id);
     }
 
     /**
      * 查找下一篇已发布文章
      */
-    public Post findPublishNextPostById(int id)
-    {
+    public Post findPublishNextPostById(int id) {
         return postDao.selectPublishNextById(id);
     }
 
     /**
      * 查找文章列表
      */
-    public List<Post> findAllPost(int pageId, int pageSize)
-    {
+    public List<Post> findAllPost(int pageId, int pageSize) {
         pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return postDao.selectAll(startIndex, pageSize);
@@ -63,8 +58,7 @@ public class PostService {
     /**
      * 查找已发布文章列表
      */
-    public List<Post> findAllPublishPost(int pageId, int pageSize)
-    {
+    public List<Post> findAllPublishPost(int pageId, int pageSize) {
         pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return postDao.selectAllPublish(startIndex, pageSize);
@@ -73,15 +67,13 @@ public class PostService {
     /**
      * 根据Id列表,查找已发布文章列表
      */
-    public List<Post> findAllPublishPostByIdList(List<Integer> idList, int pageId, int pageSize)
-    {
+    public List<Post> findAllPublishPostByIdList(List<Integer> idList, int pageId, int pageSize) {
         pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;
         return postDao.selectAllPublishByIdList(idList, startIndex, pageSize);
     }
 
-    public int pageTotal(int pageSize)
-    {
+    public int pageTotal(int pageSize) {
         int postTotal = postDao.selectCount();
         int pageTotal = postTotal / pageSize;
         if (postTotal % pageSize != 0) {
@@ -91,13 +83,11 @@ public class PostService {
         return pageTotal;
     }
 
-    public int addPost(Post post)
-    {
+    public int addPost(Post post) {
         return postDao.insert(post);
     }
 
-    public int updatePost(Post post)
-    {
+    public int updatePost(Post post) {
         return postDao.update(post);
     }
 

@@ -35,8 +35,7 @@ public class UserService {
         return userDao.selectCountByUsername(username) > 0;
     }
 
-    public int pageTotal(int pageSize)
-    {
+    public int pageTotal(int pageSize) {
         int postToal = userDao.selectCount();
         int pageTotal = postToal / pageSize;
         if (postToal % pageSize != 0) {

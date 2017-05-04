@@ -23,9 +23,10 @@ public enum ErrorCode {
 
 	// 服务器通用错误
 	ERROR_SERVER_TIMEOUT(2001, "Server deal timeout"),
-	ERROR_DB_FAILED(2002, "Database deal failed"),
-	ERROR_CONNECTION_BROKEN(2003, "Connection broken"),
-	ERROR_SERVER_INTERNAL(2004, "Server internal error");
+	ERROR_IO_ACCESS_FAILED(2002, "IO access failed"),
+	ERROR_DB_FAILED(2003, "Database deal failed"),
+	ERROR_CONNECTION_BROKEN(2004, "Connection broken"),
+	ERROR_SERVER_INTERNAL(2005, "Server internal error");
 
 	private int code;
     private String message;

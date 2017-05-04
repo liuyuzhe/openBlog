@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.strongliu.blog.dao.AttachDao">
+
+    <resultMap id="attachResultMap" type="attach">
+        <id property="id" column="attach_id"/>
+        <result property="slug" column="attach_slug"/>
+        <result property="name" column="attach_name"/>
+        <result property="type" column="attach_type"/>
+        <result property="create_time" column="attach_create_time"/>
+        <result property="creator_id" column="creator_id"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="attachResultMap">
+        SELECT attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id FROM attach_table
+        WHERE attach_id=#{id}
+    </select>
+
+    <select id="selectAll" resultMap="attachResultMap">
+        SELECT attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id FROM attach_table
+        ORDER BY attach_create_time DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectCount">
+        SELECT COUNT (*) FROM attach_table
+    </select>
+
+    <insert id="insert" parameterType="attach">
+        INSERT INTO attach_table
+        (attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id)
+        VALUES
+        (#{id}, #{slug}, #{name}, #{type}, #{create_time}, #{creator_id})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM attach_table
+        WHERE attach_id=#{id}
+    </delete>
+
+</mapper>

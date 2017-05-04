@@ -10,7 +10,7 @@ var checkUsername = function (username) {
         $("#alertUsername").hide();
         return true;
     }
-}
+};
 
 var checkEmail = function (email) {
     if (!isEmail(email)) {
@@ -20,7 +20,7 @@ var checkEmail = function (email) {
         $("#alertEmail").hide();
         return true;
     }
-}
+};
 
 var checkPassword = function (password) {
     if (!isPassword(password)) {
@@ -30,7 +30,7 @@ var checkPassword = function (password) {
         $("#alertPassword").hide();
         return true;
     }
-}
+};
 
 $("#registerForm").find('[type=text], [type=password]').blur(function() {
     switch ($(this).attr('name')) {
@@ -44,7 +44,7 @@ $("#registerForm").find('[type=text], [type=password]').blur(function() {
             checkPassword($(this).val());
             break;
     }
-})
+});
 
 $("#register").click(function() {
     var username = $("#registerForm input[name='username']").val();

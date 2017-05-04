@@ -30,7 +30,7 @@ public class ResponseDto<T> {
         return message;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 

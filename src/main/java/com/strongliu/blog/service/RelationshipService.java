@@ -21,16 +21,14 @@ public class RelationshipService {
     /**
      * 根据文章Id,查询分类Id列表
      */
-    public List<Integer> findAllTermByTargetId(int targetId)
-    {
+    public List<Integer> findAllTermByTargetId(int targetId) {
         return relationshipDao.selectAllByTargetId(targetId);
     }
 
     /**
      * 根据分类Id,查询文章Id列表
      */
-    public List<Integer> findAllTargetByTermId(int termId)
-    {
+    public List<Integer> findAllTargetByTermId(int termId) {
         return relationshipDao.selectAllByTermId(termId);
     }
 

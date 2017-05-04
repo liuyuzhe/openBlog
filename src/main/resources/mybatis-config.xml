@@ -15,6 +15,7 @@
         <typeAlias alias="category" type="com.strongliu.blog.entity.Category" />
         <typeAlias alias="tag" type="com.strongliu.blog.entity.Tag" />
         <typeAlias alias="user" type="com.strongliu.blog.entity.User" />
+        <typeAlias alias="attach" type="com.strongliu.blog.entity.Attach" />
     </typeAliases>
 
     <!-- 映射器 -->
@@ -24,5 +25,6 @@
         <mapper resource="mapper/CategoryMapper.xml" />
         <mapper resource="mapper/TagMapper.xml" />
         <mapper resource="mapper/UserMapper.xml" />
+        <mapper resource="mapper/AttachMapper.xml" />
     </mappers>
 </configuration>

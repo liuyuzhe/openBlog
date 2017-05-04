@@ -19,4 +19,8 @@ public abstract class BaseController {
     public String redirect(String viewName) {
         return "redirect:" + viewName;
     }
+
+    public int getUserId() {
+        return 0;
+    }
 }

@@ -134,14 +134,14 @@ public class PostManager {
         post.setContent(postFormVo.getContent());
         post.setStatus(postFormVo.getStatus());
         post.setComment_status(postFormVo.getComment_status());
-        postService.addPost(post);
+        int ret = postService.addPost(post);
 
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
         categoryIdList.addAll(tagIdList);
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
-        return post.getId();
+        return ret;
     }
 
     /**
@@ -154,7 +154,7 @@ public class PostManager {
         post.setContent(postFormVo.getContent());
         post.setStatus(postFormVo.getStatus());
         post.setComment_status(postFormVo.getComment_status());
-        postService.updatePost(post);
+        int ret = postService.updatePost(post);
 
         List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());
         relationshipService.removeRelationshipList(post.getId(), termIdList);
@@ -164,7 +164,7 @@ public class PostManager {
         categoryIdList.addAll(tagIdList);
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
-        return post.getId();
+        return ret;
     }
 
     /**
