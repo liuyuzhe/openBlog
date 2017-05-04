@@ -36,6 +36,12 @@
 
 	<mvc:default-servlet-handler/>
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 最大上传文件10M,编码格式需要和模板编码格式一致 -->
+		<property name="maxUploadSize" value="10485760"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器顺序执行 -->

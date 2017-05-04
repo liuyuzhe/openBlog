@@ -54,13 +54,14 @@ public class AttachController extends BaseController {
         String fileName = file.getOriginalFilename();
         String fileType = file.getContentType();
         String fileSlug = FileUtil.getFileSlug(fileName);
+
         File filePath = new File(path, fileSlug);
         if (!filePath.getParentFile().exists()) {
             filePath.getParentFile().mkdirs();
         }
 
         try {
-            file.transferTo(filePath);
+            file.transferTo(filePath); // 保存上传文件到一个目标文件中
 
             Attach attach = new Attach();
             attach.setSlug(fileSlug);

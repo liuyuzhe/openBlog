@@ -1,11 +1,9 @@
 package com.strongliu.blog.utility;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
 
 /**
  * Created by liuyuzhe on 2017/5/1.
@@ -17,7 +15,7 @@ public class SecurityUtil {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedBytes = cipher.doFinal(data.getBytes());
-        return (new BASE64Encoder()).encode(encryptedBytes);
+        return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
     public static String decryptAES(String data, String keyData) throws Exception {
@@ -25,7 +23,8 @@ public class SecurityUtil {
 
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] textBytes = (new BASE64Decoder()).decodeBuffer(data);
+
+        byte[] textBytes = Base64.getDecoder().decode(data);
         byte[] decValue = cipher.doFinal(textBytes);
         return new String(decValue);
     }
