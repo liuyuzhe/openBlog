@@ -18,10 +18,10 @@
 <section>
     <div class="container">
         <div class="row">
-            <#if postVo??>
+            <#if postVo?? >
                 <main class="col-md-12 main-content">
                 <article class="post">
-                    <#if (postVo.post)??>
+                    <#if (postVo.post)?? >
                         <header>
                             <h1 class="post-title">${postVo.post.title}</h1>
                             <div class="post-meta">
@@ -41,7 +41,7 @@
                         <a href="#" class="post-love"> <i class="fa fa-heart-o"></i> 点赞 </a>
                         <a href="#" class="post-share"> <i class="fa fa-share-alt"></i> 分享 </a>
                     </div>
-                    <#if (postVo.tagList)??>
+                    <#if (postVo.tagList)?? >
                         <#list postVo.tagList>
                             <footer>
                                 <div class="post-tags clearfix">
@@ -56,12 +56,12 @@
                         </#list>
                     </#if>
                 </article>
-                    <#if (postVo.postPrev)??>
+                    <#if (postVo.postPrev)?? >
                         <div class="post-prev">
                             <a href="${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
                         </div>
                     </#if>
-                    <#if (postVo.postNext)??>
+                    <#if (postVo.postNext)?? >
                         <div class="post-next">
                             <a href="${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
                         </div>

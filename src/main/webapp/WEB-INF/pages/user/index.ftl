@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <#if (postPageVo.pageIndex)?? && postPageVo.pageIndex > 1>
+    <#if (postPageVo.pageIndex)?? && (postPageVo.pageIndex > 1) >
         <title>"StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
     <#else>
         <title>"StrongLiu's blog - 首页 </title>
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../../static/common/css/common.css">
     <link rel="stylesheet" href="../../../static/user/css/post.css">
     <link rel="stylesheet" href="../../../static/user/css/sidebar.css">
+    <link rel="stylesheet" href="../../../static/user/css/page.css">
 </head>
 <body>
 
@@ -21,7 +22,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <#if categorylist??>
+            <#if categorylist?? >
                 <#list categorylist>
                     <div class="col-md-8">
                         <ul class="nav nav-tabs nav-justified post-category">
@@ -38,7 +39,7 @@
                 </#list>
             </#if>
             <main class="col-md-8 main-content">
-                <#if (postPageVo.postList)??>
+                <#if (postPageVo.postList)?? >
                     <#list postPageVo.postList as post>
                         <article class="post">
                             <div class="post-summary clearfix">
@@ -74,15 +75,17 @@
                         </article>
                     </#list>
                 </#if>
-                <#if postPageVo??>
+                <#if postPageVo?? >
                     <nav class="pagination">
-                        <#if postPageVo.pageIndex > 1>
+                        <#if (postPageVo.pageIndex > 1) >
                             <a class="newer-posts" href="/?page=${postPageVo.pageIndex - 1}">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         </#if>
-                        <span class="page-number">第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
-                        <#if postPageVo.pageIndex < postPageVo.pageTotal>
+                        <#if (postPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
+                            <span class="page-number">第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
+                        </#if>
+                        <#if (postPageVo.pageIndex < postPageVo.pageTotal) >
                             <a class="older-posts" href="/?page=${postPageVo.pageIndex + 1}">
                                 <i class="fa fa-angle-right"></i>
                             </a>
