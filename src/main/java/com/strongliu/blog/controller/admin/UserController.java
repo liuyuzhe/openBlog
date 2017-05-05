@@ -155,7 +155,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseDto updateUser(User user) {
-        // 验证用户信息合法性
+        // 验证User合法性
 
         try {
             userManager.updateUser(user);

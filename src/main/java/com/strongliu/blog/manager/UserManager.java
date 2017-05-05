@@ -22,16 +22,15 @@ public class UserManager {
 
     public UserPageVo getUserPageVo(int pageId, int limit) {
         List<User> userList = userService.findAllUser(pageId, limit);
-        if (userList == null) {
-            return null;
-        }
 
         int pageTotal = userService.pageTotal(limit);
 
         UserPageVo userPageVo = new UserPageVo();
         userPageVo.setUserList(userList);
-        userPageVo.setPageIndex(pageId);
-        userPageVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            userPageVo.setPageIndex(pageId);
+            userPageVo.setPageTotal(pageTotal);
+        }
 
         return userPageVo;
     }

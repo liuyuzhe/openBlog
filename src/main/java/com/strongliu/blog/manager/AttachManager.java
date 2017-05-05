@@ -22,16 +22,15 @@ public class AttachManager {
     @Transactional
     public AttachPageVo getAttachPageVo(int pageId, int limit) {
         List<Attach> attachList = attachService.findAllAttach(pageId, limit);
-        if (attachList == null) {
-            return null;
-        }
 
         int pageTotal = attachService.pageTotal(limit);
 
         AttachPageVo attachPageVo = new AttachPageVo();
         attachPageVo.setAttachList(attachList);
-        attachPageVo.setPageIndex(pageId);
-        attachPageVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            attachPageVo.setPageIndex(pageId);
+            attachPageVo.setPageTotal(pageTotal);
+        }
 
         return attachPageVo;
     }

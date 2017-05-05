@@ -47,8 +47,10 @@ public class TagManager {
         TagVo tagVo = new TagVo();
         tagVo.setTag(tag);
         tagVo.setPostList(postList);
-        tagVo.setPageIndex(pageId);
-        tagVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            tagVo.setPageIndex(pageId);
+            tagVo.setPageTotal(pageTotal);
+        }
 
         return tagVo;
     }

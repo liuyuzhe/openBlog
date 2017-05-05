@@ -43,6 +43,9 @@ public class PostController extends BaseController {
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	public String editPost(@PathVariable Integer postId, Model model) {
 		PostVo postVo = postManager.getPostVo(postId);
+		if (postVo == null) {
+			return this.render_404();
+		}
 
 		model.addAttribute(postVo);
 

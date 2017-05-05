@@ -47,8 +47,10 @@ public class CategoryManager {
         CategoryVo categoryVo = new CategoryVo();
         categoryVo.setCategory(category);
         categoryVo.setPostList(postList);
-        categoryVo.setPageIndex(pageId);
-        categoryVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            categoryVo.setPageIndex(pageId);
+            categoryVo.setPageTotal(pageTotal);
+        }
 
         return categoryVo;
     }

@@ -39,16 +39,15 @@ public class PostManager {
     @Transactional
     public PostPageVo getPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPost(pageId, limit);
-        if (postList == null) {
-            return null;
-        }
 
         int pageTotal = postService.pageTotal(limit);
 
         PostPageVo postPageVo = new PostPageVo();
         postPageVo.setPostList(postList);
-        postPageVo.setPageIndex(pageId);
-        postPageVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            postPageVo.setPageIndex(pageId);
+            postPageVo.setPageTotal(pageTotal);
+        }
 
         return postPageVo;
     }
@@ -59,16 +58,15 @@ public class PostManager {
     @Transactional
     public PostPageVo getPublishPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPublishPost(pageId, limit);
-        if (postList == null) {
-            return null;
-        }
 
         int pageTotal = postService.pageTotal(limit);
 
         PostPageVo postPageVo = new PostPageVo();
         postPageVo.setPostList(postList);
-        postPageVo.setPageIndex(pageId);
-        postPageVo.setPageTotal(pageTotal);
+        if (pageId > 0 && pageTotal > 0) {
+            postPageVo.setPageIndex(pageId);
+            postPageVo.setPageTotal(pageTotal);
+        }
 
         return postPageVo;
     }
