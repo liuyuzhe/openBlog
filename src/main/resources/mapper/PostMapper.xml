@@ -71,8 +71,8 @@
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="selectCount" >
-        SELECT COUNT (*) FROM post_table
+    <select id="selectCount" resultType="int" >
+        SELECT COUNT(*) FROM post_table
     </select>
 
     <insert id="insert" parameterType="post">
@@ -91,24 +91,24 @@
         WHERE post_id=#{id}
     </update>
 
-    <delete id="deleteById">
+    <delete id="deleteById" parameterType="int">
         DELETE FROM post_table
         WHERE post_id=#{id}
     </delete>
 
-    <update id="updateCommentCount">
+    <update id="updateCommentCount" parameterType="int">
         UPDATE post_table
         SET comment_count+=#{count}
         WHERE post_id=#{id}
     </update>
 
-    <update id="updateReadCount">
+    <update id="updateReadCount" parameterType="int">
         UPDATE post_table
         SET read_count+=#{count}
         WHERE post_id=#{id}
     </update>
 
-    <update id="updateSpotCount">
+    <update id="updateSpotCount" parameterType="int">
         UPDATE post_table
         SET spot_count+=#{count}
         WHERE post_id=#{id}

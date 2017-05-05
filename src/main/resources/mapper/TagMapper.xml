@@ -47,13 +47,13 @@
         WHERE term_id=#{id}
     </update>
 
-    <update id="updatePostCount" >
+    <update id="updatePostCount" parameterType="int">
         UPDATE term_table
         SET term_count+=#{number}
         WHERE term_id=#{id}
     </update>
 
-    <delete id="delete">
+    <delete id="delete" parameterType="int">
         DELETE FROM term_table
         WHERE term_id=#{id}
     </delete>

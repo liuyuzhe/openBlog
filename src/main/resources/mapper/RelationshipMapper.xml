@@ -14,7 +14,7 @@
         WHERE term_id=#{id}
     </select>
 
-    <insert id="insertList">
+    <insert id="insertList" parameterType="relationship">
         INSERT INTO relationship_table
         (target_id, term_id)
         VALUES
@@ -25,7 +25,7 @@
         </foreach>
     </insert>
 
-    <delete id="deleteList">
+    <delete id="deleteList" parameterType="relationship">
         DELETE FROM relationship_table
         WHERE
         <foreach collection="list" item="item" index="index" separator="or">
@@ -34,6 +34,5 @@
             )
         </foreach>
     </delete>
-
 
 </mapper>

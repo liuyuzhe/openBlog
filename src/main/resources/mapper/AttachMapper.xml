@@ -24,8 +24,8 @@
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="selectCount">
-        SELECT COUNT (*) FROM attach_table
+    <select id="selectCount" resultType="int">
+        SELECT COUNT(*) FROM attach_table
     </select>
 
     <insert id="insert" parameterType="attach">
@@ -35,7 +35,7 @@
         (#{id}, #{slug}, #{name}, #{type}, #{create_time}, #{creator_id})
     </insert>
 
-    <delete id="deleteById">
+    <delete id="deleteById" parameterType="int">
         DELETE FROM attach_table
         WHERE attach_id=#{id}
     </delete>

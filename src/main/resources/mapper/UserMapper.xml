@@ -15,7 +15,7 @@
         <result property="activate_time" column="user_activate_time"/>
     </resultMap>
     
-    <select id="selectByUsernameAndPassword">
+    <select id="selectByUsernameAndPassword" resultMap="userResultMap">
         SELECT user_id, user_nickname, user_avatar_url, user_activate_time FROM user_table
         WHERE user_name=#{username} AND user_password=#{password}
     </select>
@@ -31,12 +31,12 @@
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="selectCountByUsername">
-        SELECT COUNT (*) FROM user_table WHERE user_name=#{username}
+    <select id="selectCountByUsername" resultType="int">
+        SELECT COUNT(*) FROM user_table WHERE user_name=#{username}
     </select>
 
-    <select id="selectCount">
-        SELECT COUNT (*) FROM user_table
+    <select id="selectCount" resultType="int">
+        SELECT COUNT(*) FROM user_table
     </select>
 
     <insert id="insert" parameterType="user">
@@ -52,7 +52,7 @@
         WHERE user_id=#{id}
     </update>
 
-    <delete id="delete">
+    <delete id="delete" parameterType="int">
         DELETE FROM user_table
         WHERE user_id=#{id}
     </delete>
