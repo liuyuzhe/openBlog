@@ -2,111 +2,127 @@
  * Created by liuyuzhe on 2017/3/4.
  */
 
-var checkUsername = function (username) {
-    if (!isUsername(username)) {
-        $("#alertUsername").show();
-        return false;
-    } else {
-        $("#alertUsername").hide();
-        return true;
-    }
-};
+var User = {
 
-var checkEmail = function (email) {
-    if (!isEmail(email)) {
-        $("#alertEmail").show();
-        return false;
-    } else {
-        $("#alertEmail").hide();
-        return true;
-    }
-};
+    init : function() {
+        var user = Base.init();
 
-var checkPassword = function (password) {
-    if (!isPassword(password)) {
-        $("#alertPassword").show();
-        return false;
-    } else {
-        $("#alertPassword").hide();
-        return true;
-    }
-};
-
-$("#registerForm").find('[type=text], [type=password]').blur(function() {
-    switch ($(this).attr('name')) {
-        case "username" :
-            checkUsername($(this).val());
-            break;
-        case "email" :
-            checkEmail($(this).val());
-            break;
-        case "password" :
-            checkPassword($(this).val());
-            break;
-    }
-});
-
-$("#register").click(function() {
-    var username = $("#registerForm input[name='username']").val();
-    var email = $("#registerForm input[name='email']").val();
-    var password = $("#registerForm input[name='password']").val();
-    var repeatPassword = $("#repeatPassword").val();
-    if (!checkUsername(username) || !checkEmail(email) || !checkPassword(password)) {
-        return;
-    }
-
-    $.post({
-        url: "/user/register",
-        dataType: "json",
-        data: $("#registerForm").serialize(),
-        success: function(response) {
-            if (response.code == 0) {
-                // 成功并弹窗
-                window.location.href = '/user/login';
+        user.checkUsername = function (username) {
+            if (!user.isUsername(username)) {
+                $("#alertUsername").show();
+                return false;
             } else {
-                console.log(response.message);
+                $("#alertUsername").hide();
+                return true;
             }
-        },
-        error: function(response) {
-            console.log(response);
+        };
+
+        user.checkEmail = function (email) {
+            if (!user.isEmail(email)) {
+                $("#alertEmail").show();
+                return false;
+            } else {
+                $("#alertEmail").hide();
+                return true;
+            }
+        };
+
+        user.checkPassword = function (password) {
+            if (!user.isPassword(password)) {
+                $("#alertPassword").show();
+                return false;
+            } else {
+                $("#alertPassword").hide();
+                return true;
+            }
+        };
+
+        return user;
+    }
+};
+
+(function () {
+    var user = User.init();
+
+    $("#registerForm").find('[type=text], [type=password]').blur(function() {
+        switch ($(this).attr('name')) {
+            case "username" :
+                user.checkUsername($(this).val());
+                break;
+            case "email" :
+                user.checkEmail($(this).val());
+                break;
+            case "password" :
+                user.checkPassword($(this).val());
+                break;
         }
     });
-});
 
-$("#loginForm").find('[type=text], [type=password]').blur(function() {
-    switch ($(this).attr('name')) {
-        case "username" :
-            checkUsername($(this).val());
-            break;
-        case "password" :
-            checkPassword($(this).val());
-            break;
-    }
-});
+    $("#register").click(function() {
+        var username = $("#registerForm input[name='username']").val();
+        var email = $("#registerForm input[name='email']").val();
+        var password = $("#registerForm input[name='password']").val();
+        var repeatPassword = $("#repeatPassword").val();
+        if (!user.checkUsername(username) || !user.checkEmail(email) || !user.checkPassword(password)) {
+            return;
+        }
 
-$("#login").click(function() {
-    var username = $("#loginForm input[name='username']").val();
-    var password = $("#loginForm input[name='pasword']").val();
-    if (!checkUsername(username) || !checkPassword(password)) {
-        return;
-    }
-
-    $.post({
-        url: "/user/login",
-        dataType: "json",
-        data : $("#loginForm").serialize(),
-        success: function(response) {
-            if (response.code == 0) {
-                window.location.href = "/";
-            } else {
-                console.log(response.message);
+        $.post({
+            url: "/user/register",
+            dataType: "json",
+            data: $("#registerForm").serialize(),
+            success: function(response) {
+                if (response.code == 0) {
+                    // 成功并弹窗
+                    window.location.href = '/user/login';
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error: function(response) {
+                console.log(response);
             }
-        },
-        error: function(response) {
-            console.log(response.message);
+        });
+    });
+
+    $("#loginForm").find('[type=text], [type=password]').blur(function() {
+        switch ($(this).attr('name')) {
+            case "username" :
+                user.checkUsername($(this).val());
+                break;
+            case "password" :
+                user.checkPassword($(this).val());
+                break;
         }
     });
-});
+
+    $("#login").click(function() {
+        var username = $("#loginForm input[name='username']").val();
+        var password = $("#loginForm input[name='pasword']").val();
+        if (!user.checkUsername(username) || !user.checkPassword(password)) {
+            return;
+        }
+
+        $.post({
+            url: "/user/login",
+            dataType: "json",
+            data : $("#loginForm").serialize(),
+            success: function(response) {
+                if (response.code == 0) {
+                    window.location.href = "/";
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error: function(response) {
+                console.log(response.message);
+            }
+        });
+    });
+
+})();
+
+
 
 
 
