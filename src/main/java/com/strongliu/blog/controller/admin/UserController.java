@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping("/admin/user")
+@RequestMapping("admin/user")
 public class UserController extends BaseController {
 
     @Autowired
