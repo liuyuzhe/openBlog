@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.topbar {
+    position: fixed;
+    top: 0;
+    height: 70px;
+    left: 0;
+    right: 0;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.topbar .topbar-left {
+    position: relative;
+    width: 240px;
+    height: 70px;
+    z-index: 10;
+}
+
+.topbar-left > div {
+    padding: 10px;
+}
+
+.topbar-left a {
+    line-height: 50px;
+    font-size: 28px;
+}
+
+.side-menu {
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+}
+
+.content-page {
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 240px;
+    right: 0;
+    overflow: auto;
+}
