@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 .topbar {
+    background-color: #f8f8f8;
     position: fixed;
     top: 0;
     height: 70px;
@@ -23,6 +24,62 @@
 .topbar-left a {
     line-height: 50px;
     font-size: 28px;
+    text-decoration: none;
+}
+
+.topbar > nav {
+    border-radius: 0;
+    border: none;
+    margin-bottom: 0;
+}
+
+.button-menu {
+    background-color: transparent;
+    color: #777;
+    border: none;
+    font-size: 20px;
+    line-height: 70px;
+    padding: 0 15px;
+}
+
+.button-menu:hover,
+.button-menu:focus {
+    color: #212121;
+}
+
+.topbar-menu {
+    background-color: #fff;
+    border-radius: 0;
+    padding: 0 15px;
+    margin-bottom: 0;
+}
+
+.topbar-menu > ul {
+    margin: 0;
+}
+
+.topbar-menu > li > a {
+    line-height: 70px;
+    padding: 0 15px;
+}
+
+.topbar-menu > li > a > img {
+    border: 2px solid #f3f3f3;
+    height: 36px;
+    width: 36px;
+}
+
+.topbar-menu > li > a i {
+    font-size: 20px;
+}
+
+.topbar-menu > .container {
+    /* 占据整行 */
+    width: auto;
+}
+
+.dropdown-menu > li > a {
+    padding: 6px 20px;
 }
 
 .side-menu {
