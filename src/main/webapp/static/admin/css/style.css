@@ -38,8 +38,8 @@
     color: #777;
     border: none;
     font-size: 20px;
-    line-height: 70px;
-    padding: 0 15px;
+    line-height: 40px;
+    padding: 15px;
 }
 
 .button-menu:hover,
@@ -54,28 +54,24 @@
     margin-bottom: 0;
 }
 
-.topbar-menu > ul {
-    margin: 0;
+.topbar-menu .container {
+    /* 占据整行 */
+    width: auto;
 }
 
-.topbar-menu > li > a {
-    line-height: 70px;
-    padding: 0 15px;
+.topbar-menu .nav > li > a {
+    line-height: 40px;
+    padding: 15px;
 }
 
-.topbar-menu > li > a > img {
+.topbar-menu .nav > li > a > img {
     border: 2px solid #f3f3f3;
     height: 36px;
     width: 36px;
 }
 
-.topbar-menu > li > a i {
+.topbar-menu .nav > li > a i {
     font-size: 20px;
-}
-
-.topbar-menu > .container {
-    /* 占据整行 */
-    width: auto;
 }
 
 .dropdown-menu > li > a {
@@ -91,7 +87,7 @@
 }
 
 .content-page {
-    position: absolute;
+    /*position: absolute;*/
     top: 70px;
     bottom: 0;
     left: 240px;
