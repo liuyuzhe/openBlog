@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../static/plugin/select2-4.0.3/css/select2.css">
     <link rel="stylesheet" href="../../../static/admin/css/style.css">
 </head>
 <body>
@@ -38,7 +39,7 @@
     </nav>
 </header>
 <div class="side-menu">
-    <div class="sidebar-menu">
+    <div class="sidebar-menu pull-left">
         <ul>
             <li> <a href="#"> <i class="fa fa-tachometer"></i> 仪表盘 </a> </li>
             <li> <a href="#"> <i class="fa fa-edit"></i> 发布文章 </a> </li>
@@ -49,11 +50,54 @@
     </div>
 </div>
 <section class="content-page">
-    <h1>2iugri</h1>
+    <div class="container" style="width: auto">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>发布文章</h4>
+            </div>
+            <div class="col-sm-12">
+            <form id="articleForm" role="form">
+                <fieldset class="article-form">
+                    <div class="form-group col-md-6">
+                        <input type="text" name="title" class="form-control" placeholder="文章标题">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" name="slug" placeholder="访问路径"/>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <select id="select-categories" class="form-control" name="categories" multiple="multiple">
+                            <option value="default">default</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <select id="select-tags" class="form-control" name="tags" multiple="multiple">
+                            <option value="default">default</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        </div>
+    </div>
 </section>
 
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/plugin/select2-4.0.3/js/select2.js"></script>
+
+<script>
+    $("#select-categories").select2({
+        placeholder: "选择文章分类",
+        allowClear: true,
+        tokenSeparators: [',']
+    });
+    $("#select-tags").select2({
+        tags: true,
+        placeholder: "选择或添加文章标签",
+        allowClear: true,
+        tokenSeparators: [',']
+    });
+</script>
 
 </body>
 </html>

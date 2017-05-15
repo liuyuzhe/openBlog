@@ -62,7 +62,6 @@ body {
 }
 
 .topbar-menu .container {
-    /* 占据整行 */
     width: auto;
 }
 
@@ -141,10 +140,16 @@ body {
 }
 
 .content-page {
-/*position: absolute;*/
+    position: absolute;
     top: 70px;
     bottom: 0;
     left: 240px;
     right: 0;
     overflow: auto;
+    /*padding: 15px 5px;*/
 }
+
+.content-page .container {
+    width: auto;
+}
+
