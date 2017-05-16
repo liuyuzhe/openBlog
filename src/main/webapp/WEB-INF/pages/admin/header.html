@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../static/plugin/select2-4.0.3/css/select2.css">
+    <link rel="stylesheet" href="../../../static/plugin/mditor/css/mditor.css" />
+    <link rel="stylesheet" href="../../../static/plugin/summernote-0.8.3/summernote.css">
     <link rel="stylesheet" href="../../../static/admin/css/style.css">
 </head>
 <body>
@@ -56,27 +58,45 @@
                 <h4>发布文章</h4>
             </div>
             <div class="col-sm-12">
-            <form id="articleForm" role="form">
-                <fieldset class="article-form">
-                    <div class="form-group col-md-6">
-                        <input type="text" name="title" class="form-control" placeholder="文章标题">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" name="slug" placeholder="访问路径"/>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <select id="select-categories" class="form-control" name="categories" multiple="multiple">
-                            <option value="default">default</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <select id="select-tags" class="form-control" name="tags" multiple="multiple">
-                            <option value="default">default</option>
-                        </select>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+                <form id="articleForm" role="form">
+                    <fieldset class="article-form">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="title" class="form-control" placeholder="文章标题">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="slug" placeholder="访问路径"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select id="select-categories" class="form-control" name="categories" multiple="multiple">
+                                <option value="default">default</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select id="select-tags" class="form-control" name="tags" multiple="multiple">
+                                <option value="default">default</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12">
+                            <div class="pull-right">
+                                <a type="button" class="btn btn-sm" id="switch-editor">切换为富文本编辑器</a>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 md-container">
+                            <textarea id="md-editor"></textarea>
+                        </div>
+                        <div class="form-group col-md-12 html-container">
+                            <textarea id="summer-note">
+                            </textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-primary">保存文章</button>
+                            <button type="button" class="btn btn-warning">存为草稿</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -84,20 +104,10 @@
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../../../static/plugin/select2-4.0.3/js/select2.js"></script>
+<script src="../../../static/plugin/mditor/js/mditor.js"></script>
+<script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
 
-<script>
-    $("#select-categories").select2({
-        placeholder: "选择文章分类",
-        allowClear: true,
-        tokenSeparators: [',']
-    });
-    $("#select-tags").select2({
-        tags: true,
-        placeholder: "选择或添加文章标签",
-        allowClear: true,
-        tokenSeparators: [',']
-    });
-</script>
+<script src="../../../static/admin/js/post.js"></script>
 
 </body>
 </html>

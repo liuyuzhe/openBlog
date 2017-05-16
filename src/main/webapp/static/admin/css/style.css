@@ -151,5 +151,7 @@ body {
 
 .content-page .container {
     width: auto;
+    margin-top: 0;
+    padding-top: 0;
 }
 
