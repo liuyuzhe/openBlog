@@ -18,8 +18,7 @@ $("#select-tags").select2({
 (function () {
     var htmlEditor = $("#summer-note").summernote({
         lang: "zh-CN",
-        height: 360,
-        placeholder: "请输入文章内容"
+        height: 360
     });
 
     var mdEditor = Mditor.fromTextarea(document.getElementById('md-editor'));

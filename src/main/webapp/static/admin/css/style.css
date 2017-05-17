@@ -146,7 +146,7 @@ body {
     left: 240px;
     right: 0;
     overflow: auto;
-    /*padding: 15px 5px;*/
+    padding: 15px 5px;
 }
 
 .content-page .container {
@@ -155,3 +155,16 @@ body {
     padding-top: 0;
 }
 
+.page-title {
+    padding: 0 15px;
+    margin-bottom: 24px;
+    color: #505458;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border-color: #ccc !important;
+}
+
+.select2-container--focus .select2-selection--multiple {
+    border-color: #66afe9 !important;
+}
