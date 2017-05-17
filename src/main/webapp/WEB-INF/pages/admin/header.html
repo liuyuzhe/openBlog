@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../static/plugin/select2-4.0.3/css/select2.css">
     <link rel="stylesheet" href="../../../static/plugin/mditor/css/mditor.css" />
     <link rel="stylesheet" href="../../../static/plugin/summernote-0.8.3/summernote.css">
+    <link rel="stylesheet" href="../../../static/plugin/bootstrap-switch/css/bootstrap-switch.css">
     <link rel="stylesheet" href="../../../static/admin/css/style.css">
 </head>
 <body>
@@ -64,7 +65,7 @@
                             <input type="text" name="title" class="form-control" placeholder="文章标题">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="slug" placeholder="访问路径"/>
+                            <input type="text" class="form-control" name="slug" placeholder="文章访问路径"/>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
@@ -76,7 +77,6 @@
                                 <option value="default">default</option>
                             </select>
                         </div>
-                        <div class="clearfix"></div>
                         <div class="form-group col-xs-12">
                             <div class="pull-right">
                                 <a type="button" class="btn btn-info btn-sm" id="switch-editor">切换为富文本编辑器</a>
@@ -86,15 +86,28 @@
                             <textarea id="md-editor"></textarea>
                         </div>
                         <div class="form-group col-md-12 html-container">
-                            <textarea id="summer-note">
-                            </textarea>
+                            <textarea id="summer-note"></textarea>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="text-right col-xs-12">
-                            <button type="button" class="btn btn-sm btn-warning">存为草稿</button>
-                            <button type="button" class="btn btn-sm btn-primary">保存文章</button>
+                        <div class="form-group col-md-3">
+                            <label class="">文章状态</label>
+                            <input type="checkbox" name="post-status" class="form-control" checked>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="">评论状态</label>
+                            <input type="checkbox" name="post_comment_status" class="form-control" checked>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="">添加缩略图</label>
+                            <input type="checkbox" name="add_thumb_url" class="form-control">
+                        </div>
+                        <div id="thumb-url" class="form-group col-md-12" hidden>
+                            <input type="text" name="post_thumb_url" class="form-control" placeholder="输入缩略图URL">
                         </div>
                     </fieldset>
+                    <div class="text-right col-xs-12">
+                        <button type="button" class="btn btn-sm btn-warning">存为草稿</button>
+                        <button type="button" class="btn btn-sm btn-primary">保存文章</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -106,7 +119,7 @@
 <script src="../../../static/plugin/select2-4.0.3/js/select2.js"></script>
 <script src="../../../static/plugin/mditor/js/mditor.js"></script>
 <script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
-
+<script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
 <script src="../../../static/admin/js/post.js"></script>
 
 </body>

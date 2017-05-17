@@ -49,3 +49,31 @@ $("#select-tags").select2({
     });
 
 })();
+
+$.fn.bootstrapSwitch.defaults.size = 'small';
+$.fn.bootstrapSwitch.defaults.handleWidth = '26px';
+
+$("[name='post-status']").bootstrapSwitch({
+    onColor : "primary",
+    offColor : "warning",
+    onText : "公开",
+    offText : "私有"
+});
+
+$("[name='post_comment_status']").bootstrapSwitch({
+    onColor : "primary",
+    offColor : "warning",
+    onText : "允许",
+    offText : "禁止"
+});
+
+$("[name='add_thumb_url']").bootstrapSwitch({
+    onColor : "primary",
+    offColor : "warning",
+    onText : "打开",
+    offText : "关闭"
+});
+
+$("[name='add_thumb_url']").on('switchChange.bootstrapSwitch', function(event, state) {
+    $("#thumb-url").toggle(state);
+});
