@@ -168,3 +168,23 @@ body {
 .select2-container--focus .select2-selection--multiple {
     border-color: #66afe9 !important;
 }
+
+.attach > div {
+    margin-top: 5px;
+}
+
+.attach-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #333;
+}
+
+.attach-text {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.attach button {
+    margin-bottom: 5px;
+}
