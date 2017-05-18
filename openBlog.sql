@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/04/2017 21:39:05 PM
+ Date: 05/18/2017 20:16:02 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -54,9 +54,10 @@ CREATE TABLE `post_table` (
   `post_content` longtext NOT NULL COMMENT '内容',
   `post_create_time` datetime NOT NULL COMMENT '创建时间',
   `post_update_time` datetime NOT NULL COMMENT '更新时间',
+  `post_type` varchar(20) NOT NULL DEFAULT 'post' COMMENT '文章类型(''post'',''page'')',
+  `post_fmt_type` varchar(20) NOT NULL DEFAULT '' COMMENT '输出格式(''markdown'',''html'')',
   `post_status` varchar(20) NOT NULL DEFAULT 'publish' COMMENT '文章状态(''publish'',''draft'',''private'')',
   `post_comment_status` varchar(20) NOT NULL DEFAULT 'open' COMMENT '评论状态(''open'',''close'')',
-  `post_type` varchar(20) NOT NULL DEFAULT 'post' COMMENT '文章类型(''post'',''page'')',
   `post_comment_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
   `post_read_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '阅读数',
   `post_spot_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '点赞数',

@@ -13,6 +13,8 @@
         <result property="content" column="post_content"/>
         <result property="create_time" column="post_create_time"/>
         <result property="update_time" column="post_update_time"/>
+        <result property="type" column="post_type"/>
+        <result property="fmt_type" column="post_fmt_type"/>
         <result property="status" column="post_status"/>
         <result property="comment_status" column="post_comment_status"/>
         <result property="comment_count" column="post_comment_count"/>

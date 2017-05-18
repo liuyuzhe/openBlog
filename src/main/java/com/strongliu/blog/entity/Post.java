@@ -11,10 +11,10 @@ public class Post {
 	private String content;
 	private Date create_time;
 	private Date update_time;
+	private String type;
+	private String fmt_type;
 	private String status;
 	private String comment_status;
-	private String type;
-	private String mime_type;
 	private Long comment_count;
 	private Long read_count;
 	private Long spot_count;
@@ -84,6 +84,22 @@ public class Post {
 		this.update_time = update_time;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getFmt_type() {
+		return fmt_type;
+	}
+
+	public void setFmt_type(String fmt_type) {
+		this.fmt_type = fmt_type;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -98,22 +114,6 @@ public class Post {
 
 	public void setComment_status(String comment_status) {
 		this.comment_status = comment_status;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getMime_type() {
-		return mime_type;
-	}
-
-	public void setMime_type(String mime_type) {
-		this.mime_type = mime_type;
 	}
 
 	public Long getComment_count() {
