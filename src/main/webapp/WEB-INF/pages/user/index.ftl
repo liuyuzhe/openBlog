@@ -76,14 +76,14 @@
                     </#list>
                 </#if>
                 <#if postPageVo?? >
-                    <nav class="pagination">
+                    <nav class="pagination post-page">
                         <#if (postPageVo.pageIndex > 1) >
                             <a class="newer-posts" href="/?page=${postPageVo.pageIndex - 1}">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         </#if>
                         <#if (postPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
-                            <span class="page-number">第 ${postPageVo.pageIndex} 页 &frasl; 共 ${postPageVo.pageTotal} 页</span>
+                            <span class="page-number"> ${postPageVo.pageIndex}  &frasl; 共 ${postPageVo.pageTotal} 页</span>
                         </#if>
                         <#if (postPageVo.pageIndex < postPageVo.pageTotal) >
                             <a class="older-posts" href="/?page=${postPageVo.pageIndex + 1}">

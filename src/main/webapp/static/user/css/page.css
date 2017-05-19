@@ -1,30 +1,30 @@
 @charset "UTF-8";
 
-.pagination {
+.post-page {
     margin: 0 0 35px;
     text-align: center;
     display: block;
 }
 
-.pagination a {
+.post-page a {
     display: inline-block;
     color: #ffffff;
     background: #f4645f;
     border-radius: 2px;
 }
 
-.pagination a:hover,
-.pagination a:focus {
+.post-page a:hover,
+.post-page a:focus {
     text-decoration: none;
 }
 
-.pagination a i {
+.post-page a i {
     width: 36px;
     height: 36px;
     line-height: 36px;
 }
 
-.pagination span {
+.post-page span {
     display: inline-block;
     color: #ffffff;
     background: #f4645f;
