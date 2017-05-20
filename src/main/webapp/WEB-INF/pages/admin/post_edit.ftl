@@ -20,16 +20,28 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 class="page-title">发布文章</h4>
+                <h4 class="page-title">
+                    <#if post?? >
+                        编辑文章
+                    <#else>
+                        发布文章
+                    </#if>
+                </h4>
             </div>
             <div class="col-sm-12">
                 <form id="articleForm" role="form">
                     <fieldset class="article-form">
+                        <input type="hidden" name="id" value="${post.id ! ""}" />
+                        <input type="hidden" name="content" />
+                        <input type="hidden" name="categories" />
+                        <input type="hidden" name="tags" >
+                        <input type="hidden" name="fmt_type" value="${post.fmt_type}"/>
+
                         <div class="form-group col-md-6">
-                            <input type="text" name="title" class="form-control" placeholder="文章标题">
+                            <input type="text" name="title" class="form-control" placeholder="文章标题" value="${post.title ! ""}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="slug" placeholder="文章访问路径"/>
+                            <input type="text" name="slug" class="form-control" placeholder="文章访问路径" value="${post.slug ! ""}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
@@ -54,11 +66,17 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">文章状态</label>
-                            <input type="checkbox" name="post-status" class="form-control" checked>
+                            <input type="checkbox" name="post-status" class="form-control"
+                                   <#if (post.status == "publish") >
+                                   checked
+                                   </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">评论状态</label>
-                            <input type="checkbox" name="post_comment_status" class="form-control" checked>
+                            <input type="checkbox" name="post_comment_status" class="form-control"
+                                   <#if (post.comment_status == "open") >
+                                   checked
+                                   </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">添加缩略图</label>
@@ -70,8 +88,8 @@
                     </fieldset>
                     <div class="text-right">
                         <div class="col-xs-12">
-                            <button type="button" class="btn btn-sm btn-info">存为草稿</button>
-                            <button type="button" class="btn btn-sm btn-success">保存文章</button>
+                            <button id="save_draft" type="button" class="btn btn-sm btn-info">存为草稿</button>
+                            <button id="save_post" type="button" class="btn btn-sm btn-success">保存文章</button>
                         </div>
                     </div>
                 </form>

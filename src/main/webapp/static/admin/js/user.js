@@ -68,10 +68,10 @@ var User = {
         }
 
         $.post({
-            url: "/user/register",
-            dataType: "json",
-            data: $("#registerForm").serialize(),
-            success: function(response) {
+            url : "/user/register",
+            dataType : "json",
+            data : $("#registerForm").serialize(),
+            success : function(response) {
                 if (response.code == 0) {
                     // 成功并弹窗
                     window.location.href = '/user/login';
@@ -79,12 +79,13 @@ var User = {
                     console.log(response.message);
                 }
             },
-            error: function(response) {
+            error : function(response) {
                 console.log(response);
             }
         });
     });
 
+    // TODO: 按需加载JS
     $("#loginForm").find('[type=text], [type=password]').blur(function() {
         switch ($(this).attr('name')) {
             case "username" :
@@ -104,17 +105,17 @@ var User = {
         }
 
         $.post({
-            url: "/user/login",
-            dataType: "json",
+            url : "/user/login",
+            dataType : "json",
             data : $("#loginForm").serialize(),
-            success: function(response) {
+            success : function(response) {
                 if (response.code == 0) {
                     window.location.href = "/";
                 } else {
                     console.log(response.message);
                 }
             },
-            error: function(response) {
+            error : function(response) {
                 console.log(response.message);
             }
         });
