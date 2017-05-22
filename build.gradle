@@ -9,7 +9,17 @@
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
-apply plugin: 'jetty'
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+apply plugin: 'org.akhikhl.gretty'
 
 // JDK版本
 sourceCompatibility = 1.8 
@@ -95,15 +105,12 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
 }
 
-// Jetty配置项,使能jettyStop任务
-httpPort = 8080
-stopPort = 8090
-stopKey = "stop"
-
-// 实现Jetty静态资源热加载,修改base URL(默认为项目名)
-[jettyRun, jettyRunWar]*.with {
-    contextPath ""
-    reload "automatic"
-    scanIntervalSeconds 1
+gretty {
+    httpPort = 8080
+    servletContainer = 'tomcat7'
+    contextPath = ''
+    scanInterval 1
+    debugPort = 5050
+    debugSuspend = true
 }
 
