@@ -27,7 +27,7 @@
                 </form>
             </div>
             <#if attachPageVo?? >
-                <#list attachPageVo.attachList as attach>
+                <#list attachPageVo.attachList as attach >
                     <div class="col-md-2 text-center attach">
                         <a class="" href="${attach.slug}">
                             <img class="attach-img" src="${attach.slug}" title="${attach.name}"/>
@@ -51,20 +51,20 @@
                         </div>
                     </div>
                 </#list>
-            </#if>
-            <#if (attachPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
-                <nav class="col-md-12 text-center">
-                    <ul class="pagination">
-                        <#list 1..(attachPageVo.pageTotal) as index>
-                            <li
-                                <#if index == (attachPageVo.pageIndex) >
-                                    class="active"
-                                </#if> >
-                                <a href="#">${index}</a>
-                            </li>
-                        </#list>
-                    </ul>
-                </nav>
+                <#if (attachPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
+                    <nav class="col-md-12 text-center">
+                        <ul class="pagination">
+                            <#list 1..(attachPageVo.pageTotal) as index >
+                                <li
+                                    <#if index == (attachPageVo.pageIndex) >
+                                            class="active"
+                                    </#if> >
+                                    <a href="#">${index}</a>
+                                </li>
+                            </#list>
+                        </ul>
+                    </nav>
+                </#if>
             </#if>
         </div>
     </div>
@@ -73,6 +73,7 @@
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../../../static/plugin/dropzone-4.3.0/dropzone.js"></script>
+<script src="../../../static/common/js/base.js"></script>
 <script src="../../../static/admin/js/attach.js"></script>
 
 </body>

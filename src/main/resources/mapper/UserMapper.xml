@@ -21,13 +21,13 @@
     </select>
 
     <select id="selectById" resultMap="userResultMap">
-        SELECT user_id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_status FROM user_table
+        SELECT user_id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_activate_time FROM user_table
         WHERE id=#{id}
     </select>
 
     <select id="selectAll" resultMap="userResultMap">
-        SELECT user_id, user_nickname, user_avatar_url, register_time, user_activate_time FROM user_table
-        ORDER BY user_nickname ASC
+        SELECT user_id, user_name, user_avatar_url, user_register_time, user_activate_time FROM user_table
+        ORDER BY user_id ASC
         LIMIT #{offset}, #{limit}
     </select>
 
@@ -41,14 +41,14 @@
 
     <insert id="insert" parameterType="user">
         INSERT INTO user_table
-        (user_id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_status)
+        (user_id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_activate_time)
         VALUES
-        (#{id}, #{name}, #{password}, #{nickname}, #{email}, #{avatar_url}, #{register_time}, #{status})
+        (#{id}, #{name}, #{password}, #{nickname}, #{email}, #{avatar_url}, #{register_time}, #{activate_time})
     </insert>
 
     <update id="update" parameterType="user">
         UPDATE user_table
-        SET user_password=#{password}, user_nickname=#{nickname}, user_email=#{email}, user_avatar_url=#{avatar_url}, user_status=#{status}
+        SET user_password=#{password}, user_nickname=#{nickname}, user_email=#{email}, user_avatar_url=#{avatar_url}
         WHERE user_id=#{id}
     </update>
 

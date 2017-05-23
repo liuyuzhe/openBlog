@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/18/2017 20:16:02 PM
+ Date: 05/22/2017 22:12:52 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -104,7 +104,7 @@ CREATE TABLE `user_table` (
   `user_password` varchar(50) NOT NULL COMMENT '密码',
   `user_nickname` varchar(50) NOT NULL COMMENT '昵称',
   `user_email` varchar(50) NOT NULL COMMENT '邮箱',
-  `user_avatars_url` varchar(100) NOT NULL COMMENT '头像URL',
+  `user_avatar_url` varchar(100) DEFAULT NULL COMMENT '头像URL',
   `user_register_time` datetime NOT NULL COMMENT '注册时间',
   `user_activate_time` datetime NOT NULL COMMENT '活跃时间',
   PRIMARY KEY (`user_id`),

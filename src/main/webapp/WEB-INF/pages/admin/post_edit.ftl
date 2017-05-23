@@ -31,17 +31,17 @@
             <div class="col-sm-12">
                 <form id="articleForm" role="form">
                     <fieldset class="article-form">
-                        <input type="hidden" name="id" value="${post.id ! ""}" />
+                        <input type="hidden" name="id" value="${(post.id)!""}" />
                         <input type="hidden" name="content" />
                         <input type="hidden" name="categories" />
                         <input type="hidden" name="tags" >
-                        <input type="hidden" name="fmt_type" value="${post.fmt_type}"/>
+                        <input type="hidden" name="fmt_type" value="${(post.fmt_type)!""}"/>
 
                         <div class="form-group col-md-6">
-                            <input type="text" name="title" class="form-control" placeholder="文章标题" value="${post.title ! ""}">
+                            <input type="text" name="title" class="form-control" placeholder="文章标题" value="${(post.title)!""}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="slug" class="form-control" placeholder="文章访问路径" value="${post.slug ! ""}"/>
+                            <input type="text" name="slug" class="form-control" placeholder="文章访问路径" value="${(post.slug)!""}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
@@ -67,23 +67,26 @@
                         <div class="form-group col-md-3">
                             <label class="">文章状态</label>
                             <input type="checkbox" name="post-status" class="form-control"
-                                   <#if (post.status == "publish") >
+                            <#if ((post.status)!"publish" == "publish") >
                                    checked
-                                   </#if> >
+                            </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">评论状态</label>
                             <input type="checkbox" name="post_comment_status" class="form-control"
-                                   <#if (post.comment_status == "open") >
+                            <#if ((post.comment_status)!"open" == "open") >
                                    checked
-                                   </#if> >
+                            </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">添加缩略图</label>
-                            <input type="checkbox" name="add_thumb_url" class="form-control">
+                            <input type="checkbox" name="add_thumb_url" class="form-control"
+                            <#if (post.thumb_url)?? >
+                                   checked
+                            </#if> >
                         </div>
-                        <div id="thumb-url" class="form-group col-md-12" hidden>
-                            <input type="text" name="post_thumb_url" class="form-control" placeholder="输入缩略图URL">
+                        <div id="thumb-url" class="form-group col-md-12">
+                            <input type="text" name="post_thumb_url" class="form-control" placeholder="输入缩略图URL" value="${(post.thumb_url)!""}">
                         </div>
                     </fieldset>
                     <div class="text-right">
@@ -104,6 +107,7 @@
 <script src="../../../static/plugin/mditor/js/mditor.js"></script>
 <script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
 <script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="../../../static/common/js/base.js"></script>
 <script src="../../../static/admin/js/post.js"></script>
 
 </body>

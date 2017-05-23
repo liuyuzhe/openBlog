@@ -7,8 +7,6 @@ package com.strongliu.blog.vo;
 public class RegisterFormVo {
     private String username;
     private String password;
-    private String repeatPassword;
-    private String nickname;
     private String email;
 
     public String getUsername() {
@@ -25,22 +23,6 @@ public class RegisterFormVo {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getEmail() {

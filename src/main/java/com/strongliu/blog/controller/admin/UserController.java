@@ -38,7 +38,7 @@ public class UserController extends BaseController {
     @Autowired
     private LoginFormValidator loginFormValidator;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                         @RequestParam(value = "limit", required = false, defaultValue = "15") Integer limit, Model model) {
 
@@ -72,6 +72,7 @@ public class UserController extends BaseController {
             userManager.addUserFormVo(registerFormVo);
             return new ResponseDto(ErrorCode.SUCCESS);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

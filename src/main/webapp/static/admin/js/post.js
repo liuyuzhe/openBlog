@@ -50,7 +50,7 @@
     }
 
     switchEditor.click(function() {
-        if (fmt_type.val() === "html") {
+        if (fmt_type.val() !== "html") {
             htmlEditorShow();
         } else {
             mdEditorShow();
@@ -82,12 +82,14 @@
         offText : "关闭"
     });
 
+    var thumb = $("#articleForm input[name=add_thumb_url]");
+    $("#thumb-url").toggle(thumb.is(':checked'));
+
     $("[name='add_thumb_url']").on('switchChange.bootstrapSwitch', function(event, state) {
         $("#thumb-url").toggle(state);
     });
 
-
-    $("#save_draft").click(function() {
+    var savePost = function(state) {
         var title = $("#articleForm input[name=title]").val();
         var slug = $("#articleForm input[name=slug]").val();
         var categories = $("#select-categories").val();
@@ -102,18 +104,33 @@
         $("#articleForm input[name=content]").val(content);
         $("#articleForm input[name=categories]").val($("#select-categories").val());
         $("#articleForm input[name=tags]").val($("#select-tags").val());
-        
+        if (post.isEmpty(state)) {
+            $("#articleForm input[name=post-status]").val(state);
+        }
+
         $.post({
             url : url,
             dataType : "json",
             data : $("#articleForm").serialize(),
             success : function(response) {
-
+                if (response.code == 0) {
+                    console.log(response.message);
+                } else {
+                    console.log(response.message);
+                }
             },
             error : function(response) {
-
+                console.log(response.message);
             }
         });
+    };
+
+    $("#save_draft").click(function() {
+        savePost();
+    });
+
+    $("#save_draft").click(function() {
+        savePost("publish");
     });
 
 })();

@@ -7,16 +7,12 @@ var Base = {
     init : function() {
         var base = {};
 
-        base.isExit = function(obj) {
-            return !(obj == null || obj == undefined);
-        };
-
         base.isEmpty = function(obj) {
-            return !(obj == null || obj == undefined || obj == "" || obj.length == 0);
+            return (obj == null || obj == undefined || obj == "" || obj.length == 0);
         };
 
         base.isUsername = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -25,7 +21,7 @@ var Base = {
         };
 
         base.isPassword = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -34,7 +30,7 @@ var Base = {
         };
 
         base.isNickname = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -43,7 +39,7 @@ var Base = {
         };
 
         base.isEmail = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -52,7 +48,7 @@ var Base = {
         };
 
         base.isMobilephone = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -61,7 +57,7 @@ var Base = {
         };
 
         base.isTelephone = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 
@@ -70,7 +66,7 @@ var Base = {
         };
 
         base.isUrl = function(text) {
-            if (isEmpty(text)) {
+            if (this.isEmpty(text)) {
                 return false;
             }
 

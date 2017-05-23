@@ -68,7 +68,7 @@ var User = {
         }
 
         $.post({
-            url : "/user/register",
+            url : "/admin/user/register",
             dataType : "json",
             data : $("#registerForm").serialize(),
             success : function(response) {
@@ -99,13 +99,13 @@ var User = {
 
     $("#login").click(function() {
         var username = $("#loginForm input[name='username']").val();
-        var password = $("#loginForm input[name='pasword']").val();
+        var password = $("#loginForm input[name='password']").val();
         if (!user.checkUsername(username) || !user.checkPassword(password)) {
             return;
         }
 
         $.post({
-            url : "/user/login",
+            url : "/admin/user/login",
             dataType : "json",
             data : $("#loginForm").serialize(),
             success : function(response) {

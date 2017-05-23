@@ -8,6 +8,7 @@ import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,8 +57,11 @@ public class UserManager {
         User user = new User();
         user.setName(registerFormVo.getUsername());
         user.setPassword(registerFormVo.getPassword());
-        user.setNickname(registerFormVo.getNickname());
+        user.setNickname(registerFormVo.getUsername());
         user.setEmail(registerFormVo.getEmail());
+        Date date = new Date();
+        user.setRegister_time(date);
+        user.setActivate_time(date);
 
         return userService.addUser(user);
     }

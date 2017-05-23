@@ -23,7 +23,7 @@ public class PostController extends BaseController {
 	@Autowired
 	private PostFormValidator postFormValidator;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
 						@RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
 						Model model) {

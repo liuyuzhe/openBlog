@@ -22,7 +22,7 @@ public class CategoryController extends BaseController {
 	@Autowired
 	CategoryManager categoryManager;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index(Model model) {
 		List<Category> categoryList = categoryManager.getAllCategory();
 

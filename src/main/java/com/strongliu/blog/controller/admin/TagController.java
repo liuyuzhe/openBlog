@@ -26,7 +26,7 @@ public class TagController extends BaseController {
     @Autowired
     private TagManager tagManager;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
         List<Tag> tagList = tagManager.getAllTag();
 
