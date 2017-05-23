@@ -162,6 +162,7 @@ public class UserController extends BaseController {
             userManager.updateUser(user);
             return new ResponseDto(ErrorCode.SUCCESS);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

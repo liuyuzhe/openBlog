@@ -12,8 +12,7 @@
     });
 
     $("#select-tags").select2({
-        tags: true,
-        placeholder: "选择或添加文章标签",
+        placeholder: "选择文章标签",
         allowClear: true,
         tokenSeparators: [',']
     });
@@ -61,21 +60,21 @@
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $.fn.bootstrapSwitch.defaults.handleWidth = '26px';
 
-    $("[name='post-status']").bootstrapSwitch({
+    $("[name='status']").bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "公开",
         offText : "私有"
     });
 
-    $("[name='post_comment_status']").bootstrapSwitch({
+    $("[name='comment_status']").bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "允许",
         offText : "禁止"
     });
 
-    $("[name='add_thumb_url']").bootstrapSwitch({
+    $("#add_thumb_url").bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "打开",
@@ -100,12 +99,25 @@
         }
 
         var id = $("#articleForm input[name=id]").val();
-        var url = post.isEmpty(id) ? '/admin/article/modify' : '/admin/article/publish';
+        var url = post.isEmpty(id) ? "/admin/post/create" : "/admin/post/update" ;
         $("#articleForm input[name=content]").val(content);
         $("#articleForm input[name=categories]").val($("#select-categories").val());
         $("#articleForm input[name=tags]").val($("#select-tags").val());
-        if (post.isEmpty(state)) {
-            $("#articleForm input[name=post-status]").val(state);
+
+        var statusElement = $("#articleForm input[name=status]");
+        if (!post.isEmpty(state)) {
+            statusElement.val(state);
+        } else if (statusElement.val() === "on") {
+            statusElement.val("publish");
+        } else {
+            statusElement.val("private");
+        }
+
+        var commentStatusElement = $("#articleForm input[name=comment_status]");
+        if (commentStatusElement.val() === "on") {
+            commentStatusElement.val("open");
+        } else {
+            commentStatusElement.val("close");
         }
 
         $.post({
@@ -126,11 +138,11 @@
     };
 
     $("#save_draft").click(function() {
-        savePost();
+        savePost("draft");
     });
 
-    $("#save_draft").click(function() {
-        savePost("publish");
+    $("#save_post").click(function() {
+        savePost();
     });
 
 })();

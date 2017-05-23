@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -128,11 +129,30 @@ public class PostManager {
     @Transactional
     public int addPostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
+        post.setSlug(postFormVo.getSlug());
+        post.setThumb_url(postFormVo.getThumb_url());
         post.setTitle(postFormVo.getTitle());
+        post.setExcerpt(postFormVo.getContent());
         post.setContent(postFormVo.getContent());
-        post.setStatus(postFormVo.getStatus());
-        post.setComment_status(postFormVo.getComment_status());
+        Date date = new Date();
+        post.setCreate_time(date);
+        post.setUpdate_time(date);
+        if (!postFormVo.getType().isEmpty()) {
+            post.setType(postFormVo.getType());
+        }
+        post.setFmt_type(postFormVo.getFmt_type());
+        if (!postFormVo.getStatus().isEmpty()) {
+            post.setStatus(postFormVo.getStatus());
+        }
+        if (!postFormVo.getComment_status().isEmpty()) {
+            post.setComment_status(postFormVo.getComment_status());
+        }
+        post.setCreator_id(0);
         int ret = postService.addPost(post);
+
+        if (postFormVo.getCategories().isEmpty()) {
+            postFormVo.setCategories("1");
+        }
 
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());

@@ -5,12 +5,41 @@ package com.strongliu.blog.vo;
  */
 
 public class PostFormVo {
+    private Integer id;
+    private String slug;
+    private String thumb_url;
     private String title;
     private String content;
+    private String type;
+    private String fmt_type;
     private String status;
     private String comment_status;
     private String categories;
     private String tags;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getThumb_url() {
+        return thumb_url;
+    }
+
+    public void setThumb_url(String thumb_url) {
+        this.thumb_url = thumb_url;
+    }
 
     public String getTitle() {
         return title;
@@ -26,6 +55,22 @@ public class PostFormVo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFmt_type() {
+        return fmt_type;
+    }
+
+    public void setFmt_type(String fmt_type) {
+        this.fmt_type = fmt_type;
     }
 
     public String getStatus() {

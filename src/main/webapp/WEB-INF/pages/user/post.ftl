@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<#include "../common/header.html">
+<#include "header.html">
 
 <section>
     <div class="container">

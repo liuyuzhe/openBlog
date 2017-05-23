@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/22/2017 22:12:52 PM
+ Date: 05/23/2017 21:11:36 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `post_table`;
 CREATE TABLE `post_table` (
   `post_id` int(11) NOT NULL AUTO_INCREMENT,
   `post_slug` varchar(20) NOT NULL COMMENT '链接地址',
-  `post_thumb_url` varchar(100) NOT NULL COMMENT '缩略图URL',
+  `post_thumb_url` varchar(100) DEFAULT NULL COMMENT '缩略图URL',
   `post_title` text NOT NULL COMMENT '标题',
   `post_excerpt` text NOT NULL COMMENT '摘要',
   `post_content` longtext NOT NULL COMMENT '内容',
@@ -110,6 +110,6 @@ CREATE TABLE `user_table` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`) USING BTREE,
   UNIQUE KEY `user_email` (`user_email`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

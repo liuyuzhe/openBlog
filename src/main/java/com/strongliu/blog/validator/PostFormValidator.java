@@ -19,8 +19,8 @@ public class PostFormValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "slug", null, "请输入文章访问路径");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", null, "请填写文章标题");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "content", null, "请填写文章内容");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categories", null, "请选择文章分类");
     }
 }

@@ -66,27 +66,27 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">文章状态</label>
-                            <input type="checkbox" name="post-status" class="form-control"
+                            <input type="checkbox" name="status" class="form-control"
                             <#if ((post.status)!"publish" == "publish") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">评论状态</label>
-                            <input type="checkbox" name="post_comment_status" class="form-control"
+                            <input type="checkbox" name="comment_status" class="form-control"
                             <#if ((post.comment_status)!"open" == "open") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">添加缩略图</label>
-                            <input type="checkbox" name="add_thumb_url" class="form-control"
+                            <input id="add_thumb_url" type="checkbox" class="form-control"
                             <#if (post.thumb_url)?? >
                                    checked
                             </#if> >
                         </div>
                         <div id="thumb-url" class="form-group col-md-12">
-                            <input type="text" name="post_thumb_url" class="form-control" placeholder="输入缩略图URL" value="${(post.thumb_url)!""}">
+                            <input type="text" name="thumb_url" class="form-control" placeholder="输入缩略图URL" value="${(post.thumb_url)!""}">
                         </div>
                     </fieldset>
                     <div class="text-right">
