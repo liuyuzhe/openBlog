@@ -77,7 +77,7 @@
         SELECT COUNT(*) FROM post_table
     </select>
 
-    <insert id="insert" parameterType="post">
+    <insert id="insert" parameterType="post" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO post_table
         (post_slug, post_thumb_url, post_title, post_excerpt, post_content, post_create_time, post_update_time,
          post_type, post_fmt_type, post_status, post_comment_status, post_comment_count, post_read_count, post_spot_count, creator_id)

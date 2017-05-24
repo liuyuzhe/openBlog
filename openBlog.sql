@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/23/2017 21:11:36 PM
+ Date: 05/25/2017 00:59:14 AM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -64,7 +64,7 @@ CREATE TABLE `post_table` (
   `creator_id` int(11) NOT NULL COMMENT '创建者ID',
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_slug` (`post_slug`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `relationship_table`
@@ -73,11 +73,7 @@ DROP TABLE IF EXISTS `relationship_table`;
 CREATE TABLE `relationship_table` (
   `target_id` int(11) NOT NULL,
   `term_id` int(11) NOT NULL,
-  PRIMARY KEY (`target_id`,`term_id`),
-  UNIQUE KEY `target_id` (`target_id`) USING BTREE,
-  UNIQUE KEY `term_id` (`term_id`) USING BTREE,
-  CONSTRAINT `target_id` FOREIGN KEY (`target_id`) REFERENCES `post_table` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term_table` (`term_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`target_id`,`term_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -110,6 +106,6 @@ CREATE TABLE `user_table` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`) USING BTREE,
   UNIQUE KEY `user_email` (`user_email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

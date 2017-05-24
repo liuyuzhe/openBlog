@@ -1,5 +1,8 @@
 package com.strongliu.blog.utility;
 
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,11 +14,19 @@ import java.util.UUID;
 public class StringUtil {
 
     public static List<Integer> StringToIntegerList(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+
         List<String> strList = Arrays.asList(str.split(","));
         return StringListToIntegerList(strList);
     }
 
     public static List<Integer> StringListToIntegerList(List<String> strList) {
+        if (ObjectUtils.isEmpty(strList)) {
+            return null;
+        }
+
         List<Integer> iList = new ArrayList<>(strList.size());
         for (String str : strList) {
             iList.add(Integer.parseInt(str));

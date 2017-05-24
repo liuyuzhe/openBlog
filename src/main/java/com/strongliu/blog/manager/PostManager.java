@@ -12,6 +12,7 @@ import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -138,29 +139,30 @@ public class PostManager {
         Date date = new Date();
         post.setCreate_time(date);
         post.setUpdate_time(date);
-        if (StringUtils.isEmpty(postFormVo.getType())) {
+        if (!StringUtils.isEmpty(postFormVo.getType())) {
             post.setType(postFormVo.getType());
         }
         post.setFmt_type(postFormVo.getFmt_type());
-        if (StringUtils.isEmpty(postFormVo.getStatus())) {
+        if (!StringUtils.isEmpty(postFormVo.getStatus())) {
             post.setStatus(postFormVo.getStatus());
         }
-        if (StringUtils.isEmpty(postFormVo.getComment_status())) {
+        if (!StringUtils.isEmpty(postFormVo.getComment_status())) {
             post.setComment_status(postFormVo.getComment_status());
         }
         post.setCreator_id(1); // 当前登陆用户ID
-        int ret = postService.addPost(post);
+        postService.addPost(post);
 
         if (StringUtils.isEmpty(postFormVo.getCategories())) {
             postFormVo.setCategories("1"); // 默认分类ID
         }
-
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
-        categoryIdList.addAll(tagIdList);
+        if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(tagIdList)) {
+            categoryIdList.addAll(tagIdList);
+        }
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
-        return ret;
+        return post.getId();
     }
 
     /**
