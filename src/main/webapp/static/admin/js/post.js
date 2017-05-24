@@ -11,8 +11,12 @@
         tokenSeparators: [',']
     });
 
+    //var data = [{id: 10, text: 'apple'}, {id: 12, text: 'banana'}, {id: 20, text: 'pear'}];//下拉列表中的数据项
+
     $("#select-tags").select2({
+        tags: true,
         placeholder: "选择文章标签",
+        //data:data,
         allowClear: true,
         tokenSeparators: [',']
     });
@@ -41,12 +45,6 @@
         switchEditor.text("切换为Markdown编辑器");
         fmt_type.val("html");
     };
-
-    if (fmt_type.val() !== "html") {
-        mdEditorShow();
-    } else {
-        htmlEditorShow();
-    }
 
     switchEditor.click(function() {
         if (fmt_type.val() !== "html") {

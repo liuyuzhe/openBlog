@@ -3,7 +3,11 @@ package com.strongliu.blog.controller.admin;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
+import com.strongliu.blog.entity.Category;
+import com.strongliu.blog.entity.Tag;
+import com.strongliu.blog.manager.CategoryManager;
 import com.strongliu.blog.manager.PostManager;
+import com.strongliu.blog.manager.TagManager;
 import com.strongliu.blog.validator.PostFormValidator;
 import com.strongliu.blog.vo.PostFormVo;
 import com.strongliu.blog.vo.PostPageVo;
@@ -14,12 +18,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("admin/post")
 public class PostController extends BaseController {
 
 	@Autowired
 	private PostManager postManager;
+	@Autowired
+	private CategoryManager categoryManager;
+	@Autowired
+	private TagManager tagManager;
 	@Autowired
 	private PostFormValidator postFormValidator;
 
@@ -49,6 +59,16 @@ public class PostController extends BaseController {
 
 		model.addAttribute(postVo);
 
+		List<Category> categoryList = categoryManager.getAllCategory();
+		if (categoryList != null) {
+			model.addAttribute(categoryList);
+		}
+
+		List<Tag> tagList = tagManager.getAllTag();
+		if (tagList != null) {
+			model.addAttribute(tagList);
+		}
+
 		return this.renderAdmin("post_edit");
 	}
 
@@ -64,6 +84,7 @@ public class PostController extends BaseController {
 			postManager.addPostFormVo(postFormVo);
 			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}

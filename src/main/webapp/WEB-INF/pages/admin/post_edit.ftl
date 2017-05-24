@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h4 class="page-title">
-                    <#if post?? >
+                    <#if (postVo.post)?? >
                         编辑文章
                     <#else>
                         发布文章
@@ -31,26 +31,44 @@
             <div class="col-sm-12">
                 <form id="articleForm" role="form">
                     <fieldset class="article-form">
-                        <input type="hidden" name="id" value="${(post.id)!""}" />
-                        <input type="hidden" name="content" />
+                        <input type="hidden" name="id" value="${(postVo.post.id)!""}" />
+                        <input type="hidden" name="content" value="${(postVo.post.content)!""}" />
                         <input type="hidden" name="categories" />
                         <input type="hidden" name="tags" >
-                        <input type="hidden" name="fmt_type" value="${(post.fmt_type)!""}"/>
+                        <input type="hidden" name="fmt_type" value="${(postVo.post.fmt_type)!"markdown"}"/>
 
                         <div class="form-group col-md-6">
-                            <input type="text" name="title" class="form-control" placeholder="文章标题" value="${(post.title)!""}">
+                            <input type="text" name="title" class="form-control" placeholder="文章标题" value="${(postVo.post.title)!""}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="slug" class="form-control" placeholder="文章访问路径" value="${(post.slug)!""}"/>
+                            <input type="text" name="slug" class="form-control" placeholder="文章访问路径" value="${(postVo.post.slug)!""}"/>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
-                                <option value="default">default</option>
+                                <#if categoryList?? >
+                                    <#list categoryList as category >
+                                        <option value="${category.id}"
+                                            <#if (postVo.categoryList)?? && (postVo.categoryList)?seq_contains(category.name) >
+                                                selected
+                                            </#if> >
+                                        ${category.name}
+                                        </option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-tags" class="form-control" name="tags" multiple="multiple">
-                                <option value="default">default</option>
+                            <#if tagList?? >
+                                <#list tagList as tag >
+                                    <option value="${tag.id}"
+                                        <#if (postVo.tagList)?? && (postVo.tagList)?seq_contains(tag.name) >
+                                            selected
+                                        </#if> >
+                                    ${tag.name}
+                                    </option>
+                                </#list>
+                            </#if>
                             </select>
                         </div>
                         <div class="form-group col-xs-12">
@@ -58,35 +76,38 @@
                                 <a type="button" class="btn btn-info btn-sm" id="switch-editor">切换为富文本编辑器</a>
                             </div>
                         </div>
-                        <div class="form-group col-md-12 md-container">
-                            <textarea id="md-editor"></textarea>
-                        </div>
-                        <div class="form-group col-md-12 html-container">
-                            <textarea id="summer-note"></textarea>
-                        </div>
+                        <#if (postVo.post.fmt_type)!"" != "html" >
+                            <div class="form-group col-md-12 md-container">
+                                <textarea id="md-editor">${(postVo.post.content)!""}</textarea>
+                            </div>
+                        <#else>
+                            <div class="form-group col-md-12 html-container">
+                                <textarea id="summer-note">${(postVo.post.content)!""}</textarea>
+                            </div>
+                        </#if>
                         <div class="form-group col-md-3">
                             <label class="">文章状态</label>
                             <input type="checkbox" name="status" class="form-control"
-                            <#if ((post.status)!"publish" == "publish") >
+                            <#if ((postVo.post.status)!"publish" == "publish") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">评论状态</label>
                             <input type="checkbox" name="comment_status" class="form-control"
-                            <#if ((post.comment_status)!"open" == "open") >
+                            <#if ((postVo.post.comment_status)!"open" == "open") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">添加缩略图</label>
                             <input id="add_thumb_url" type="checkbox" class="form-control"
-                            <#if (post.thumb_url)?? >
+                            <#if (postVo.post.thumb_url)?? >
                                    checked
                             </#if> >
                         </div>
                         <div id="thumb-url" class="form-group col-md-12">
-                            <input type="text" name="thumb_url" class="form-control" placeholder="输入缩略图URL" value="${(post.thumb_url)!""}">
+                            <input type="text" name="thumb_url" class="form-control" placeholder="输入缩略图URL" value="${(postVo.post.thumb_url)!""}">
                         </div>
                     </fieldset>
                     <div class="text-right">

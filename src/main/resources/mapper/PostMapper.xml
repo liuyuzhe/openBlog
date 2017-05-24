@@ -80,10 +80,10 @@
     <insert id="insert" parameterType="post">
         INSERT INTO post_table
         (post_slug, post_thumb_url, post_title, post_excerpt, post_content, post_create_time, post_update_time,
-         post_status, post_comment_status, post_type, post_mime_type, post_comment_count, post_read_count, post_spot_count, creator_id)
+         post_type, post_fmt_type, post_status, post_comment_status, post_comment_count, post_read_count, post_spot_count, creator_id)
         VALUES
         (#{slug}, #{thumb_url}, #{title}, #{excerpt}, #{content}, #{create_time}, #{update_time},
-        #{status}, #{comment_status}, #{type}, #{mime_type}, #{comment_count}, #{read_count}, #{spot_count}, #{creator_id})
+        #{type}, #{fmt_type}, #{status}, #{comment_status}, #{comment_count}, #{read_count}, #{spot_count}, #{creator_id})
     </insert>
 
     <update id="update" parameterType="post">

@@ -12,6 +12,7 @@ import com.strongliu.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -137,21 +138,21 @@ public class PostManager {
         Date date = new Date();
         post.setCreate_time(date);
         post.setUpdate_time(date);
-        if (!postFormVo.getType().isEmpty()) {
+        if (StringUtils.isEmpty(postFormVo.getType())) {
             post.setType(postFormVo.getType());
         }
         post.setFmt_type(postFormVo.getFmt_type());
-        if (!postFormVo.getStatus().isEmpty()) {
+        if (StringUtils.isEmpty(postFormVo.getStatus())) {
             post.setStatus(postFormVo.getStatus());
         }
-        if (!postFormVo.getComment_status().isEmpty()) {
+        if (StringUtils.isEmpty(postFormVo.getComment_status())) {
             post.setComment_status(postFormVo.getComment_status());
         }
-        post.setCreator_id(0);
+        post.setCreator_id(1); // 当前登陆用户ID
         int ret = postService.addPost(post);
 
-        if (postFormVo.getCategories().isEmpty()) {
-            postFormVo.setCategories("1");
+        if (StringUtils.isEmpty(postFormVo.getCategories())) {
+            postFormVo.setCategories("1"); // 默认分类ID
         }
 
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
