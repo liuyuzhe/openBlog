@@ -28,7 +28,7 @@
         SELECT COUNT(*) FROM attach_table
     </select>
 
-    <insert id="insert" parameterType="attach">
+    <insert id="insert" parameterType="attach" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO attach_table
         (attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id)
         VALUES

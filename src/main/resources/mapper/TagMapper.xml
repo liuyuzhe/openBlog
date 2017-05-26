@@ -34,7 +34,7 @@
          </foreach>
     </select>
 
-    <insert id="insert" parameterType="tag">
+    <insert id="insert" parameterType="tag" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO term_table
         (term_id, term_name, term_slug, term_type, term_count)
         VALUES

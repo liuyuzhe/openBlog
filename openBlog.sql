@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/25/2017 00:59:14 AM
+ Date: 05/26/2017 21:18:28 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -55,7 +55,7 @@ CREATE TABLE `post_table` (
   `post_create_time` datetime NOT NULL COMMENT '创建时间',
   `post_update_time` datetime NOT NULL COMMENT '更新时间',
   `post_type` varchar(20) NOT NULL DEFAULT 'post' COMMENT '文章类型(''post'',''page'')',
-  `post_fmt_type` varchar(20) NOT NULL DEFAULT '' COMMENT '输出格式(''markdown'',''html'')',
+  `post_fmt_type` varchar(20) NOT NULL COMMENT '输出格式(''markdown'',''html'')',
   `post_status` varchar(20) NOT NULL DEFAULT 'publish' COMMENT '文章状态(''publish'',''draft'',''private'')',
   `post_comment_status` varchar(20) NOT NULL DEFAULT 'open' COMMENT '评论状态(''open'',''close'')',
   `post_comment_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
@@ -64,7 +64,7 @@ CREATE TABLE `post_table` (
   `creator_id` int(11) NOT NULL COMMENT '创建者ID',
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_slug` (`post_slug`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `relationship_table`
@@ -73,7 +73,11 @@ DROP TABLE IF EXISTS `relationship_table`;
 CREATE TABLE `relationship_table` (
   `target_id` int(11) NOT NULL,
   `term_id` int(11) NOT NULL,
-  PRIMARY KEY (`target_id`,`term_id`)
+  PRIMARY KEY (`target_id`,`term_id`),
+  KEY `target_id` (`target_id`) USING BTREE,
+  KEY `term_id` (`term_id`) USING BTREE,
+  CONSTRAINT `target_id` FOREIGN KEY (`target_id`) REFERENCES `post_table` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term_table` (`term_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

@@ -39,7 +39,7 @@
         SELECT COUNT(*) FROM user_table
     </select>
 
-    <insert id="insert" parameterType="user">
+    <insert id="insert" parameterType="user" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO user_table
         (user_id, user_name, user_password, user_nickname, user_email, user_avatar_url, user_register_time, user_activate_time)
         VALUES
