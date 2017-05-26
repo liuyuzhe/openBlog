@@ -45,7 +45,8 @@ public class AttachManager {
     }
 
     public int addAttach(Attach attach) {
-        return attachService.addAttach(attach);
+        attachService.addAttach(attach);
+        return attach.getId();
     }
 
     public int removeAttach(int attachId) {

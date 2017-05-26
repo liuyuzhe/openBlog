@@ -63,7 +63,8 @@ public class TagManager {
     }
 
     public int addTag(Tag tag) {
-        return tagService.addTag(tag);
+        tagService.addTag(tag);
+        return tag.getId();
     }
 
     public int updateCategory(Tag tag) {

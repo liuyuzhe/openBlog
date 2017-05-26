@@ -63,7 +63,8 @@ public class UserManager {
         user.setRegister_time(date);
         user.setActivate_time(date);
 
-        return userService.addUser(user);
+        userService.addUser(user);
+        return user.getId();
     }
 
     public int updateUser(User user) {

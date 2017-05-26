@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
-    private static final String[] IGNORE_URI = {"/user/register", "/user/login", "user/logout"};
+    private static final String[] IGNORE_URI = {"/admin/user/register", "/admin/user/login", "/admin/user/logout"};
 
     @Autowired
     private UserService userService;

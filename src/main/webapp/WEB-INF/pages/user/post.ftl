@@ -26,7 +26,7 @@
                             <h1 class="post-title">${postVo.post.title}</h1>
                             <div class="post-meta">
                                 <span class="hidden-xs">
-                                    <time class="fa fa-calendar" datetime="${postVo.post.create_time}"> ${postVo.post.create_time} </time>
+                                    <time class="fa fa-calendar" datetime="${(postVo.post.create_time)?date}"> ${(postVo.post.create_time)?date} </time>
                                     <i class="fa fa-comment"> ${postVo.post.comment_count!0} </i>
                                 </span>
                                 <span class="">

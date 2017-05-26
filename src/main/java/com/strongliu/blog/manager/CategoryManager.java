@@ -63,7 +63,8 @@ public class CategoryManager {
     }
 
     public int addCategory(Category category) {
-        return categoryService.addCategory(category);
+        categoryService.addCategory(category);
+        return category.getId();
     }
 
     public int updateCategory(Category category) {

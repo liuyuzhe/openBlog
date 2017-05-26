@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
@@ -12,11 +11,15 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!-- 注解扫描路径 -->
+	<!--&lt;!&ndash; 注解扫描路径 &ndash;&gt;-->
 	<context:component-scan base-package="com.strongliu.blog.controller" />
 	<context:component-scan base-package="com.strongliu.blog.service" />
 	<context:component-scan base-package="com.strongliu.blog.manager" />
 	<context:component-scan base-package="com.strongliu.blog.validator" />
+
+	<!--<context:component-scan base-package="com.strongliu.blog">-->
+		<!--<context:exclude-filter type="assignable" expression="com.strongliu.blog.manager.PostManager"/>-->
+	<!--</context:component-scan>-->
 
 	<!-- 设置配置方案 -->
 	<mvc:annotation-driven>

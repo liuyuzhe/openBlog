@@ -60,7 +60,7 @@
                             <footer class="post-footer">
                                 <div class="post-meta">
                             <span class="hidden-xs pull-left">
-                                <time class="fa fa-calendar"> ${post.create_time} </time>
+                                <time class="fa fa-calendar"> ${(post.create_time)?date} </time>
                                 <a href="${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
                             </span>
                             <span class="pull-left">
