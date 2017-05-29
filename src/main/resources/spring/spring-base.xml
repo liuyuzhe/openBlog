@@ -11,13 +11,10 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!--<context:component-scan base-package="com.strongliu.blog.manager" use-default-filters="false"/>-->
-	<context:component-scan base-package="com.strongliu.blog" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+	<!-- 注解扫描路径 -->
+	<context:component-scan base-package="com.strongliu.blog">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	<!--<context:component-scan base-package="com.strongliu.blog" use-default-filters="false">-->
-		<!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
-	<!--</context:component-scan>-->
 
 	<!-- mybatis mapper接口扫描路径 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

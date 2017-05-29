@@ -174,6 +174,7 @@ public class UserController extends BaseController {
             userManager.removeUser(userId);
             return new ResponseDto(ErrorCode.SUCCESS);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

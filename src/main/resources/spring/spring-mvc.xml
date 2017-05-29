@@ -11,15 +11,11 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!--&lt;!&ndash; 注解扫描路径 &ndash;&gt;-->
-	<context:component-scan base-package="com.strongliu.blog.controller" />
-	<context:component-scan base-package="com.strongliu.blog.service" />
-	<context:component-scan base-package="com.strongliu.blog.manager" />
-	<context:component-scan base-package="com.strongliu.blog.validator" />
-
-	<!--<context:component-scan base-package="com.strongliu.blog">-->
-		<!--<context:exclude-filter type="assignable" expression="com.strongliu.blog.manager.PostManager"/>-->
-	<!--</context:component-scan>-->
+	<!-- 注解扫描路径,防止事务失效 -->
+	<context:component-scan base-package="com.strongliu.blog" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="regex" expression="com\.strongliu\.blog\.manager\.*"/>
+	</context:component-scan>
 
 	<!-- 设置配置方案 -->
 	<mvc:annotation-driven>

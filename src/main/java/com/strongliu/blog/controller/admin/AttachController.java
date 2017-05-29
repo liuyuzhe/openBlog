@@ -74,7 +74,6 @@ public class AttachController extends BaseController {
             return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
         } catch (IOException e) {
             e.printStackTrace();
-
             return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
         }
     }

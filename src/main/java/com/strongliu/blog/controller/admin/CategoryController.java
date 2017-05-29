@@ -42,6 +42,7 @@ public class CategoryController extends BaseController {
 			categoryManager.addCategory(category);
 			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
@@ -57,6 +58,7 @@ public class CategoryController extends BaseController {
 			categoryManager.updateCategory(category);
 			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
@@ -68,6 +70,7 @@ public class CategoryController extends BaseController {
 			categoryManager.removeCategory(categoryId);
 			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
 		}
 	}
