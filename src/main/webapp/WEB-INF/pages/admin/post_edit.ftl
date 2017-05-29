@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../static/plugin/select2-4.0.3/css/select2.css">
-    <link rel="stylesheet" href="../../../static/plugin/mditor/css/mditor.css" />
+    <link rel="stylesheet" href="../../../static/plugin/editor.md/css/editormd.css">
     <link rel="stylesheet" href="../../../static/plugin/summernote-0.8.3/summernote.css">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-switch/css/bootstrap-switch.css">
     <link rel="stylesheet" href="../../../static/admin/css/style.css">
@@ -91,7 +91,9 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12 md-container">
-                            <textarea id="md-editor">${(postVo.post.content)!""}</textarea>
+                            <div id="md-editor">
+                                <textarea>${(postVo.post.content)!""}</textarea>
+                            </div>
                         </div>
                         <div class="form-group col-md-12 html-container">
                             <textarea id="summer-note">${(postVo.post.content)!""}</textarea>
@@ -139,7 +141,7 @@
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../../../static/plugin/select2-4.0.3/js/select2.js"></script>
-<script src="../../../static/plugin/mditor/js/mditor.js"></script>
+<script src="../../../static/plugin/editor.md/editormd.js"></script>
 <script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
 <script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
 <script src="../../../static/common/js/base.js"></script>
