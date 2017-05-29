@@ -1,5 +1,10 @@
 package com.strongliu.blog.utility;
 
+import org.commonmark.Extension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -38,5 +43,18 @@ public class StringUtil {
     public static String getUUID() {
         String str = UUID.randomUUID().toString();
         return str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24);
+    }
+
+    public static String markdownToHtml(String markdown) {
+        if (StringUtils.isEmpty(markdown)) {
+            return "";
+        }
+
+        List<Extension> extensions = Arrays.asList(TablesExtension.create());
+        Parser parser = Parser.builder().extensions(extensions).build();
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder().extensions(extensions).build();
+        String content = renderer.render(document);
+        return content;
     }
 }

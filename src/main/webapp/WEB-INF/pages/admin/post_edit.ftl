@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group col-md-12 md-container">
                             <div id="md-editor">
-                                <textarea>${(postVo.post.content)!""}</textarea>
+                                <textarea style="display: none;">${(postVo.post.content)!""}</textarea>
                             </div>
                         </div>
                         <div class="form-group col-md-12 html-container">

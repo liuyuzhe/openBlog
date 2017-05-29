@@ -47,6 +47,7 @@ ext {
     dbcpVersion = '1.4'
 	
 	fastJsonVersion = '1.2.4'
+    commonmarkVersion = '0.9.0'
 	collectionVersion = '4.0'
 
 	junitVersion = '4.12'
@@ -97,7 +98,11 @@ dependencies {
     
     // json
     compile "com.alibaba:fastjson:${fastJsonVersion}"
-    
+
+    // markdown
+    compile "com.atlassian.commonmark:commonmark:${commonmarkVersion}"
+    compile "com.atlassian.commonmark:commonmark-ext-gfm-tables:${commonmarkVersion}"
+
     // utility
     compile "org.apache.commons:commons-collections4:${collectionVersion}"
 
