@@ -11,12 +11,9 @@
         tokenSeparators: [',']
     });
 
-    //var data = [{id: 10, text: 'apple'}, {id: 12, text: 'banana'}, {id: 20, text: 'pear'}];//下拉列表中的数据项
-
     $("#select-tags").select2({
-        tags: true,
+        //tags: true,
         placeholder: "选择文章标签",
-        //data:data,
         allowClear: true,
         tokenSeparators: [',']
     });
@@ -46,6 +43,11 @@
         fmt_type.val("html");
     };
 
+    if (fmt_type.val() !== "html") {
+        mdEditorShow();
+    } else {
+        htmlEditorShow();
+    }
     switchEditor.click(function() {
         if (fmt_type.val() !== "html") {
             htmlEditorShow();
@@ -53,7 +55,6 @@
             mdEditorShow();
         }
     });
-
 
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $.fn.bootstrapSwitch.defaults.handleWidth = '26px';
@@ -79,10 +80,8 @@
         offText : "关闭"
     });
 
-    var thumb = $("#articleForm input[name=add_thumb_url]");
-    $("#thumb-url").toggle(thumb.is(':checked'));
-
-    $("[name='add_thumb_url']").on('switchChange.bootstrapSwitch', function(event, state) {
+    $("#thumb-url").toggle($("#add_thumb_url").is(':checked'));
+    $("#add_thumb_url").on('switchChange.bootstrapSwitch', function(event, state) {
         $("#thumb-url").toggle(state);
     });
 

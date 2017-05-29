@@ -45,10 +45,17 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
+                                <#if (postVo.categoryList)?? >
+                                    <#assign postCategories>
+                                    <#list (postVo.categoryList) as postCategory>
+                                    ${postCategory.id}
+                                    </#list>
+                                    </#assign>
+                                </#if>
                                 <#if categoryList?? >
                                     <#list categoryList as category >
                                         <option value="${category.id}"
-                                            <#if (postVo.categoryList)?? && (postVo.categoryList)?seq_contains(category.name) >
+                                            <#if (postVo.categoryList)?? && postCategories?contains(category.id?string("number")) >
                                                 selected
                                             </#if> >
                                         ${category.name}
@@ -59,10 +66,17 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-tags" class="form-control" name="tags" multiple="multiple">
+                            <#if (postVo.tagList)?? >
+                                <#assign postTags>
+                                    <#list (postVo.tagList) as postTag>
+                                    ${postTag.id}
+                                    </#list>
+                                </#assign>
+                            </#if>
                             <#if tagList?? >
                                 <#list tagList as tag >
                                     <option value="${tag.id}"
-                                        <#if (postVo.tagList)?? && (postVo.tagList)?seq_contains(tag.name) >
+                                        <#if (postVo.tagList)?? && postTags?contains(tag.name?string("number")) >
                                             selected
                                         </#if> >
                                     ${tag.name}
@@ -76,33 +90,33 @@
                                 <a type="button" class="btn btn-info btn-sm" id="switch-editor">切换为富文本编辑器</a>
                             </div>
                         </div>
-                        <#if (postVo.post.fmt_type)!"" != "html" >
-                            <div class="form-group col-md-12 md-container">
-                                <textarea id="md-editor">${(postVo.post.content)!""}</textarea>
-                            </div>
-                        <#else>
-                            <div class="form-group col-md-12 html-container">
-                                <textarea id="summer-note">${(postVo.post.content)!""}</textarea>
-                            </div>
-                        </#if>
+                        <div class="form-group col-md-12 md-container">
+                            <textarea id="md-editor">${(postVo.post.content)!""}</textarea>
+                        </div>
+                        <div class="form-group col-md-12 html-container">
+                            <textarea id="summer-note">${(postVo.post.content)!""}</textarea>
+                        </div>
                         <div class="form-group col-md-3">
                             <label class="">文章状态</label>
                             <input type="checkbox" name="status" class="form-control"
-                            <#if ((postVo.post.status)!"publish" == "publish") >
+                            <#assign status=(postVo.post.status)!"publish">
+                            <#if (status == "publish") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">评论状态</label>
                             <input type="checkbox" name="comment_status" class="form-control"
-                            <#if ((postVo.post.comment_status)!"open" == "open") >
+                            <#assign commentStatus = (postVo.post.comment_status)!"open">
+                            <#if (commentStatus == "open") >
                                    checked
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
                             <label class="">添加缩略图</label>
                             <input id="add_thumb_url" type="checkbox" class="form-control"
-                            <#if (postVo.post.thumb_url)?? >
+                            <#assign thumbUrl = (postVo.post.thumb_url)!"">
+                            <#if (thumbUrl != "") >
                                    checked
                             </#if> >
                         </div>

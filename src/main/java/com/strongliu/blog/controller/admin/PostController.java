@@ -47,6 +47,16 @@ public class PostController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newPost(Model model) {
 
+		List<Category> categoryList = categoryManager.getAllCategory();
+		if (categoryList != null) {
+			model.addAttribute(categoryList);
+		}
+
+		List<Tag> tagList = tagManager.getAllTag();
+		if (tagList != null) {
+			model.addAttribute(tagList);
+		}
+
 		return this.renderAdmin("post_edit");
 	}
 
