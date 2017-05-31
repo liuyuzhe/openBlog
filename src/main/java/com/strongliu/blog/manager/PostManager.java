@@ -1,5 +1,6 @@
 package com.strongliu.blog.manager;
 
+import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
@@ -61,6 +62,12 @@ public class PostManager {
     @Transactional
     public PostPageVo getPublishPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPublishPost(pageId, limit);
+        for (Post post : postList) {
+            if (post.getFmt_type().equalsIgnoreCase("markdown")) {
+                post.setContent(StringUtil.markdownToHtml(post.getContent()));
+            }
+            post.setExcerpt(StringUtil.generatePostExcerpt(post.getContent(), Constant.POST_EXCERPT_LENGTH));
+        }
 
         int pageTotal = postService.pageTotal(limit);
 
@@ -106,6 +113,11 @@ public class PostManager {
             return null;
         }
 
+        if (post.getFmt_type().equalsIgnoreCase("markdown")) {
+            post.setContent(StringUtil.markdownToHtml(post.getContent()));
+        }
+        post.setExcerpt(StringUtil.generatePostExcerpt(post.getContent(), Constant.POST_EXCERPT_LENGTH));
+
         List<Integer> termList = relationshipService.findAllTermByTargetId(post.getId());
         List<Category> categoryList = categoryService.findAllCategoryByIdList(termList);
         List<Tag> tagList = tagService.findAllTagByIdList(termList);
@@ -134,7 +146,6 @@ public class PostManager {
         post.setSlug(postFormVo.getSlug());
         post.setThumb_url(postFormVo.getThumb_url());
         post.setTitle(postFormVo.getTitle());
-        post.setExcerpt(postFormVo.getContent());
         post.setContent(postFormVo.getContent());
         Date date = new Date();
         post.setCreate_time(date);
@@ -182,7 +193,9 @@ public class PostManager {
 
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
-        categoryIdList.addAll(tagIdList);
+        if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(tagIdList)) {
+            categoryIdList.addAll(tagIdList);
+        }
         relationshipService.addRelationshipList(post.getId(), categoryIdList);
 
         return ret;

@@ -9,7 +9,6 @@
         <result property="slug" column="post_slug"/>
         <result property="thumb_url" column="post_thumb_url"/>
         <result property="title" column="post_title"/>
-        <result property="excerpt" column="post_excerpt"/>
         <result property="content" column="post_content"/>
         <result property="create_time" column="post_create_time"/>
         <result property="update_time" column="post_update_time"/>
@@ -50,21 +49,21 @@
     </select>
     
     <select id="selectAll" resultMap="postResultMap">
-        SELECT post_id, post_slug, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="selectAllPublish" resultMap="postResultMap">
-        SELECT post_id, post_slug, post_thumb_url, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_thumb_url, post_title, post_content, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish'
         ORDER BY post_create_time DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="selectAllPublishByIdList" resultMap="postResultMap">
-        SELECT post_id, post_slug, post_title, post_excerpt, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
+        SELECT post_id, post_slug, post_title, post_create_time, post_comment_count, post_read_count, post_spot_count FROM post_table
         WHERE post_type='post' AND post_status='publish' AND post_id IN
         <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
             #{item}
@@ -79,16 +78,16 @@
 
     <insert id="insert" parameterType="post" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO post_table
-        (post_slug, post_thumb_url, post_title, post_excerpt, post_content, post_create_time, post_update_time,
+        (post_slug, post_thumb_url, post_title, post_content, post_create_time, post_update_time,
          post_type, post_fmt_type, post_status, post_comment_status, post_comment_count, post_read_count, post_spot_count, creator_id)
         VALUES
-        (#{slug}, #{thumb_url}, #{title}, #{excerpt}, #{content}, #{create_time}, #{update_time},
+        (#{slug}, #{thumb_url}, #{title}, #{content}, #{create_time}, #{update_time},
         #{type}, #{fmt_type}, #{status}, #{comment_status}, #{comment_count}, #{read_count}, #{spot_count}, #{creator_id})
     </insert>
 
     <update id="update" parameterType="post">
         UPDATE post_table
-        SET post_slug=#{slug}, post_thumb_url=#{thumb_url}, post_title=#{title}, post_excerpt=#{excerpt}, post_content=#{content}, post_update_time=#{update_time},
+        SET post_slug=#{slug}, post_thumb_url=#{thumb_url}, post_title=#{title}, post_content=#{content}, post_update_time=#{update_time},
          post_status=#{status}, post_comment_status=#{comment_status})
         WHERE post_id=#{id}
     </update>

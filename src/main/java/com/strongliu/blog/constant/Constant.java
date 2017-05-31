@@ -7,6 +7,7 @@ public class Constant {
     public static final int PAGE_INDEX_DEFAULT = 1;
     public static final int PAGE_SIZE = 10;
     public static final int PAGE_ADMIN_SIZE = 15;
+    public static final int POST_EXCERPT_LENGTH = 30;
 
     public static final Integer DAY_TIME = 60 * 60 * 24;
     public static final String USER_SESSION_KEY = "login_user";

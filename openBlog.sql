@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/26/2017 21:18:28 PM
+ Date: 05/31/2017 22:38:40 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -50,7 +50,6 @@ CREATE TABLE `post_table` (
   `post_slug` varchar(20) NOT NULL COMMENT '链接地址',
   `post_thumb_url` varchar(100) DEFAULT NULL COMMENT '缩略图URL',
   `post_title` text NOT NULL COMMENT '标题',
-  `post_excerpt` text NOT NULL COMMENT '摘要',
   `post_content` longtext NOT NULL COMMENT '内容',
   `post_create_time` datetime NOT NULL COMMENT '创建时间',
   `post_update_time` datetime NOT NULL COMMENT '更新时间',

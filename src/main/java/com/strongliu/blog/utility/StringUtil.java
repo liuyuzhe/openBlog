@@ -45,6 +45,18 @@ public class StringUtil {
         return str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24);
     }
 
+    public static String generatePostExcerpt(String content, int length) {
+        if (StringUtils.isEmpty(content)) {
+            return "";
+        }
+
+        if (content.length() <= length) {
+            return content;
+        }
+
+        return content.substring(0, length);
+    }
+
     public static String markdownToHtml(String markdown) {
         if (StringUtils.isEmpty(markdown)) {
             return "";
