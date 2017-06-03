@@ -45,7 +45,11 @@ ext {
 	mybatisSpringVersion = '1.3.0'
 	mysqlVersion = '5.1.38'
     dbcpVersion = '1.4'
-	
+
+    logbackVersion = '1.1.3'
+    logbackSpringVersion = '0.1.2' //
+    slf4jVersion = '1.7.12' // 把Spring源代码中大量使用到的commons-logging替换成slf4j
+
 	fastJsonVersion = '1.2.4'
     commonmarkVersion = '0.9.0'
 	collectionVersion = '4.0'
@@ -70,7 +74,7 @@ dependencies {
 	// 使用本项目libs目录
     compile fileTree(dir: 'libs', include: ['*.jar'])
 	
-//    // Servlet web
+    // Servlet web
 	providedCompile "javax.servlet:servlet-api:${servletVersion}"
 //	providedCompile "javax.servlet.jsp:jsp-api:${jspVersion}"
 //	providedCompile "javax.servlet:jstl:${jstlVersion}"
@@ -91,11 +95,16 @@ dependencies {
     // MyBatis
     compile "org.mybatis:mybatis:${mybatisVersion}"
     compile "org.mybatis:mybatis-spring:${mybatisSpringVersion}"
-    
+
     // mysql
     compile "mysql:mysql-connector-java:${mysqlVersion}"
     compile "commons-dbcp:commons-dbcp:${dbcpVersion}"
-    
+
+    // Logback
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
+    compile "org.logback-extensions:logback-ext-spring:${logbackSpringVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+
     // json
     compile "com.alibaba:fastjson:${fastJsonVersion}"
 

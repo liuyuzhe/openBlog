@@ -1,5 +1,9 @@
-/.gradle/
-/build/
-.idea
+.gradle/
+.idea/
+
+bin/
+build/
+classes/
+logs/
 
 .idea/workspace.xml
