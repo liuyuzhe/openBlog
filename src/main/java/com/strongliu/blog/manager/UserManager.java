@@ -7,6 +7,7 @@ import com.strongliu.blog.vo.RegisterFormVo;
 import com.strongliu.blog.vo.UserPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,9 @@ public class UserManager {
 
     public UserPageVo getUserPageVo(int pageId, int limit) {
         List<User> userList = userService.findAllUser(pageId, limit);
+        if (ObjectUtils.isEmpty(userList)) {
+            return null;
+        }
 
         int pageTotal = userService.pageTotal(limit);
 
@@ -38,7 +42,7 @@ public class UserManager {
 
     public User getUserVo(int userId) {
         User user = userService.findUserById(userId);
-        if (user == null) {
+        if (ObjectUtils.isEmpty(user)) {
             return null;
         }
 

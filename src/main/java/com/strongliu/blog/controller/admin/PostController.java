@@ -12,9 +12,12 @@ import com.strongliu.blog.validator.PostFormValidator;
 import com.strongliu.blog.vo.PostFormVo;
 import com.strongliu.blog.vo.PostPageVo;
 import com.strongliu.blog.vo.PostVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,28 +36,42 @@ public class PostController extends BaseController {
 	@Autowired
 	private PostFormValidator postFormValidator;
 
+	private final static Logger logger = LoggerFactory.getLogger(PostController.class);
+
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
 						@RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
 						Model model) {
-		PostPageVo postPageVo = postManager.getPostPageVo(pageId, limit);
+		try {
+			PostPageVo postPageVo = postManager.getPostPageVo(pageId, limit);
+			if (ObjectUtils.isEmpty(postPageVo)) {
+				return this.render_404();
+			}
 
-		model.addAttribute(postPageVo);
+			model.addAttribute(postPageVo);
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return this.render_500();
+		}
 
 		return this.renderAdmin("post_list");
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newPost(Model model) {
+		try {
+			List<Category> categoryList = categoryManager.getAllCategory();
+			if (!ObjectUtils.isEmpty(categoryList)) {
+				model.addAttribute(categoryList);
+			}
 
-		List<Category> categoryList = categoryManager.getAllCategory();
-		if (categoryList != null) {
-			model.addAttribute(categoryList);
-		}
-
-		List<Tag> tagList = tagManager.getAllTag();
-		if (tagList != null) {
-			model.addAttribute(tagList);
+			List<Tag> tagList = tagManager.getAllTag();
+			if (!ObjectUtils.isEmpty(tagList)) {
+				model.addAttribute(tagList);
+			}
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return this.render_500();
 		}
 
 		return this.renderAdmin("post_edit");
@@ -62,21 +79,26 @@ public class PostController extends BaseController {
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
 	public String editPost(@PathVariable Integer postId, Model model) {
-		PostVo postVo = postManager.getPostVo(postId);
-		if (postVo == null) {
-			return this.render_404();
-		}
+		try {
+			PostVo postVo = postManager.getPostVo(postId);
+			if (ObjectUtils.isEmpty(postVo)) {
+				return this.render_404();
+			}
 
-		model.addAttribute(postVo);
+			model.addAttribute(postVo);
 
-		List<Category> categoryList = categoryManager.getAllCategory();
-		if (categoryList != null) {
-			model.addAttribute(categoryList);
-		}
+			List<Category> categoryList = categoryManager.getAllCategory();
+			if (!ObjectUtils.isEmpty(categoryList)) {
+				model.addAttribute(categoryList);
+			}
 
-		List<Tag> tagList = tagManager.getAllTag();
-		if (tagList != null) {
-			model.addAttribute(tagList);
+			List<Tag> tagList = tagManager.getAllTag();
+			if (!ObjectUtils.isEmpty(tagList)) {
+				model.addAttribute(tagList);
+			}
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return this.render_500();
 		}
 
 		return this.renderAdmin("post_edit");
@@ -92,11 +114,12 @@ public class PostController extends BaseController {
 
 		try {
 			postManager.addPostFormVo(postFormVo);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
@@ -109,10 +132,12 @@ public class PostController extends BaseController {
 
 		try {
 			postManager.updatePostFormVo(postFormVo);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
@@ -120,10 +145,12 @@ public class PostController extends BaseController {
 	public ResponseDto deletePost(@RequestParam Integer postId) {
 		try {
 			postManager.removePostForm(postId);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
 }

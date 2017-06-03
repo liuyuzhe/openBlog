@@ -6,6 +6,7 @@ import com.strongliu.blog.vo.AttachPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class AttachManager {
     @Transactional
     public AttachPageVo getAttachPageVo(int pageId, int limit) {
         List<Attach> attachList = attachService.findAllAttach(pageId, limit);
+        if (ObjectUtils.isEmpty(attachList)) {
+            return null;
+        }
 
         int pageTotal = attachService.pageTotal(limit);
 

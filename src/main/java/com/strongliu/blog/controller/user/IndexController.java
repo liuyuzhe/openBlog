@@ -10,9 +10,12 @@ import com.strongliu.blog.vo.CategoryVo;
 import com.strongliu.blog.vo.PostPageVo;
 import com.strongliu.blog.vo.PostVo;
 import com.strongliu.blog.vo.TagVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +37,8 @@ public class IndexController extends BaseController {
     @Autowired
     private TagManager tagManager;
 
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+
     /**
      * 首页
      */
@@ -41,13 +46,27 @@ public class IndexController extends BaseController {
     public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                         @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                         Model model) {
-        PostPageVo postPageVo = postManager.getPublishPostPageVo(pageId, limit);
-        List<Category> categoryList = categoryManager.getAllCategory();
-        List<Tag> tagList = tagManager.getAllTag();
+        try {
+            PostPageVo postPageVo = postManager.getPublishPostPageVo(pageId, limit);
+            if (ObjectUtils.isEmpty(postPageVo)) {
+                return this.render_404();
+            }
 
-        model.addAttribute(postPageVo);
-        model.addAttribute(categoryList);
-        model.addAttribute(tagList);
+            model.addAttribute(postPageVo);
+
+            List<Category> categoryList = categoryManager.getAllCategory();
+            if (!ObjectUtils.isEmpty(categoryList)) {
+                model.addAttribute(categoryList);
+            }
+
+            List<Tag> tagList = tagManager.getAllTag();
+            if (!ObjectUtils.isEmpty(tagList)) {
+                model.addAttribute(tagList);
+            }
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return this.render_500();
+        }
 
         return this.renderUser("index");
     }
@@ -57,12 +76,17 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(value = "posts/{slug}", method = RequestMethod.GET)
     public String posts(@PathVariable String slug, Model model) {
-        PostVo postVo = postManager.getPublishPostVo(slug);
-        if (postVo == null) {
-            return this.render_404();
-        }
+        try {
+            PostVo postVo = postManager.getPublishPostVo(slug);
+            if (ObjectUtils.isEmpty(postVo)) {
+                return this.render_404();
+            }
 
-        model.addAttribute(postVo);
+            model.addAttribute(postVo);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return this.render_500();
+        }
 
         return this.renderUser("post");
     }
@@ -75,12 +99,17 @@ public class IndexController extends BaseController {
                              @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                              @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                              Model model) {
-        CategoryVo categoryVo = categoryManager.getCategoryVo(slug, pageId, limit);
-        if (categoryVo == null) {
-            return this.render_404();
-        }
+        try {
+            CategoryVo categoryVo = categoryManager.getCategoryVo(slug, pageId, limit);
+            if (ObjectUtils.isEmpty(categoryVo)) {
+                return this.render_404();
+            }
 
-        model.addAttribute(categoryVo);
+            model.addAttribute(categoryVo);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return this.render_500();
+        }
 
         return this.renderUser("category");
     }
@@ -93,12 +122,17 @@ public class IndexController extends BaseController {
                        @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                        Model model) {
-        TagVo tagVo = tagManager.getTagVo(slug, pageId, limit);
-        if (tagVo == null) {
-            return this.render_404();
-        }
+        try {
+            TagVo tagVo = tagManager.getTagVo(slug, pageId, limit);
+            if (ObjectUtils.isEmpty(tagVo)) {
+                return this.render_404();
+            }
 
-        model.addAttribute(tagVo);
+            model.addAttribute(tagVo);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return this.render_500();
+        }
 
         return this.renderUser("tag");
     }

@@ -43,6 +43,9 @@ public class PostManager {
     @Transactional
     public PostPageVo getPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPost(pageId, limit);
+        if (ObjectUtils.isEmpty(postList)) {
+            return null;
+        }
 
         int pageTotal = postService.pageTotal(limit);
 
@@ -87,7 +90,7 @@ public class PostManager {
     @Transactional
     public PostVo getPostVo(int postId) {
         Post post = postService.findPostById(postId);
-        if (post == null) {
+        if (ObjectUtils.isEmpty(post)) {
             return null;
         }
 
@@ -109,7 +112,7 @@ public class PostManager {
     @Transactional
     public PostVo getPublishPostVo(String slug) {
         Post post = postService.findPublishPostBySlug(slug);
-        if (post == null) {
+        if (ObjectUtils.isEmpty(post)) {
             return null;
         }
 

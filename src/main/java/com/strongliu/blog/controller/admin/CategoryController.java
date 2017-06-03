@@ -5,9 +5,12 @@ import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.manager.CategoryManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,11 +25,21 @@ public class CategoryController extends BaseController {
 	@Autowired
 	CategoryManager categoryManager;
 
+	private final static Logger logger = LoggerFactory.getLogger(CategoryController.class);
+
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index(Model model) {
-		List<Category> categoryList = categoryManager.getAllCategory();
+		try {
+			List<Category> categoryList = categoryManager.getAllCategory();
+			if (ObjectUtils.isEmpty(categoryList)) {
+				return this.render_404();
+			}
 
-		model.addAttribute(categoryList);
+			model.addAttribute(categoryList);
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return this.render_500();
+		}
 
 		return this.renderAdmin("category");
 	}
@@ -34,33 +47,35 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/create" , method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseDto saveCategory(Category category) {
-		if (category == null) {
+		if (ObjectUtils.isEmpty(category)) {
 			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
 		try {
 			categoryManager.addCategory(category);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseDto updateCategory(Category category) {
-		if (category == null) {
+		if (ObjectUtils.isEmpty(category)) {
 			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
 		try {
 			categoryManager.updateCategory(category);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
@@ -68,10 +83,11 @@ public class CategoryController extends BaseController {
 	public ResponseDto deleteCategory(@PathVariable Integer categoryId) {
 		try {
 			categoryManager.removeCategory(categoryId);
-			return new ResponseDto(ErrorCode.SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+			logger.error(e.toString());
+			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
 		}
+
+		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 }

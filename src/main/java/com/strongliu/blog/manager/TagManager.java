@@ -9,6 +9,7 @@ import com.strongliu.blog.vo.TagVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class TagManager {
     @Transactional
     public TagVo getTagVo(String slug, int pageId, int limit) {
         Tag tag = tagService.findTagBySlug(slug);
-        if (tag == null) {
+        if (ObjectUtils.isEmpty(tag)) {
             return null;
         }
 

@@ -16,6 +16,10 @@ public abstract class BaseController {
         return "common/404";
     }
 
+    public String render_500() {
+        return "common/500";
+    }
+
     public String redirect(String viewName) {
         return "redirect:" + viewName;
     }

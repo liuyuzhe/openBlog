@@ -18,13 +18,9 @@ public class FileUtil {
 
         try {
             Image image = ImageIO.read(file);
-            if (image == null || image.getWidth(null) <= 0 || image.getHeight(null) <= 0) {
-                return false;
-            }
 
-            return true;
+            return !(image == null || image.getWidth(null) <= 0 || image.getHeight(null) <= 0);
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }

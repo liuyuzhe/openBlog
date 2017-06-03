@@ -7,9 +7,12 @@ import com.strongliu.blog.entity.Attach;
 import com.strongliu.blog.manager.AttachManager;
 import com.strongliu.blog.utility.FileUtil;
 import com.strongliu.blog.vo.AttachPageVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +35,23 @@ public class AttachController extends BaseController {
     @Autowired
     private AttachManager attachManager;
 
+    private final static Logger logger = LoggerFactory.getLogger(AttachController.class);
+
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(@RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                         @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                         Model model) {
-        AttachPageVo attachPageVo = attachManager.getAttachPageVo(pageId, limit);
+        try {
+            AttachPageVo attachPageVo = attachManager.getAttachPageVo(pageId, limit);
+            if (ObjectUtils.isEmpty(attachPageVo)) {
+                return this.render_404();
+            }
 
-        model.addAttribute(attachPageVo);
+            model.addAttribute(attachPageVo);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return this.render_500();
+        }
 
         return this.renderAdmin("attach");
     }
@@ -71,27 +84,34 @@ public class AttachController extends BaseController {
             attach.setCreator_id(this.getUserId());
             attachManager.addAttach(attach);
 
-            return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
         } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseDto(ErrorCode.ERROR_DB_FAILED);
+            logger.error(e.toString());
+            return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
         }
+
+        return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseDto deleteAttach(@RequestParam Integer attachId, HttpServletRequest request) {
-        Attach attach = attachManager.getAttach(attachId);
-        if (attach == null) {
-            return new ResponseDto(ErrorCode.ERROR_RESOURCE_NOT_FOUND);
-        }
+        try {
+            Attach attach = attachManager.getAttach(attachId);
+            if (ObjectUtils.isEmpty(attach)) {
+                return new ResponseDto(ErrorCode.ERROR_RESOURCE_NOT_FOUND);
+            }
 
-        attachManager.removeAttach(attachId);
-        String fileSlug = attach.getSlug();
-        String path = request.getSession().getServletContext().getRealPath("/upload/");
-        File filePath = new File(path, fileSlug);
-        if (!filePath.delete()) {
-            return new ResponseDto(ErrorCode.ERROR_IO_ACCESS_FAILED);
+            attachManager.removeAttach(attachId);
+            String fileSlug = attach.getSlug();
+            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            File filePath = new File(path, fileSlug);
+            if (!filePath.delete()) {
+                return new ResponseDto(ErrorCode.ERROR_IO_ACCESS_FAILED);
+            }
+
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
         }
 
         return new ResponseDto(ErrorCode.SUCCESS);
