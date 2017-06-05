@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping("admin/user")
+@RequestMapping("/admin/user")
 public class UserController extends BaseController {
 
     @Autowired
@@ -49,8 +49,8 @@ public class UserController extends BaseController {
 
         try {
             UserPageVo userPageVo = userManager.getUserPageVo(pageId, limit);
-            if (ObjectUtils.isEmpty(userPageVo)) {
-                return this.render_404();
+            if (!ObjectUtils.isEmpty(userPageVo)) {
+                model.addAttribute(userPageVo);
             }
         } catch (Exception e) {
             logger.error(e.toString());
@@ -65,7 +65,7 @@ public class UserController extends BaseController {
         return this.renderAdmin("register");
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public ResponseDto register(RegisterFormVo registerFormVo, Errors errors) {
         registerFormValidator.validate(registerFormVo, errors);
@@ -103,7 +103,7 @@ public class UserController extends BaseController {
         return this.renderAdmin("login");
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseDto login(LoginFormVo loginFormVo, @RequestParam(value = "next", required = false) String next,
                             HttpServletRequest request, HttpServletResponse response,
@@ -178,7 +178,7 @@ public class UserController extends BaseController {
         return this.renderAdmin("user_edit");
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseBody
     public ResponseDto updateUser(User user) {
         // 验证User合法性
@@ -193,7 +193,7 @@ public class UserController extends BaseController {
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
-    @RequestMapping(value = "/remove/{userId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/remove/{userId}", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
     public ResponseDto deleteUser(@PathVariable Integer userId) {
         try {

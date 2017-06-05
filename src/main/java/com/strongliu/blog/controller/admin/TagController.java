@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping(value = "admin/tag")
+@RequestMapping(value = "/admin/tag")
 public class TagController extends BaseController {
 
     @Autowired
@@ -35,11 +35,10 @@ public class TagController extends BaseController {
     public String index(Model model) {
         try {
             List<Tag> tagList = tagManager.getAllTag();
-            if (ObjectUtils.isEmpty(tagList)) {
-                return this.render_404();
+            if (!ObjectUtils.isEmpty(tagList)) {
+                model.addAttribute(tagList);
             }
 
-            model.addAttribute(tagList);
         } catch (Exception e) {
             logger.error(e.toString());
             return this.render_500();
@@ -65,7 +64,7 @@ public class TagController extends BaseController {
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseBody
     public ResponseDto updateTag(Tag tag) {
         if (ObjectUtils.isEmpty(tag)) {
@@ -82,7 +81,7 @@ public class TagController extends BaseController {
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
-    @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
     public ResponseDto deleteTag(@PathVariable Integer tagId) {
         try {

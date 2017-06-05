@@ -27,7 +27,7 @@
                 </form>
             </div>
             <#if attachPageVo?? >
-                <#list attachPageVo.attachList as attach >
+                <#list (attachPageVo.attachList) as attach >
                     <div class="col-md-2 text-center attach">
                         <a class="" href="${attach.slug}">
                             <img class="attach-img" src="${attach.slug}" title="${attach.name}"/>
@@ -47,7 +47,7 @@
                 <#else>
                     <div class="col-md-12 text-center">
                         <div class="col-md-6 alert alert-warning">
-                            目前还没有一个附件，你可以上传试试!
+                            还没有一个附件，你可以上传试试!
                         </div>
                     </div>
                 </#list>

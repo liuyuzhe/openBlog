@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin/post")
+@RequestMapping("/admin/post")
 public class PostController extends BaseController {
 
 	@Autowired
@@ -44,11 +44,9 @@ public class PostController extends BaseController {
 						Model model) {
 		try {
 			PostPageVo postPageVo = postManager.getPostPageVo(pageId, limit);
-			if (ObjectUtils.isEmpty(postPageVo)) {
-				return this.render_404();
+			if (!ObjectUtils.isEmpty(postPageVo)) {
+				model.addAttribute(postPageVo);
 			}
-
-			model.addAttribute(postPageVo);
 		} catch (Exception e) {
 			logger.error(e.toString());
 			return this.render_500();
@@ -122,7 +120,7 @@ public class PostController extends BaseController {
 		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
 	@ResponseBody
 	public ResponseDto updatePost(PostFormVo postFormVo, Errors errors) {
 		postFormValidator.validate(postFormVo, errors);
@@ -140,7 +138,7 @@ public class PostController extends BaseController {
 		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
-	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
 	@ResponseBody
 	public ResponseDto deletePost(@RequestParam Integer postId) {
 		try {

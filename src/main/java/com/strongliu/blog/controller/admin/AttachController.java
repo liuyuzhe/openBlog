@@ -29,7 +29,7 @@ import java.util.Date;
  */
 
 @Controller
-@RequestMapping("admin/attach")
+@RequestMapping("/admin/attach")
 public class AttachController extends BaseController {
 
     @Autowired
@@ -43,11 +43,9 @@ public class AttachController extends BaseController {
                         Model model) {
         try {
             AttachPageVo attachPageVo = attachManager.getAttachPageVo(pageId, limit);
-            if (ObjectUtils.isEmpty(attachPageVo)) {
-                return this.render_404();
+            if (!ObjectUtils.isEmpty(attachPageVo)) {
+                model.addAttribute(attachPageVo);
             }
-
-            model.addAttribute(attachPageVo);
         } catch (Exception e) {
             logger.error(e.toString());
             return this.render_500();
@@ -92,7 +90,7 @@ public class AttachController extends BaseController {
         return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
     }
 
-    @RequestMapping(value = "/remove", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
     public ResponseDto deleteAttach(@RequestParam Integer attachId, HttpServletRequest request) {
         try {

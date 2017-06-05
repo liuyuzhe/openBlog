@@ -31,7 +31,7 @@
         <!-- 滚动记录日志 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
-                ${log_dir}/archive/${log_module}_all_%d{yyyy-MM-dd}.log.zip
+                ${log_dir}/archive/${log_module}_all_%d{yyyy-MM-dd}_%i.log.zip
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>${maxSize}</maxFileSize>
@@ -52,7 +52,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 以日为单位滚动 -->
             <fileNamePattern>
-                ${log_dir}/archive/${log_module}_error_%d{yyyy-MM-dd}.log.zip
+                ${log_dir}/archive/${log_module}_error_%d{yyyy-MM-dd}_%i.log.zip
             </fileNamePattern>
 
             <!-- 触发策略 -->

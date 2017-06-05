@@ -99,7 +99,7 @@
                             <textarea id="summer-note">${(postVo.post.content)!""}</textarea>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="">文章状态</label>
+                            <label>文章状态</label>
                             <input type="checkbox" name="status" class="form-control"
                             <#assign status=(postVo.post.status)!"publish">
                             <#if (status == "publish") >
@@ -107,7 +107,7 @@
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="">评论状态</label>
+                            <label>评论状态</label>
                             <input type="checkbox" name="comment_status" class="form-control"
                             <#assign commentStatus = (postVo.post.comment_status)!"open">
                             <#if (commentStatus == "open") >
@@ -115,7 +115,7 @@
                             </#if> >
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="">添加缩略图</label>
+                            <label>添加缩略图</label>
                             <input id="add_thumb_url" type="checkbox" class="form-control"
                             <#assign thumbUrl = (postVo.post.thumb_url)!"">
                             <#if (thumbUrl != "") >

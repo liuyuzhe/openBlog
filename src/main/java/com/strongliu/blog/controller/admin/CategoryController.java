@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin/category")
+@RequestMapping("/admin/category")
 public class CategoryController extends BaseController {
 
 	@Autowired
@@ -61,7 +61,7 @@ public class CategoryController extends BaseController {
 		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
 	@ResponseBody
 	public ResponseDto updateCategory(Category category) {
 		if (ObjectUtils.isEmpty(category)) {
@@ -78,7 +78,7 @@ public class CategoryController extends BaseController {
 		return new ResponseDto(ErrorCode.SUCCESS);
 	}
 
-	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
 	@ResponseBody
 	public ResponseDto deleteCategory(@PathVariable Integer categoryId) {
 		try {
