@@ -34,7 +34,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="update-term" href="javascript:void(0)" tid=${category.id} tname=${category.name} tslug=${category.slug} ttype="category">修改</a></li>
-                                    <li><a class="delete-term" href="javascript:void(0)" tid=${category.id}>删除</a></li>
+                                    <li><a class="delete-term" href="javascript:void(0)" tid=${category.id} ttype="category">删除</a></li>
                                 </ul>
                             </div>
                         <#else>
@@ -63,7 +63,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="update-term" href="javascript:void(0)" tid=${tag.id} tname=${tag.name} tslug=${tag.slug} ttype="tag">修改</a></li>
-                                    <li><a class="delete-term" href="javascript:void(0)" tid=${tag.id}>删除</a></li>
+                                    <li><a class="delete-term" href="javascript:void(0)" tid=${tag.id} ttype="tag">删除</a></li>
                                 </ul>
                             </div>
                         <#else>
@@ -79,6 +79,9 @@
             </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">添加/修改</h5>
+                    </div>
                     <div class="panel-body">
                         <form id="termForm" class="" role="form">
                             <fieldset>
@@ -95,7 +98,7 @@
                                 </div>
                             </fieldset>
                             <div class="text-right col-xs-12">
-                                <button type="reset" class="btn btn-sm btn-info">清除</button>
+                                <button type="reset" class="btn btn-sm btn-warning">清除</button>
                                 <button id="save-term" type="button" class="btn btn-sm btn-success">保存</button>
                             </div>
                         </form>

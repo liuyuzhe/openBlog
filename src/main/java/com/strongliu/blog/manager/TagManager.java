@@ -1,5 +1,6 @@
 package com.strongliu.blog.manager;
 
+import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.entity.Tag;
 import com.strongliu.blog.service.PostService;
@@ -63,12 +64,20 @@ public class TagManager {
         return tagService.findAllTag();
     }
 
-    public int addTag(Tag tag) {
+    public int addTag(String slug, String name) {
+        Tag tag = new Tag();
+        tag.setSlug(slug);
+        tag.setName(name);
+        tag.setCount(Constant.TAG_POST_COUNT_DEFAULT);
         tagService.addTag(tag);
         return tag.getId();
     }
 
-    public int updateCategory(Tag tag) {
+    public int updateTag(Integer tagId, String slug, String name) {
+        Tag tag = new Tag();
+        tag.setId(tagId);
+        tag.setSlug(slug);
+        tag.setName(name);
         return tagService.updateTag(tag);
     }
 

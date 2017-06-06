@@ -101,14 +101,17 @@
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $.fn.bootstrapSwitch.defaults.handleWidth = '26px';
 
-    $("[name='status']").bootstrapSwitch({
+    var statusElement = $("#articleForm input[name=status]");
+    var commentStatusElement = $("#articleForm input[name=comment_status]");
+
+    statusElement.bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "公开",
         offText : "私有"
     });
 
-    $("[name='comment_status']").bootstrapSwitch({
+    commentStatusElement.bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "允许",
@@ -143,28 +146,28 @@
         $("#articleForm input[name=categories]").val($("#select-categories").val());
         $("#articleForm input[name=tags]").val($("#select-tags").val());
 
-        var statusElement = $("#articleForm input[name=status]");
         if (!post.isEmpty(state)) {
             statusElement.val(state);
-        } else if (statusElement.val() === "on") {
+        } else if (statusElement.bootstrapSwitch('state')) {
             statusElement.val("publish");
         } else {
             statusElement.val("private");
         }
 
-        var commentStatusElement = $("#articleForm input[name=comment_status]");
-        if (commentStatusElement.val() === "on") {
+        if (commentStatusElement.bootstrapSwitch('state')) {
             commentStatusElement.val("open");
         } else {
             commentStatusElement.val("close");
         }
+
+        var tmp = $("#articleForm").serialize();
 
         $.post({
             url : url,
             dataType : "json",
             data : $("#articleForm").serialize(),
             success : function(response) {
-                if (response.code == 0) {
+                if (response.code === 0) {
                     console.log(response.message);
                 } else {
                     console.log(response.message);

@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,13 +44,13 @@ public class CategoryController extends BaseController {
 
 	@RequestMapping(value = "/create" , method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseDto saveCategory(Category category) {
-		if (ObjectUtils.isEmpty(category)) {
+	public ResponseDto saveCategory(@RequestParam("slug") String slug, @RequestParam("name") String name) {
+		if (StringUtils.isEmpty(slug) || StringUtils.isEmpty(name)) {
 			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
 		try {
-			categoryManager.addCategory(category);
+			categoryManager.addCategory(slug, name);
 		} catch (Exception e) {
 			logger.error(e.toString());
 			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
@@ -63,13 +61,13 @@ public class CategoryController extends BaseController {
 
 	@RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
 	@ResponseBody
-	public ResponseDto updateCategory(Category category) {
-		if (ObjectUtils.isEmpty(category)) {
+	public ResponseDto updateCategory(@RequestParam("id") Integer categoryId, @RequestParam("slug") String slug, @RequestParam("name") String name) {
+		if (categoryId == null || StringUtils.isEmpty(slug) || StringUtils.isEmpty(name)) {
 			return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
 		}
 
 		try {
-			categoryManager.updateCategory(category);
+			categoryManager.updateCategory(categoryId, slug, name);
 		} catch (Exception e) {
 			logger.error(e.toString());
 			return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
@@ -80,7 +78,7 @@ public class CategoryController extends BaseController {
 
 	@RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
 	@ResponseBody
-	public ResponseDto deleteCategory(@PathVariable Integer categoryId) {
+	public ResponseDto deleteCategory(@RequestParam("id") Integer categoryId) {
 		try {
 			categoryManager.removeCategory(categoryId);
 		} catch (Exception e) {

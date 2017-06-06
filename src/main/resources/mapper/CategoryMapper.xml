@@ -43,7 +43,7 @@
 
     <update id="update" parameterType="category">
         UPDATE term_table
-        SET term_name=#{name}, term_slug=#{slug}, term_count=#{count})
+        SET term_name=#{name}, term_slug=#{slug}
         WHERE term_id=#{id}
     </update>
 
@@ -53,7 +53,7 @@
         WHERE term_id=#{id}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="deleteById" parameterType="int">
         DELETE FROM term_table
         WHERE term_id=#{id}
     </delete>

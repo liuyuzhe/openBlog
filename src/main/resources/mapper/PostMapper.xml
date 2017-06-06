@@ -88,7 +88,7 @@
     <update id="update" parameterType="post">
         UPDATE post_table
         SET post_slug=#{slug}, post_thumb_url=#{thumb_url}, post_title=#{title}, post_content=#{content}, post_update_time=#{update_time},
-         post_status=#{status}, post_comment_status=#{comment_status})
+         post_fmt_type=#{fmt_type}, post_status=#{status}, post_comment_status=#{comment_status})
         WHERE post_id=#{id}
     </update>
 

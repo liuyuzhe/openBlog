@@ -72,7 +72,7 @@ var User = {
             dataType : "json",
             data : $("#registerForm").serialize(),
             success : function(response) {
-                if (response.code == 0) {
+                if (response.code === 0) {
                     // 成功并弹窗
                     window.location.href = '/user/login';
                 } else {
@@ -109,7 +109,7 @@ var User = {
             dataType : "json",
             data : $("#loginForm").serialize(),
             success : function(response) {
-                if (response.code == 0) {
+                if (response.code === 0) {
                     window.location.href = "/";
                 } else {
                     console.log(response.message);

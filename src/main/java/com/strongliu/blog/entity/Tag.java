@@ -1,5 +1,7 @@
 package com.strongliu.blog.entity;
 
+import com.strongliu.blog.constant.Constant;
+
 /**
  * Created by liuyuzhe on 2017/2/19.
  */

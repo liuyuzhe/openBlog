@@ -22,5 +22,6 @@ public class PostFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "slug", null, "请输入文章访问路径");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", null, "请填写文章标题");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "content", null, "请填写文章内容");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fmt_type", null, "请填写文章输出格式");
     }
 }

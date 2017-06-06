@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,13 +47,13 @@ public class TagController extends BaseController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseDto saveTag(Tag tag) {
-        if (ObjectUtils.isEmpty(tag)) {
+    public ResponseDto saveTag(@RequestParam("slug") String slug, @RequestParam("name") String name) {
+        if (StringUtils.isEmpty(slug) || StringUtils.isEmpty(name)) {
             return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
         }
 
         try {
-            tagManager.addTag(tag);
+            tagManager.addTag(slug, name);
         } catch (Exception e) {
             logger.error(e.toString());
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
@@ -66,13 +64,13 @@ public class TagController extends BaseController {
 
     @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseBody
-    public ResponseDto updateTag(Tag tag) {
-        if (ObjectUtils.isEmpty(tag)) {
+    public ResponseDto updateTag(@RequestParam("id") Integer tagId, @RequestParam("slug") String slug, @RequestParam("name") String name) {
+        if (tagId == null || StringUtils.isEmpty(slug) || StringUtils.isEmpty(name)) {
             return new ResponseDto(ErrorCode.ERROR_PARAM_INVALID);
         }
 
         try {
-            tagManager.updateCategory(tag);
+            tagManager.updateTag(tagId, slug, name);
         } catch (Exception e) {
             logger.error(e.toString());
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
@@ -83,7 +81,7 @@ public class TagController extends BaseController {
 
     @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
-    public ResponseDto deleteTag(@PathVariable Integer tagId) {
+    public ResponseDto deleteTag(@RequestParam("id") Integer tagId) {
         try {
             tagManager.removeCategory(tagId);
         } catch (Exception e) {

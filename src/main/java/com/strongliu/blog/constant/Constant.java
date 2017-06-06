@@ -18,6 +18,9 @@ public class Constant {
     public static final String POST_STATUS_DEFAULT = "publish";
     public static final String POST_COMMENT_STATUS_DEFAULT = "open";
     public static final long POST_COMMENT_COUNT = 0L;
-    public static final long POST_READ_COUNT = 0;
-    public static final long POST_SPOT_COUNT = 0;
+    public static final long POST_READ_COUNT = 0L;
+    public static final long POST_SPOT_COUNT = 0L;
+
+    public static final int CATEGORY_POST_COUNT_DEFAULT = 0;
+    public static final int TAG_POST_COUNT_DEFAULT = 0;
 }

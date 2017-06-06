@@ -193,9 +193,9 @@ public class UserController extends BaseController {
         return new ResponseDto(ErrorCode.SUCCESS);
     }
 
-    @RequestMapping(value = "/remove/{userId}", method = {RequestMethod.DELETE, RequestMethod.POST})
+    @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
-    public ResponseDto deleteUser(@PathVariable Integer userId) {
+    public ResponseDto deleteUser(@RequestParam("userId") Integer userId) {
         try {
             userManager.removeUser(userId);
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.strongliu.blog.manager;
 
+import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.Category;
 import com.strongliu.blog.entity.Post;
 import com.strongliu.blog.service.CategoryService;
@@ -63,12 +64,20 @@ public class CategoryManager {
         return categoryService.findAllCategory();
     }
 
-    public int addCategory(Category category) {
+    public int addCategory(String slug, String name) {
+        Category category = new Category();
+        category.setSlug(slug);
+        category.setName(name);
+        category.setCount(Constant.CATEGORY_POST_COUNT_DEFAULT);
         categoryService.addCategory(category);
         return category.getId();
     }
 
-    public int updateCategory(Category category) {
+    public int updateCategory(Integer categoryId, String slug, String name) {
+        Category category = new Category();
+        category.setId(categoryId);
+        category.setSlug(slug);
+        category.setName(name);
         return categoryService.updateCategory(category);
     }
 

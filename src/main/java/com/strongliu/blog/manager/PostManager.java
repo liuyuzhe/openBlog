@@ -153,16 +153,30 @@ public class PostManager {
         Date date = new Date();
         post.setCreate_time(date);
         post.setUpdate_time(date);
-        if (!StringUtils.isEmpty(postFormVo.getType())) {
+
+        if (StringUtils.isEmpty(postFormVo.getType())) {
+            post.setType(Constant.POST_TYPE_DEFAULT);
+        } else {
             post.setType(postFormVo.getType());
         }
+
         post.setFmt_type(postFormVo.getFmt_type());
-        if (!StringUtils.isEmpty(postFormVo.getStatus())) {
+
+        if (StringUtils.isEmpty(postFormVo.getStatus())) {
+            post.setStatus(Constant.POST_STATUS_DEFAULT);
+        } else {
             post.setStatus(postFormVo.getStatus());
         }
-        if (!StringUtils.isEmpty(postFormVo.getComment_status())) {
+
+        if (StringUtils.isEmpty(postFormVo.getComment_status())) {
+            post.setComment_status(Constant.POST_COMMENT_STATUS_DEFAULT);
+        } else {
             post.setComment_status(postFormVo.getComment_status());
         }
+
+        post.setComment_count(Constant.POST_COMMENT_COUNT);
+        post.setRead_count(Constant.POST_READ_COUNT);
+        post.setSpot_count(Constant.POST_SPOT_COUNT);
         post.setCreator_id(1); // 当前登陆用户ID
         postService.addPost(post);
 
@@ -185,10 +199,33 @@ public class PostManager {
     @Transactional
     public int updatePostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
+        post.setSlug(postFormVo.getSlug());
+        post.setThumb_url(postFormVo.getThumb_url());
         post.setTitle(postFormVo.getTitle());
         post.setContent(postFormVo.getContent());
-        post.setStatus(postFormVo.getStatus());
-        post.setComment_status(postFormVo.getComment_status());
+        Date date = new Date();
+        post.setUpdate_time(date);
+
+        if (StringUtils.isEmpty(postFormVo.getType())) {
+            post.setType(Constant.POST_TYPE_DEFAULT);
+        } else {
+            post.setType(postFormVo.getType());
+        }
+
+        post.setFmt_type(postFormVo.getFmt_type());
+
+        if (StringUtils.isEmpty(postFormVo.getStatus())) {
+            post.setStatus(Constant.POST_STATUS_DEFAULT);
+        } else {
+            post.setStatus(postFormVo.getStatus());
+        }
+
+        if (StringUtils.isEmpty(postFormVo.getComment_status())) {
+            post.setComment_status(Constant.POST_COMMENT_STATUS_DEFAULT);
+        } else {
+            post.setComment_status(postFormVo.getComment_status());
+        }
+
         int ret = postService.updatePost(post);
 
         List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());

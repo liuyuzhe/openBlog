@@ -140,7 +140,7 @@ public class PostController extends BaseController {
 
 	@RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
 	@ResponseBody
-	public ResponseDto deletePost(@RequestParam Integer postId) {
+	public ResponseDto deletePost(@RequestParam("postId") Integer postId) {
 		try {
 			postManager.removePostForm(postId);
 		} catch (Exception e) {

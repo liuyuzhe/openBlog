@@ -1,7 +1,5 @@
 package com.strongliu.blog.entity;
 
-import com.strongliu.blog.constant.Constant;
-
 import java.util.Date;
 
 public class Post {
@@ -13,13 +11,13 @@ public class Post {
 	private String content;
 	private Date create_time;
 	private Date update_time;
-	private String type = Constant.POST_TYPE_DEFAULT;
+	private String type;
 	private String fmt_type;
-	private String status = Constant.POST_STATUS_DEFAULT;
-	private String comment_status = Constant.POST_COMMENT_STATUS_DEFAULT;
-	private Long comment_count = Constant.POST_COMMENT_COUNT;
-	private Long read_count = Constant.POST_READ_COUNT;
-	private Long spot_count = Constant.POST_SPOT_COUNT;
+	private String status;
+	private String comment_status;
+	private Long comment_count;
+	private Long read_count;
+	private Long spot_count;
 	private Integer creator_id;
 
 	public Integer getId() {

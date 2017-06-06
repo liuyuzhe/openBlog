@@ -92,7 +92,7 @@ public class AttachController extends BaseController {
 
     @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
     @ResponseBody
-    public ResponseDto deleteAttach(@RequestParam Integer attachId, HttpServletRequest request) {
+    public ResponseDto deleteAttach(@RequestParam("attachId") Integer attachId, HttpServletRequest request) {
         try {
             Attach attach = attachManager.getAttach(attachId);
             if (ObjectUtils.isEmpty(attach)) {

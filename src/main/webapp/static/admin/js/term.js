@@ -12,7 +12,7 @@
         offText : "标签"
     });
 
-    var idElem = $('#termForm input[name=slug]');
+    var idElem = $('#termForm input[name=id]');
     var nameElem = $('#termForm input[name=name]');
     var slugElem = $('#termForm input[name=slug]');
     var typeElem = $('#term_type');
@@ -30,12 +30,15 @@
     });
 
     $(".delete-term").click(function() {
+        var url = $(this).attr('ttype') === "category" ? "/admin/category/remove" : "/admin/tag/remove";
+        var id = $(this).attr('tid');
+
         $.post({
-            url : "/admin/tag/remove",
+            url : url,
             dataType : "json",
-            data : {id: idElem.val(), _method: "delete"},
+            data : {id: id},
             success : function(response) {
-                if (response.code == 0) {
+                if (response.code === 0) {
                     console.log(response.message);
                 } else {
                     console.log(response.message);
@@ -56,7 +59,7 @@
 
         var id = idElem.val();
         var url;
-        if (typeElem.val() == "on") {
+        if (typeElem.bootstrapSwitch('state')) {
             url = term.isEmpty(id) ? "/admin/category/create" : "/admin/category/update";
         } else {
             url = term.isEmpty(id) ? "/admin/tag/create" : "/admin/tag/update";
@@ -67,7 +70,7 @@
             dataType : "json",
             data : $("#termForm").serialize(),
             success : function(response) {
-                if (response.code == 0) {
+                if (response.code === 0) {
                     console.log(response.message);
                 } else {
                     console.log(response.message);
@@ -75,6 +78,9 @@
             },
             error : function(response) {
                 console.log(response.message);
+            },
+            complete : function() {
+                idElem.val("");
             }
         });
     });

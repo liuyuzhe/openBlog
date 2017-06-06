@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 05/31/2017 22:38:40 PM
+ Date: 06/06/2017 21:15:07 PM
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -63,7 +63,7 @@ CREATE TABLE `post_table` (
   `creator_id` int(11) NOT NULL COMMENT '创建者ID',
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_slug` (`post_slug`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `relationship_table`
@@ -88,10 +88,10 @@ CREATE TABLE `term_table` (
   `term_slug` varchar(100) NOT NULL COMMENT '链接地址',
   `term_name` varchar(20) NOT NULL COMMENT '名称',
   `term_type` varchar(20) NOT NULL COMMENT '类型(''category'',''tag'')',
-  `term_count` int(10) unsigned NOT NULL COMMENT '所属内容数',
+  `term_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '所属内容数',
   PRIMARY KEY (`term_id`),
   UNIQUE KEY `term_slug` (`term_slug`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `user_table`
