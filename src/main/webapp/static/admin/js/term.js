@@ -5,17 +5,17 @@
 (function () {
     var term = Base.init();
 
-    $("#term_type").bootstrapSwitch({
+    var idElem = $('#termForm input[name=id]');
+    var nameElem = $('#termForm input[name=name]');
+    var slugElem = $('#termForm input[name=slug]');
+    var typeElem = $('#termForm input[name=term_type]');
+
+    typeElem.bootstrapSwitch({
         onColor : "primary",
         offColor : "warning",
         onText : "分类",
         offText : "标签"
     });
-
-    var idElem = $('#termForm input[name=id]');
-    var nameElem = $('#termForm input[name=name]');
-    var slugElem = $('#termForm input[name=slug]');
-    var typeElem = $('#term_type');
 
     $(".update-term").click(function() {
         var id = $(this).attr('tid');
@@ -60,15 +60,34 @@
         var id = idElem.val();
         var url;
         if (typeElem.bootstrapSwitch('state')) {
+            typeElem.val("category");
             url = term.isEmpty(id) ? "/admin/category/create" : "/admin/category/update";
         } else {
+            typeElem.val("tag");
             url = term.isEmpty(id) ? "/admin/tag/create" : "/admin/tag/update";
         }
+
+        var termFormArray =
+            $("#termForm :input")
+                .filter(function() {
+                    return !term.isEmpty($(this).val());
+                })
+                .serializeArray()
+                .concat($("#termForm input[type=checkbox]:not(:checked)")
+                    .map(function() {
+                        if (!term.isEmpty($(this).attr("name")) && !term.isEmpty($(this).val())) {
+                            return {"name": $(this).attr("name"), "value": $(this).val()};
+                        }
+                    })
+                    .get()
+                );
+
+        var termFormData = $.param(termFormArray);
 
         $.post({
             url : url,
             dataType : "json",
-            data : $("#termForm").serialize(),
+            data : termFormData,
             success : function(response) {
                 if (response.code === 0) {
                     console.log(response.message);

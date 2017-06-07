@@ -160,12 +160,26 @@
             commentStatusElement.val("close");
         }
 
-        var tmp = $("#articleForm").serialize();
+        var articleFormArray = $("#articleForm :input")
+            .filter(function() {
+                return !post.isEmpty($(this).val()) && ($(this).attr('name') != "md-editor-markdown-doc");
+            })
+            .serializeArray()
+            .concat($("#articleForm input[type=checkbox]:not(:checked)")
+                .map(function() {
+                    if (!post.isEmpty($(this).attr("name")) && !post.isEmpty($(this).val())) {
+                        return {"name": $(this).attr("name"), "value": $(this).val()};
+                    }
+                })
+                .get()
+            );
+
+        var articleFormData = $.param(articleFormArray);
 
         $.post({
             url : url,
             dataType : "json",
-            data : $("#articleForm").serialize(),
+            data : articleFormData,
             success : function(response) {
                 if (response.code === 0) {
                     console.log(response.message);

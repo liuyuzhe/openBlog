@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>所属类型</label>
-                                    <input type="checkbox" id="term_type" class="form-control" checked>
+                                    <input type="checkbox" name="term_type" class="form-control" checked>
                                 </div>
                             </fieldset>
                             <div class="text-right col-xs-12">

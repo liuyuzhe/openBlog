@@ -33,8 +33,6 @@
                     <fieldset class="article-form">
                         <input type="hidden" name="id" value="${(postVo.post.id)!""}" />
                         <input type="hidden" name="content" value="${(postVo.post.content)!""}" />
-                        <input type="hidden" name="categories" />
-                        <input type="hidden" name="tags" >
                         <input type="hidden" name="fmt_type" value="${(postVo.post.fmt_type)!"markdown"}"/>
 
                         <div class="form-group col-md-6">

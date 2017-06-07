@@ -67,10 +67,16 @@ var User = {
             return;
         }
 
+        var registerFormData = $("#registerForm :input")
+            .filter(function() {
+                return !user.isEmpty($(this).val);
+            })
+            .serialize();
+
         $.post({
             url : "/admin/user/register",
             dataType : "json",
-            data : $("#registerForm").serialize(),
+            data : registerFormData,
             success : function(response) {
                 if (response.code === 0) {
                     // 成功并弹窗
@@ -104,10 +110,16 @@ var User = {
             return;
         }
 
+        var loginFormData = $("#loginForm :input")
+            .filter(function() {
+                return !user.isEmpty($(this).val);
+            })
+            .serialize();
+
         $.post({
             url : "/admin/user/login",
             dataType : "json",
-            data : $("#loginForm").serialize(),
+            data : loginFormData,
             success : function(response) {
                 if (response.code === 0) {
                     window.location.href = "/";
