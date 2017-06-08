@@ -25,6 +25,6 @@ public abstract class BaseController {
     }
 
     public int getUserId() {
-        return 0;
+        return 1;
     }
 }

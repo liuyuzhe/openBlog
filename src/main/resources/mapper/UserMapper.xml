@@ -22,7 +22,7 @@
 
     <select id="selectById" resultMap="userResultMap">
         SELECT user_id, user_name, user_nickname, user_email, user_avatar_url, user_register_time, user_activate_time FROM user_table
-        WHERE id=#{id}
+        WHERE user_id=#{id}
     </select>
 
     <select id="selectAll" resultMap="userResultMap">

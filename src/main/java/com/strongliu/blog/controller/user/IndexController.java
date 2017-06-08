@@ -74,7 +74,7 @@ public class IndexController extends BaseController {
     /**
      * 文章页
      */
-    @RequestMapping(value = "posts/{slug}", method = RequestMethod.GET)
+    @RequestMapping(value = "/posts/{slug}", method = RequestMethod.GET)
     public String posts(@PathVariable String slug, Model model) {
         try {
             PostVo postVo = postManager.getPublishPostVo(slug);
@@ -94,7 +94,7 @@ public class IndexController extends BaseController {
     /**
      * 分类页
      */
-    @RequestMapping(value = "categories/{slug}", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories/{slug}", method = RequestMethod.GET)
     public String categories(@PathVariable String slug,
                              @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                              @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
@@ -117,7 +117,7 @@ public class IndexController extends BaseController {
     /**
      * 标签页
      */
-    @RequestMapping(value = "tags/{slug}", method = RequestMethod.GET)
+    @RequestMapping(value = "/tags/{slug}", method = RequestMethod.GET)
     public String tags(@PathVariable String slug,
                        @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
                        @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,

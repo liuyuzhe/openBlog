@@ -31,7 +31,7 @@
                         </li>
                         <#items as category>
                             <li>
-                                <a href="#{category.slug}">#{category.name}</a>
+                                <a href="/categories/#{category.slug}">#{category.name}</a>
                             </li>
                         </#items>
                     </ul>
@@ -43,14 +43,16 @@
                 <#list postPageVo.postList as post>
                     <article class="post">
                         <div class="post-summary clearfix">
-                            <div class="post-image hidden-xs">
-                                <a href="${post.slug}">
-                                    <img src=${post.thumb_url} />
-                                </a>
-                            </div>
+                            <#if (post.thumb_url)?? && (post.thumb_url) != "" >
+                                <div class="post-image hidden-xs">
+                                    <a href="/posts/${post.slug}">
+                                        <img src=${post.thumb_url} />
+                                    </a>
+                                </div>
+                            </#if>
                             <div class="post-inner">
                                 <header class="post-title">
-                                    <a href="${post.slug}">${post.title}</a>
+                                    <a href="/posts/${post.slug}">${post.title}</a>
                                 </header>
                                 <div>
                                     <p>${post.excerpt}</p>
@@ -61,15 +63,15 @@
                             <div class="post-meta">
                             <span class="hidden-xs pull-left">
                                 <time class="fa fa-calendar"> ${(post.create_time)?date} </time>
-                                <a href="${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
+                                <a href="/posts/${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
                             </span>
                             <span class="pull-left">
-                                <a href="${post.slug}"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
+                                <a href="/posts/${post.slug}"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
                                 <i class="fa fa-heart-o"> ${(post.spot_count)!0} </i>
                             </span>
                             </div>
                         <span class="post-link pull-right">
-                            <a href="${post.slug}" class="btn btn-custom">阅读全文</a>
+                            <a href="/posts/${post.slug}" class="btn btn-custom">阅读全文</a>
                         </span>
                         </footer>
                     </article>
@@ -112,7 +114,7 @@
                         <h4 class="widget-title">标签云</h4>
                         <div class="tag-cloud">
                             <#items as tag>
-                                <a href="${tag.slug}">${tag.name}</a>
+                                <a href="/tags/${tag.slug}">${tag.name}</a>
                             </#items>
                         </div>
                     </div>
