@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <#if (postPageVo.pageIndex)?? && (postPageVo.pageIndex > 1) >
-        <title>"StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
-    <#else>
-        <title>"StrongLiu's blog - 首页 </title>
-    </#if>
+<#if (postPageVo.pageIndex)?? && (postPageVo.pageIndex > 1) >
+    <title>"StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
+<#else>
+    <title>"StrongLiu's blog - 首页 </title>
+</#if>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="../../../static/plugin/font-awesome-4.7.0/css/font-awesome.css">
@@ -22,43 +22,43 @@
 <section>
     <div class="container">
         <div class="row">
-            <#if categorylist?? >
-                <#list categorylist>
-                    <div class="col-md-8">
-                        <ul class="nav nav-tabs nav-justified post-category">
-                            <li class="active">
-                                <a href="/">首页</a>
+        <#if categorylist?? >
+            <#list categorylist>
+                <div class="col-md-8">
+                    <ul class="nav nav-tabs nav-justified post-category">
+                        <li class="active">
+                            <a href="/">首页</a>
+                        </li>
+                        <#items as category>
+                            <li>
+                                <a href="#{category.slug}">#{category.name}</a>
                             </li>
-                            <#items as category>
-                                <li>
-                                    <a href="#{category.slug}">#{category.name}</a>
-                                </li>
-                            </#items>
-                        </ul>
-                    </div>
-                </#list>
-            </#if>
+                        </#items>
+                    </ul>
+                </div>
+            </#list>
+        </#if>
             <main class="col-md-8 main-content">
-                <#if (postPageVo.postList)?? >
-                    <#list postPageVo.postList as post>
-                        <article class="post">
-                            <div class="post-summary clearfix">
-                                <div class="post-image hidden-xs">
-                                    <a href="${post.slug}">
-                                        <img src=${post.thumb_url} />
-                                    </a>
-                                </div>
-                                <div class="post-inner">
-                                    <header class="post-title">
-                                        <a href="${post.slug}">${post.title}</a>
-                                    </header>
-                                    <div>
-                                        <p>${post.excerpt}</p>
-                                    </div>
+            <#if (postPageVo.postList)?? >
+                <#list postPageVo.postList as post>
+                    <article class="post">
+                        <div class="post-summary clearfix">
+                            <div class="post-image hidden-xs">
+                                <a href="${post.slug}">
+                                    <img src=${post.thumb_url} />
+                                </a>
+                            </div>
+                            <div class="post-inner">
+                                <header class="post-title">
+                                    <a href="${post.slug}">${post.title}</a>
+                                </header>
+                                <div>
+                                    <p>${post.excerpt}</p>
                                 </div>
                             </div>
-                            <footer class="post-footer">
-                                <div class="post-meta">
+                        </div>
+                        <footer class="post-footer">
+                            <div class="post-meta">
                             <span class="hidden-xs pull-left">
                                 <time class="fa fa-calendar"> ${(post.create_time)?date} </time>
                                 <a href="${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
@@ -67,31 +67,31 @@
                                 <a href="${post.slug}"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
                                 <i class="fa fa-heart-o"> ${(post.spot_count)!0} </i>
                             </span>
-                                </div>
+                            </div>
                         <span class="post-link pull-right">
                             <a href="${post.slug}" class="btn btn-custom">阅读全文</a>
                         </span>
-                            </footer>
-                        </article>
-                    </#list>
-                </#if>
-                <#if postPageVo?? >
-                    <nav class="pagination post-page">
-                        <#if (postPageVo.pageIndex > 1) >
-                            <a class="newer-posts" href="/?page=${postPageVo.pageIndex - 1}">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                        </#if>
-                        <#if (postPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
-                            <span class="page-number"> ${postPageVo.pageIndex}  &frasl; 共 ${postPageVo.pageTotal} 页</span>
-                        </#if>
-                        <#if (postPageVo.pageIndex < postPageVo.pageTotal) >
-                            <a class="older-posts" href="/?page=${postPageVo.pageIndex + 1}">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </#if>
-                    </nav>
-                </#if>
+                        </footer>
+                    </article>
+                </#list>
+            </#if>
+            <#if postPageVo?? >
+                <nav class="pagination post-page">
+                    <#if (postPageVo.pageIndex > 1) >
+                        <a class="newer-posts" href="/?page=${postPageVo.pageIndex - 1}">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </#if>
+                    <#if (postPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
+                        <span class="page-number"> ${postPageVo.pageIndex}  &frasl; 共 ${postPageVo.pageTotal} 页</span>
+                    </#if>
+                    <#if (postPageVo.pageIndex < postPageVo.pageTotal) >
+                        <a class="older-posts" href="/?page=${postPageVo.pageIndex + 1}">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </#if>
+                </nav>
+            </#if>
             </main>
             <aside class="col-md-4 hidden-xs hidden-sm sidebar">
                 <div class="widget-about">
@@ -106,18 +106,18 @@
                         <p>博学 慎思 明辨 笃行</p>
                     </div>
                 </div>
-                <#if taglist??>
-                    <#list taglist>
-                        <div class="widget-tags">
-                            <h4 class="widget-title">标签云</h4>
-                            <div class="tag-cloud">
-                                <#items as tag>
-                                    <a href="${tag.slug}">${tag.name}</a>
-                                </#items>
-                            </div>
+            <#if taglist??>
+                <#list taglist>
+                    <div class="widget-tags">
+                        <h4 class="widget-title">标签云</h4>
+                        <div class="tag-cloud">
+                            <#items as tag>
+                                <a href="${tag.slug}">${tag.name}</a>
+                            </#items>
                         </div>
-                    </#list>
-                </#if>
+                    </div>
+                </#list>
+            </#if>
             </aside>
         </div>
     </div>

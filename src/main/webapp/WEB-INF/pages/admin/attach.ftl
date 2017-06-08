@@ -26,46 +26,46 @@
                     </div>
                 </form>
             </div>
-            <#if attachPageVo?? >
-                <#list (attachPageVo.attachList) as attach >
-                    <div class="col-md-2 text-center attach">
-                        <a class="" href="${attach.slug}">
-                            <img class="attach-img" src="${attach.slug}" title="${attach.name}"/>
-                        </a>
-                        <div class="">
-                            <span class="attach-text">${attach.name}</span>
-                        </div>
-                        <div class="">
-                            <button type="button" class="btn btn-primary btn-sm">
-                                <i class="fa fa-copy"></i> <span>复制</span>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash-o"></i> <span>删除</span>
-                            </button>
-                        </div>
+        <#if attachPageVo?? >
+            <#list (attachPageVo.attachList) as attach >
+                <div class="col-md-2 text-center attach">
+                    <a class="" href="${attach.slug}">
+                        <img class="attach-img" src="${attach.slug}" title="${attach.name}"/>
+                    </a>
+                    <div class="">
+                        <span class="attach-text">${attach.name}</span>
                     </div>
-                <#else>
-                    <div class="col-md-12 text-center">
-                        <div class="col-md-6 alert alert-warning">
-                            还没有一个附件，你可以上传试试!
-                        </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <i class="fa fa-copy"></i> <span>复制</span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash-o"></i> <span>删除</span>
+                        </button>
                     </div>
-                </#list>
-                <#if (attachPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
-                    <nav class="col-md-12 text-center">
-                        <ul class="pagination">
-                            <#list 1..(attachPageVo.pageTotal) as index >
-                                <li
-                                    <#if index == (attachPageVo.pageIndex) >
-                                            class="active"
-                                    </#if> >
-                                    <a href="#">${index}</a>
-                                </li>
-                            </#list>
-                        </ul>
-                    </nav>
-                </#if>
+                </div>
+            <#else>
+                <div class="col-md-12 text-center">
+                    <div class="col-md-6 alert alert-warning">
+                        还没有一个附件，你可以上传试试!
+                    </div>
+                </div>
+            </#list>
+            <#if (attachPageVo.pageIndex > 0) && (attachPageVo.pageTotal > 0) >
+                <nav class="col-md-12 text-center">
+                    <ul class="pagination">
+                        <#list 1..(attachPageVo.pageTotal) as index >
+                            <li
+                                <#if index == (attachPageVo.pageIndex) >
+                                        class="active"
+                                </#if> >
+                                <a href="#">${index}</a>
+                            </li>
+                        </#list>
+                    </ul>
+                </nav>
             </#if>
+        </#if>
         </div>
     </div>
 </div>

@@ -21,11 +21,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <h4 class="page-title">
-                    <#if (postVo.post)?? >
-                        编辑文章
-                    <#else>
-                        发布文章
-                    </#if>
+                <#if (postVo.post)?? >
+                    编辑文章
+                <#else>
+                    发布文章
+                </#if>
                 </h4>
             </div>
             <div class="col-sm-12">
@@ -43,23 +43,23 @@
                         </div>
                         <div class="form-group col-md-6">
                             <select id="select-categories" class="form-control" name="categories" multiple="multiple">
-                                <#if (postVo.categoryList)?? >
-                                    <#assign postCategories>
+                            <#if (postVo.categoryList)?? >
+                                <#assign postCategories>
                                     <#list (postVo.categoryList) as postCategory>
                                     ${postCategory.id}
                                     </#list>
-                                    </#assign>
-                                </#if>
-                                <#if categoryList?? >
-                                    <#list categoryList as category >
-                                        <option value="${category.id}"
-                                            <#if (postVo.categoryList)?? && postCategories?contains(category.id?string("number")) >
-                                                selected
-                                            </#if> >
-                                        ${category.name}
-                                        </option>
-                                    </#list>
-                                </#if>
+                                </#assign>
+                            </#if>
+                            <#if categoryList?? >
+                                <#list categoryList as category >
+                                    <option value="${category.id}"
+                                        <#if (postVo.categoryList)?? && postCategories?contains(category.id?string("number")) >
+                                            selected
+                                        </#if> >
+                                    ${category.name}
+                                    </option>
+                                </#list>
+                            </#if>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -74,7 +74,7 @@
                             <#if tagList?? >
                                 <#list tagList as tag >
                                     <option value="${tag.id}"
-                                        <#if (postVo.tagList)?? && postTags?contains(tag.name?string("number")) >
+                                        <#if (postVo.tagList)?? && postTags?contains(tag.id?string("number")) >
                                             selected
                                         </#if> >
                                     ${tag.name}
@@ -143,7 +143,7 @@
 <script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
 <script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
 <script src="../../../static/common/js/base.js"></script>
-<script src="../../../static/admin/js/post.js"></script>
+<script src="../../../static/admin/js/post_edit.js"></script>
 
 </body>
 </html>

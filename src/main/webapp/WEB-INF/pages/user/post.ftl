@@ -18,8 +18,8 @@
 <section>
     <div class="container">
         <div class="row">
-            <#if postVo?? >
-                <main class="col-md-12 main-content">
+        <#if postVo?? >
+            <main class="col-md-12 main-content">
                 <article class="post">
                     <#if (postVo.post)?? >
                         <header>
@@ -56,18 +56,18 @@
                         </#list>
                     </#if>
                 </article>
-                    <#if (postVo.postPrev)?? >
-                        <div class="post-prev">
-                            <a href="${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
-                        </div>
-                    </#if>
-                    <#if (postVo.postNext)?? >
-                        <div class="post-next">
-                            <a href="${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
-                        </div>
-                    </#if>
-                </main>
-            </#if>
+                <#if (postVo.postPrev)?? >
+                    <div class="post-prev">
+                        <a href="${postVo.postPrev.slug}" title="${postVo.postPrev.title}"> <i class="fa fa-angle-left"></i> ${postVo.postPrev.title} </a>
+                    </div>
+                </#if>
+                <#if (postVo.postNext)?? >
+                    <div class="post-next">
+                        <a href="${postVo.postNext.slug}" title="${postVo.postNext.title}"> ${postVo.postNext.title} <i class="fa fa-angle-right"></i> </a>
+                    </div>
+                </#if>
+            </main>
+        </#if>
         </div>
     </div>
 </section>
