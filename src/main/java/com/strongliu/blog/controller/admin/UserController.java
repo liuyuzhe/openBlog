@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,17 +90,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(@ModelAttribute(value = "message") String message, HttpServletRequest request) {
-        try {
-            User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
-            if (!ObjectUtils.isEmpty(user)) {
-                return this.redirect("/");
-            }
-        } catch (Exception e) {
-            logger.error(e.toString());
-            return this.render_500();
-        }
-
+    public String login() {
         return this.renderAdmin("login");
     }
 
@@ -140,10 +131,12 @@ public class UserController extends BaseController {
                     return new ResponseDto(ErrorCode.ERROR_ENCRYPT_FAILED);
                 }
             }
-//        处理登陆后自动跳转
-//        if (!StringUtils.isEmpty(next)) {
+
+        // 处理登陆后自动跳转
+        if (!StringUtils.isEmpty(next)) {
 //            return this.redirect(next);
-//        }
+        }
+
         } catch (Exception e) {
             logger.error(e.toString());
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);

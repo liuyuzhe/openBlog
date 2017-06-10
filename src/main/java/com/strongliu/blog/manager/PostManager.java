@@ -67,6 +67,10 @@ public class PostManager {
      */
     public PostPageVo getPublishPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPublishPost(pageId, limit);
+        if (ObjectUtils.isEmpty(postList)) {
+            return null;
+        }
+
         for (Post post : postList) {
             if (post.getFmt_type().equalsIgnoreCase("markdown")) {
                 post.setContent(StringUtil.markdownToHtml(post.getContent()));
@@ -194,7 +198,9 @@ public class PostManager {
         if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(tagIdList)) {
             categoryIdList.addAll(tagIdList);
         }
-        relationshipService.addRelationshipList(post.getId(), categoryIdList);
+        if (!ObjectUtils.isEmpty(categoryIdList)) {
+            relationshipService.addRelationshipList(post.getId(), categoryIdList);
+        }
 
         return post.getId();
     }
@@ -235,7 +241,9 @@ public class PostManager {
         int ret = postService.updatePost(post);
 
         List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());
-        relationshipService.removeRelationshipList(post.getId(), termIdList);
+        if (!ObjectUtils.isEmpty(termIdList)) {
+            relationshipService.removeRelationshipList(post.getId(), termIdList);
+        }
 
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());

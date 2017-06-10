@@ -4,7 +4,10 @@ import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.entity.User;
 import com.strongliu.blog.service.UserService;
 import com.strongliu.blog.utility.SecurityUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +26,8 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     @Autowired
     private UserService userService;
 
+    private final static Logger logger = LoggerFactory.getLogger(AuthorizationInterceptor.class);
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
@@ -37,29 +42,30 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         User user = (User) request.getSession().getAttribute(Constant.USER_SESSION_KEY);
         if (user == null) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(Constant.USER_COOKIE_KEY)) {
-                    String cookieInfo = cookie.getValue();
-                    if (!StringUtils.isEmpty(cookieInfo)) {
-                        try {
-                            String userInfo = SecurityUtil.decryptAES(cookieInfo, Constant.PASSWORD_SALT);
-                            Integer userId = Integer.valueOf(userInfo);
-                            user = userService.findUserById(userId);
-                            request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+            if (!ObjectUtils.isEmpty(cookies)) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals(Constant.USER_COOKIE_KEY)) {
+                        String cookieInfo = cookie.getValue();
+                        if (!StringUtils.isEmpty(cookieInfo)) {
+                            try {
+                                String userInfo = SecurityUtil.decryptAES(cookieInfo, Constant.PASSWORD_SALT);
+                                Integer userId = Integer.valueOf(userInfo);
+                                user = userService.findUserById(userId);
+                                request.getSession().setAttribute(Constant.USER_SESSION_KEY, user);
+                            } catch (Exception e) {
+                                logger.error(e.toString());
+                            }
                         }
                     }
                 }
             }
         }
 
-//        if (requestURI.startsWith("/admin") && user == null) {
-//            request.setAttribute("message", "请登陆");
-//            request.setAttribute("next", request.getRequestURI());
-//            request.getRequestDispatcher("/pages/admin/login").forward(request, response);
-//            return false;
-//        }
+        if (requestURI.startsWith("/admin") && user == null) {
+            request.setAttribute("next", request.getRequestURI());
+            request.getRequestDispatcher("/admin/user/login").forward(request, response);
+            return false;
+        }
 
         return true;
     }

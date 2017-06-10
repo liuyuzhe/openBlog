@@ -32,6 +32,9 @@
             <hr>
             <form id="loginForm">
                 <fieldset class="login-form">
+                    <#if next?? >
+                        <input type="hidden" name="next" value="${next}" />
+                    </#if>
                     <div class="form-group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon">

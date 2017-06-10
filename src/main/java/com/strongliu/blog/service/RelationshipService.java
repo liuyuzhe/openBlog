@@ -1,9 +1,11 @@
 package com.strongliu.blog.service;
 
+import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.dao.RelationshipDao;
 import com.strongliu.blog.entity.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,10 @@ public class RelationshipService {
      * 添加文章Id与分类Id列表的对应关系
      */
     public int addRelationshipList(int targetId, List<Integer> termIdList) {
+        if (ObjectUtils.isEmpty(termIdList)) {
+            return ErrorCode.ERROR_PARAM_INVALID.getCode();
+        }
+
         List<Relationship> relationshipList = new ArrayList<>();
         for (Integer termId : termIdList) {
             Relationship relationship = new Relationship(targetId, termId);
@@ -49,6 +55,10 @@ public class RelationshipService {
      * 移除文章Id与分类Id列表的对应关系
      */
     public int removeRelationshipList(int targetId, List<Integer> termIdList) {
+        if (ObjectUtils.isEmpty(termIdList)) {
+            return ErrorCode.ERROR_PARAM_INVALID.getCode();
+        }
+
         List<Relationship> relationshipList = new ArrayList<>();
         for (Integer termId : termIdList) {
             Relationship relationship = new Relationship(targetId, termId);

@@ -45,7 +45,7 @@
 	<mvc:interceptors>
 		<!-- 多个拦截器顺序执行 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/"/>
+			<mvc:mapping path="/admin/**"/>
 			<bean class="com.strongliu.blog.interceptor.AuthorizationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -68,9 +68,6 @@
 	</bean>
 
 	<!-- 设置静态资源直接映射，DispatcherServlet不处理 -->
-	<!--<mvc:resources location="/css/**" mapping="/static/css/" />-->
-	<!--<mvc:resources location="/js/**" mapping="/static/js/" />-->
-	<!--<mvc:resources location="/*.img" mapping="/image/" />-->
-	<!--<mvc:resources location="/*.html" mapping="/" />-->
-	
+	<mvc:resources mapping="/static/**" location="/static/" />
+
 </beans>
