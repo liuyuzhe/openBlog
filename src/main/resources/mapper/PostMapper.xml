@@ -34,7 +34,7 @@
     
     <select id="selectPublishPrevById" resultMap="postResultMap">
         SELECT post_id, post_slug, post_title FROM post_table
-        WHERE post_create_time &lt;
+        WHERE post_type='post' AND post_status='publish' AND post_create_time &lt;
         (SELECT post_create_time FROM post_table WHERE post_id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time DESC
         LIMIT 1
@@ -42,7 +42,7 @@
     
     <select id="selectPublishNextById" resultMap="postResultMap">
         SELECT post_id, post_slug, post_title FROM post_table
-        WHERE post_create_time &gt;
+        WHERE post_type='post' AND post_status='publish' AND post_create_time &gt;
         (SELECT post_create_time FROM post_table WHERE post_id=#{id} AND post_type='post' AND post_status='publish')
         ORDER BY post_create_time
         LIMIT 1

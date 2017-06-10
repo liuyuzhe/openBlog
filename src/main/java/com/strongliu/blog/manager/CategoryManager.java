@@ -41,8 +41,9 @@ public class CategoryManager {
         List<Integer> targetList = relationshipService.findAllTargetByTermId(category.getId());
         List<Post> postList = postService.findAllPublishPostByIdList(targetList, pageId, limit);
 
-        int pageTotal = targetList.size() / limit;
-        if (targetList.size() % limit != 0) {
+        int postTotal = postList.size();
+        int pageTotal = postTotal / limit;
+        if (postTotal % limit != 0) {
             pageTotal += 1;
         }
 

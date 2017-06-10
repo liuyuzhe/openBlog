@@ -40,14 +40,17 @@ public class PostManager {
     /**
      * 获取文章列表
      */
-    @Transactional
     public PostPageVo getPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPost(pageId, limit);
         if (ObjectUtils.isEmpty(postList)) {
             return null;
         }
 
-        int pageTotal = postService.pageTotal(limit);
+        int postTotal = postList.size();
+        int pageTotal = postTotal / limit;
+        if (postTotal % limit != 0) {
+            pageTotal += 1;
+        }
 
         PostPageVo postPageVo = new PostPageVo();
         postPageVo.setPostList(postList);
@@ -62,7 +65,6 @@ public class PostManager {
     /**
      * 获取已发布文章列表
      */
-    @Transactional
     public PostPageVo getPublishPostPageVo(int pageId, int limit) {
         List<Post> postList = postService.findAllPublishPost(pageId, limit);
         for (Post post : postList) {
@@ -72,7 +74,11 @@ public class PostManager {
             post.setExcerpt(StringUtil.generatePostExcerpt(post.getContent(), Constant.POST_EXCERPT_LENGTH));
         }
 
-        int pageTotal = postService.pageTotal(limit);
+        int postTotal = postList.size();
+        int pageTotal = postTotal / limit;
+        if (postTotal % limit != 0) {
+            pageTotal += 1;
+        }
 
         PostPageVo postPageVo = new PostPageVo();
         postPageVo.setPostList(postList);

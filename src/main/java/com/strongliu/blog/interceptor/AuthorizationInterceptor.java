@@ -54,12 +54,12 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             }
         }
 
-        if (requestURI.startsWith("/admin") && user == null) {
-            request.setAttribute("message", "请登陆");
-            request.setAttribute("next", request.getRequestURI());
-            request.getRequestDispatcher("/pages/admin/login").forward(request, response);
-            return false;
-        }
+//        if (requestURI.startsWith("/admin") && user == null) {
+//            request.setAttribute("message", "请登陆");
+//            request.setAttribute("next", request.getRequestURI());
+//            request.getRequestDispatcher("/pages/admin/login").forward(request, response);
+//            return false;
+//        }
 
         return true;
     }

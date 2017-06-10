@@ -5,7 +5,6 @@ import com.strongliu.blog.service.AttachService;
 import com.strongliu.blog.vo.AttachPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
@@ -20,14 +19,17 @@ public class AttachManager {
     @Autowired
     private AttachService attachService;
 
-    @Transactional
     public AttachPageVo getAttachPageVo(int pageId, int limit) {
         List<Attach> attachList = attachService.findAllAttach(pageId, limit);
         if (ObjectUtils.isEmpty(attachList)) {
             return null;
         }
 
-        int pageTotal = attachService.pageTotal(limit);
+        int attachTotal = attachList.size();
+        int pageTotal = attachTotal / limit;
+        if (attachTotal % limit != 0) {
+            pageTotal += 1;
+        }
 
         AttachPageVo attachPageVo = new AttachPageVo();
         attachPageVo.setAttachList(attachList);

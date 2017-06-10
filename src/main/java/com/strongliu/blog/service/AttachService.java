@@ -28,9 +28,9 @@ public class AttachService {
     }
 
     public int pageTotal(int pageSize) {
-        int postTotal = attachDao.selectCount();
-        int pageTotal = postTotal / pageSize;
-        if (postTotal % pageSize != 0) {
+        int attachTotal = attachDao.selectCount();
+        int pageTotal = attachTotal / pageSize;
+        if (attachTotal % pageSize != 0) {
             pageTotal += 1;
         }
 

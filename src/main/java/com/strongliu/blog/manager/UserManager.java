@@ -28,7 +28,11 @@ public class UserManager {
             return null;
         }
 
-        int pageTotal = userService.pageTotal(limit);
+        int userTotal = userList.size();
+        int pageTotal = userTotal / limit;
+        if (userTotal % limit != 0) {
+            pageTotal += 1;
+        }
 
         UserPageVo userPageVo = new UserPageVo();
         userPageVo.setUserList(userList);

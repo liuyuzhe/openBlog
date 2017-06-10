@@ -22,8 +22,8 @@
 <section>
     <div class="container">
         <div class="row">
-        <#if categorylist?? >
-            <#list categorylist>
+        <#if categoryList?? >
+            <#list categoryList>
                 <div class="col-md-8">
                     <ul class="nav nav-tabs nav-justified post-category">
                         <li class="active">
@@ -31,7 +31,7 @@
                         </li>
                         <#items as category>
                             <li>
-                                <a href="/categories/#{category.slug}">#{category.name}</a>
+                                <a href="/categories/${category.slug}">${category.name}</a>
                             </li>
                         </#items>
                     </ul>
@@ -108,8 +108,8 @@
                         <p>博学 慎思 明辨 笃行</p>
                     </div>
                 </div>
-            <#if taglist??>
-                <#list taglist>
+            <#if tagList??>
+                <#list tagList>
                     <div class="widget-tags">
                         <h4 class="widget-title">标签云</h4>
                         <div class="tag-cloud">
