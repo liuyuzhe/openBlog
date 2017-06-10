@@ -14,7 +14,8 @@
 </head>
 <body>
 
-<#include "header.html">
+<#import "header.ftl" as mainHeader >
+<@mainHeader.navbar active="post_edit" />
 
 <section class="content-page">
     <div class="container">

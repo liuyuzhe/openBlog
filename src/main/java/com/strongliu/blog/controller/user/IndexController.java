@@ -83,6 +83,11 @@ public class IndexController extends BaseController {
             }
 
             model.addAttribute(postVo);
+
+            List<Category> categoryList = categoryManager.getAllCategory();
+            if (!ObjectUtils.isEmpty(categoryList)) {
+                model.addAttribute(categoryList);
+            }
         } catch (Exception e) {
             logger.error(e.toString());
             return this.render_500();

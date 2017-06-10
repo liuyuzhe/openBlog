@@ -11,19 +11,7 @@
 </head>
 <body>
 
-<header class="main-header">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand nav-logo" href="/">StrongLiu's blog</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/admin/user/login"> 登录 </a></li>
-                <li><a href="/admin/user/register"> 注册 </a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<#include "auth_header.html"/>
 
 <div class="container">
     <main class="main-content">

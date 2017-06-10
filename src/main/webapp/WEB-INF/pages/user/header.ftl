@@ -1,3 +1,4 @@
+<#macro navbar categoryList=[] >
 <header class="main-header">
     <nav class="navbar navbar-default">
         <div class="container">
@@ -13,20 +14,26 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li> <a class="write-btn" href="/"> <span class="glyphicon glyphicon-home"> </span> 首页 </a> </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 文章归档
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li> <a href="#">ios</a> </li>
-                            <li> <a href="#">android</a> </li>
-                            <li> <a href="#">windows</a> </li>
-                            <li> <a href="#">java web</a> </li>
-                        </ul>
-                    </li>
+                    <#if categoryList?? >
+                        <#list categoryList>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 文章归档
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <#items as category>
+                                        <li>
+                                            <a href="/categories/${category.slug}">${category.name}</a>
+                                        </li>
+                                    </#items>
+                                </ul>
+                            </li>
+                        </#list>
+                    </#if>
                     <li> <a href="#"> <span class="glyphicon glyphicon-user"></span> 关于 </a> </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+</#macro>

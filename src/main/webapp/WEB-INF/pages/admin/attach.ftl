@@ -11,7 +11,8 @@
 </head>
 <body>
 
-<#include "header.html">
+<#import "header.ftl" as mainHeader >
+<@mainHeader.navbar active="attach" />
 
 <div class="content-page">
     <div class="container">

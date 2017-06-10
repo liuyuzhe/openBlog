@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
 <#if (postPageVo.pageIndex)?? && (postPageVo.pageIndex > 1) >
-    <title>"StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
+    <title>StrongLiu's blog - 第 ${postPageVo.pageIndex} 页</title>
 <#else>
-    <title>"StrongLiu's blog - 首页 </title>
+    <title>StrongLiu's blog - 首页 </title>
 </#if>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
@@ -17,7 +17,13 @@
 </head>
 <body>
 
-<#include "header.html">
+<#import "header.ftl" as mainHeader >
+<#if categoryList??>
+    <@mainHeader.navbar categoryList=categoryList />
+<#else>
+    <@mainHeader.navbar categoryList=[] />
+</#if>
+
 
 <section>
     <div class="container">

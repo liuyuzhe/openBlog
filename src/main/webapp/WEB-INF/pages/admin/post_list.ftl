@@ -10,7 +10,8 @@
 </head>
 <body>
 
-<#include "header.html">
+<#import "header.ftl" as mainHeader >
+<@mainHeader.navbar active="post_list" />
 
 <div class="content-page">
     <div class="container">

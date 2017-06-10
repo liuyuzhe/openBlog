@@ -13,7 +13,12 @@
 </head>
 <body>
 
-<#include "header.html">
+<#import "header.ftl" as mainHeader >
+<#if categoryList??>
+    <@mainHeader.navbar categoryList=categoryList />
+<#else>
+    <@mainHeader.navbar categoryList=[] />
+</#if>
 
 <section>
     <div class="container">
