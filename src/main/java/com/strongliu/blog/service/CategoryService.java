@@ -44,7 +44,7 @@ public class CategoryService {
         return categoryDao.update(category);
     }
 
-    public int updatePostCountByIdList(List<Integer> idList, int number) {
+    public int updatePostCountByIdList(List<Integer> idList, Integer number) {
         return categoryDao.updatePostCountByIdList(idList, number);
     }
 

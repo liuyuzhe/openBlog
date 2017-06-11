@@ -88,7 +88,7 @@
     <update id="update" parameterType="post">
         UPDATE post_table
         SET post_slug=#{slug}, post_thumb_url=#{thumb_url}, post_title=#{title}, post_content=#{content}, post_update_time=#{update_time},
-         post_fmt_type=#{fmt_type}, post_status=#{status}, post_comment_status=#{comment_status})
+         post_fmt_type=#{fmt_type}, post_status=#{status}, post_comment_status=#{comment_status}
         WHERE post_id=#{id}
     </update>
 
@@ -99,19 +99,19 @@
 
     <update id="updateCommentCount" parameterType="int">
         UPDATE post_table
-        SET comment_count+=#{count}
+        SET comment_count=comment_count+#{count}
         WHERE post_id=#{id}
     </update>
 
     <update id="updateReadCount" parameterType="int">
         UPDATE post_table
-        SET read_count+=#{count}
+        SET read_count=read_count+#{count}
         WHERE post_id=#{id}
     </update>
 
     <update id="updateSpotCount" parameterType="int">
         UPDATE post_table
-        SET spot_count+=#{count}
+        SET spot_count=spot_count+#{count}
         WHERE post_id=#{id}
     </update>
 

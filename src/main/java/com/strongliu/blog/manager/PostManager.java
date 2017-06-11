@@ -216,6 +216,7 @@ public class PostManager {
     @Transactional
     public int updatePostFormVo(PostFormVo postFormVo) {
         Post post = new Post();
+        post.setId(postFormVo.getId());
         post.setSlug(postFormVo.getSlug());
         post.setThumb_url(postFormVo.getThumb_url());
         post.setTitle(postFormVo.getTitle());
