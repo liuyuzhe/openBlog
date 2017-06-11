@@ -19,7 +19,7 @@ public interface CategoryDao {
 
 	int update(Category category);
 
-	int updatePostCount(@Param("id") int id, @Param("number") int number);
+	int updatePostCountByIdList(@Param("idList") List<Integer> idList, @Param("number") int number);
 
 	int deleteById(int id);
 }

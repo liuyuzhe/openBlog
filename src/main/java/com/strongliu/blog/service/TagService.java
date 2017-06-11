@@ -44,8 +44,8 @@ public class TagService {
         return tagDao.update(tag);
     }
 
-    public int updatePostCount(int id, int number) {
-        return tagDao.updatePostCount(id, number);
+    public int updatePostCountByIdList(List<Integer> idList, int number) {
+        return tagDao.updatePostCountByIdList(idList, number);
     }
 
     public int removeTagById(int id) {

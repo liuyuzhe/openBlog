@@ -44,13 +44,16 @@
     <update id="update" parameterType="tag">
         UPDATE term_table
         SET term_name=#{name}, term_slug=#{slug}
-        WHERE term_id=#{id}
+        WHERE term_id=#{id} AND term_type='tag'
     </update>
 
-    <update id="updatePostCount" parameterType="int">
+    <update id="updatePostCountByIdList" parameterType="int" >
         UPDATE term_table
         SET term_count+=#{number}
-        WHERE term_id=#{id}
+        WHERE term_id IN
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
     </update>
 
     <delete id="deleteById" parameterType="int">

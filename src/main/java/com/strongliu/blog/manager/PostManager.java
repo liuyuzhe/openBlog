@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -193,13 +194,17 @@ public class PostManager {
         if (StringUtils.isEmpty(postFormVo.getCategories())) {
             postFormVo.setCategories("1"); // 默认分类ID
         }
+
+        // 新集合
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
         if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(tagIdList)) {
             categoryIdList.addAll(tagIdList);
         }
+
         if (!ObjectUtils.isEmpty(categoryIdList)) {
             relationshipService.addRelationshipList(post.getId(), categoryIdList);
+            categoryService.updatePostCountByIdList(categoryIdList, 1);
         }
 
         return post.getId();
@@ -240,17 +245,35 @@ public class PostManager {
 
         int ret = postService.updatePost(post);
 
+        // 原集合
         List<Integer> termIdList = relationshipService.findAllTermByTargetId(post.getId());
-        if (!ObjectUtils.isEmpty(termIdList)) {
-            relationshipService.removeRelationshipList(post.getId(), termIdList);
-        }
 
+        // 新集合
         List<Integer> categoryIdList = StringUtil.StringToIntegerList(postFormVo.getCategories());
         List<Integer> tagIdList = StringUtil.StringToIntegerList(postFormVo.getTags());
         if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(tagIdList)) {
             categoryIdList.addAll(tagIdList);
         }
-        relationshipService.addRelationshipList(post.getId(), categoryIdList);
+
+        List<Integer> oldTermIdList = new ArrayList<>(termIdList);
+
+        // 原集合-新集合 差集
+        if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(termIdList)) {
+            termIdList.removeAll(categoryIdList);
+            if (!ObjectUtils.isEmpty(termIdList)) {
+                relationshipService.removeRelationshipList(post.getId(), termIdList);
+                categoryService.updatePostCountByIdList(termIdList, -1);
+            }
+        }
+
+        // 新集合-原集合 差集
+        if (!ObjectUtils.isEmpty(categoryIdList) && !ObjectUtils.isEmpty(oldTermIdList)) {
+            categoryIdList.removeAll(oldTermIdList);
+            if (!ObjectUtils.isEmpty(categoryIdList)) {
+                relationshipService.addRelationshipList(post.getId(), categoryIdList);
+                categoryService.updatePostCountByIdList(categoryIdList, 1);
+            }
+        }
 
         return ret;
     }
@@ -258,8 +281,18 @@ public class PostManager {
     /**
      * 删除文章
      */
+    @Transactional
     public int removePostForm(int postId) {
-        return postService.removePostById(postId);
+        int index = postService.removePostById(postId);
+
+        // 原集合
+        List<Integer> termIdList = relationshipService.findAllTermByTargetId(postId);
+
+        if (!ObjectUtils.isEmpty(termIdList)) {
+            categoryService.updatePostCountByIdList(termIdList, -1);
+        }
+
+        return index;
     }
 
 }

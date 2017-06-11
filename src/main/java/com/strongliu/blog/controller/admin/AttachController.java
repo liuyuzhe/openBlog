@@ -68,7 +68,10 @@ public class AttachController extends BaseController {
 
         File filePath = new File(path, fileSlug);
         if (!filePath.getParentFile().exists()) {
-            filePath.getParentFile().mkdirs();
+            boolean isSuccess = filePath.getParentFile().mkdirs();
+            if (!isSuccess) {
+                logger.error("mkdirs failed!");
+            }
         }
 
         try {
@@ -88,6 +91,13 @@ public class AttachController extends BaseController {
         }
 
         return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseDto downloadAttach() {
+
+        return new ResponseDto(ErrorCode.SUCCESS);
     }
 
     @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})

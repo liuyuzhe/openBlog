@@ -23,7 +23,7 @@ public interface TagDao {
 
     int update(Tag tag);
 
-    int updatePostCount(@Param("id") int id, @Param("number") int number);
+    int updatePostCountByIdList(@Param("idList") List<Integer> idList, @Param("number") int number);
 
     int deleteById(int id);
 }
