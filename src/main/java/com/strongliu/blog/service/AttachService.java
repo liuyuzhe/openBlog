@@ -21,6 +21,10 @@ public class AttachService {
         return attachDao.selectById(id);
     }
 
+    public Attach findAttachBySlug(String slug) {
+        return attachDao.selectBySlug(slug);
+    }
+
     public List<Attach> findAllAttach(int pageId, int pageSize) {
         pageId = pageId < 0 ? 1 : pageId;
         int startIndex = (pageId - 1) * pageSize;

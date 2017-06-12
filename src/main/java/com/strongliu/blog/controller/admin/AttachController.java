@@ -1,15 +1,22 @@
 package com.strongliu.blog.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
 import com.strongliu.blog.entity.Attach;
 import com.strongliu.blog.manager.AttachManager;
 import com.strongliu.blog.utility.FileUtil;
+import com.strongliu.blog.utility.StringUtil;
 import com.strongliu.blog.vo.AttachPageVo;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -61,21 +68,23 @@ public class AttachController extends BaseController {
             return new ResponseDto(ErrorCode.ERROR_PARAM_MISS);
         }
 
-        String path = request.getSession().getServletContext().getRealPath("/upload/");
         String fileName = file.getOriginalFilename();
         String fileType = file.getContentType();
-        String fileSlug = FileUtil.getFileSlug(fileName);
+        Date createTime = new Date();
+        String fileSlug = StringUtil.getUUID();
+        String fileSavePath = FileUtil.getFileSavePath(fileName, fileSlug, createTime);
 
-        File filePath = new File(path, fileSlug);
-        if (!filePath.getParentFile().exists()) {
-            boolean isSuccess = filePath.getParentFile().mkdirs();
+        String path = request.getSession().getServletContext().getRealPath("/upload/");
+        File saveFile = new File(path, fileSavePath);
+        if (!saveFile.getParentFile().exists()) {
+            boolean isSuccess = saveFile.getParentFile().mkdirs();
             if (!isSuccess) {
                 logger.error("mkdirs failed!");
             }
         }
 
         try {
-            file.transferTo(filePath); // 保存上传文件到一个目标文件中
+            file.transferTo(saveFile); // 保存上传文件到一个目标对象中
 
             Attach attach = new Attach();
             attach.setSlug(fileSlug);
@@ -87,17 +96,43 @@ public class AttachController extends BaseController {
 
         } catch (IOException e) {
             logger.error(e.toString());
+            return new ResponseDto(ErrorCode.ERROR_IO_ACCESS_FAILED);
+        } catch (Exception e) {
+            logger.error(e.toString());
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
         }
 
-        return new ResponseDto<>(ErrorCode.SUCCESS, fileSlug);
+        String data = JSON.toJSONString(fileSlug);
+
+        return new ResponseDto<>(ErrorCode.SUCCESS, data);
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto downloadAttach() {
+    public ResponseEntity<byte[]> downloadAttach(@RequestParam("attachSlug") String attachSlug, HttpServletRequest request) {
+        try {
+            Attach attach = attachManager.getAttach(attachSlug);
+            String fileSavePath = FileUtil.getFileSavePath(attach.getName(), attach.getSlug(), attach.getCreate_time());
 
-        return new ResponseDto(ErrorCode.SUCCESS);
+            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            File file = new File(path, fileSavePath);
+
+            HttpHeaders headers = new HttpHeaders();
+            MediaType mediaType;
+            try {
+                mediaType = new MediaType(attach.getType());
+            } catch (IllegalArgumentException e) {
+                mediaType = MediaType.APPLICATION_OCTET_STREAM;
+            }
+
+            headers.setContentType(mediaType);
+            headers.setContentDispositionFormData("attachment", attach.getName());
+
+            return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return null;
+        }
     }
 
     @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.POST})
@@ -109,11 +144,12 @@ public class AttachController extends BaseController {
                 return new ResponseDto(ErrorCode.ERROR_RESOURCE_NOT_FOUND);
             }
 
-            attachManager.removeAttach(attachId);
-            String fileSlug = attach.getSlug();
+            attachManager.removeAttach(attach.getId());
+            String fileSavePath = FileUtil.getFileSavePath(attach.getName(), attach.getSlug(), attach.getCreate_time());
+
             String path = request.getSession().getServletContext().getRealPath("/upload/");
-            File filePath = new File(path, fileSlug);
-            if (!filePath.delete()) {
+            File file = new File(path, fileSavePath);
+            if (!file.delete()) {
                 return new ResponseDto(ErrorCode.ERROR_IO_ACCESS_FAILED);
             }
 

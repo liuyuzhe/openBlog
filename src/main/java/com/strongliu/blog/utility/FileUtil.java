@@ -25,12 +25,13 @@ public class FileUtil {
         }
     }
 
-    public static String getFileSlug(String fileName) {
+    public static String getFileSavePath(String fileName, String fileUuid, Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM");
-        String prefix = format.format(new Date());
+        String prefix = format.format(date);
 
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-        return prefix + File.separator + StringUtil.getUUID() + "." + suffix;
+        return prefix + File.separator + fileUuid + "." + suffix;
     }
+
 }

@@ -18,6 +18,11 @@
         WHERE attach_id=#{id}
     </select>
 
+    <select id="selectBySlug" resultMap="attachResultMap">
+        attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id FROM attach_table
+        WHERE attach_slug=#{slug}
+    </select>
+
     <select id="selectAll" resultMap="attachResultMap">
         SELECT attach_id, attach_slug, attach_name, attach_type, attach_create_time, creator_id FROM attach_table
         ORDER BY attach_create_time DESC

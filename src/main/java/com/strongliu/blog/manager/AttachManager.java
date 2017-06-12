@@ -50,6 +50,15 @@ public class AttachManager {
         return attach;
     }
 
+    public Attach getAttach(String attachSlug) {
+        Attach attach = attachService.findAttachBySlug(attachSlug);
+        if (attach == null) {
+            return null;
+        }
+
+        return attach;
+    }
+
     public int addAttach(Attach attach) {
         attachService.addAttach(attach);
         return attach.getId();

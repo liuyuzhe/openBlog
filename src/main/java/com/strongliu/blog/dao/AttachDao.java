@@ -12,6 +12,8 @@ public interface AttachDao {
 
     Attach selectById(int id);
 
+    Attach selectBySlug(String slug);
+
     List<Attach> selectAll(@Param("offset") int offset, @Param("limit") int limit);
 
     int selectCount();
