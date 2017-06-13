@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../static/plugin/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../../static/plugin/dropzone-4.3.0/dropzone.css">
     <link rel="stylesheet" href="../../../static/admin/css/style.css">
 </head>
 <body>
@@ -21,11 +20,7 @@
                 <h4 class="page-title">附件管理</h4>
             </div>
             <div class="col-md-12">
-                <form action="#" class="dropzone" id="upload-file">
-                    <div class="fallback">
-                        <input name="file" type="file" multiple />
-                    </div>
-                </form>
+                <a id="upload-file" href="javascript:void(0)">选择文件</a>
             </div>
         <#if attachPageVo?? >
             <#list (attachPageVo.attachList) as attach >
@@ -37,11 +32,13 @@
                         <span class="attach-text">${attach.name}</span>
                     </div>
                     <div class="">
-                        <button type="button" class="btn btn-primary btn-sm">
-                            <i class="fa fa-copy"></i> <span>复制</span>
+                        <button type="button" class="btn btn-primary btn-sm copy-attach" aslug="${attach.slug}">
+                            <i class="fa fa-copy"></i>
+                            <span>复制</span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash-o"></i> <span>删除</span>
+                        <button type="button" class="btn btn-danger btn-sm delete-attach" aid="${attach.id}">
+                            <i class="fa fa-trash-o"></i>
+                            <span>删除</span>
                         </button>
                     </div>
                 </div>
@@ -60,7 +57,7 @@
                                 <#if index == (attachPageVo.pageIndex) >
                                         class="active"
                                 </#if> >
-                                <a href="#">${index}</a>
+                                <a href="/admin/post/?page=${index}">${index}</a>
                             </li>
                         </#list>
                     </ul>
@@ -73,7 +70,8 @@
 
 <script src="../../../static/plugin/jquery/jquery-3.1.1.min.js"></script>
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-<script src="../../../static/plugin/dropzone-4.3.0/dropzone.js"></script>
+<script src="../../../static/plugin/clipboard.js/clipboard.min.js"></script>
+<script src="../../../static/plugin/plupload-3.0-beta1/js/plupload.min.js"></script>
 <script src="../../../static/common/js/base.js"></script>
 <script src="../../../static/admin/js/attach.js"></script>
 

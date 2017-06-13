@@ -84,7 +84,7 @@
                             <#if index == (postPageVo.pageIndex) >
                                     class="active"
                             </#if> >
-                            <a href="#">${index}</a>
+                            <a href="/admin/post/?page=${index}">${index}</a>
                         </li>
                     </#list>
                 </ul>

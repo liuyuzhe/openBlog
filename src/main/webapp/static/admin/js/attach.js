@@ -2,22 +2,73 @@
  * Created by liuyuzhe on 2017/5/18.
  */
 
-Dropzone.autoDiscover = false;
 
 (function () {
-    $("#upload-file").dropzone({
+
+    var uploader = new plupload.Uploader({
+        browse_button : "upload-file",
         url : "/admin/attach/upload",
-        maxFilesize : 50,
-        filesizeBase : 1024,
-        uploadMultiple : true,
-        maxFiles : 5,
-        init: function() {
-            this.on('queuecomplete', function (files) {
-            });
-            this.on('error', function (a, errorMessage, result) {
-            });
-            this.on('maxfilesreached', function () {
-            });
+        max_file_size : '50mb',
+        chunk_size: 0,
+        auto_start : true
+    });
+
+    uploader.init();
+
+    uploader.bind("FilesAdded", function(uploader, files) {
+        uploader.start();
+    });
+
+    uploader.bind("BeforeUpload", function(uploader, file) {
+    });
+
+    uploader.bind("UploadProgress", function(uploader, file) {
+    });
+
+    uploader.bind("FileUploaded", function(uploader, file, result) {
+        console.log("result:", result);
+    });
+
+    uploader.bind("Error", function(uploader, error) {
+        console.log("error:", error);
+    });
+
+    var clipboard = new Clipboard('.copy-attach', {
+        text: function (trigger) {
+            return $(trigger).attr('aslug');
         }
     });
+
+    clipboard.on('success', function (e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+
+    $(".delete-attach").click(function() {
+        var id = $(this).attr('aid');
+
+        $.post({
+            url : "/admin/attach/remove",
+            dataType : "json",
+            data : {attachId: id},
+            success : function(response) {
+                if (response.code === 0) {
+                    console.log(response.message);
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error : function(response) {
+                console.log(response.message);
+            }
+        });
+    });
+
 })();

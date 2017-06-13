@@ -74,7 +74,7 @@ public class AttachController extends BaseController {
         String fileSlug = StringUtil.getUUID();
         String fileSavePath = FileUtil.getFileSavePath(fileName, fileSlug, createTime);
 
-        String path = request.getSession().getServletContext().getRealPath("/upload/");
+        String path = request.getSession().getServletContext().getRealPath("/");
         File saveFile = new File(path, fileSavePath);
         if (!saveFile.getParentFile().exists()) {
             boolean isSuccess = saveFile.getParentFile().mkdirs();
@@ -114,7 +114,7 @@ public class AttachController extends BaseController {
             Attach attach = attachManager.getAttach(attachSlug);
             String fileSavePath = FileUtil.getFileSavePath(attach.getName(), attach.getSlug(), attach.getCreate_time());
 
-            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            String path = request.getSession().getServletContext().getRealPath("/");
             File file = new File(path, fileSavePath);
 
             HttpHeaders headers = new HttpHeaders();
@@ -126,7 +126,8 @@ public class AttachController extends BaseController {
             }
 
             headers.setContentType(mediaType);
-            headers.setContentDispositionFormData("attachment", attach.getName());
+            String fileName = new String(attach.getName().getBytes("UTF-8"), "iso-8859-1"); // 中文名称乱码
+            headers.setContentDispositionFormData("attachment", fileName);
 
             return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -147,7 +148,7 @@ public class AttachController extends BaseController {
             attachManager.removeAttach(attach.getId());
             String fileSavePath = FileUtil.getFileSavePath(attach.getName(), attach.getSlug(), attach.getCreate_time());
 
-            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            String path = request.getSession().getServletContext().getRealPath("/");
             File file = new File(path, fileSavePath);
             if (!file.delete()) {
                 return new ResponseDto(ErrorCode.ERROR_IO_ACCESS_FAILED);
