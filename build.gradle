@@ -12,13 +12,16 @@ apply plugin: 'idea'
 
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
     }
     dependencies {
         classpath 'org.akhikhl.gretty:gretty:+'
     }
+}
+repositories {
+    jcenter()
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 apply plugin: 'org.akhikhl.gretty'
 
