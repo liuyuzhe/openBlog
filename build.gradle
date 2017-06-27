@@ -12,6 +12,7 @@ apply plugin: 'idea'
 
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
     }
@@ -59,9 +60,9 @@ ext {
 
 // 依赖的仓库
 repositories {
-    // 使用本地目录
+    // 使用本地目录,相对当前文件路径
     flatDir {
-        dirs '~/javeWeb/localLib'
+        dirs './javeWeb/localLib'
     }
     mavenLocal() // 使用本地缓存
     maven{ url "http://maven.aliyun.com/nexus/content/groups/public"}    

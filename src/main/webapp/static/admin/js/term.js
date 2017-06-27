@@ -11,8 +11,8 @@
     var typeElem = $('#termForm input[name=term_type]');
 
     typeElem.bootstrapSwitch({
-        onColor : "primary",
-        offColor : "warning",
+        onColor : "success",
+        offColor : "info",
         onText : "分类",
         offText : "标签"
     });

@@ -134,6 +134,7 @@ public class UserController extends BaseController {
 
         // 处理登陆后自动跳转
         if (!StringUtils.isEmpty(next)) {
+            response.sendRedirect("/admin/user/login");
 //            return this.redirect(next);
         }
 

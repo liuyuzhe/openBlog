@@ -63,7 +63,8 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
         if (requestURI.startsWith("/admin") && user == null) {
             request.setAttribute("next", request.getRequestURI());
-            request.getRequestDispatcher("/admin/user/login").forward(request, response);
+            response.sendRedirect("/admin/user/login");
+//            request.getRequestDispatcher("/admin/user/login").forward(request, response);
             return false;
         }
 

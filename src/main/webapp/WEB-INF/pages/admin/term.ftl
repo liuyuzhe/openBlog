@@ -99,7 +99,7 @@
                                 </div>
                             </fieldset>
                             <div class="text-right col-xs-12">
-                                <button type="reset" class="btn btn-sm btn-warning">清除</button>
+                                <button type="reset" class="btn btn-sm btn-info">清除</button>
                                 <button id="save-term" type="button" class="btn btn-sm btn-success">保存</button>
                             </div>
                         </form>

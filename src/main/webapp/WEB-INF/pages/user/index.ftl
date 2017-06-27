@@ -24,7 +24,6 @@
     <@mainHeader.navbar categoryList=[] />
 </#if>
 
-
 <section>
     <div class="container">
         <div class="row">
@@ -52,7 +51,7 @@
                             <#if (post.thumb_url)?? && (post.thumb_url) != "" >
                                 <div class="post-image hidden-xs">
                                     <a href="/posts/${post.slug}">
-                                        <img src=${post.thumb_url} />
+                                        <img src=${post.thumb_url}/>
                                     </a>
                                 </div>
                             </#if>
@@ -68,11 +67,15 @@
                         <footer class="post-footer">
                             <div class="post-meta">
                             <span class="hidden-xs pull-left">
-                                <time class="fa fa-calendar"> ${(post.create_time)?date} </time>
-                                <a href="/posts/${post.slug}"> <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i> </a>
+                                <time class="fa fa-calendar"> ${(post.create_time)?date}</time>
+                                <a href="/posts/${post.slug}">
+                                    <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i>
+                                </a>
                             </span>
                             <span class="pull-left">
-                                <a href="/posts/${post.slug}"> <i class="fa fa-eye"> ${(post.read_count)!0} </i> </a>
+                                <a href="/posts/${post.slug}">
+                                    <i class="fa fa-eye"> ${(post.read_count)!0} </i>
+                                </a>
                                 <i class="fa fa-heart-o"> ${(post.spot_count)!0} </i>
                             </span>
                             </div>

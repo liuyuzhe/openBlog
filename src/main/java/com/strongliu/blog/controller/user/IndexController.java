@@ -102,7 +102,7 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/categories/{slug}", method = RequestMethod.GET)
     public String categories(@PathVariable String slug,
                              @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
-                             @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+                             @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
                              Model model) {
         try {
             CategoryVo categoryVo = categoryManager.getCategoryVo(slug, pageId, limit);
@@ -111,6 +111,11 @@ public class IndexController extends BaseController {
             }
 
             model.addAttribute(categoryVo);
+
+            List<Category> categoryList = categoryManager.getAllCategory();
+            if (!ObjectUtils.isEmpty(categoryList)) {
+                model.addAttribute(categoryList);
+            }
         } catch (Exception e) {
             logger.error(e.toString());
             return this.render_500();
@@ -125,7 +130,7 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/tags/{slug}", method = RequestMethod.GET)
     public String tags(@PathVariable String slug,
                        @RequestParam(value = "page", required = false, defaultValue = "1") Integer pageId,
-                       @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
+                       @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
                        Model model) {
         try {
             TagVo tagVo = tagManager.getTagVo(slug, pageId, limit);
@@ -134,6 +139,11 @@ public class IndexController extends BaseController {
             }
 
             model.addAttribute(tagVo);
+
+            List<Tag> tagList = tagManager.getAllTag();
+            if (!ObjectUtils.isEmpty(tagList)) {
+                model.addAttribute(tagList);
+            }
         } catch (Exception e) {
             logger.error(e.toString());
             return this.render_500();
