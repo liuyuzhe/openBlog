@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+main {
+    background-color: #fff;
+}
+
+.title {
+    margin: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #555;
+}
+
+.archive {
+    margin: 0 0 0 20px;
+}
+
+.archive ul {
+    list-style-type: none;
+    padding: 2px 0;
+    margin: 0;
+}
+
+.archive ul li time {
+    width: 100px;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 16px;
+    color: #777;
+}
+
+.archive ul li a {
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #333;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.archive ul li a:active,
+.archive ul li a:hover {
+    color: #f4645f;
+}
