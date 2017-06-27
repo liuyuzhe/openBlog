@@ -1,5 +1,6 @@
 package com.strongliu.blog.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
@@ -90,7 +91,13 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(@RequestParam(value = "next", required = false) String next, Model model) {
+
+        if (!StringUtils.isEmpty(next)) {
+            // 直接写 model.addAttribute(next) 会导致model里key值变为"string"
+            model.addAttribute("next", next);
+        }
+
         return this.renderAdmin("login");
     }
 
@@ -131,16 +138,15 @@ public class UserController extends BaseController {
                     return new ResponseDto(ErrorCode.ERROR_ENCRYPT_FAILED);
                 }
             }
-
-        // 处理登陆后自动跳转
-        if (!StringUtils.isEmpty(next)) {
-            response.sendRedirect("/admin/user/login");
-//            return this.redirect(next);
-        }
-
         } catch (Exception e) {
             logger.error(e.toString());
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
+        }
+
+        // 处理登陆后自动跳转
+        if (!StringUtils.isEmpty(next)) {
+            String data = JSON.toJSONString(next);
+            return new ResponseDto<>(ErrorCode.SUCCESS, data);
         }
 
         return new ResponseDto(ErrorCode.SUCCESS);

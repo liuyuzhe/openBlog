@@ -110,6 +110,8 @@ var User = {
             return;
         }
 
+        var next = $("#loginForm input[name='next']").val();
+
         var loginFormData = $("#loginForm :input")
             .filter(function() {
                 return !user.isEmpty($(this).val);
@@ -122,7 +124,12 @@ var User = {
             data : loginFormData,
             success : function(response) {
                 if (response.code === 0) {
-                    window.location.href = "/";
+                    if (!user.isEmpty(response.data)) {
+                        var responseData = response.data;
+                        window.location.href = responseData.next;
+                    } else {
+                        window.location.href = "/";
+                    }
                 } else {
                     console.log(response.message);
                 }
