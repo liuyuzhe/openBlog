@@ -125,7 +125,7 @@ var User = {
             success : function(response) {
                 if (response.code === 0) {
                     if (!user.isEmpty(response.data)) {
-                        var responseData = response.data;
+                        var responseData = JSON.parse(response.data);
                         window.location.href = responseData.next;
                     } else {
                         window.location.href = "/";

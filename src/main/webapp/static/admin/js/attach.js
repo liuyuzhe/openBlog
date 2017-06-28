@@ -2,6 +2,7 @@
  * Created by liuyuzhe on 2017/5/18.
  */
 
+var attach = Base.init();
 
 (function () {
 
@@ -26,6 +27,15 @@
     });
 
     uploader.bind("FileUploaded", function(uploader, file, result) {
+        var response = JSON.parse(result.response);
+        if (response.code === 0) {
+            if (!attach.isEmpty(response.data)) {
+                var responseData = JSON.parse(response.data);
+                var fileSlug = responseData.fileSlug;
+                console.log("fileSlug: ", fileSlug);
+            }
+        }
+
         console.log("result:", result);
     });
 
