@@ -1,6 +1,7 @@
 package com.strongliu.blog.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.strongliu.blog.constant.Constant;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
@@ -145,7 +146,9 @@ public class UserController extends BaseController {
 
         // 处理登陆后自动跳转
         if (!StringUtils.isEmpty(next)) {
-            String data = JSON.toJSONString(next);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("next", next);
+            String data = JSON.toJSONString(jsonObject);
             return new ResponseDto<>(ErrorCode.SUCCESS, data);
         }
 

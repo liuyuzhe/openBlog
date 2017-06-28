@@ -1,6 +1,7 @@
 package com.strongliu.blog.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.strongliu.blog.constant.ErrorCode;
 import com.strongliu.blog.controller.BaseController;
 import com.strongliu.blog.dto.ResponseDto;
@@ -102,7 +103,9 @@ public class AttachController extends BaseController {
             return new ResponseDto(ErrorCode.ERROR_SERVER_INTERNAL);
         }
 
-        String data = JSON.toJSONString(fileSlug);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("fileSlug", fileSlug);
+        String data = JSON.toJSONString(jsonObject);
 
         return new ResponseDto<>(ErrorCode.SUCCESS, data);
     }
