@@ -67,6 +67,11 @@ var User = {
             return;
         }
 
+        var agreeElem = $("#registerForm input[name='agree']");
+        if (agreeElem.prop("checked")) {
+            agreeElem.val(1);
+        }
+
         var registerFormData = $("#registerForm :input")
             .filter(function() {
                 return !user.isEmpty($(this).val);
@@ -110,7 +115,10 @@ var User = {
             return;
         }
 
-        var next = $("#loginForm input[name='next']").val();
+        var rememberElem = $("#loginForm input[name='remember']");
+        if (rememberElem.prop("checked")) {
+            rememberElem.val(1);
+        }
 
         var loginFormData = $("#loginForm :input")
             .filter(function() {
