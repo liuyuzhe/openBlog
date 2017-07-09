@@ -67,7 +67,7 @@
                         <footer class="post-footer">
                             <div class="post-meta">
                             <span class="hidden-xs pull-left">
-                                <time class="fa fa-calendar"> ${(post.create_time)?date}</time>
+                                <time class="fa fa-calendar"> ${(post.create_time)?string("yyyy-MM-dd")}</time>
                                 <a href="/posts/${post.slug}">
                                     <i class="fa fa-comment-o"> ${(post.comment_count)!0} </i>
                                 </a>
@@ -109,7 +109,7 @@
                     <div class="about-background">
                     </div>
                     <div class="user-avatar">
-                        <a href="#">
+                        <a href="javascript:">
                             <img src="https://www.vtrois.com/wp-content/uploads/2017/02/avatar.jpg">
                         </a>
                     </div>
@@ -134,7 +134,7 @@
     </div>
 </section>
 
-<a href="#" id="back-to-top">
+<a href="javascript:" id="back-to-top">
     <i class="fa fa-angle-up"></i>
 </a>
 

@@ -31,7 +31,7 @@
                             <h1 class="post-title">${postVo.post.title}</h1>
                             <div class="post-meta">
                                 <span class="hidden-xs">
-                                    <time class="fa fa-calendar" datetime="${(postVo.post.create_time)?date}"> ${(postVo.post.create_time)?date} </time>
+                                    <time class="fa fa-calendar" datetime="${(postVo.post.create_time)?string("yyyy-MM-dd")}"> ${(postVo.post.create_time)?string("yyyy-MM-dd")} </time>
                                     <i class="fa fa-comment"> ${postVo.post.comment_count!0} </i>
                                 </span>
                                 <span class="">
@@ -42,9 +42,9 @@
                         </header>
                     </#if>
                     <div class="post-support text-center">
-                        <a href="#" class="post-donate"> <i class="fa fa-cny"></i> 打赏 </a>
-                        <a href="#" class="post-love"> <i class="fa fa-heart-o"></i> 点赞 </a>
-                        <a href="#" class="post-share"> <i class="fa fa-share-alt"></i> 分享 </a>
+                        <a href="javascript:" class="post-donate"> <i class="fa fa-cny"></i> 打赏 </a>
+                        <a href="javascript:" class="post-love"> <i class="fa fa-heart-o"></i> 点赞 </a>
+                        <a href="javascript:" class="post-share"> <i class="fa fa-share-alt"></i> 分享 </a>
                     </div>
                     <#if (postVo.tagList)?? >
                         <#list postVo.tagList>
@@ -77,7 +77,7 @@
     </div>
 </section>
 
-<a href="#" id="back-to-top">
+<a href="javascript:" id="back-to-top">
     <i class="fa fa-angle-up"></i>
 </a>
 

@@ -24,10 +24,10 @@
                     <thead>
                     <tr>
                         <th>文章标题</th>
-                        <th class="text-center">更新时间</th>
-                        <th class="text-center">文章状态</th>
-                        <th class="text-center">评论状态</th>
-                        <th class="text-center">阅读数</th>
+                        <th>更新时间</th>
+                        <th>文章状态</th>
+                        <th>评论状态</th>
+                        <th>阅读数</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -36,7 +36,7 @@
                         <#list postPageVo.postList as post>
                         <tr <#if post.status == 'draft'>class="danger"</#if> >
                             <td> <a href="/admin/post/${post.id}">${post.title}</a> </td>
-                            <td>${(post.update_time)?date}</td>
+                            <td>${(post.update_time)?string("yyyy-MM-dd")}</td>
                             <td>
                                 <#if post.status == 'publish' >
                                     <span class="label label-success">已发布</span>
@@ -59,7 +59,7 @@
                                     <i class="fa fa-edit"></i>
                                     <span>编辑</span>
                                 </a>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-sm delete-post" pid=${post.id}>
+                                <a href="javascript:" class="btn btn-danger btn-sm delete-post" pid=${post.id}>
                                     <i class="fa fa-trash-o"></i>
                                     <span>删除</span>
                                 </a>

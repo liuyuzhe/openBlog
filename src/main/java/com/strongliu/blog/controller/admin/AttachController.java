@@ -21,10 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -110,15 +107,17 @@ public class AttachController extends BaseController {
         return new ResponseDto<>(ErrorCode.SUCCESS, data);
     }
 
-    @RequestMapping(value = "/download", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<byte[]> downloadAttach(@RequestParam("attachSlug") String attachSlug, HttpServletRequest request) {
+    @RequestMapping(value = "/download/{attachSlug}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> downloadAttach(@PathVariable String attachSlug, HttpServletRequest request) {
         try {
             Attach attach = attachManager.getAttach(attachSlug);
             String fileSavePath = FileUtil.getFileSavePath(attach.getName(), attach.getSlug(), attach.getCreate_time());
 
             String path = request.getSession().getServletContext().getRealPath("/");
             File file = new File(path, fileSavePath);
+            if (!file.exists()) {
+                return null;
+            }
 
             HttpHeaders headers = new HttpHeaders();
             MediaType mediaType;

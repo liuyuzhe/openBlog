@@ -17,7 +17,7 @@
                     <#if categoryList?? >
                         <#list categoryList>
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 文章归档
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> 文章归档
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -30,7 +30,7 @@
                             </li>
                         </#list>
                     </#if>
-                    <li> <a href="#"> <span class="glyphicon glyphicon-user"></span> 关于 </a> </li>
+                    <li> <a href="javascript:"> <span class="glyphicon glyphicon-user"></span> 关于 </a> </li>
                 </ul>
             </div>
         </div>

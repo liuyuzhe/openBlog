@@ -84,6 +84,10 @@ body {
     font-size: 20px;
 }
 
+.panel-body .btn-group {
+    margin: 5px;
+}
+
 .dropdown-menu > li > a {
     padding: 6px 20px;
 }
@@ -169,8 +173,16 @@ body {
     border-color: #66afe9 !important;
 }
 
+.attach > a {
+    display: block;
+}
+
 .attach > div {
     margin-top: 5px;
+    overflow: hidden;
+    width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .attach-img {
@@ -187,6 +199,18 @@ body {
 
 .attach button {
     margin-bottom: 5px;
+}
+
+.table tr th,
+.table tr td {
+    text-align: center;
+}
+
+.table tr th:first-child,
+.table tr th:last-child,
+.table tr td:first-child,
+.table tr td:last-child {
+    text-align: left;
 }
 
 .pagination > .active > a,

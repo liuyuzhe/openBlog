@@ -34,8 +34,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="update-term" href="javascript:void(0)" tid=${category.id} tname=${category.name} tslug=${category.slug} ttype="category">修改</a></li>
-                                    <li><a class="delete-term" href="javascript:void(0)" tid=${category.id} ttype="category">删除</a></li>
+                                    <li><a class="update-term" href="javascript:" tid=${category.id} tname=${category.name} tslug=${category.slug} ttype="category">修改</a></li>
+                                    <li><a class="delete-term" href="javascript:" tid=${category.id} ttype="category">删除</a></li>
                                 </ul>
                             </div>
                         <#else>
@@ -63,8 +63,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="update-term" href="javascript:void(0)" tid=${tag.id} tname=${tag.name} tslug=${tag.slug} ttype="tag">修改</a></li>
-                                    <li><a class="delete-term" href="javascript:void(0)" tid=${tag.id} ttype="tag">删除</a></li>
+                                    <li><a class="update-term" href="javascript:" tid=${tag.id} tname=${tag.name} tslug=${tag.slug} ttype="tag">修改</a></li>
+                                    <li><a class="delete-term" href="javascript:" tid=${tag.id} ttype="tag">删除</a></li>
                                 </ul>
                             </div>
                         <#else>

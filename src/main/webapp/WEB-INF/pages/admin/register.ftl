@@ -58,10 +58,10 @@
                             <label>
                                 <input name="agree" type="checkbox" checked="checked"> 我同意
                             </label>
-                            <a href="#"> 用户协议 </a>
+                            <a href="javascript:"> 用户协议 </a>
                         </div>
                         <div class="pull-right">
-                            <a href="#"> 已有账号？</a>
+                            <a href="javascript:"> 已有账号？</a>
                         </div>
                     </div>
                 </fieldset>

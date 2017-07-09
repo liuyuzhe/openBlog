@@ -20,13 +20,13 @@
                 <h4 class="page-title">附件管理</h4>
             </div>
             <div class="col-md-12">
-                <a id="upload-file" href="javascript:void(0)">选择文件</a>
+                <a id="upload-file" href="javascript:">选择文件</a>
             </div>
         <#if attachPageVo?? >
             <#list (attachPageVo.attachList) as attach >
                 <div class="col-md-2 text-center attach">
-                    <a class="" href="${attach.slug}">
-                        <img class="attach-img" src="${attach.slug}" title="${attach.name}"/>
+                    <a class="" href="javascript:">
+                        <img class="attach-img" src="/admin/attach/download/${attach.slug}" title="${attach.name}"/>
                     </a>
                     <div class="">
                         <span class="attach-text">${attach.name}</span>

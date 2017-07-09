@@ -52,7 +52,7 @@
                             </label>
                         </div>
                         <div class="pull-right">
-                            <a href="#"> 忘记密码？</a>
+                            <a href="javascript:"> 忘记密码？</a>
                         </div>
                     </div>
                 </fieldset>
