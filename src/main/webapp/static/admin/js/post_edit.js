@@ -182,6 +182,7 @@
             data : articleFormData,
             success : function(response) {
                 if (response.code === 0) {
+                    window.location.href = "/admin/post";
                     console.log(response.message);
                 } else {
                     console.log(response.message);

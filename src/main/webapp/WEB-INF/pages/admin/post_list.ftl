@@ -64,7 +64,7 @@
                                     <span>删除</span>
                                 </a>
                                 <#if post.status == "publish" >
-                                    <a href="${post.slug}" class="btn btn-success btn-sm" target="_blank">
+                                    <a href="/posts/${post.slug}" class="btn btn-success btn-sm" target="_blank">
                                         <i class="fa fa-rocket"></i>
                                         <span>预览</span>
                                     </a>

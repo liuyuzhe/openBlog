@@ -32,6 +32,7 @@
     $(".delete-term").click(function() {
         var url = $(this).attr('ttype') === "category" ? "/admin/category/remove" : "/admin/tag/remove";
         var id = $(this).attr('tid');
+        var self = this;
 
         $.post({
             url : url,
@@ -39,6 +40,7 @@
             data : {id: id},
             success : function(response) {
                 if (response.code === 0) {
+                    $(self).closest("div.btn-group").remove();
                     console.log(response.message);
                 } else {
                     console.log(response.message);
@@ -90,6 +92,8 @@
             data : termFormData,
             success : function(response) {
                 if (response.code === 0) {
+                    window.location.reload();
+
                     console.log(response.message);
                 } else {
                     console.log(response.message);

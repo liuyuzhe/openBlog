@@ -32,6 +32,8 @@ var attach = Base.init();
             if (!attach.isEmpty(response.data)) {
                 var responseData = JSON.parse(response.data);
                 var fileSlug = responseData.fileSlug;
+
+                window.location.reload();
                 console.log("fileSlug: ", fileSlug);
             }
         }
@@ -63,6 +65,7 @@ var attach = Base.init();
 
     $(".delete-attach").click(function() {
         var id = $(this).attr('aid');
+        var self = this;
 
         $.post({
             url : "/admin/attach/remove",
@@ -70,6 +73,7 @@ var attach = Base.init();
             data : {attachId: id},
             success : function(response) {
                 if (response.code === 0) {
+                    $(self).closest("div.attach").remove();
                     console.log(response.message);
                 } else {
                     console.log(response.message);

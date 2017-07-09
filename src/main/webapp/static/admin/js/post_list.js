@@ -6,6 +6,7 @@
 
     $(".delete-post").click(function() {
         var id = $(this).attr('pid');
+        var self = this;
 
         $.post({
             url : "/admin/post/remove",
@@ -13,6 +14,7 @@
             data : {postId: id},
             success : function(response) {
                 if (response.code === 0) {
+                    $(self).closest("tr").remove();
                     console.log(response.message);
                 } else {
                     console.log(response.message);
