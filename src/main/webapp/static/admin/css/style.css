@@ -173,19 +173,36 @@ body {
     border-color: #66afe9 !important;
 }
 
+#upload-file {
+    height: 250px;
+    line-height: 250px;
+    text-align: center;
+    color: #aaa;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0 auto 20px;
+    font-size: 20px;
+}
+
+.attach {
+    padding-bottom: 10px;
+}
+
 .attach > a {
     display: block;
 }
 
 .attach > div {
     margin-top: 5px;
+}
+
+.attach .attach-text {
     overflow: hidden;
-    width: 140px;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.attach-img {
+.attach-img img {
     width: 100px;
     height: 100px;
     border-radius: 10px;
@@ -199,6 +216,10 @@ body {
 
 .attach button {
     margin-bottom: 5px;
+}
+
+.table tbody {
+    background-color: #fff;
 }
 
 .table tr th,

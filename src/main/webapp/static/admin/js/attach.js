@@ -8,8 +8,9 @@ var attach = Base.init();
 
     var uploader = new plupload.Uploader({
         browse_button : "upload-file",
+        drop_element : "upload-file",
         url : "/admin/attach/upload",
-        max_file_size : '50mb',
+        max_file_size : "50mb",
         chunk_size: 0,
         auto_start : true
     });

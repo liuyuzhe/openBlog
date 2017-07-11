@@ -19,19 +19,19 @@
             <div class="col-sm-12">
                 <h4 class="page-title">附件管理</h4>
             </div>
-            <div class="col-md-12">
-                <a id="upload-file" href="javascript:">选择文件</a>
+            <div class="col-sm-12">
+                <p id="upload-file">将文件拖放到此处或者点击上传</p>
             </div>
         <#if attachPageVo?? >
             <#list (attachPageVo.attachList) as attach >
-                <div class="col-md-2 text-center attach">
-                    <a class="" href="javascript:">
-                        <img class="attach-img" src="/admin/attach/download/${attach.slug}" title="${attach.name}"/>
+                <div class="col-md-3 text-center attach">
+                    <a class="attach-img" href="javascript:">
+                        <img src="/admin/attach/download/${attach.slug}" title="${attach.name}"/>
                     </a>
-                    <div class="">
-                        <span class="attach-text">${attach.name}</span>
+                    <div class="attach-text">
+                        <span>${attach.name}</span>
                     </div>
-                    <div class="">
+                    <div>
                         <button type="button" class="btn btn-primary btn-sm copy-attach" aslug="${attach.slug}">
                             <i class="fa fa-copy"></i>
                             <span>复制</span>
