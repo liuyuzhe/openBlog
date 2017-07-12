@@ -177,6 +177,7 @@ body {
     height: 250px;
     line-height: 250px;
     text-align: center;
+    overflow: hidden;
     color: #aaa;
     background-color: #fff;
     border: 1px solid #ccc;

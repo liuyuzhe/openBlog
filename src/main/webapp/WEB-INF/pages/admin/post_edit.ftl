@@ -126,7 +126,7 @@
                         </div>
                     </fieldset>
                     <div class="text-right">
-                        <div class="col-xs-12">
+                        <div class="col-sm-12">
                             <button id="save_draft" type="button" class="btn btn-sm btn-info">存为草稿</button>
                             <button id="save_post" type="button" class="btn btn-sm btn-success">保存文章</button>
                         </div>

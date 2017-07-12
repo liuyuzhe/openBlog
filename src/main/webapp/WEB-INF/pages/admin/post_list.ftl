@@ -77,7 +77,7 @@
                 </table>
             </div>
         <#if (postPageVo.pageIndex > 0) && (postPageVo.pageTotal > 0) >
-            <nav class="col-md-12 text-center">
+            <nav class="col-sm-12 text-center">
                 <ul class="pagination">
                     <#list 1..(postPageVo.pageTotal) as index >
                         <li

@@ -24,7 +24,7 @@
             </div>
         <#if attachPageVo?? >
             <#list (attachPageVo.attachList) as attach >
-                <div class="col-md-3 text-center attach">
+                <div class="col-lg-2 col-md-3 col-sm-6 text-center attach">
                     <a class="attach-img" href="javascript:">
                         <img src="/admin/attach/download/${attach.slug}" title="${attach.name}"/>
                     </a>
@@ -43,14 +43,14 @@
                     </div>
                 </div>
             <#else>
-                <div class="col-md-12 text-center">
-                    <div class="col-md-6 alert alert-warning">
+                <div class="col-sm-12 text-center">
+                    <div class="col-sm-6 alert alert-warning">
                         还没有一个附件，你可以上传试试!
                     </div>
                 </div>
             </#list>
             <#if (attachPageVo.pageIndex > 0) && (attachPageVo.pageTotal > 0) >
-                <nav class="col-md-12 text-center">
+                <nav class="col-sm-12 text-center">
                     <ul class="pagination">
                         <#list 1..(attachPageVo.pageTotal) as index >
                             <li
