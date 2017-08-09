@@ -73,6 +73,7 @@
 <script src="../../../static/plugin/clipboard.js/clipboard.min.js"></script>
 <script src="../../../static/plugin/plupload-3.0-beta1/js/plupload.min.js"></script>
 <script src="../../../static/common/js/base.js"></script>
+<script src="../../../static/admin/js/menu.js"></script>
 <script src="../../../static/admin/js/attach.js"></script>
 
 </body>

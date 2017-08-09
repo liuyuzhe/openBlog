@@ -114,6 +114,7 @@
 <script src="../../../static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
 <script src="../../../static/common/js/base.js"></script>
+<script src="../../../static/admin/js/menu.js"></script>
 <script src="../../../static/admin/js/term.js"></script>
 
 </body>

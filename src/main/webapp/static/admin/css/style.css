@@ -70,11 +70,13 @@ body {
 }
 
 .topbar-menu .nav > li > a {
+    display: block;
     line-height: 40px;
     padding: 15px;
 }
 
 .topbar-menu .nav > li > a > img {
+    display: inline-block;
     border: 2px solid #f3f3f3;
     height: 36px;
     width: 36px;
@@ -110,6 +112,7 @@ body {
 .sidebar-menu > ul {
     list-style: none;
     padding: 0;
+    overflow: hidden;
 }
 
 .sidebar-menu > ul > li {

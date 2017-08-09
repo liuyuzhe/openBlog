@@ -144,6 +144,7 @@
 <script src="../../../static/plugin/summernote-0.8.3/summernote.js"></script>
 <script src="../../../static/plugin/bootstrap-switch/js/bootstrap-switch.js"></script>
 <script src="../../../static/common/js/base.js"></script>
+<script src="../../../static/admin/js/menu.js"></script>
 <script src="../../../static/admin/js/post_edit.js"></script>
 
 </body>
