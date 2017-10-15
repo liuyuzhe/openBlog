@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
     private static final String[] IGNORE_URI = {"/admin/user/register", "/admin/user/login", "/admin/user/logout"};
+    private static final String[] CORS_HOST = {};
 
     @Autowired
     private UserService userService;
@@ -31,6 +32,17 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+
+        String requestHost = request.getRemoteHost();
+        // 添加跨域访问权限
+        for (String host: CORS_HOST) {
+            if (requestHost.equals(host)) {
+                response.setHeader("Access-Control-Allow-Origin", "*");
+                response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+                response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
+            }
+        }
+
         String requestURI = request.getRequestURI();
 
         for (String uri : IGNORE_URI) {
